@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulation · The Psychiatric Resident</title>
+<meta name="description" content="Formulation: working out what is going on: the history, the mental state, the review note, the 5P grid, ten ways to formulate and more than thirty presentations formulated.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14181f; --paper:#ffffff; --paper-2:#f5f6f7; --rule:#dfe1e4;
+  --brass:#8a5a2b; --sage:#2f5a4a; --muted:#6a6f77; --red:#8a2b2b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- site furniture, matching the rest ---------- */
+.topbar{border-bottom:1px solid var(--rule);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:12px;flex-wrap:wrap}
+.topbar a{color:var(--muted);text-decoration:none;margin-left:18px}
+.topbar a:hover{color:var(--brass)}
+.masthead{text-align:center;padding:26px 0 14px;border-bottom:3px double var(--ink)}
+.masthead .kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+.masthead h1{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(34px,7vw,70px);line-height:.96}
+.masthead h1 a{text-decoration:none}
+.masthead .sub{margin-top:10px;font-style:italic;color:var(--muted);font-size:15px}
+nav.primary{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:60}
+nav.primary .wrap{display:flex;flex-wrap:wrap;gap:2px;justify-content:center}
+nav.primary a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;text-decoration:none;padding:14px 15px;border-bottom:2px solid transparent}
+nav.primary a:hover,nav.primary a.active{color:var(--brass);border-bottom-color:var(--brass)}
+
+/* ---------- lede ---------- */
+.lede{padding:38px 0 24px;border-bottom:1px solid var(--rule)}
+.lede h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4vw,42px);line-height:1.1;font-weight:800;margin-bottom:12px}
+.lede p{font-size:17px;color:#3d3a34;max-width:74ch;margin-bottom:10px}
+.byline{margin-top:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:47px;background:var(--paper);z-index:55;
+  border-bottom:1px solid var(--rule);padding:14px 0 12px}
+.controls .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1;min-width:200px;font:inherit;font-size:15px;padding:10px 14px;
+  border:1px solid var(--rule);border-radius:3px;background:var(--paper-2)}
+.search:focus{border-color:var(--brass);background:#fff;outline:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;padding:8px 13px;border:1px solid var(--rule);background:#fff;
+  color:var(--muted);cursor:pointer;border-radius:2px}
+.chips button:hover{border-color:var(--brass);color:var(--brass)}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.count{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+/* ---------- the spine ---------- */
+.rail{position:relative;padding:34px 0 70px}
+.rail:before{content:"";position:absolute;left:31px;top:0;bottom:0;width:2px;background:var(--rule)}
+.rail:after{content:"";position:absolute;left:31px;top:0;width:2px;height:var(--fill,0%);
+  background:var(--brass);transition:height .18s linear}
+@media(min-width:860px){
+  .rail:before,.rail:after{left:50%;margin-left:-1px}
+}
+
+/* ---------- era heading ---------- */
+.era{position:relative;padding:34px 0 10px 76px}
+.era h3{font-family:"Playfair Display",Georgia,serif;font-size:27px;color:var(--brass)}
+.era p{font-size:15px;color:var(--muted);max-width:60ch}
+.era .dot{position:absolute;left:20px;top:44px;width:24px;height:24px;border-radius:50%;
+  background:var(--brass);border:4px solid var(--paper);box-shadow:0 0 0 2px var(--brass)}
+@media(min-width:860px){
+  .era{padding:44px 0 12px;text-align:center}
+  .era .dot{left:50%;margin-left:-12px;top:auto;margin-top:-52px;position:relative;display:block}
+  .era h3,.era p{margin-left:auto;margin-right:auto}
+}
+
+/* ---------- entries ---------- */
+.ev{position:relative;padding:0 0 26px 76px;opacity:0;transform:translateY(26px);
+  transition:opacity .55s ease,transform .55s ease}
+.ev.in{opacity:1;transform:none}
+.ev .node{position:absolute;left:24px;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--brass);z-index:2;transition:transform .3s}
+.ev.in .node{transform:scale(1)}
+.ev:not(.in) .node{transform:scale(.4)}
+
+.cardw{border:1px solid var(--rule);background:var(--paper);padding:18px 20px;position:relative}
+.cardw:hover{border-color:var(--brass)}
+.yr{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;color:var(--brass);
+  display:block;margin-bottom:2px;letter-spacing:.01em}
+.ev h4{font-family:"Playfair Display",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:8px}
+.ev p{font-size:16px;color:#3d3a34}
+.who{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+
+/* portrait medallion, real photo if one is supplied */
+.face{position:relative;width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:1px solid var(--rule);background:hsl(var(--h,30) 24% 90%);
+  display:flex;align-items:center;justify-content:center}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.face .ini{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;
+  color:hsl(var(--h,30) 38% 32%)}
+.who .nm{font-size:14px;line-height:1.3}
+.who .nm b{font-family:"Playfair Display",Georgia,serif;font-size:16px;display:block}
+.who .nm span{color:var(--muted);font-size:12px}
+
+.flag{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-left:8px;vertical-align:3px}
+.flag.fix{background:rgba(138,43,43,.1);color:var(--red);border:1px solid rgba(138,43,43,.25)}
+.flag.uk{background:rgba(47,90,74,.1);color:var(--sage)}
+
+details.note{margin-top:12px;border-top:1px dotted var(--rule);padding-top:10px}
+details.note summary{cursor:pointer;list-style:none;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+details.note summary::-webkit-details-marker{display:none}
+details.note summary:after{content:" +"}
+details.note[open] summary:after{content:" −"}
+details.note .body{font-size:15px;color:#4a453b;padding-top:8px}
+details.note .body b{color:var(--ink)}
+.corr{margin-top:10px;background:rgba(138,43,43,.05);border-left:3px solid var(--red);
+  padding:10px 14px;font-size:14px;color:#5a4a4a}
+.corr b{color:var(--red);display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+
+@media(min-width:860px){
+  .ev{padding:0 0 30px 0;width:50%;}
+  .ev.l{padding-right:52px;text-align:right;margin-left:0}
+  .ev.r{padding-left:52px;margin-left:50%}
+  .ev .node{left:auto;right:-8px;top:14px}
+  .ev.r .node{left:-8px;right:auto}
+  .ev.l .who{justify-content:flex-end}
+  .ev.l{transform:translateX(-26px)}
+  .ev.r{transform:translateX(26px)}
+  .ev.in{transform:none}
+  .ev.l details.note summary,.ev.l .corr{text-align:right}
+  .ev.l .corr{border-left:none;border-right:3px solid var(--red)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ev{opacity:1!important;transform:none!important;transition:none}
+  .rail:after{transition:none}
+  html{scroll-behavior:auto}
+}
+
+.empty{padding:50px 0 50px 76px;color:var(--muted);font-style:italic}
+footer{border-top:3px double var(--ink);padding:30px 0 60px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer .brand{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--ink)}
+.totop{position:fixed;right:20px;bottom:20px;background:var(--ink);color:#fff;border:none;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:17px;opacity:0;
+  transition:opacity .3s;pointer-events:none;z-index:70}
+.totop.on{opacity:.9;pointer-events:auto}
+</style>
+<style>
+body{background:#fff}
+.fx{max-width:1240px;margin:0 auto;background:#14243A}
+.fx .in{padding:34px 40px 38px}
+.fx-hero{background:radial-gradient(900px 400px at 85% -10%,#24406A 0,#14243A 55%,#0E1A2B 100%);color:#fff;border-bottom:4px solid #B8932C}
+.fx-hero .k{font:800 10.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#E9C870}
+.fx-hero h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(32px,5vw,56px);line-height:1.02;font-weight:900;color:#fff;margin:10px 0 14px;max-width:18ch}
+.fx-hero .lede{color:#D6DEEA;font-size:18px;max-width:64ch;line-height:1.55}
+.fx-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:18px}.fx-stats b{font:900 34px/1 "Playfair Display",Georgia,serif;color:#E9C870;display:block}.fx-stats small{font:700 9.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#AFC0D6}
+.fx-toc{display:grid;grid-template-columns:repeat(11,1fr);border-top:1px solid #2F4665}
+.fx-toc a{padding:12px 10px;color:#D6DEEA;text-decoration:none;font:600 12.5px/1.3 "Helvetica Neue",Arial,sans-serif;border-left:1px solid #2F4665}
+.fx-toc a:first-child{border-left:0}.fx-toc a b{display:block;font:900 20px "Playfair Display",Georgia,serif;color:#E9C870}
+.fx-toc a:hover{background:#1C3150;color:#fff}
+.ch.lt{background:#fff;color:#14243A}.ch.dk{background:#14243A;color:#fff}
+.ch{border-top:3px solid #B8932C}
+.chn{font:800 10.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8A6A12}.dk .chn{color:#E9C870}
+.ch h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,3.6vw,40px);line-height:1.08;margin:6px 0 10px;color:inherit;font-weight:900}
+.lede2{font-size:17px;line-height:1.6;max-width:70ch;color:#2A3446}.dk .lede2{color:#D6DEEA}
+.case-box{border-left:4px solid #B8932C;background:#FBF6E6;padding:14px 18px;font-size:16px;line-height:1.6;margin:16px 0;color:#14243A}
+.tabs2{display:inline-flex;border:1px solid #14243A;margin:6px 0 0}.tabs2 button{font:800 12px "Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:0;background:#fff;color:#14243A;cursor:pointer}.tabs2 button.on{background:#14243A;color:#E9C870}
+.tv{border:1px solid #E3DCC6;padding:16px 20px;font-size:16px;line-height:1.6;color:#2A3446}
+.tv p{margin:0 0 10px}.note{font-style:italic;color:#8A6A12!important}.dk .note{color:#E9C870!important}
+.pull{font:italic 700 clamp(20px,2.4vw,28px)/1.3 "Playfair Display",Georgia,serif;color:#14243A;border-left:5px solid #B8932C;padding:6px 0 6px 18px;margin:22px 0 0}.pull.dkp{color:#fff}
+.lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px 0;border-top:2px solid #fff}
+.lens{padding:18px 20px;border-left:1px solid #2F4665}.lens:first-child{border-left:0;padding-left:0}
+.lens:nth-child(2){background:#1C3150;border-left:0;padding-left:20px}.lens:nth-child(3){background:#B8932C;color:#0E1A2B}
+.lens .ln{font:900 44px/1 "Playfair Display",Georgia,serif;color:#E9C870}.lens:nth-child(3) .ln{color:#0E1A2B}
+.lens h4{font-family:"Playfair Display",Georgia,serif;font-size:22px;margin:6px 0 6px;color:inherit}.lens p{font-size:15px;line-height:1.55;margin:0;color:#D6DEEA}.lens:nth-child(3) p{color:#14243A}
+.sub{font-family:"Playfair Display",Georgia,serif;font-size:21px;margin:26px 0 10px;color:inherit}.sub span{font:700 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#E9C870;margin-left:8px}.lt .sub span{color:#8A6A12}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pyr .lv{border:0;cursor:pointer;font:600 15px "Helvetica Neue",Arial,sans-serif;color:#fff;padding:12px;text-align:center;transition:.15s}
+.pyr .lv b{font-family:"Playfair Display",Georgia,serif;font-size:17px;margin-right:8px;color:#E9C870}
+.pyr .lv[data-l="1"]{width:46%;background:#24406A}.pyr .lv[data-l="2"]{width:70%;background:#1C3150}.pyr .lv[data-l="3"]{width:94%;background:#0E1A2B;border:1px solid #2F4665}
+.pyr .lv.on{background:#B8932C!important;color:#0E1A2B}.pyr .lv.on b{color:#0E1A2B}
+.lvtx{max-width:820px;margin:14px auto 0;font-size:15.5px;line-height:1.6;color:#D6DEEA}
+.tip{margin-top:22px;padding:14px 18px;background:#1C3150;border-left:4px solid #2E7D5B;font-size:14.5px;line-height:1.6;color:#D6DEEA}.lt .tip{background:#F2F5FA;color:#2A3446}.tip b{color:#E9C870}.lt .tip b{color:#14243A}
+.acc{border-top:2px solid #14243A;margin-top:14px}
+.acc details{border-bottom:1px solid #E3DCC6}.acc summary{cursor:pointer;list-style:none;padding:13px 4px;display:flex;gap:12px;align-items:baseline;font:700 17px "Playfair Display",Georgia,serif;color:#14243A}
+.acc summary::-webkit-details-marker{display:none}.acc summary i{font:900 13px "Helvetica Neue",Arial,sans-serif;font-style:normal;color:#8A6A12;min-width:24px}
+.acc summary:after{content:"+";margin-left:auto;color:#B8932C;font-size:22px}.acc details[open] summary:after{content:"−"}
+.acc .bd{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 4px 16px 40px}
+.acc .bd div{font-size:15px;line-height:1.55;color:#2A3446}.acc .bd b{display:block;font:800 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#8A6A12;margin-bottom:4px}
+.acc .bd div:last-child{background:#FBF6E6;padding:10px 12px;border-left:3px solid #B8932C}
+.mosa{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px}
+.mt{padding:16px 18px}.mt h5{font-family:"Playfair Display",Georgia,serif;font-size:19px;margin:0 0 6px}.mt p{font-size:14.5px;line-height:1.55;margin:0}
+.mt.w{background:#fff;border:1px solid #E3DCC6;color:#14243A}.mt.n{background:#14243A;color:#fff}.mt.n p{color:#D6DEEA}.mt.g{background:#B8932C;color:#0E1A2B}
+.mse{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px;border-top:2px solid #fff}
+.ms{padding:16px 18px;border-left:1px solid #2F4665;border-bottom:1px solid #2F4665}.ms:nth-child(4n+1){border-left:0}
+.ms:nth-child(3),.ms:nth-child(6){background:#fff;color:#14243A;border-left:0}.ms:nth-child(3) p,.ms:nth-child(6) p{color:#3B4556}.ms:nth-child(8){background:#24406A}
+.ms h5{font-family:"Playfair Display",Georgia,serif;font-size:19px;margin:0 0 6px}.ms p{font-size:14px;line-height:1.5;color:#C9D6E8;margin:0 0 8px}
+.ms .ex{font-style:italic;color:#E9C870;font-size:13.5px}.ms:nth-child(3) .ex,.ms:nth-child(6) .ex{color:#8A6A12}
+.spine{display:grid;grid-template-columns:260px 1fr;border:1px solid #14243A;margin-top:16px}
+.sp-list{background:#14243A;max-height:520px;overflow:auto}
+.sp-list button{display:flex;gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid #22354F;background:none;color:#D6DEEA;padding:10px 14px;font:600 14px "Helvetica Neue",Arial,sans-serif;cursor:pointer}
+.sp-list button i{font-style:normal;color:#E9C870;min-width:20px;font-weight:800}.sp-list button:hover{background:#1C3150}.sp-list button.on{background:#B8932C;color:#0E1A2B}.sp-list button.on i{color:#0E1A2B}
+.sp-list button.imp{border-left:4px solid #E9C870}
+.sp-view{padding:22px 26px;background:#fff}.sp-view h4{font-family:"Playfair Display",Georgia,serif;font-size:28px;margin:0 0 8px;color:#14243A}
+.sp-view p{font-size:16px;line-height:1.6;color:#2A3446}.sp-view .ex{background:#FBF6E6;border-left:4px solid #B8932C;padding:12px 14px;font-family:"Courier New",monospace;font-size:14.5px;color:#14243A}
+.sp-view .badge{display:inline-block;background:#14243A;color:#E9C870;font:800 9.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;margin-bottom:8px}
+.btn-gold,.btn-nv,.btn-ol{display:inline-block;font:800 12px "Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;border:2px solid #B8932C;background:#B8932C;color:#0E1A2B;cursor:pointer;text-decoration:none;margin-top:14px}
+.btn-gold:hover{background:#E9C870}.btn-nv{background:#14243A;border-color:#14243A;color:#E9C870}.btn-ol{background:transparent;color:#E9C870}
+.fullnote{margin-top:14px;border:1px solid #E3DCC6;padding:18px 22px;font-family:"Courier New",monospace;font-size:14px;line-height:1.6;color:#14243A;background:#FFFEF9;white-space:pre-wrap}
+.cmp2{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+.cmp2 th{font:800 11px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#AFC0D6;text-align:left;padding:10px 12px;border-bottom:2px solid #fff}
+.cmp2 th.g{background:#B8932C;color:#0E1A2B}.cmp2 td{padding:11px 12px;border-bottom:1px solid #2F4665;color:#D6DEEA}.cmp2 td:first-child{font-weight:700;color:#E9C870;width:16%}
+.cmp2 td.g{background:#fff;color:#14243A;font-weight:600}
+.grid5{display:grid;grid-template-columns:130px repeat(4,1fr);margin-top:16px;border:1px solid #14243A}
+.grid5 .hd{background:#14243A;color:#E9C870;font:800 10.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:10px}
+.grid5 .rh{background:#1C3150;color:#fff;font:700 15px "Playfair Display",Georgia,serif;padding:12px 10px}
+.grid5 .cl{border-left:1px solid #E3DCC6;border-top:1px solid #E3DCC6;padding:12px;min-height:84px;font-size:14px;line-height:1.45;color:#14243A;cursor:pointer;background:#FBF6E6;position:relative;transition:.2s}
+.grid5 .cl:not(.rv){color:transparent;background:repeating-linear-gradient(135deg,#F2EBD6 0 8px,#FBF6E6 8px 16px)}
+.grid5 .cl:not(.rv):after{content:"Tap";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8A6A12;font:800 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.grid5 .cl.rv{background:#fff}.grid5 .cl .t2{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed #B8932C;color:#2E7D5B;font-weight:600}
+.grid5.tx .cl .t2{display:block}
+.g5btns{display:flex;gap:10px;flex-wrap:wrap}
+.tools{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px;border-top:2px solid #fff}
+.tl{padding:16px;border-left:1px solid #2F4665;border-bottom:1px solid #2F4665;cursor:pointer;transition:.15s}.tl:nth-child(5n+1){border-left:0}
+.tl:nth-child(1),.tl:nth-child(7){background:#fff;color:#14243A}.tl:nth-child(3),.tl:nth-child(9){background:#B8932C;color:#0E1A2B}.tl:nth-child(5){background:#24406A}
+.tl .n{font:900 26px "Playfair Display",Georgia,serif;color:#E9C870}.tl:nth-child(1) .n,.tl:nth-child(7) .n{color:#8A6A12}.tl:nth-child(3) .n,.tl:nth-child(9) .n{color:#14243A}
+.tl h5{font-family:"Playfair Display",Georgia,serif;font-size:18px;margin:4px 0 6px}.tl p{font-size:13.5px;line-height:1.5;margin:0;opacity:.92}
+.tl .wh{display:none;margin-top:8px;padding-top:8px;border-top:1px solid currentColor;font-size:13.5px}.tl .wh b{display:block;font:800 9.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.tl.op .wh{display:block}.tl:hover{filter:brightness(1.05)}
+.cfil{display:flex;gap:4px;flex-wrap:wrap;margin:14px 0}
+.cfil button{font:700 12px "Helvetica Neue",Arial,sans-serif;padding:8px 12px;border:1px solid #D6DAE1;background:#fff;color:#14243A;cursor:pointer}.cfil button.on{background:#14243A;color:#E9C870;border-color:#14243A}
+.cases{display:grid;grid-template-columns:repeat(6,1fr);border-top:3px solid #14243A}
+.cs{grid-column:span 2;padding:16px 18px 18px;border-left:1px solid #E3DCC6;border-bottom:1px solid #E3DCC6;cursor:pointer;background:#fff;color:#14243A}
+.cs.z1{grid-column:span 4;background:#14243A;color:#fff;border-left:0}.cs.z2{background:#1C3150;color:#fff;border-left:0}.cs.z3{background:#B8932C;color:#0E1A2B;border-left:0}.cs.z4{grid-column:span 3;background:#24406A;color:#fff;border-left:0}.cs.z5{grid-column:span 3}
+.cs.open{grid-column:1/-1}
+.cs .meta{display:flex;justify-content:space-between;gap:8px;font:800 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8A6A12}
+.cs.z1 .meta,.cs.z2 .meta,.cs.z4 .meta{color:#E9C870}.cs.z3 .meta{color:#0E1A2B}
+.cs .lvb{padding:2px 7px;border:1px solid currentColor}
+.cs h5{font-family:"Playfair Display",Georgia,serif;font-size:19px;line-height:1.2;margin:8px 0 6px;color:inherit}.cs.z1 h5{font-size:28px}
+.cs .kd{font-size:14px;font-style:italic;opacity:.9}
+.cs .fb{display:none;margin-top:14px}.cs.open .fb{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cs .p4{display:grid;grid-template-columns:1fr 1fr;gap:6px}.cs .p4 div{padding:8px 10px;background:rgba(127,127,127,.12);font-size:13.5px;line-height:1.4}
+.cs .p4 b,.cs .bx b{display:block;font:800 9.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px;opacity:.85}
+.cs .bx{font-size:14.5px;line-height:1.55;margin-bottom:10px}
+.cs .lk{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.cs .lk a{font:800 11px "Helvetica Neue",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:8px 10px;border:1px solid currentColor;color:inherit;text-decoration:none}
+.end{text-align:left}.endbtns{display:flex;gap:10px;flex-wrap:wrap}.refs{font-size:13px;color:#AFC0D6;margin-top:22px;line-height:1.6}
+
+.cg{display:flex;flex-wrap:wrap;gap:0;border:1px solid #14243A;margin:16px 0 0;width:max-content;max-width:100%}
+.cg button{font:800 12px "Helvetica Neue",Arial,sans-serif;letter-spacing:.06em;padding:11px 14px;border:0;border-left:1px solid #14243A;background:#fff;color:#14243A;cursor:pointer}.cg button:first-child{border-left:0}
+.cg button.on{background:#14243A;color:#E9C870}
+.core{display:grid;grid-template-columns:repeat(6,1fr);border-top:3px solid #14243A;margin-top:-1px}
+.cr{grid-column:span 2;padding:16px 18px;border-left:1px solid #E3DCC6;border-bottom:1px solid #E3DCC6;background:#fff;color:#14243A;cursor:pointer}
+.cr.y1{grid-column:span 3;background:#14243A;color:#fff;border-left:0}.cr.y2{grid-column:span 3;background:#1C3150;color:#fff;border-left:0}.cr.y3{background:#B8932C;color:#0E1A2B;border-left:0}.cr.y4{background:#24406A;color:#fff;border-left:0}
+.cr.open{grid-column:1/-1}
+.cr h5{font-family:"Playfair Display",Georgia,serif;font-size:20px;margin:0 0 6px;color:inherit}
+.cr .ct{font:800 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.cr .tell{font-size:14px;line-height:1.5;font-style:italic;opacity:.92}
+.cr ol{display:none;margin:12px 0 10px;padding-left:22px;columns:2;column-gap:30px}.cr.open ol{display:block}
+.cr ol li{font-size:14.5px;line-height:1.5;margin-bottom:7px;break-inside:avoid}
+.cr .ex{margin:10px 0 0;padding:9px 11px;background:rgba(255,255,255,.12);border-left:3px solid #E9C870;font-size:14px;line-height:1.5}.cr:not(.y1):not(.y2):not(.y4) .ex{background:#F6F1E3;border-left-color:#2E7D5B}.cr .ex b{display:block;font:800 10px "Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.cr .more{font:800 10.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-top:8px;opacity:.8}
+.ward5{display:grid;grid-template-columns:repeat(6,1fr);border-top:3px solid #14243A;margin-top:16px}
+.wd{grid-column:span 2;padding:18px}.wd h5{font-family:"Playfair Display",Georgia,serif;font-size:20px;margin:0 0 8px}.wd ul{margin:0;padding-left:18px}.wd li{font-size:14.5px;line-height:1.5;margin-bottom:6px}
+.wd.n{background:#14243A;color:#fff}.wd.w{background:#fff;border:1px solid #E3DCC6}.wd.g{background:#B8932C;color:#0E1A2B}.wd.b{grid-column:span 3;background:#24406A;color:#fff}.wd.w2{grid-column:span 3;background:#fff;border:1px solid #E3DCC6}
+.loop{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:18px 0 6px;padding:16px 18px;background:#1C3150;border-top:3px solid #B8932C}
+.loop svg{flex:none}.loop p{flex:1;min-width:240px;margin:0;font-size:15px;line-height:1.55;color:#D6DEEA}.loop b{color:#E9C870}
+@media(max-width:1000px){.core,.ward5{grid-template-columns:1fr 1fr}.cr,.cr.y1,.cr.y2,.wd,.wd.b,.wd.w2{grid-column:span 1}.cr.open{grid-column:1/-1}.cr ol{columns:1}}
+@media(max-width:640px){.core,.ward5{grid-template-columns:1fr}.cr,.wd{grid-column:1/-1}.cg{width:auto}}
+
+.gfx{margin:22px 0 26px;background:#fff;border-top:4px solid #B8932C;padding:18px 18px 14px;color:#14243A}
+.gfx.dkf{background:#fff}
+.gfx .gh span{font:800 10.5px "Helvetica Neue",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B8932C}
+.gfx .gh h4{font-family:"Playfair Display",Georgia,serif;font-size:26px;margin:4px 0 6px;color:#14243A}
+.gfx .gh p{margin:0 0 12px;font-size:15.5px;line-height:1.55;color:#33415A;max-width:820px}
+.gfx .gx{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
+.gfx figcaption{margin-top:12px;padding:12px 14px;background:#F6F1E3;border-left:4px solid #2E7D5B;font-size:14.5px;line-height:1.5;color:#14243A}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+.wh{display:grid;grid-template-columns:minmax(260px,400px) 1fr;gap:22px;align-items:start}
+.wheel .seg{cursor:pointer;transition:opacity .15s}.wheel .seg:hover{opacity:.85}.wheel .seg.on{stroke:#14243A;stroke-width:5}
+.dl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.dl li{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13.5px;line-height:1.35}
+.dl li b{flex:none;width:24px;height:24px;border-radius:50%;color:#fff;display:grid;place-items:center;font-size:12px}
+.dl li strong{display:block;font-size:14px}
+.dbox{margin-top:12px;padding:12px 14px;background:#14243A;color:#fff;border-top:4px solid #B8932C;font-size:14.5px;line-height:1.5;min-height:72px}
+.dbox b{color:#E9C870}
+.shared{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.sh1{padding:8px 14px;background:#14243A;color:#fff;font-weight:700;font-size:14px}.sh1 b{color:#E9C870}
+.sh2{display:flex;flex-wrap:wrap;gap:6px}.sh2 span{padding:6px 11px;border:1.5px solid #24406A;font-size:13px;font-weight:700;color:#24406A;background:#fff}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:10px;border-top:3px solid #14243A}
+.cgrid div{padding:12px 14px;font-size:14px;line-height:1.5;border-left:1px solid #E3DCC6}.cgrid div:first-child{border-left:0}
+.cgrid b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:17px;margin-bottom:4px}
+.cgrid div:nth-child(2){background:#14243A;color:#fff}.cgrid div:nth-child(3){background:#B8932C;color:#0E1A2B}
+@media(max-width:900px){.two,.wh{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.dl,.cgrid{grid-template-columns:1fr}.gfx{padding:14px 12px}.gfx .gh h4{font-size:22px}}
+.q5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:14px;border-top:4px solid #B8932C}.q5 .q{padding:16px;color:#fff;position:relative}.q5 .q:nth-child(4){color:#0E1A2B}.q5 b{font:900 34px "Playfair Display",Georgia,serif;color:#E9C870;display:block;line-height:1}.q5 .q:nth-child(4) b{color:#14243A}.q5 h5{font-family:"Playfair Display",Georgia,serif;font-size:19px;margin:6px 0}.q5 p{font-size:14px;line-height:1.45;margin:0 0 8px}.q5 em{display:block;font-size:13.5px;line-height:1.45;opacity:.92;border-top:1px solid rgba(255,255,255,.3);padding-top:7px}@media(max-width:900px){.q5{grid-template-columns:1fr 1fr}}@media(max-width:560px){.q5{grid-template-columns:1fr}}
+@media(max-width:1000px){.fx-toc{grid-template-columns:repeat(3,1fr)}.fx-toc a:nth-child(3n+1){border-left:0}.mse,.tools{grid-template-columns:1fr 1fr}.mosa{grid-template-columns:1fr 1fr}.cases{grid-template-columns:1fr 1fr}.cs,.cs.z4,.cs.z5{grid-column:span 1}.cs.z1{grid-column:1/-1}}
+@media(max-width:640px){.fx .in{padding:24px 16px}.lenses,.mse,.tools,.mosa,.cases{grid-template-columns:1fr}.lens,.lens:first-child{padding:16px}.cs,.cs.z1,.cs.z4,.cs.z5{grid-column:1/-1}.cs.open .fb{grid-template-columns:1fr}
+ .spine{grid-template-columns:1fr}.sp-list{max-height:220px}.acc .bd{grid-template-columns:1fr;padding-left:4px}.grid5{grid-template-columns:90px repeat(4,minmax(110px,1fr));overflow-x:auto}.cmp2{font-size:13.5px}.pyr .lv{width:100%!important}}
+</style>
+
+<script src="content/protect.js"></script></head>
+<body>
+<a class="sr" href="#rail">Skip to the timeline</a>
+
+<div class="topbar"><div class="wrap">
+  <span>Global edition &nbsp;·&nbsp; For doctors training in psychiatry</span>
+  <span><a href="register.html">Register</a></span>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <div class="kicker">Est. for the training psychiatrist</div>
+  <h1><a href="index.html">The Psychiatric Resident</a></h1>
+  <div class="sub">Psychiatry for trainees, explained clearly.</div>
+</div></header>
+
+<nav class="primary"><div class="wrap">
+  <a href="index.html">Front Page</a>
+  <a href="stories.html">The Story</a>
+  <a href="timeline.html" class="active">The Timeline</a>
+  <a href="residents.html">Psychiatry for Residents</a>
+  <a href="curriculum.html">The Curriculum</a>
+  <a href="critical-appraisal.html">Critical Appraisal</a>
+  <a href="paper-a.html">Paper A</a>
+  <a href="paper-b.html">Paper B</a>
+  <a href="flashcards.html">Flashcards</a>
+  <a href="register.html">Register</a>
+</div></nav>
+
+<div class="fx">
+
+<!-- ======== HERO ======== -->
+<header class="fx-hero">
+ <div class="in">
+  <div class="k">Psychiatry for Residents · Formulation · Free</div>
+  <h2>Formulation: working out what is going on.</h2>
+  <p class="lede">Anyone can list symptoms. A formulation explains them: what kind of problem this is, why it has happened to this person now, what it means to them, and what you will do about it. Here you learn to work it out step by step: the history, the mental state, the questions that matter in each specialty, risk, cognition and physical examination, then more than thirty real presentations worked through.</p>
+  <div class="fx-stats"><div><b>11</b><small>Chapters</small></div><div><b>3</b><small>Lenses</small></div><div><b id="nCore">0</b><small>Practical guides</small></div><div><b id="nCases">0</b><small>Presentations</small></div></div>
+ </div>
+ <nav class="fx-toc" aria-label="Chapters">
+  <a href="#c1"><b>1</b>Two doctors, one patient</a><a href="#c2"><b>2</b>The three lenses</a><a href="#c3"><b>3</b>The history</a><a href="#c4"><b>4</b>The mental state</a><a href="#c4b"><b>5</b>What to ask, specialty by specialty</a><a href="#c5"><b>6</b>The review note</a><a href="#c6"><b>7</b>Description or formulation?</a><a href="#c7"><b>8</b>Build a 5P grid</a><a href="#c8"><b>9</b>Eleven ways to formulate</a><a href="#c9"><b>10</b>Presentations, worked out</a><a href="#c10"><b>11</b>On the ward</a>
+ </nav>
+</header>
+
+<!-- ======== 1 ======== -->
+<section class="ch lt q5s"><div class="in"><div class="chn">Start here</div><h3>Working out what is going on, in five steps</h3><p class="lede2">Every formulation, from your first night on call to a complex ward round, follows the same five steps. The rest of this page teaches each one.</p><div class="q5"><div class="q" style="background:#14243A"><b>1</b><h5>Hear the story</h5><p>Let them talk, then build a timeline.</p><em>e.g. "It started when my mum went into hospital in March."</em></div><div class="q" style="background:#24406A"><b>2</b><h5>Describe every domain</h5><p>Mood, anxiety, perception, thought, cognition, behaviour, body, self.</p><em>e.g. Low mood, plus panic, plus drinking: three domains, not one.</em></div><div class="q" style="background:#2E7D5B"><b>3</b><h5>Check the body first</h5><p>Infection, drugs, alcohol, medicines, thyroid, brain.</p><em>e.g. Sudden confusion at 80: a urine infection, not dementia.</em></div><div class="q" style="background:#B8932C"><b>4</b><h5>Ask: why this person, why now?</h5><p>What made them vulnerable, what set it off, what keeps it going, what protects.</p><em>e.g. Bullied at school (vulnerable), lost job (trigger), isolated (keeps it going).</em></div><div class="q" style="background:#1C3150"><b>5</b><h5>Plan against each cause</h5><p>Every changeable cause gets an action, a person and a date.</p><em>e.g. Isolated → peer group referral by Friday, care coordinator.</em></div></div></div></section>
+<section class="ch lt" id="c1"><div class="in">
+ <div class="chn">Chapter 1</div><h3>Two doctors, one patient</h3>
+ <p class="lede2">Two careful doctors can see the same person and write almost identical summaries. Their formulations can still be completely different, because a summary describes and a formulation explains. Read the same patient twice.</p>
+ <div class="case-box">
+  <b>Mr Daniel Okafor, 34.</b> Brought by his sister after three weeks of barely sleeping, eating little and staying in his room. He lost his job as a delivery driver two months ago. He has been drinking half a bottle of vodka a night. He says there is "no point" and that people at the depot "know what I did".
+ </div>
+ <div class="tabs2" role="tablist"><button class="on" data-v="sum">The summary</button><button data-v="form">The formulation</button></div>
+ <div class="tv" data-v="sum">
+  <p>34-year-old man, recently unemployed. Three weeks of low mood, insomnia, reduced appetite and social withdrawal. Drinking about 15 units a night. Expresses hopelessness. Possible ideas of reference about former colleagues. No previous psychiatric contact. Lives alone; sister supportive.</p>
+  <p class="note">Accurate, tidy and useful for a handover. But it does not tell the next doctor what is going on, why now, or what to do first.</p>
+ </div>
+ <div class="tv" data-v="form" hidden>
+  <p><b>What kind of problem is this?</b> Most likely a depressive episode, moderate to severe, with alcohol misuse. Two things must be ruled out before settling on that: psychotic features (his comment about colleagues) and an organic contribution from alcohol (withdrawal, intoxication, head injury).</p>
+  <p><b>Why him, why now?</b> His father had depression (predisposing). Losing his job removed his structure, income and identity (precipitating). Drinking to sleep, staying in his room and shame about the dismissal are keeping it going (perpetuating). His sister, and the fact that he came, are on his side (protective).</p>
+  <p><b>What does it mean to him?</b> He describes the dismissal as proof he lets everyone down, which links to being the eldest son who was expected to provide. The "they know what I did" idea may be guilt rather than a delusion. Finding out which is the key question for today.</p>
+  <p><b>So what do we do?</b> Assess suicide risk properly today, given hopelessness, alcohol, recent loss and living alone. Check for alcohol withdrawal and do bloods. Clarify the belief about colleagues. Agree a plan for the drinking, treat the depression and involve his sister with his consent.</p>
+  <p class="note">Same facts. Now the next doctor knows what you think, what you are unsure of and what happens first.</p>
+ </div>
+ <div class="pull">A summary is a photograph. A formulation is a map with a route on it.</div>
+</div></section>
+
+<!-- ======== 2 ======== -->
+<section class="ch dk" id="c2"><div class="in">
+ <div class="chn">Chapter 2</div><h3>The three lenses</h3>
+ <p class="lede2">Every good formulation looks through three lenses at once. Psychiatry has argued about each of them for a century; together they still give the clearest picture of a person in trouble.</p>
+ <div class="lenses">
+  <div class="lens"><div class="ln">1</div><h4>What kind of problem?</h4><p>The <b>level</b>. Is this a physical illness showing itself in the mind, a major shift such as psychosis or severe mood disorder, or a reaction and a variation of ordinary human nature? Getting the level right stops you treating delirium as depression.</p></div>
+  <div class="lens"><div class="ln">2</div><h4>Why this person, why now?</h4><p>The <b>causes</b>. Predisposing, precipitating, perpetuating and protective factors, each looked for in the body, the mind and the person's world. The best causes to name are the ones you can change.</p></div>
+  <div class="lens"><div class="ln">3</div><h4>What does it mean?</h4><p>The <b>understanding</b>. Why this event hit this person so hard, what sense they make of it, and how their character shaped the reaction. This is what makes a patient feel understood rather than processed.</p></div>
+ </div>
+ <figure class="gfx"><div class="gh"><span>The picture</span><h4>Body, mind and world: where the circles overlap</h4><p>The question is not "is this mental or physical?" but "how are these factors feeding each other?"</p></div><svg viewBox="0 0 760 560" class="gx" role="img" aria-label="Body, mind and world overlap"><defs><marker id="va" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0L9,4.5L0,9z" fill="#14243A"/></marker></defs><circle cx="275" cy="200" r="165" fill="#24406A" fill-opacity=".85"/><circle cx="485" cy="200" r="165" fill="#B8932C" fill-opacity=".8"/><circle cx="380" cy="365" r="165" fill="#2E7D5B" fill-opacity=".8"/><text x="215" y="95" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >BODY</text><text x="545" y="95" text-anchor="middle" font-size="20" font-weight="800" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >MIND</text><text x="380" y="505" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >WORLD</text><text x="222" y="125" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >genes and family history</text><text x="222" y="145" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >brain illness, epilepsy</text><text x="222" y="165" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >physical health, pain</text><text x="222" y="185" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >medicines, alcohol, drugs</text><text x="222" y="205" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >sleep, hormones</text><text x="560" y="125" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >thoughts and beliefs</text><text x="560" y="145" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >emotions</text><text x="560" y="165" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >coping style</text><text x="560" y="185" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >personality</text><text x="560" y="205" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >early experience, trauma</text><text x="380" y="395" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >relationships, family</text><text x="380" y="415" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >work, money, housing</text><text x="380" y="435" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >culture and faith</text><text x="380" y="455" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >community, services</text><circle cx="380" cy="258" r="40" fill="#fff" stroke="#14243A" stroke-width="2"/><text x="380" y="254" text-anchor="middle" font-size="11" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >THE</text><text x="380" y="269" text-anchor="middle" font-size="11" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >PERSON</text><path d="M330 40 Q380 10 430 40" fill="none" stroke="#14243A" stroke-width="2" marker-end="url(#va)"/><text x="380" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >Body ↔ Mind: pain and poor sleep → low mood → doing less</text><path d="M640 330 Q700 360 690 410" fill="none" stroke="#14243A" stroke-width="2" marker-end="url(#va)"/><text x="752" y="430" text-anchor="end" font-size="12" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >Mind ↔ World:</text><text x="752" y="447" text-anchor="end" font-size="12" font-weight="500" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >shame → withdrawal</text><text x="752" y="464" text-anchor="end" font-size="12" font-weight="500" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >→ loneliness</text><path d="M120 330 Q60 360 70 410" fill="none" stroke="#14243A" stroke-width="2" marker-end="url(#va)"/><text x="8" y="430" text-anchor="start" font-size="12" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >World ↔ Body:</text><text x="8" y="447" text-anchor="start" font-size="12" font-weight="500" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >debt, insecure housing</text><text x="8" y="464" text-anchor="start" font-size="12" font-weight="500" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >→ stress, drinking, no sleep</text></svg><figcaption><b>Key idea.</b> Two people with the same event can respond very differently because the circles overlap differently for each. That is why the formulation is personal.</figcaption></figure><h4 class="sub">Lens 1 in detail: the three levels <span>tap a level</span></h4>
+ <div class="pyr">
+  <button class="lv on" data-l="1"><b>Level I</b> Physical illness affecting the mind</button>
+  <button class="lv" data-l="2"><b>Level II</b> Psychosis and major mood disorder</button>
+  <button class="lv" data-l="3"><b>Level III</b> Reactions and variations of human nature</button>
+ </div>
+ <div class="lvtx" data-l="1"><p><b>Delirium, dementia, intoxication and withdrawal, epilepsy, encephalitis, thyroid and steroid effects, head injury.</b> Anything seen in the other levels can appear here too: low mood, anxiety, hallucinations, even full psychosis. Some things only happen here: disorientation, clouding of consciousness, confabulation, seizures. If you see those, think Level I first.</p><p class="note">The rule that follows: always rule out a Level I cause before you settle on a Level II or III explanation. "Organic until proven otherwise" is this rule in four words.</p></div>
+ <div class="lvtx" data-l="2" hidden><p><b>Schizophrenia, bipolar disorder, severe and psychotic depression.</b> These are clear changes from the person's usual self: passivity experiences, primary delusions, flight of ideas, pervasive melancholia. They do not arise from personality or stress alone.</p><p class="note">Diagnose here only once a Level I cause has been reasonably excluded. Anxiety or personality difficulties may coexist, but the Level II diagnosis leads.</p></div>
+ <div class="lvtx" data-l="3" hidden><p><b>Common anxiety and depression, reactions to stress and trauma, personality, neurodevelopmental differences.</b> These merge into ordinary life. That does not make them mild: they can be severe and disabling. Here the causes and the meaning do most of the work, and the diagnosis less.</p><p class="note">At this level, the 5Ps and the person's own story usually matter more than the precise label.</p></div>
+ <div class="tip"><b>Where the idea comes from.</b> The levels go back to the German clinical tradition of Jaspers and Schneider. The cause-based grid grew out of Adolf Meyer's life-chart method and George Engel's 1977 biopsychosocial model, later sharpened at the Maudsley into the "4P" grid. A 2023 paper by Gareth Owen in <i>Psychological Medicine</i> argues that psychiatry should bring all three lenses back together. This course follows that approach.</div>
+</div></section>
+
+<!-- ======== 3 ======== -->
+<section class="ch lt" id="c3"><div class="in">
+ <div class="chn">Chapter 3</div><h3>The history: collecting what the formulation will need</h3>
+ <p class="lede2">The history is not a form to complete. Each heading is there because it feeds one of the three lenses. Open each heading to see what to ask and why it matters.</p>
+ <div class="acc" id="hist"></div>
+ <h4 class="sub">Adjust the history to the person in front of you</h4>
+ <div class="mosa">
+  <div class="mt w"><h5>Older adults</h5><p>Screen for physical causes every time: infection, pain, constipation, dehydration, new or changed medicines. Ask about memory, getting lost, word-finding, managing money and tasks, hallucinations and stiffness. Risks widen: falls, driving, cooking and gas, wandering, financial exploitation, a carer who is close to breaking point.</p></div>
+  <div class="mt n"><h5>Learning disability</h5><p>Use the carer and the person together. Ask what is different from their usual baseline: sleep, appetite, behaviour, communication, skills lost. Pain and physical illness often show up as behaviour change. Check epilepsy, thyroid, constipation, dental pain, and changes in staff or routine.</p></div>
+  <div class="mt g"><h5>Children and young people</h5><p>Pregnancy, birth and developmental milestones. School, friendships, bullying and online life. Who lives at home and who has parental responsibility. Safeguarding is always on the list. See the young person alone for part of it.</p></div>
+  <div class="mt w"><h5>Forensic</h5><p>The offence in detail, the person's own account and the official one. Mental state at the time. Pattern of past violence, weapons, victims, substances. Attitude to victims and to treatment. Who is at risk now and how that risk could be managed.</p></div>
+ </div>
+</div></section>
+
+<!-- ======== 4 ======== -->
+<section class="ch dk" id="c4"><div class="in">
+ <div class="chn">Chapter 4</div><h3>The mental state: what you can see and hear today</h3>
+ <p class="lede2">The history tells you the story so far. The mental state examination is a cross-section of today. It is the evidence you hand to the next doctor, so describe what you saw rather than giving a verdict.</p>
+<figure class="gfx"><div class="gh"><span>The map</span><h4>Eight domains: describe every one before you name anything</h4><p>Psychiatry is not only mood and psychosis. Go round all eight domains for every person, mark each one involved, then ask which pattern the combination points to.</p></div><div class="wh"><svg viewBox="0 0 400 400" class="gx wheel" role="img" aria-label="Eight symptom domains"><path class="seg" data-i="0" d="M131.1,33.7 A180,180 0 0 1 268.9,33.7 L213.0,168.6 A34,34 0 0 0 187.0,168.6Z" fill="#C0573E" stroke="#fff" stroke-width="3"/><text x="200" y="74" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">1</text><text x="200" y="92" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Mood</text><path class="seg" data-i="1" d="M268.9,33.7 A180,180 0 0 1 366.3,131.1 L231.4,187.0 A34,34 0 0 0 213.0,168.6Z" fill="#24406A" stroke="#fff" stroke-width="3"/><text x="279" y="107" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">2</text><text x="279" y="125" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Anxiety and</text><text x="279" y="139" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">fear</text><path class="seg" data-i="2" d="M366.3,131.1 A180,180 0 0 1 366.3,268.9 L231.4,213.0 A34,34 0 0 0 231.4,187.0Z" fill="#6E4A86" stroke="#fff" stroke-width="3"/><text x="312" y="186" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">3</text><text x="312" y="204" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Perception</text><path class="seg" data-i="3" d="M366.3,268.9 A180,180 0 0 1 268.9,366.3 L213.0,231.4 A34,34 0 0 0 231.4,213.0Z" fill="#3B6E8F" stroke="#fff" stroke-width="3"/><text x="279" y="265" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">4</text><text x="279" y="283" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Thought</text><path class="seg" data-i="4" d="M268.9,366.3 A180,180 0 0 1 131.1,366.3 L187.0,231.4 A34,34 0 0 0 213.0,231.4Z" fill="#2E7D5B" stroke="#fff" stroke-width="3"/><text x="200" y="298" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">5</text><text x="200" y="316" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Cognition</text><path class="seg" data-i="5" d="M131.1,366.3 A180,180 0 0 1 33.7,268.9 L168.6,213.0 A34,34 0 0 0 187.0,231.4Z" fill="#7C8B3A" stroke="#fff" stroke-width="3"/><text x="121" y="265" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">6</text><text x="121" y="283" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Behaviour</text><path class="seg" data-i="6" d="M33.7,268.9 A180,180 0 0 1 33.7,131.1 L168.6,187.0 A34,34 0 0 0 168.6,213.0Z" fill="#B8932C" stroke="#fff" stroke-width="3"/><text x="88" y="186" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">7</text><text x="88" y="204" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Body and</text><text x="88" y="218" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">vital functions</text><path class="seg" data-i="7" d="M33.7,131.1 A180,180 0 0 1 131.1,33.7 L187.0,168.6 A34,34 0 0 0 168.6,187.0Z" fill="#D98A3D" stroke="#fff" stroke-width="3"/><text x="121" y="107" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">8</text><text x="121" y="125" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">Self and</text><text x="121" y="139" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" pointer-events="none">relationships</text><circle cx="200" cy="200" r="30" fill="#14243A"/><text x="222" y="198" text-anchor="middle" font-size="9" font-weight="800" fill="#E9C870" font-family="Helvetica Neue,Arial,sans-serif" >TAP</text><text x="200" y="210" text-anchor="middle" font-size="8" font-weight="800" fill="#E9C870" font-family="Helvetica Neue,Arial,sans-serif" >A DOMAIN</text></svg><div><ol class="dl"><li data-i="0"><b style="background:#C0573E">1</b><span><strong>Mood</strong>sadness, high mood, irritability</span></li><li data-i="1"><b style="background:#24406A">2</b><span><strong>Anxiety and fear</strong>worry, panic, avoidance</span></li><li data-i="2"><b style="background:#6E4A86">3</b><span><strong>Perception</strong>voices, visions, smells, touch</span></li><li data-i="3"><b style="background:#3B6E8F">4</b><span><strong>Thought</strong>beliefs, intrusive thoughts, speed and flow</span></li><li data-i="4"><b style="background:#2E7D5B">5</b><span><strong>Cognition</strong>attention, memory, orientation</span></li><li data-i="5"><b style="background:#7C8B3A">6</b><span><strong>Behaviour</strong>compulsions, impulsivity, agitation, withdrawal</span></li><li data-i="6"><b style="background:#B8932C">7</b><span><strong>Body and vital functions</strong>sleep, appetite, energy, weight</span></li><li data-i="7"><b style="background:#D98A3D">8</b><span><strong>Self and relationships</strong>identity, self-image, how they relate</span></li></ol><div class="dbox" id="dbox"></div></div></div><div class="shared"><div class="sh1">One symptom, many roads: <b>poor sleep</b></div><div class="sh2"><span>mood</span><span>anxiety</span><span>trauma</span><span>alcohol and drugs</span><span>mania</span><span>pain and physical illness</span><span>medicines</span></div></div><figcaption><b>Key idea.</b> Domains are shared across conditions. No single symptom gives the answer; the combination does. Describing every domain first stops you anchoring on the loudest symptom.</figcaption></figure><script>window.FX_DOM=[["Mood", "#C0573E", "sadness, high mood, irritability", "depression, mania, mixed states, grief"], ["Anxiety and fear", "#24406A", "worry, panic, avoidance", "anxiety disorders, trauma, withdrawal states, thyroid"], ["Perception", "#6E4A86", "voices, visions, smells, touch", "psychosis, delirium, drugs, Lewy body disease, epilepsy"], ["Thought", "#3B6E8F", "beliefs, intrusive thoughts, speed and flow", "psychosis, OCD, mania, depression"], ["Cognition", "#2E7D5B", "attention, memory, orientation", "delirium, dementia, intoxication, ADHD, severe depression"], ["Behaviour", "#7C8B3A", "compulsions, impulsivity, agitation, withdrawal", "OCD, ADHD, mania, substances, autism, personality"], ["Body and vital functions", "#B8932C", "sleep, appetite, energy, weight", "depression, eating disorders, mania, physical illness"], ["Self and relationships", "#D98A3D", "identity, self-image, how they relate", "personality, trauma, autism, chronic depression"]]</script> <div class="mse" id="mse"></div>
+ <div class="tip"><b>Describe, don't label.</b> "Laughing to himself and pausing mid-sentence as if listening" is evidence. "Responding to voices" is a conclusion. Give the evidence first and add the conclusion after it.</div>
+</div></section>
+
+
+<!-- ======== 5 practical core ======== -->
+<section class="ch lt" id="c4b"><div class="in">
+ <div class="chn">Chapter 5</div><h3>What to ask, specialty by specialty</h3>
+ <p class="lede2">Working out what is going on means asking the right things for the person in front of you, whatever the problem: mood, anxiety, obsessions, trauma, eating, substances, personality, development, memory, risk or the body. These are the practical core questions and checks, with what each tells you. Choose a group, then open any guide.</p>
+ <div class="cg" id="coreTabs"></div>
+ <div class="core" id="core"></div>
+<figure class="gfx dkf"><div class="gh"><span>Risk on one page</span><h4>Six questions, then tip the balance</h4><p>Risk changes from day to day. A risk formulation pulls together personality, history, mental state, surroundings, causes and protective factors, and answers six questions. The plan then shifts the balance from danger towards safety.</p></div><div class="two"><svg viewBox="0 0 520 420" class="gx" role="img" aria-label="Six risk questions"><line x1="260" y1="210" x2="260" y2="60" stroke="#B8932C" stroke-width="3"/><line x1="260" y1="210" x2="390" y2="135" stroke="#B8932C" stroke-width="3"/><line x1="260" y1="210" x2="390" y2="285" stroke="#B8932C" stroke-width="3"/><line x1="260" y1="210" x2="260" y2="360" stroke="#B8932C" stroke-width="3"/><line x1="260" y1="210" x2="130" y2="285" stroke="#B8932C" stroke-width="3"/><line x1="260" y1="210" x2="130" y2="135" stroke="#B8932C" stroke-width="3"/><circle cx="260" cy="60" r="56" fill="#14243A"/><text x="260" y="64" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >How serious?</text><circle cx="390" cy="135" r="56" fill="#24406A"/><text x="390" y="139" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >How soon?</text><circle cx="390" cy="285" r="56" fill="#2E7D5B"/><text x="390" y="265" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Who is at</text><text x="390" y="281" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >risk: one</text><text x="390" y="297" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >person or</text><text x="390" y="313" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >anyone?</text><circle cx="260" cy="360" r="56" fill="#B8932C"/><text x="260" y="356" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >How</text><text x="260" y="372" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >changeable?</text><circle cx="130" cy="285" r="56" fill="#C0573E"/><text x="130" y="273" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >What are the</text><text x="130" y="289" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >warning</text><text x="130" y="305" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >signs?</text><circle cx="130" cy="135" r="56" fill="#1C3150"/><text x="130" y="131" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >What will</text><text x="130" y="147" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >reduce it?</text><circle cx="260" cy="210" r="62" fill="#fff" stroke="#14243A" stroke-width="3"/><text x="260" y="204" text-anchor="middle" font-size="15" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >RISK</text><text x="260" y="222" text-anchor="middle" font-size="11" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >FORMULATION</text></svg><svg viewBox="0 0 520 300" class="gx" role="img" aria-label="Shifting the balance from risk to safety"><polygon points="260,212 228,256 292,256" fill="#14243A"/><line x1="40" y1="230" x2="480" y2="190" stroke="#14243A" stroke-width="8" stroke-linecap="round"/><rect x="20" y="70" width="190" height="150" rx="6" fill="#C0573E"/><text x="115" y="96" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >DANGER</text><text x="115" y="122" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >hopelessness, agitation</text><text x="115" y="141" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >alcohol and drugs</text><text x="115" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >access to means</text><text x="115" y="179" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >command voices</text><text x="115" y="198" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >recent loss, no support</text><rect x="310" y="30" width="190" height="150" rx="6" fill="#2E7D5B"/><text x="405" y="56" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >SAFETY</text><text x="405" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >engagement and trust</text><text x="405" y="101" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >treatment that works</text><text x="405" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >carers who can get help</text><text x="405" y="139" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >means removed</text><text x="405" y="158" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >a plan they own</text><path d="M150 40 Q260 -5 370 18" fill="none" stroke="#B8932C" stroke-width="4" marker-end="url(#ra)"/><defs><marker id="ra" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0L9,4.5L0,9z" fill="#B8932C"/></marker></defs></svg></div><figcaption><b>Key idea.</b> Fixed factors tell you who is at higher risk; changeable factors tell you what to do today. Every changeable factor needs an action, a person and a review date. Based on the Royal College of Psychiatrists' guidance on formulating and managing risk.</figcaption></figure>
+<figure class="gfx"><div class="gh"><span>Children and young people</span><h4>Formulating a child is different</h4><p>Children rarely refer themselves. Someone else defines the problem, often a behaviour that troubles adults more than the child. Development is uneven across domains, so where the child is developmentally belongs in every formulation.</p></div><div class="two"><svg viewBox="0 0 520 330" class="gx" role="img" aria-label="Many informants"><circle cx="260" cy="165" r="52" fill="#B8932C"/><text x="260" y="161" text-anchor="middle" font-size="12" font-weight="800" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >THE</text><text x="260" y="177" text-anchor="middle" font-size="14" font-weight="800" fill="#0E1A2B" font-family="Helvetica Neue,Arial,sans-serif" >CHILD</text><line x1="260" y1="165" x2="260" y2="40" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="260" cy="40" r="40" fill="#14243A"/><text x="260" y="44" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Parents</text><line x1="260" y1="165" x2="407" y2="102" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="407" cy="102" r="40" fill="#24406A"/><text x="407" y="106" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >School</text><line x1="260" y1="165" x2="407" y2="228" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="407" cy="228" r="40" fill="#2E7D5B"/><text x="407" y="232" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >GP</text><line x1="260" y1="165" x2="260" y2="290" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="260" cy="290" r="40" fill="#C0573E"/><text x="260" y="294" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Social care</text><line x1="260" y1="165" x2="113" y2="228" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="113" cy="228" r="40" fill="#6E4A86"/><text x="113" y="232" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Siblings</text><line x1="260" y1="165" x2="113" y2="102" stroke="#14243A" stroke-width="2" stroke-dasharray="5 5"/><circle cx="113" cy="102" r="40" fill="#3B6E8F"/><text x="113" y="106" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >The child alone</text></svg><svg viewBox="0 0 520 330" class="gx" role="img" aria-label="The circular cause in child formulation"><defs><marker id="ca" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#B8932C"/></marker></defs><path d="M300 60 A120 120 0 0 1 360 230" fill="none" stroke="#B8932C" stroke-width="5" marker-end="url(#ca)"/><path d="M310 280 A120 120 0 0 1 150 250" fill="none" stroke="#B8932C" stroke-width="5" marker-end="url(#ca)"/><path d="M135 205 A120 120 0 0 1 200 60" fill="none" stroke="#B8932C" stroke-width="5" marker-end="url(#ca)"/><rect x="170" y="20" width="180" height="50" rx="25" fill="#14243A"/><text x="260" y="42" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >The child&#x27;s difficulty</text><text x="260" y="59" text-anchor="middle" font-size="11" font-weight="500" fill="#E9C870" font-family="Helvetica Neue,Arial,sans-serif" >tantrums, school refusal</text><rect x="330" y="225" width="180" height="50" rx="25" fill="#24406A"/><text x="420" y="247" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Family stress rises</text><text x="420" y="264" text-anchor="middle" font-size="11" font-weight="500" fill="#E9C870" font-family="Helvetica Neue,Arial,sans-serif" >conflict, exhaustion</text><rect x="10" y="225" width="180" height="50" rx="25" fill="#2E7D5B"/><text x="100" y="247" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" >Parenting gets harder</text><text x="100" y="264" text-anchor="middle" font-size="11" font-weight="500" fill="#E9C870" font-family="Helvetica Neue,Arial,sans-serif" >less warmth, more rules</text><text x="260" y="170" text-anchor="middle" font-size="13" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >A CIRCLE,</text><text x="260" y="187" text-anchor="middle" font-size="13" font-weight="800" fill="#14243A" font-family="Helvetica Neue,Arial,sans-serif" >NOT A LINE</text></svg></div><div class="cgrid"><div><b>Many voices</b>See the child and parents together, the parents alone and the child alone, and read school reports. Ask each person what the problem is and what they want to change. Weigh each account for its viewpoint.</div><div><b>Development</b>Where is this child in motor, language, social, emotional and learning terms? A transition (starting school, puberty, moving school) is a common precipitant.</div><div><b>Two kinds of world</b>Split "social" in two: relationships (parents, siblings, friends) and surroundings (school, neighbourhood, culture, services, money).</div><div><b>Strengths</b>Name them out loud: talents, an easy temperament, one warm relationship, a good teacher. They are the protective column and the route into treatment.</div></div><figcaption><b>Key idea.</b> Cause in families is often circular: the child's difficulty raises family stress, which makes parenting harder, which keeps the difficulty going. Break the circle at whichever point is easiest to move.</figcaption></figure>
+</div></section>
+<!-- ======== 5 ======== -->
+<section class="ch dk" id="c5"><div class="in">
+ <div class="chn">Chapter 6</div><h3>The review note: the spine of every entry</h3>
+ <p class="lede2">On the ward and in clinic you will write the same structure hundreds of times. Learn it once and learn it well. The <b>Impression</b> section is a formulation in miniature, and it is the part your consultant reads first.</p>
+ <div class="spine">
+  <div class="sp-list" id="spList"></div>
+  <div class="sp-view" id="spView"></div>
+ </div>
+ <button class="btn-gold" id="fullNote">Show the complete example note</button>
+ <div class="fullnote" id="fullNoteBox" hidden></div>
+</div></section>
+
+<!-- ======== 6 ======== -->
+<section class="ch lt" id="c6"><div class="in">
+ <div class="chn">Chapter 7</div><h3>Is the history and mental state the same as a formulation?</h3>
+ <p class="lede2">No. They come before it and feed it, but they are different jobs. The history and mental state collect the facts. The formulation decides which facts matter, how they connect and what to do.</p>
+ <table class="cmp2">
+  <tr><th></th><th>History and mental state</th><th class="g">Formulation</th></tr>
+  <tr><td>Job</td><td>Gathers and describes</td><td class="g">Weighs, connects and explains</td></tr>
+  <tr><td>Question</td><td>What is happening?</td><td class="g">Why is it happening, to this person, now, and what next?</td></tr>
+  <tr><td>Form</td><td>Headings and facts</td><td class="g">An argument in a few sentences, or a grid</td></tr>
+  <tr><td>Uncertainty</td><td>Records what was found</td><td class="g">Says what you think, what you doubt and how you will find out</td></tr>
+  <tr><td>Two doctors</td><td>Usually agree</td><td class="g">May reasonably differ, which is why it is discussed</td></tr>
+  <tr><td>Points to</td><td>A differential diagnosis</td><td class="g">A plan you can act on today</td></tr>
+ </table>
+ <div class="pull dkp">The history and mental state are your evidence. The formulation is the case you make from it.</div>
+</div></section>
+
+<!-- ======== 7 ======== -->
+<section class="ch dk" id="c7"><div class="in">
+ <div class="chn">Chapter 8</div><h3>Build a 5P grid</h3>
+ <p class="lede2">The workhorse of everyday formulation is a grid: four kinds of cause across three domains. Here it is for Mr Okafor from Chapter 1. Tap each cell to reveal it, then press <b>Show what we do about each</b> to see how every cause becomes an action.</p>
+ <div class="grid5" id="g5"></div>
+ <div class="g5btns"><button class="btn-gold" id="g5all">Reveal all</button><button class="btn-nv" id="g5tx">Show what we do about each</button></div>
+ <div class="tip"><b>Three tests for a good grid.</b> Is each factor actually present in this person, not just common in people like them? Is it a strong factor, not a trivial one? Does the problem change when the factor changes? A grid that passes all three points straight to a plan.</div>
+</div></section>
+
+<!-- ======== 8 ======== -->
+<section class="ch lt" id="c8"><div class="in">
+ <div class="chn">Chapter 9</div><h3>Eleven ways to formulate, and when to use each</h3>
+ <p class="lede2">The biopsychosocial grid is where you start. Other services use other frameworks, including the habit loop for anything that keeps repeating, and you will meet all of them in your training. Tap a card to see when it helps.</p>
+ <div class="loop"><svg width="170" height="150" viewBox="0 0 170 150" aria-hidden="true"><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#E9C870"/></marker></defs>
+ <path d="M85 22 A55 55 0 0 1 134 104" fill="none" stroke="#E9C870" stroke-width="3" marker-end="url(#ah)"/><path d="M122 120 A55 55 0 0 1 48 120" fill="none" stroke="#E9C870" stroke-width="3" marker-end="url(#ah)"/><path d="M36 104 A55 55 0 0 1 76 22" fill="none" stroke="#E9C870" stroke-width="3" marker-end="url(#ah)"/>
+ <circle cx="85" cy="20" r="17" fill="#B8932C"/><text x="85" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#0E1A2B" font-family="Arial">CUE</text>
+ <circle cx="140" cy="112" r="20" fill="#fff"/><text x="140" y="116" text-anchor="middle" font-size="9" font-weight="800" fill="#14243A" font-family="Arial">ROUTINE</text>
+ <circle cx="30" cy="112" r="20" fill="#2E7D5B"/><text x="30" y="116" text-anchor="middle" font-size="9" font-weight="800" fill="#fff" font-family="Arial">REWARD</text></svg>
+ <p><b>The habit loop.</b> A cue (a time, place, feeling or person) triggers a routine (drinking, checking, self-harm, avoiding), which brings a reward (relief, calm, belonging). Each turn of the loop strengthens it. This is often the clearest way to explain a <b>perpetuating factor</b> to a patient, and the way to break it: remove or change the cue, add friction to the routine, or find a new routine that gives a similar reward.</p></div>
+<div class="tools" id="tools"></div>
+</div></section>
+
+<!-- ======== 9 ======== -->
+<section class="ch dk" id="c9"><div class="in">
+ <div class="chn">Chapter 10</div><h3>Presentations, worked out</h3>
+ <p class="lede2">These are the presentations you will meet in your first years, across every specialty. Each is formulated through the three lenses and ends with what you do. Open any card, then practise it as a ward challenge or listen to the lesson.</p>
+ <div class="cfil" id="cfil"></div>
+ <div class="cases" id="cases"></div>
+</div></section>
+
+
+<section class="ch lt" id="c10"><div class="in">
+ <div class="chn">Chapter 11</div><h3>On the ward: formulation in everyday work</h3>
+ <p class="lede2">These are the moments in a working week when you will be asked to work out what is going on, out loud, under time pressure. Each one uses everything above.</p>
+ <div class="ward5">
+  <div class="wd n"><h5>Gathering what matters</h5><ul><li>A perplexed 21-year-old brought in "not eating": build the timeline and list what you still don't know.</li><li>A complex readmission: find the baseline and the change from baseline.</li><li>The collateral history that changes your diagnosis.</li></ul></div>
+  <div class="wd w"><h5>Reasoning in practice</h5><ul><li>Three plausible diagnoses: the questions that separate mood, personality and psychosis.</li><li>Organic until proven otherwise: when to push for investigations.</li><li>Two conditions at once: psychosis with substance use, depression with PTSD.</li></ul></div>
+  <div class="wd g"><h5>The 5P formulation</h5><ul><li>Presenting a new patient in three minutes on the ward round, with a formulation.</li><li>Formulating the effects of alcohol.</li><li>Formulation in personality difficulties, trauma and neurodevelopmental conditions.</li></ul></div>
+  <div class="wd b"><h5>Risk formulation</h5><ul><li>After self-harm: long-standing versus acute risk, what changed today, and the safety plan.</li><li>Writing a risk formulation a stranger could act on at 3 am.</li></ul></div>
+  <div class="wd w2"><h5>Sharing it</h5><ul><li>Explaining your understanding to the patient, in their words.</li><li>Explaining it to relatives, within confidentiality.</li><li>Presenting it at a CPA meeting or to the team.</li></ul></div>
+ </div>
+</div></section>
+<section class="ch dk"><div class="in end">
+ <h3>Now do it for real.</h3>
+ <p class="lede2">Take your next clerking and write three sentences under Impression: what kind of problem it is, why this person and why now, and what you will do. Show it to your supervisor. That is a formulation.</p>
+ <div class="endbtns"><a class="btn-gold" href="ward-challenges.html">All ward challenges</a><a class="btn-ol" href="residents.html">Psychiatry for Residents</a><a class="btn-ol" href="rcourse/index.html">The audio course</a></div>
+ <p class="refs">Further reading: Owen G. What is formulation in psychiatry? <i>Psychological Medicine</i> 2023;53:1700-1707. Engel GL. The need for a new medical model. <i>Science</i> 1977;196:129-136. Johnstone L, Boyle M. The Power Threat Meaning Framework. British Psychological Society, 2018.</p>
+</div></section>
+</div>
+
+<footer><div class="wrap">
+  <div><div class="brand">The Psychiatric Resident</div>
+    <div style="margin-top:6px">Dr Chinonso Stanley Ezeanyika · Medical Education Specialist</div></div>
+  <div style="text-align:right">Portraits are public domain where supplied.<br>Entries marked Corrected differ from the commonly circulated version.</div>
+ &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div></footer>
+<script src="content/formulation-data.js"></script>
+<script src="content/formulation-core.js"></script>
+<script>
+(function(){
+ function $(i){return document.getElementById(i)}
+ function esc(t){return String(t).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+ // ch1 tabs
+ [].forEach.call(document.querySelectorAll(".tabs2 button"),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll(".tabs2 button"),function(x){x.classList.toggle("on",x===b)});[].forEach.call(document.querySelectorAll(".tv"),function(v){v.hidden=v.dataset.v!==b.dataset.v})}});
+ // ch2 levels
+ [].forEach.call(document.querySelectorAll(".pyr .lv"),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll(".pyr .lv"),function(x){x.classList.toggle("on",x===b)});[].forEach.call(document.querySelectorAll(".lvtx"),function(v){v.hidden=v.dataset.l!==b.dataset.l})}});
+ // ch3 history
+ $("hist").innerHTML=FX_HIST.map(function(h,i){return '<details'+(i===2?' open':'')+'><summary><i>'+(i+1)+'</i>'+esc(h[0])+'</summary><div class="bd"><div><b>Ask about</b>'+esc(h[1])+'</div><div><b>Why it matters for the formulation</b>'+esc(h[2])+'</div></div></details>'}).join("");
+ // ch4 mse
+ $("mse").innerHTML=FX_MSE.map(function(m){return '<div class="ms"><h5>'+esc(m[0])+'</h5><p>'+esc(m[1])+'</p><div class="ex">'+esc(m[2])+'</div></div>'}).join("");
+ // ch5 spine
+ function sp(i){var s=FX_SPINE[i];[].forEach.call($("spList").children,function(b,j){b.classList.toggle("on",i===j)});
+  $("spView").innerHTML=(s[0]==="Impression"?'<span class="badge">The formulation lives here</span>':'')+'<h4>'+esc(s[0])+'</h4><p>'+esc(s[1])+'</p><div class="ex">'+esc(s[2])+'</div>'}
+ $("spList").innerHTML=FX_SPINE.map(function(s,i){return '<button class="'+(s[0]==="Impression"?"imp":"")+'"><i>'+(i+1)+'</i>'+esc(s[0])+'</button>'}).join("");
+ [].forEach.call($("spList").children,function(b,i){b.onclick=function(){sp(i)}});sp(14);
+ $("fullNote").onclick=function(){var b=$("fullNoteBox");b.hidden=!b.hidden;b.textContent="PSYCHIATRIC REVIEW\n\n"+FX_SPINE.map(function(s){return s[0]+": "+s[2]}).join("\n\n");this.textContent=b.hidden?"Show the complete example note":"Hide the example note"};
+ // ch7 grid
+ var G=FX_G5,h='<div class="hd"></div>'+G.cols.map(function(c){return '<div class="hd">'+c+'</div>'}).join("");
+ G.rows.forEach(function(r,i){h+='<div class="rh">'+r+'</div>'+G.cells[i].map(function(c,j){return '<div class="cl">'+esc(c)+'<div class="t2">→ '+esc(G.tx[i][j])+'</div></div>'}).join("")});
+ $("g5").innerHTML=h;
+ [].forEach.call(document.querySelectorAll("#g5 .cl"),function(c){c.onclick=function(){c.classList.add("rv")}});
+ $("g5all").onclick=function(){[].forEach.call(document.querySelectorAll("#g5 .cl"),function(c){c.classList.add("rv")})};
+ $("g5tx").onclick=function(){$("g5all").onclick();$("g5").classList.toggle("tx");this.textContent=$("g5").classList.contains("tx")?"Hide the actions":"Show what we do about each"};
+ // ch8 tools
+ $("tools").innerHTML=FX_TOOLS.map(function(t,i){return '<div class="tl"><div class="n">'+(i+1)+'</div><h5>'+esc(t[0])+'</h5><p>'+esc(t[1])+'</p><div class="wh"><b>Use it when</b>'+esc(t[2])+'</div></div>'}).join("");
+ [].forEach.call(document.querySelectorAll(".tl"),function(t){t.onclick=function(){t.classList.toggle("op")}});
+
+
+ // domain wheel
+ (function(){var D=window.FX_DOM||[],box=$("dbox");if(!box)return;function show(i){var d=D[i];box.innerHTML='<b>'+(i+1)+'. '+esc(d[0])+'.</b> Look for: '+esc(d[2])+'. <br><b>Can point to:</b> '+esc(d[3])+'.';[].forEach.call(document.querySelectorAll(".wheel .seg"),function(p){p.classList.toggle("on",+p.getAttribute("data-i")===i)})}
+ [].forEach.call(document.querySelectorAll(".wheel .seg,.dl li"),function(el){el.addEventListener("click",function(){show(+el.getAttribute("data-i"))})});show(0)})();
+ // practical core
+ var CG=FX_CORE,cg=0,YP=["y1","y2","","y3","","y4"];
+ $("nCore").textContent=CG.reduce(function(a,g){return a+g.items.length},0);
+ function core(){var g=CG[cg];$("core").innerHTML=g.items.map(function(it,i){return '<article class="cr '+YP[i%YP.length]+'"><div class="ct">'+esc(g.g)+'</div><h5>'+esc(it.t)+'</h5><div class="tell">'+esc(it.f)+'</div><div class="ex"><b>Example</b>'+esc(it.e||"")+'</div><ol>'+it.a.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol><div class="more">Open the '+it.a.length+' steps</div></article>'}).join("");}
+ $("coreTabs").innerHTML=CG.map(function(g,i){return '<button class="'+(i===0?"on":"")+'">'+esc(g.g)+'</button>'}).join("");
+ [].forEach.call($("coreTabs").children,function(b,i){b.onclick=function(){cg=i;[].forEach.call($("coreTabs").children,function(x,j){x.classList.toggle("on",i===j)});core()}});
+ $("core").onclick=function(e){var a=e.target.closest(".cr");if(a){a.classList.toggle("open");var m=a.querySelector(".more");if(m)m.style.display=a.classList.contains("open")?"none":""}};
+ core();
+ // ch9 cases
+ var C=FX_CASES,SP=[],cur="";C.forEach(function(c){if(SP.indexOf(c.sp)<0)SP.push(c.sp)});$("nCases").textContent=C.length;
+ var LV={1:"Level I · physical",2:"Level II · psychosis or major mood",3:"Level III · reaction or variation"};
+ var PAT=["z1","z2","","z3","","z4","z5","","",""];
+ function draw(){var list=C.filter(function(c){return !cur||c.sp===cur});
+  $("cases").innerHTML=list.map(function(c,i){var z=PAT[i%PAT.length];
+   return '<article class="cs '+z+'"><div class="meta"><span>'+esc(c.sp)+'</span><span class="lvb">'+LV[c.l]+'</span></div><h5>'+esc(c.t)+'</h5><div class="kd">'+esc(c.k)+'</div>'+
+   '<div class="fb"><div><div class="p4"><div><b>Predisposing</b>'+esc(c.p[0])+'</div><div><b>Precipitating</b>'+esc(c.p[1])+'</div><div><b>Perpetuating</b>'+esc(c.p[2])+'</div><div><b>Protective</b>'+esc(c.p[3])+'</div></div></div>'+
+   '<div><div class="bx"><b>What it means</b>'+esc(c.m)+'</div><div class="bx"><b>What you do</b>'+esc(c.d)+'</div><div class="lk"><a href="ward-challenges.html#'+c.c+'">Practise the challenge</a><a href="rcourse/p/l-'+c.c+'.html">Listen to the lesson</a></div></div></div></article>'}).join("");}
+ $("cfil").innerHTML='<button class="on" data-s="">All</button>'+SP.map(function(s){return '<button data-s="'+s+'">'+s+'</button>'}).join("");
+ $("cfil").onclick=function(e){var b=e.target.closest("button");if(!b)return;cur=b.dataset.s;[].forEach.call($("cfil").children,function(x){x.classList.toggle("on",x===b)});draw()};
+ $("cases").onclick=function(e){if(e.target.closest("a"))return;var a=e.target.closest(".cs");if(a)a.classList.toggle("open")};
+ draw();
+})();
+</script>
+
+<script src="content/auth.js"></script>
+<script src="content/menu.js?v=20261108m"></script>
+</body></html>

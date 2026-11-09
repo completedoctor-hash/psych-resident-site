@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check your email · The Psychiatric Resident</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --ochre:#C2A032; --forest:#2C6B4C;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --body:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head:"Playfair Display",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1120px;margin:0 auto}
+.mast .brand{font-family:var(--head);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body);font-weight:700;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover{color:var(--ochre)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;width:100%;flex:1 1 auto}
+.lede{padding:32px 0 20px;border-bottom:1px solid var(--line)}
+.lede h1{font-family:var(--head);font-weight:800;font-size:clamp(28px,4.4vw,42px);
+  line-height:1.08;margin-bottom:10px;text-wrap:balance}
+.lede p{font-size:17px;color:#473f33;max-width:64ch}
+
+.cols{display:grid;grid-template-columns:1fr 330px;gap:28px;align-items:start;padding:26px 0 44px}
+@media(max-width:900px){ .cols{grid-template-columns:1fr} }
+
+.formwrap{background:var(--paper);border:1.5px solid var(--line);border-top:5px solid var(--navy);
+  border-radius:14px;padding:26px 28px}
+@media(max-width:560px){ .formwrap{padding:20px 18px} }
+.formwrap h2{font-family:var(--head);font-weight:800;font-size:23px;margin-bottom:5px}
+.formwrap .sub{font-size:15px;color:var(--muted);margin-bottom:20px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 18px}
+@media(max-width:620px){ .grid{grid-template-columns:1fr} }
+.f{display:flex;flex-direction:column}
+.f.wide{grid-column:1/-1}
+.f label{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+.f label em{font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;font-size:12.5px;color:#9A907E}
+.f input,.f select{font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px;width:100%}
+.f input:focus,.f select:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(29,58,95,.12)}
+
+.go{margin-top:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.go button{font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--navy-deep);border:0;border-radius:9px;
+  padding:14px 30px;cursor:pointer}
+.go button:hover{background:var(--navy)}
+.go .note{font-size:14px;color:var(--muted)}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.aside{display:flex;flex-direction:column;gap:15px}
+.box{background:var(--cream-2);border:1.5px solid var(--line);border-radius:13px;padding:19px 21px}
+.box.flag{background:#FBF4E2;border-color:#E8D7A8;border-left:5px solid var(--ochre)}
+.box h3{font-family:var(--head);font-weight:800;font-size:17.5px;margin-bottom:9px}
+.box p{font-size:14.5px;line-height:1.55}
+.box p + p{margin-top:8px}
+.box ol{list-style:none;counter-reset:s;margin:0}
+.box ol li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:10px;
+  font-size:14.5px;line-height:1.5}
+.box ol li:last-child{margin-bottom:0}
+.box ol li:before{content:counter(s);position:absolute;left:0;top:1px;width:21px;height:21px;
+  border-radius:6px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;
+  padding:14px 22px;font-size:12.5px;margin-top:auto}
+footer .in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+.regmsg{margin:16px 0 0;padding:13px 16px;border-radius:4px;font-size:15px;line-height:1.5}
+.regmsg.err{background:#FBEDEF;border:1px solid var(--crimson);color:#7E1526}
+.regmsg.ok{background:#EAF3EE;border:1px solid var(--forest);color:#1E4E37}
+.regmsg.wait{background:var(--cream-2);border:1px solid var(--line-2);color:var(--muted)}
+
+.panel{background:var(--paper);border:1.5px solid var(--line);border-top:5px solid var(--navy);
+  border-radius:14px;padding:26px 28px;max-width:720px}
+.panel h2{font-family:var(--head);font-weight:800;font-size:23px;margin-bottom:8px}
+.panel p{font-size:15.5px;line-height:1.6;color:#473f33}
+.panel p + p{margin-top:10px}
+.btn{display:inline-block;font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--navy-deep);border:0;border-radius:9px;
+  padding:13px 26px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--navy)}
+.btn.ghost{background:transparent;color:var(--navy-deep);border:1.5px solid var(--line-2)}
+.btn.ghost:hover{background:var(--cream-2)}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.addr{font-weight:700;color:var(--navy-deep);word-break:break-all}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:20px}
+.tile{background:var(--cream-2);border:1.5px solid var(--line);border-radius:12px;padding:16px 18px}
+.tile.on{background:#EAF3EE;border-color:#A9CDB8}
+.tile.off{opacity:.72}
+.tile h4{font-family:var(--head);font-size:16.5px;font-weight:800;margin-bottom:4px}
+.tile .st{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--forest)}
+.tile.off .st{color:var(--muted)}
+.tile p{font-size:13.5px;margin-top:6px;color:var(--muted)}
+.kv{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.kv div{display:flex;gap:14px;font-size:15px;padding:5px 0;flex-wrap:wrap}
+.kv span{min-width:150px;font-size:11.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);padding-top:3px}
+.f{display:flex;flex-direction:column;max-width:340px;margin-top:14px}
+.f label{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+.f input{font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px;width:100%}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Almost there</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="paper-a.html">Paper A</a>
+    <a href="curriculum.html">Curriculum</a>
+    <a href="register.html">Register</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+
+  <div class="lede">
+    <h1>Check your inbox.</h1>
+    <p>Your account exists. One short step is left.</p>
+  </div>
+
+  <div class="cols" style="grid-template-columns:1fr">
+  <div class="panel">
+    <h2>We have sent a confirmation link to <span class="addr" id="who">your email address</span></h2>
+    <p>Open that email and press the link inside. Your account is confirmed the moment you
+       do, you are signed in straight away, and you land on your account page. Nothing else
+       is asked of you and nobody has to let you in.</p>
+    <p>If it has not arrived within a few minutes, look in the spam or junk folder. Email from
+       a new website often lands there the first time.</p>
+
+    <div class="btnrow">
+      <a class="btn" href="account.html">I have confirmed, take me in</a>
+      <button class="btn ghost" type="button" id="again">Email me a link to get in</button>
+    </div>
+    <div class="regmsg" id="m" hidden></div>
+
+    <div class="kv">
+      <div><span>Wrong address?</span> <a href="register.html">Register again with the right one</a></div>
+      <div><span>Already confirmed?</span> <a href="account.html">Sign in</a></div>
+      <div><span>Stuck?</span> <a href="mailto:completedoctor@gmail.com">completedoctor@gmail.com</a></div>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>&copy; <span id="yr"></span>. A structured reference for doctors training in psychiatry. &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div>
+</div></footer>
+
+<script src="content/auth.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+(function(){
+  function qs(k){ var m=new RegExp("[?&]"+k+"=([^&]*)").exec(location.search); return m?decodeURIComponent(m[1].replace(/\+/g," ")):""; }
+  var em = qs("e");
+  if(!em){ try{ em = localStorage.getItem("tpr-pending-email")||""; }catch(e){} }
+  if(em) document.getElementById("who").textContent = em;
+
+  var m = document.getElementById("m");
+  function say(k,t){ m.className="regmsg "+k; m.textContent=t; m.hidden=false; }
+
+  document.getElementById("again").addEventListener("click", function(){
+    if(!em){ say("err","We do not know which address to send to. Register again."); return; }
+    say("wait","Sending...");
+    if(typeof window.tprResendConfirmation==="function"){
+      window.tprResendConfirmation(em, function(r){
+        if(r && r.ok) say("ok","Sent. Give it a minute, then look in your inbox and your spam folder. The link in it signs you in and lets you set your password.");
+        else say("err",(r&&r.error)||"It would not send. Write to completedoctor@gmail.com and you will be let in by hand.");
+      });
+    } else { say("err","Not available on this page. Write to completedoctor@gmail.com."); }
+  });
+})();
+
+</script>
+
+<script src="content/coursenav.js?v=4"></script></body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Appraisal Revision · The Psychiatric Resident</title>
+<meta name="description" content="Critical Appraisal Revision: a five-part masterclass with 182 questions, 57 reproduced tables and a spaced-repetition flashcard system. Members only.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14181f; --paper:#ffffff; --paper-2:#f5f6f7; --rule:#dfe1e4;
+  --brass:#8a5a2b; --sage:#2f5a4a; --muted:#6a6f77; --navy:#0C1F3F; --gold:#C8972A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+.topbar{border-bottom:1px solid var(--rule);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:12px;flex-wrap:wrap}
+.topbar a{color:var(--muted);text-decoration:none;margin-left:18px}
+.topbar a:hover{color:var(--brass)}
+.topbar button{font:inherit;font-size:11px;letter-spacing:.15em;text-transform:uppercase;background:none;
+  border:none;color:var(--muted);cursor:pointer;margin-left:18px;padding:0}
+.topbar button:hover{color:var(--brass)}
+
+.masthead{text-align:center;padding:26px 0 14px;border-bottom:3px double var(--ink)}
+.masthead .kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+.masthead h1{font-family:"Playfair Display",Georgia,serif;font-weight:800;
+  font-size:clamp(34px,7vw,70px);line-height:.96;letter-spacing:-.01em}
+.masthead h1 a{text-decoration:none}
+.masthead .sub{margin-top:10px;font-style:italic;color:var(--muted);font-size:15px}
+
+nav.primary{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:50}
+nav.primary .wrap{display:flex;flex-wrap:wrap;gap:2px;justify-content:center}
+nav.primary a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;padding:14px 13px;border-bottom:2px solid transparent}
+nav.primary a:hover,nav.primary a.active{color:var(--brass);border-bottom-color:var(--brass)}
+
+.hero{background:var(--navy);color:#fff;padding:46px 0 40px}
+.hero .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hero h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(28px,5vw,48px);line-height:1.06;margin-bottom:14px}
+.hero p{font-size:17px;color:#d7dbe3;max-width:66ch}
+.hero .byline{margin-top:16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8d97a8}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.fact{border:1px solid rgba(255,255,255,.18);padding:16px 18px}
+.fact .n{font-family:"Playfair Display",Georgia,serif;font-size:30px;color:var(--gold);line-height:1}
+.fact .l{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:#9aa4b4;margin-top:8px}
+.source{margin-top:22px;font-size:13px;color:#9aa4b4;font-style:italic;max-width:70ch}
+
+.weights{padding:12px 0 10px}
+.wrow{display:grid;grid-template-columns:minmax(0,1fr) 78px;gap:16px;align-items:center;
+  padding:11px 0;border-bottom:1px dotted var(--rule);text-decoration:none}
+.wrow:hover .wname{color:var(--brass)}
+.wname{font-size:15px;margin-bottom:6px;display:block}
+.wname b{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.16em;
+  color:var(--brass);margin-right:9px}
+.wbar{height:9px;background:var(--paper-2);border:1px solid var(--rule);overflow:hidden;display:block}
+.wbar i{display:block;height:100%;background:var(--navy);width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.wfig{text-align:right;font-family:"Playfair Display",Georgia,serif;font-size:19px;white-space:nowrap}
+.wfig small{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.sec{padding:16px 0 6px;border-top:3px double var(--ink);margin-top:44px}
+.sec .num{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--brass)}
+.sec h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(24px,3.6vw,34px);line-height:1.1;margin:6px 0 8px}
+.sec .blurb{font-size:16px;color:#4a453b;max-width:70ch}
+.sec .pill{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;
+  letter-spacing:.13em;text-transform:uppercase;background:var(--paper-2);border:1px solid var(--rule);
+  padding:5px 10px;margin-top:12px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin-top:6px;align-items:start}
+
+.topic{border-bottom:1px solid var(--rule);opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s ease}
+.topic.in{opacity:1;transform:none}
+.topic.open{grid-column:1 / -1}
+.thead{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:none;
+  border:0;font:inherit;color:inherit;cursor:pointer;padding:16px 0}
+.thead:hover .tt{color:var(--brass)}
+.tnum{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.1em;
+  color:var(--muted);padding-top:6px;min-width:34px}
+.tt{font-family:"Playfair Display",Georgia,serif;font-size:20px;line-height:1.2}
+.tflag{margin-left:auto;align-self:flex-start;padding-top:4px}
+.tag{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:2px;white-space:nowrap}
+.tag.free{background:rgba(47,90,74,.12);color:var(--sage)}
+.tag.members{background:rgba(138,90,43,.14);color:var(--brass)}
+.tbody{display:none;padding:0 0 26px 46px}
+.topic.open .tbody{display:block}
+.topic.open .tt{color:var(--brass)}
+.point{font-size:16.5px;color:#33373f;border-left:3px solid var(--gold);padding-left:16px;
+  margin-bottom:20px;max-width:76ch}
+
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.08em;
+  padding:7px 13px;border:1px solid var(--rule);background:#fff;color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pane{display:none}
+.pane.on{display:block}
+
+.deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.card{perspective:1200px;cursor:pointer}
+.card .inner{position:relative;transition:transform .55s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d}
+.card.flip .inner{transform:rotateX(180deg)}
+.card .f,.card .b{border:1px solid var(--rule);font-size:15px;line-height:1.55;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;min-height:168px}
+.card .f{background:var(--paper-2);padding:20px 22px;display:flex;align-items:center}
+/* the back scrolls. block layout, never flex-centred, so nothing is ever clipped
+   above the scroll area and every line can be reached. */
+.card .b{background:var(--navy);color:#eef1f6;border-color:var(--navy);
+  position:absolute;inset:0;transform:rotateX(180deg);
+  display:block;overflow-y:auto;overscroll-behavior:contain;
+  padding:20px 22px 22px;scrollbar-gutter:stable}
+.card .b::-webkit-scrollbar{width:9px}
+.card .b::-webkit-scrollbar-track{background:rgba(255,255,255,.07);border-radius:5px}
+.card .b::-webkit-scrollbar-thumb{background:rgba(255,255,255,.30);border-radius:5px}
+.card .b::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.45)}
+.card .b{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.30) rgba(255,255,255,.07)}
+.card .b > div{padding-bottom:2px}
+.card .q{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);display:block;margin-bottom:5px}
+.card .b .q{color:var(--gold)}
+.hint{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--muted);margin-bottom:9px}
+
+.nb{background:var(--paper-2);border:1px solid var(--rule);border-left:3px solid var(--navy);padding:16px 20px}
+.nb b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--navy);margin-bottom:10px}
+.nb li{font-size:15.5px;margin:0 0 9px 18px;padding-left:2px}
+
+.gate{border:1px solid var(--rule);border-top:3px solid var(--gold);background:var(--paper-2);
+  padding:22px;text-align:center}
+.gate .t{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+.gate h4{font-family:"Playfair Display",Georgia,serif;font-size:20px;margin-bottom:8px}
+.gate p{font-size:15px;color:#4a453b;max-width:48ch;margin:0 auto 14px}
+.btn{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.13em;
+  text-transform:uppercase;padding:12px 22px;border:1px solid var(--ink);text-decoration:none;
+  background:var(--ink);color:var(--paper);cursor:pointer}
+.btn:hover{background:var(--brass);border-color:var(--brass)}
+.btn.ghost{background:none;color:var(--ink)}
+.btn.ghost:hover{color:var(--brass)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn.gold:hover{background:#b8891f;border-color:#b8891f}
+
+.rail{position:sticky;top:47px;z-index:40;background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--rule)}
+.rail .wrap{display:flex;align-items:center;gap:6px;padding-top:9px;padding-bottom:9px;flex-wrap:wrap}
+.rail a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.05em;
+  text-decoration:none;color:var(--muted);padding:5px 9px;border:1px solid transparent}
+.rail a:hover{color:var(--brass);border-color:var(--rule)}
+.prog{margin-left:auto;display:flex;align-items:center;gap:9px;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--muted)}
+.ring{width:26px;height:26px;border-radius:50%;
+  background:conic-gradient(var(--gold) calc(var(--p,0)*1%),var(--rule) 0);
+  display:grid;place-items:center}
+.ring i{width:18px;height:18px;border-radius:50%;background:#fff;display:block}
+
+.lede{padding:34px 0 20px}
+.lede h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(24px,3.6vw,34px);margin-bottom:10px}
+.lede p{font-size:16.5px;color:#3d3a34;max-width:72ch;margin-bottom:12px}
+.alsobar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.alsobar a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;border:1px solid var(--rule);padding:9px 14px;color:var(--muted)}
+.alsobar a:hover{border-color:var(--brass);color:var(--brass)}
+
+.tiers{background:var(--ink);color:var(--paper);padding:44px 0;margin-top:44px}
+.tiers h3{font-family:"Playfair Display",Georgia,serif;font-size:28px;text-align:center;margin-bottom:6px}
+.tiers .sub{text-align:center;color:#b9b2a4;font-style:italic;margin-bottom:28px}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tier{border:1px solid #3a3f4c;padding:22px}
+.tier .t{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#b07a3e}
+.tier .price{font-family:"Playfair Display",Georgia,serif;font-size:28px;margin:9px 0}
+.tier .price small{font-size:12px;color:#b9b2a4}
+.tier p{font-size:13px;color:#cfc9bd}
+
+footer{border-top:3px double var(--ink);padding:30px 0 60px;font-size:13px;color:var(--muted);margin-top:34px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer .brand{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--ink)}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;gap:0}
+  .facts{grid-template-columns:1fr 1fr}
+  .tgrid{grid-template-columns:1fr}
+  nav.primary a{padding:12px 8px;font-size:10.5px}
+  .tbody{padding-left:0}
+  .rail{position:static}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .topic{opacity:1;transform:none}
+}
+
+/* ---------- curriculum table ---------- */
+.cfilter{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 6px}
+.cfilter button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.07em;
+  padding:8px 14px;border:1px solid var(--rule);background:#fff;color:var(--muted);cursor:pointer}
+.cfilter button:hover{border-color:var(--brass);color:var(--brass)}
+.cfilter button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.csec{border-top:3px double var(--ink);margin-top:40px;padding-top:16px}
+.csec .cnum{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--brass)}
+.csec h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(22px,3.2vw,30px);margin:6px 0 8px}
+.csec .aim{font-size:15px;color:#4a453b;max-width:74ch;font-style:italic}
+.csec .cbar{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.csec .cbar .track{flex:1;min-width:160px;height:7px;background:var(--paper-2);border:1px solid var(--rule)}
+.csec .cbar .track i{display:block;height:100%;background:var(--sage);width:0;
+  transition:width 1s cubic-bezier(.22,1,.36,1)}
+.csec .cbar .lab{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+.cgrp{margin-top:18px}
+.cgrp h4{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);padding-bottom:7px;border-bottom:2px solid var(--ink)}
+
+/* one line per item. this is the whole point. */
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:baseline;
+  width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);
+  font:inherit;color:inherit;cursor:pointer;padding:11px 0}
+.row:hover{background:#fafbfc}
+.row:hover .rt{color:var(--brass)}
+.rc{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--brass);white-space:nowrap}
+.rt{font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.rs{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 8px;white-space:nowrap}
+.rs.taught{background:rgba(47,90,74,.12);color:var(--sage)}
+.rs.soon{background:var(--paper-2);color:var(--muted)}
+.rs.mem{background:rgba(138,90,43,.14);color:var(--brass)}
+.item.open .row{background:#fafbfc;border-bottom-color:transparent}
+.item.open .rt{color:var(--brass);white-space:normal}
+.body{display:none;padding:4px 0 26px 76px;border-bottom:1px solid var(--rule)}
+.item.open .body{display:block}
+.full{font-size:15.5px;color:#4a453b;background:var(--paper-2);border-left:3px solid var(--rule);
+  padding:12px 16px;margin-bottom:18px;max-width:78ch}
+.full b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.plain{font-size:17px;color:#23272e;border-left:3px solid var(--gold);padding:2px 0 2px 16px;
+  margin-bottom:20px;max-width:74ch}
+.plain b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:6px}
+.tp{counter-reset:tp;margin-bottom:6px}
+.tp li{list-style:none;counter-increment:tp;position:relative;padding-left:34px;margin-bottom:11px;
+  font-size:15.5px;max-width:78ch}
+.tp li:before{content:counter(tp);position:absolute;left:0;top:1px;width:22px;height:22px;
+  border:1px solid var(--rule);border-radius:50%;display:grid;place-items:center;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;color:var(--brass);background:#fff}
+.cite{margin-top:16px;border-top:1px dotted var(--rule);padding-top:12px}
+.cite b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.cite li{font-size:13.5px;color:#4a453b;margin:0 0 5px 16px}
+.cite a{color:var(--brass)}
+.soonbox{background:var(--paper-2);border:1px dashed var(--rule);padding:16px 18px;font-size:15px;color:var(--muted)}
+@media(max-width:820px){
+  .row{grid-template-columns:56px minmax(0,1fr);gap:10px}
+  .rs{grid-column:2;justify-self:start;margin-top:4px}
+  .body{padding-left:0}
+}
+
+</style>
+<style>
+/* ---------- critical appraisal ---------- */
+.ca-hero{background:var(--navy);color:#fff;padding:52px 0 46px}
+.ca-hero .eyebrow{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.ca-hero h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,5.4vw,54px);line-height:1.02;margin-bottom:16px}
+.ca-hero p{font-size:17.5px;color:#d7dbe3;max-width:64ch;margin-bottom:12px}
+.ca-hero .byline{margin-top:18px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8d97a8}
+
+.parts{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:34px}
+.pcard{border:1px solid rgba(255,255,255,.18);padding:20px 18px;text-decoration:none;display:block;
+  transition:border-color .25s ease,background .25s ease}
+.pcard.p0c{border-color:var(--gold);background:rgba(200,151,42,.12)}.pcard:hover{border-color:var(--gold);background:rgba(200,151,42,.07)}
+.pcard .pl{font-family:"Playfair Display",Georgia,serif;font-size:40px;color:var(--gold);line-height:1}
+.pcard .pn{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#fff;margin:10px 0 6px}
+.pcard .pd{font-size:13.5px;color:#9aa4b4;line-height:1.5}
+.pcard .pm{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.1em;
+  color:var(--gold);margin-top:10px}
+
+/* locked gate */
+.ca-gate{border:1px solid var(--rule);border-top:4px solid var(--gold);background:var(--paper-2);
+  padding:40px 34px;text-align:center;margin:36px 0}
+.ca-gate .t{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+.ca-gate h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(24px,3.4vw,32px);margin-bottom:12px}
+.ca-gate p{font-size:16.5px;color:#4a453b;max-width:60ch;margin:0 auto 12px}
+.ca-gate .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:760px;margin:26px auto 24px;text-align:left}
+.ca-gate .step{border:1px solid var(--rule);background:#fff;padding:16px 18px}
+.ca-gate .step b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:7px}
+.ca-gate .step span{font-size:14.5px;color:#4a453b}
+
+/* part rail */
+.prail{position:sticky;top:47px;z-index:40;background:rgba(255,255,255,.97);border-bottom:1px solid var(--rule)}
+.prail .wrap{display:flex;align-items:center;gap:5px;padding:9px 24px;flex-wrap:wrap}
+.prail button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.07em;
+  padding:8px 14px;border:1px solid var(--rule);background:#fff;color:var(--muted);cursor:pointer}
+.prail a.p0{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.07em;padding:8px 14px;border:1px solid #B8932C;background:#B8932C;color:#0C1F3F;font-weight:700;text-decoration:none}.prail a.p0:hover{background:#0C1F3F;border-color:#0C1F3F;color:#fff}.prail button:hover{border-color:var(--brass);color:var(--brass)}
+.prail button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.prail .due{margin-left:auto;display:flex;align-items:center;gap:10px;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--muted)}
+.prail .duen{background:var(--gold);color:var(--navy);font-weight:700;padding:3px 9px;border-radius:2px}
+
+/* theme + topic */
+.cth{border-top:3px double var(--ink);margin-top:40px;padding-top:14px}
+.cth .k{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--brass)}
+.cth h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(22px,3.2vw,30px);margin:6px 0 4px}
+
+.top{border-bottom:1px solid var(--rule)}
+.trow{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:baseline;width:100%;
+  text-align:left;background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:15px 0}
+.trow:hover{background:#fafbfc}
+.trow:hover .tt2{color:var(--brass)}
+.tn{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--brass);white-space:nowrap}
+.tt2{font-family:"Playfair Display",Georgia,serif;font-size:19px;line-height:1.25}
+.tc{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+.tbody2{display:none;padding:2px 0 30px 68px}
+.top.open .tbody2{display:block}
+.top.open .tt2{color:var(--brass)}
+
+.plain2{font-size:17px;color:#23272e;border-left:3px solid var(--gold);padding:4px 0 4px 18px;
+  margin-bottom:24px;max-width:74ch;line-height:1.62}
+.plain2 b{display:block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:7px}
+
+.cbox{border:1px solid var(--rule);border-left:3px solid var(--navy);background:#fff;padding:16px 20px;margin-bottom:14px}
+.cbox h5{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--navy);margin-bottom:10px}
+.cbox li{font-size:15.5px;margin:0 0 8px 18px;line-height:1.55}
+
+.hybox{background:rgba(200,151,42,.10);border:1px solid rgba(200,151,42,.42);border-left:4px solid var(--gold);
+  padding:13px 18px;margin-bottom:12px;font-size:15.5px;line-height:1.55}
+.hybox b{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);margin-right:9px}
+
+.dtwrap{margin:18px 0 20px;overflow-x:auto}
+.dtcap{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+table.dt{width:100%;border-collapse:collapse;font-size:14.5px;min-width:380px}
+table.dt th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--navy)}
+table.dt td{padding:9px 12px;border:1px solid var(--rule);vertical-align:top;line-height:1.45}
+table.dt tr:nth-child(even) td{background:var(--paper-2)}
+
+.drillbtn{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;padding:11px 20px;border:1px solid var(--navy);background:var(--navy);color:#fff;
+  cursor:pointer;margin-top:8px}
+.drillbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.drillbtn.ghost{background:none;color:var(--navy)}
+.drillbtn.ghost:hover{color:var(--gold);border-color:var(--gold);background:none}
+
+/* ---------- the drill ---------- */
+.drill{position:fixed;inset:0;background:#0d1117;z-index:200;display:none;flex-direction:column}
+.drill.on{display:flex}
+.dbar{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid #232a35;flex-wrap:wrap}
+.dbar .dt2{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:#d4a13a}
+.dbar .dcount{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:#9aa4b4;margin-left:auto}
+.dbar button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;background:none;border:1px solid #2b323e;color:#9aa4b4;padding:7px 13px;cursor:pointer}
+.dbar button:hover{border-color:#d4a13a;color:#d4a13a}
+.dprog{height:3px;background:#232a35}
+.dprog i{display:block;height:100%;background:#d4a13a;width:0;transition:width .3s ease}
+
+.dstage{flex:1;overflow-y:auto;padding:30px 22px 20px;display:flex;justify-content:center}
+.dcard{width:100%;max-width:860px}
+.dkind{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:#d4a13a;margin-bottom:12px}
+.dq{font-family:"Playfair Display",Georgia,serif;font-size:clamp(20px,3vw,27px);line-height:1.32;
+  color:#f2f4f7;margin-bottom:20px}
+.dopts{display:grid;gap:8px;margin-bottom:20px}
+.dopt{display:grid;grid-template-columns:30px 1fr;gap:10px;border:1px solid #232a35;padding:12px 14px;
+  font-size:15.5px;color:#c3c9d4;line-height:1.5}
+.dopt b{color:#d4a13a;font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px}
+.dopt.right{border-color:#3f7d5f;background:rgba(63,125,95,.16);color:#e7f2ec}
+.dopt.right b{color:#7fc79f}
+
+.dans{border-left:4px solid #d4a13a;background:rgba(212,161,58,.10);padding:18px 22px;margin-bottom:18px}
+.dans .al{font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:#d4a13a;margin-bottom:8px}
+.dans .av{font-family:"Playfair Display",Georgia,serif;font-size:22px;color:#fff;margin-bottom:12px;line-height:1.3}
+.dans .ae{font-size:16px;color:#dfe4ec;line-height:1.62;max-width:76ch}
+.dbul{margin:0 0 18px 20px}
+.dbul li{font-size:16px;color:#dfe4ec;margin-bottom:9px;line-height:1.55}
+.dhide{color:#7b8598;font-size:15px;font-style:italic;padding:26px 0;border-top:1px dashed #232a35;
+  border-bottom:1px dashed #232a35;margin-bottom:18px}
+
+.drill table.dt th{background:#1b2430;border-color:#2b323e;color:#e9edf3}
+.drill table.dt td{border-color:#2b323e;color:#dfe4ec;background:transparent}
+.drill table.dt tr:nth-child(even) td{background:rgba(255,255,255,.035)}
+.drill .dtcap{color:#d4a13a}
+
+.dfoot{border-top:1px solid #232a35;padding:14px 22px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.dfoot button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;padding:13px 22px;border:1px solid #2b323e;background:none;color:#c3c9d4;cursor:pointer;
+  min-width:104px}
+.dfoot button small{display:block;font-size:9px;color:#6d7686;margin-top:4px;letter-spacing:.06em}
+.dfoot button:hover{border-color:#d4a13a;color:#d4a13a}
+.dfoot .reveal{background:#d4a13a;border-color:#d4a13a;color:#0d1117;min-width:280px;font-weight:700}
+.dfoot .reveal:hover{background:#e0b053;border-color:#e0b053;color:#0d1117}
+.dfoot .g1:hover{border-color:#c1554f;color:#e08a84}
+.dfoot .g4:hover{border-color:#3f7d5f;color:#7fc79f}
+.ddone{text-align:center;color:#c3c9d4;padding:60px 20px}
+.ddone h3{font-family:"Playfair Display",Georgia,serif;font-size:30px;color:#fff;margin-bottom:12px}
+.ddone p{font-size:16px;color:#9aa4b4;max-width:52ch;margin:0 auto 20px}
+
+@media(max-width:900px){
+  .parts{grid-template-columns:1fr 1fr}
+  .ca-gate .steps{grid-template-columns:1fr}
+  .trow{grid-template-columns:50px minmax(0,1fr)}
+  .tc{grid-column:2;justify-self:start;margin-top:4px}
+  .tbody2{padding-left:0}
+  .prail{position:static}
+  .dfoot .reveal{min-width:100%}
+  .dfoot button{flex:1;min-width:0}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<script src="content/protect.js"></script></head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span>Global edition &nbsp;·&nbsp; For doctors training in psychiatry</span>
+  <span><a href="register.html">Register</a><button data-account>Sign in</button></span>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <div class="kicker">Est. for the training psychiatrist</div>
+  <h1><a href="index.html">The Psychiatric Resident</a></h1>
+  <div class="sub">Psychiatry for trainees, explained clearly.</div>
+</div></header>
+
+<nav class="primary"><div class="wrap">
+  <a href="index.html">Front Page</a>
+  <a href="stories.html">The Story</a>
+  <a href="timeline.html">The Timeline</a>
+  <a href="residents.html">Psychiatry for Residents</a>
+  <a href="curriculum.html">The Curriculum</a>
+  <a href="critical-appraisal.html" class="active">Critical Appraisal</a>
+  <a href="ca-flashcards.html">CA Flashcards</a>
+  <a href="paper-a.html">Paper A</a>
+  <a href="paper-b.html">Paper B</a>
+  <a href="flashcards.html">Flashcards</a>
+  <a href="register.html">Register</a>
+</div></nav>
+
+<section class="ca-hero"><div class="wrap">
+  <div class="eyebrow">The Complete Doctor Academy &nbsp;·&nbsp; Members only</div>
+  <h2>Critical Appraisal Revision.</h2>
+  <p>One third of MRCPsych Paper B is critical review. Fifty marks. It is the most predictable block in either examination, because unlike psychopharmacology it does not change from sitting to sitting. Learn it properly once and it pays every time.</p>
+  <p style="margin:14px 0"><a href="formulas.html" style="display:inline-block;background:#1E9E92;color:#fff;padding:10px 16px;text-decoration:none;font:700 13px Helvetica Neue,Arial,sans-serif;letter-spacing:.06em">ALL FORMULAS ON ONE PAGE →</a> <a href="ca-practice.html" style="display:inline-block;background:#B8932C;color:#0E1A2B;padding:10px 16px;text-decoration:none;font:700 13px Helvetica Neue,Arial,sans-serif;letter-spacing:.06em;margin-left:8px">PRACTICE QUESTIONS →</a> <a href="ca-drill.html" style="display:inline-block;background:#14243A;color:#fff;padding:10px 16px;text-decoration:none;font:700 13px Helvetica Neue,Arial,sans-serif;letter-spacing:.06em;margin-left:8px">CALCULATION DRILL →</a></p>
+  <p>This is a five-part masterclass. Each topic opens with the plain-English teaching, then the concept detail, the high-yield lines, every table reproduced in full, and the questions delivered through a spaced-repetition flashcard system that schedules what you keep getting wrong.</p>
+  <div class="parts" id="partCards"></div>
+  <div class="byline">Written by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+</div></section>
+
+<div id="gate" class="wrap" style="display:none">
+  <div class="ca-gate">
+    <div class="t" id="gateTag">Enrolled members</div>
+    <h3 id="gateHead">This course is for enrolled members.</h3>
+    <p id="gateBody">Critical Appraisal Revision is part of the paid course. Create an account with the email address you used to enrol, confirm it from the email that arrives, and your access is opened against that address.</p>
+    <div class="steps" id="gateSteps">
+      <div class="step"><b>Step one</b><span>Create an account using the email address you enrolled with.</span></div>
+      <div class="step"><b>Step two</b><span>Click the link in the confirmation email to verify that address.</span></div>
+      <div class="step"><b>Step three</b><span>Your address is matched against the enrolment list and the course opens.</span></div>
+    </div>
+    <div id="gateEmail" style="display:none"></div>
+    <button class="btn" data-account>Create an account or sign in</button>
+    <a class="btn ghost" href="register.html">Enrol on the course</a>
+  </div>
+</div>
+
+<div id="member" style="display:none">
+
+  <div class="prail"><div class="wrap" id="prail"></div></div>
+
+  <section class="lede"><div class="wrap">
+    <h2 id="partTitle">Part A</h2>
+    <p id="partSub"></p>
+    <div class="alsobar">
+      <button class="drillbtn" id="drillDue">Drill what is due</button>
+      <button class="drillbtn ghost" id="drillPart">Drill this whole part</button>
+      <button class="drillbtn ghost" id="drillTables">Drill the tables only</button>
+      <button class="drillbtn ghost" id="resetPart">Reset this part</button>
+    </div>
+  </div></section>
+
+  <main class="wrap" id="partBody"></main>
+
+  <section class="tiers"><div class="wrap">
+    <h3>How the flashcard system works.</h3>
+    <div class="sub">Three card types, one schedule. It shows you what you are about to forget.</div>
+    <div class="tgrid">
+      <div class="tier"><div class="t">Question cards</div><div class="price">182</div>
+        <p>The exam-style question on the front, the answer and the full explanation on the back.</p></div>
+      <div class="tier"><div class="t">Concept cards</div><div class="price">143</div>
+        <p>The concept name on the front. Recall the points before you turn it over.</p></div>
+      <div class="tier"><div class="t">Table cards</div><div class="price">57</div>
+        <p>The table's title and its columns. Draw it out, then check every row against the original.</p></div>
+      <div class="tier"><div class="t">The schedule</div><div class="price">SM-2</div>
+        <p>Rate each card and it comes back sooner if you struggled and later if you did not.</p></div>
+    </div>
+  </div></section>
+
+</div>
+
+<div class="drill" id="drill">
+  <div class="dbar">
+    <span class="dt2" id="drillName">Drill</span>
+    <button id="drillShuffle">Shuffle</button>
+    <span class="dcount" id="drillCount"></span>
+    <button id="drillClose">Close &nbsp;Esc</button>
+  </div>
+  <div class="dprog"><i id="drillProg"></i></div>
+  <div class="dstage"><div class="dcard" id="drillCard"></div></div>
+  <div class="dfoot" id="drillFoot"></div>
+</div>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand">The Psychiatric Resident</div>
+    <div style="margin-top:6px">Dr Chinonso Stanley Ezeanyika &middot; Medical Education Specialist</div>
+  </div>
+  <div style="text-align:right">
+    <div>Paper A &middot; Paper B &middot; Question Banks</div>
+    <div style="margin-top:6px">&copy; <span id="year">2026</span>. A structured reference for doctors training in psychiatry.</div>
+  </div>
+ &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div></footer>
+
+<script src="content/auth-config.js"></script>
+<script src="content/auth.js"></script>
+<script src="content/ca-extras.js"></script>
+<script src="paid/appraisal/critical-appraisal.js"></script>
+<script>if(typeof CA==="undefined"){var CA=[];}</script>
+<script>
+/* ---------------------------------------------------------------
+   CRITICAL APPRAISAL REVISION
+   Members-only five-part course with a spaced-repetition deck.
+   --------------------------------------------------------------- */
+
+var DATA = (typeof CA !== "undefined" && Array.isArray(CA)) ? CA : [];
+var SRKEY = "tpr-ca-sched";
+var PART  = "A";
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function cap(s){ s = String(s).trim(); return s.charAt(0).toUpperCase() + s.slice(1); }
+function titleish(s){ return String(s).replace(/\s+/g," ").trim(); }
+
+/* ---- who is signed in ---- */
+/* Access is handled in content/auth.js. It defines currentUser, userRoles,
+   hasRole, isMember, hasCourse, awaitingApproval, userEmail and
+   paintAccountButtons, and calls back here once it knows who is in. */
+onAuthReady(function(){ boot(); });
+
+/* ---------------------------------------------------------------
+   THE DECK
+   Three card kinds built from the course data.
+   --------------------------------------------------------------- */
+function buildDeck(){
+  var deck = [];
+  DATA.forEach(function(p){
+    p.themes.forEach(function(th){
+      th.topics.forEach(function(t){
+        var where = "Part " + p.p + " · " + (t.n ? t.n + " " : "") + t.t;
+        t.mcqs.forEach(function(m){
+          deck.push({ id:"q:"+p.p+":"+m.n, kind:"question", part:p.p, where:where,
+                      q:m.stem, opts:m.opts, a:m.a, e:m.e });
+        });
+        t.concepts.forEach(function(c, i){
+          deck.push({ id:"c:"+p.p+":"+(t.n||th.t)+":"+i, kind:"concept", part:p.p, where:where,
+                      q:c.t, bullets:c.b });
+        });
+        t.tables.forEach(function(tb, i){
+          deck.push({ id:"t:"+p.p+":"+(t.n||th.t)+":"+i, kind:"table", part:p.p, where:where,
+                      q:(tb.cap || "Reproduce this table"), rows:tb.rows });
+        });
+      });
+    });
+  });
+  return deck;
+}
+var DECK = buildDeck();
+var BYID = {}; DECK.forEach(function(c){ BYID[c.id] = c; });
+
+/* ---------------------------------------------------------------
+   SPACED REPETITION
+   A compact SM-2. Grades: 1 again, 2 hard, 3 good, 4 easy.
+   Stored in this browser only.
+   --------------------------------------------------------------- */
+function sched(){
+  try { return JSON.parse(localStorage.getItem(SRKEY) || "{}"); } catch(e){ return {}; }
+}
+function saveSched(s){ try { localStorage.setItem(SRKEY, JSON.stringify(s)); } catch(e){} }
+function today(){ return Math.floor(Date.now() / 86400000); }
+
+function grade(id, g){
+  var s = sched();
+  var c = s[id] || { ease:2.5, ivl:0, reps:0 };
+  if(g === 1){
+    c.ease = Math.max(1.3, c.ease - 0.20); c.ivl = 0; c.reps = 0;
+  } else {
+    c.reps += 1;
+    if(c.reps === 1)      c.ivl = (g === 4 ? 3 : 1);
+    else if(c.reps === 2) c.ivl = (g === 4 ? 8 : 4);
+    else                  c.ivl = Math.round(c.ivl * c.ease * (g === 2 ? 0.7 : g === 4 ? 1.3 : 1));
+    if(g === 2) c.ease = Math.max(1.3, c.ease - 0.15);
+    if(g === 4) c.ease = Math.min(3.0, c.ease + 0.15);
+    c.ivl = Math.max(1, Math.min(365, c.ivl));
+  }
+  c.due = today() + c.ivl;
+  c.seen = 1;
+  s[id] = c; saveSched(s);
+}
+function isDue(id){
+  var c = sched()[id];
+  if(!c) return true;
+  return (c.due || 0) <= today();
+}
+function stats(part){
+  var s = sched(), n = 0, due = 0, learned = 0;
+  DECK.forEach(function(c){
+    if(part && c.part !== part) return;
+    n++;
+    var r = s[c.id];
+    if(!r || (r.due || 0) <= today()) due++;
+    if(r && r.reps >= 2) learned++;
+  });
+  return { n:n, due:due, learned:learned };
+}
+
+/* ---------------------------------------------------------------
+   RENDER: part cards, rail, body
+   --------------------------------------------------------------- */
+function tableHTML(tb, dark){
+  if(!tb.rows || !tb.rows.length) return "";
+  var head = tb.rows[0], body = tb.rows.slice(1);
+  var h = '<div class="dtwrap">';
+  if(tb.cap) h += '<div class="dtcap">' + esc(tb.cap) + '</div>';
+  h += '<table class="dt"><thead><tr>' +
+       head.map(function(c){ return '<th>' + esc(c) + '</th>'; }).join("") +
+       '</tr></thead><tbody>' +
+       body.map(function(r){
+         return '<tr>' + r.map(function(c){ return '<td>' + esc(c) + '</td>'; }).join("") + '</tr>';
+       }).join("") + '</tbody></table></div>';
+  return h;
+}
+
+function buildPartCards(){
+  var box = document.getElementById("partCards");
+  if(!box) return;
+  box.innerHTML = '<a class="pcard p0c" href="paid/appraisal/diagrams-intro.html"><div class="pl">0</div><div class="pn">Diagrams &middot; Start here</div><div class="pd">Every Paper B diagram explained: what it is, a labelled picture and the exam questions. Narrated.</div><div class="pm">34 diagrams &nbsp;&middot;&nbsp; 124 questions &nbsp;&middot;&nbsp; 40 min</div></a>' + DATA.map(function(p){
+    var q=0,c=0,tb=0;
+    p.themes.forEach(function(th){ th.topics.forEach(function(t){
+      q+=t.mcqs.length; c+=t.concepts.length; tb+=t.tables.length; }); });
+    return '<a class="pcard" href="#" data-part="' + p.p + '">' +
+      '<div class="pl">' + p.p + '</div>' +
+      '<div class="pn">' + esc(p.name) + '</div>' +
+      '<div class="pd">' + esc(p.sub) + '</div>' +
+      '<div class="pm">' + q + ' questions &nbsp;·&nbsp; ' + c + ' concepts &nbsp;·&nbsp; ' + tb + ' tables</div>' +
+    '</a>';
+  }).join("");
+  box.addEventListener("click", function(e){
+    var a = e.target.closest("[data-part]");
+    if(!a) return;
+    e.preventDefault();
+    if(!hasCourse("critical-appraisal")){ document.getElementById("gate").scrollIntoView({behavior:"smooth"}); return; }
+    setPart(a.getAttribute("data-part"));
+    document.getElementById("member").scrollIntoView({behavior:"smooth"});
+  });
+}
+
+function buildRail(){
+  var box = document.getElementById("prail");
+  if(!box) return;
+  box.innerHTML = '<a class="p0" href="paid/appraisal/diagrams-intro.html">0. Diagrams &middot; Start here</a>' + DATA.map(function(p){
+    return '<button data-p="' + p.p + '" aria-pressed="' + (p.p===PART) + '">' +
+           p.p + '. ' + esc(p.name) + '</button>';
+  }).join("") +
+  '<span class="due"><span id="dueN" class="duen">0</span> due today &nbsp;·&nbsp; ' +
+  '<span id="learnedN">0</span> learned</span>';
+  box.addEventListener("click", function(e){
+    var b = e.target.closest("[data-p]"); if(!b) return;
+    setPart(b.getAttribute("data-p"));
+  });
+}
+
+function paintDue(){
+  var s = stats(PART);
+  var d = document.getElementById("dueN"), l = document.getElementById("learnedN");
+  if(d) d.textContent = s.due;
+  if(l) l.textContent = s.learned + " of " + s.n;
+}
+
+function setPart(p){
+  PART = p;
+  document.querySelectorAll("#prail [data-p]").forEach(function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-p") === p);
+  });
+  var part = DATA.filter(function(x){ return x.p === p; })[0];
+  if(!part) return;
+  document.getElementById("partTitle").textContent = "Part " + part.p + ": " + part.name;
+  document.getElementById("partSub").textContent = part.sub;
+  renderPart(part);
+  paintDue();
+}
+
+function renderPart(part){
+  var box = document.getElementById("partBody");
+  box.innerHTML = part.themes.map(function(th){
+    return '<section class="cth"><div class="k">Theme</div><h3>' + esc(th.t) + '</h3></section>' +
+      th.topics.map(function(t){
+        var counts = [];
+        if(t.concepts.length) counts.push(t.concepts.length + " concepts");
+        if(t.tables.length)   counts.push(t.tables.length + " tables");
+        if(t.mcqs.length)     counts.push(t.mcqs.length + " questions");
+        var id = "t-" + part.p + "-" + (t.n || th.t).replace(/[^\w]/g,"");
+
+        var body = '<div class="plain2"><b>In plain English</b>' + esc(t.simple || "") + '</div>' + (window.caExtra ? window.caExtra(t.t, th.t) : "");
+
+        t.concepts.forEach(function(c){
+          body += '<div class="cbox"><h5>' + esc(c.t) + '</h5><ul>' +
+            c.b.map(function(b){ return '<li>' + esc(b) + '</li>'; }).join("") + '</ul></div>';
+        });
+        t.hy.forEach(function(h){
+          body += '<div class="hybox"><b>High yield</b>' + esc(h) + '</div>';
+        });
+        t.tables.forEach(function(tb){ body += tableHTML(tb); });
+
+        if(t.mcqs.length || t.concepts.length || t.tables.length){
+          body += '<button class="drillbtn" data-drill="' + esc(t.n || th.t) + '" data-dp="' + part.p + '">' +
+                  'Drill this topic</button>';
+        }
+
+        return '<article class="top" id="' + id + '">' +
+          '<button class="trow" data-row>' +
+            '<span class="tn">' + esc(t.n || "") + '</span>' +
+            '<span class="tt2">' + esc(t.t) + '</span>' +
+            '<span class="tc">' + counts.join(" · ") + '</span>' +
+          '</button><div class="tbody2">' + body + '</div></article>';
+      }).join("");
+  }).join("");
+
+  box.onclick = function(e){
+    var row = e.target.closest("[data-row]");
+    if(row){ row.closest(".top").classList.toggle("open"); return; }
+    var d = e.target.closest("[data-drill]");
+    if(d){
+      var key = d.getAttribute("data-drill"), dp = d.getAttribute("data-dp");
+      startDrill(DECK.filter(function(c){
+        return c.part === dp && c.where.indexOf(key) !== -1;
+      }), "Topic drill");
+    }
+  };
+}
+
+/* ---------------------------------------------------------------
+   THE DRILL
+   --------------------------------------------------------------- */
+var Q = [], QI = 0, SHOWN = false;
+
+function startDrill(cards, name){
+  if(!cards || !cards.length){ return; }
+  Q = cards.slice(); QI = 0; SHOWN = false;
+  document.getElementById("drillName").textContent = name + " · " + Q.length + " cards";
+  document.getElementById("drill").classList.add("on");
+  document.body.style.overflow = "hidden";
+  paintCard();
+}
+function closeDrill(){
+  document.getElementById("drill").classList.remove("on");
+  document.body.style.overflow = "";
+  paintDue();
+}
+
+function paintCard(){
+  var stage = document.getElementById("drillCard");
+  var foot  = document.getElementById("drillFoot");
+  var prog  = document.getElementById("drillProg");
+  var count = document.getElementById("drillCount");
+
+  if(QI >= Q.length){
+    stage.innerHTML = '<div class="ddone"><h3>Deck finished.</h3>' +
+      '<p>Everything you graded has been scheduled. Cards you found hard will come back sooner, ' +
+      'cards you found easy will come back later.</p></div>';
+    foot.innerHTML = '<button class="reveal" id="dDone">Close</button>';
+    document.getElementById("dDone").onclick = closeDrill;
+    prog.style.width = "100%";
+    count.textContent = Q.length + " of " + Q.length;
+    return;
+  }
+
+  var c = Q[QI];
+  count.textContent = (QI + 1) + " of " + Q.length;
+  prog.style.width = Math.round(100 * QI / Q.length) + "%";
+
+  var kindLabel = c.kind === "question" ? "Question" :
+                  c.kind === "concept"  ? "Recall the concept" : "Reproduce the table";
+  var h = '<div class="dkind">' + kindLabel + ' &nbsp;·&nbsp; ' + esc(c.where) + '</div>';
+
+  if(c.kind === "question"){
+    h += '<div class="dq">' + esc(c.q) + '</div>';
+    if(c.opts && c.opts.length){
+      h += '<div class="dopts">' + c.opts.map(function(o){
+        var right = SHOWN && c.a && c.a.charAt(0).toUpperCase() === o[0].toUpperCase();
+        return '<div class="dopt' + (right ? ' right' : '') + '"><b>' + esc(o[0]) + '</b><span>' +
+               esc(o[1]) + '</span></div>';
+      }).join("") + '</div>';
+    }
+    if(SHOWN){
+      h += '<div class="dans"><div class="al">Answer</div>' +
+           '<div class="av">' + esc(cap(c.a)) + '</div>' +
+           (c.e ? '<div class="ae">' + esc(cap(c.e)) + '</div>' : '') + (window.caFormulaFor ? window.caFormulaFor([c.q, c.a, c.e].join(' ')) : '') + '</div>';
+    }
+  } else if(c.kind === "concept"){
+    h += '<div class="dq">' + esc(c.q) + '</div>';
+    if(SHOWN){
+      h += '<ul class="dbul">' + c.bullets.map(function(b){
+        return '<li>' + esc(cap(b)) + '</li>'; }).join("") + '</ul>';
+    } else {
+      h += '<div class="dhide">Recall every point you can, out loud or on paper, before you turn it over. ' +
+           'There are ' + c.bullets.length + '.</div>';
+    }
+  } else {
+    h += '<div class="dq">' + esc(c.q) + '</div>';
+    if(SHOWN){
+      h += tableHTML({ cap:"", rows:c.rows });
+    } else {
+      var cols = (c.rows && c.rows[0]) ? c.rows[0] : [];
+      h += '<div class="dhide">Draw this table out. It has ' + (c.rows.length - 1) + ' rows and ' +
+           cols.length + ' columns: ' + esc(cols.join(", ")) + '.</div>';
+    }
+  }
+
+  stage.innerHTML = h;
+  document.querySelector(".dstage").scrollTop = 0;
+
+  if(!SHOWN){
+    foot.innerHTML = '<button class="reveal" id="dRev">Show the answer &nbsp; <small>Space</small></button>';
+    document.getElementById("dRev").onclick = function(){ SHOWN = true; paintCard(); };
+  } else {
+    foot.innerHTML =
+      '<button class="g1" data-g="1">Again<small>1 &nbsp; today</small></button>' +
+      '<button class="g2" data-g="2">Hard<small>2</small></button>' +
+      '<button class="g3" data-g="3">Good<small>3</small></button>' +
+      '<button class="g4" data-g="4">Easy<small>4</small></button>';
+    foot.querySelectorAll("[data-g]").forEach(function(b){
+      b.onclick = function(){ answer(parseInt(b.getAttribute("data-g"), 10)); };
+    });
+  }
+}
+
+function answer(g){
+  var c = Q[QI];
+  grade(c.id, g);
+  if(g === 1){ Q.push(c); }          /* again: it comes back at the end of this session */
+  QI++; SHOWN = false; paintCard();
+}
+
+document.addEventListener("keydown", function(e){
+  var open = document.getElementById("drill").classList.contains("on");
+  if(!open) return;
+  if(e.key === "Escape"){ closeDrill(); return; }
+  if(e.code === "Space" || e.key === "Enter"){
+    e.preventDefault();
+    if(!SHOWN){ SHOWN = true; paintCard(); }
+    return;
+  }
+  if(SHOWN && ["1","2","3","4"].indexOf(e.key) !== -1){
+    e.preventDefault(); answer(parseInt(e.key, 10));
+  }
+});
+
+/* ---------------------------------------------------------------
+   THE GATE
+   Three states, because a person who has signed up and is waiting
+   needs to be told something different from a stranger.
+   --------------------------------------------------------------- */
+function paintGate(){
+  var tag = document.getElementById("gateTag");
+  var head = document.getElementById("gateHead");
+  var body = document.getElementById("gateBody");
+  var steps = document.getElementById("gateSteps");
+  var mail = document.getElementById("gateEmail");
+  if(!tag) return;
+  var u = currentUser();
+
+  if(!u){ return; }   /* signed out: the markup already says the right thing */
+
+  var email = userEmail();
+  steps.style.display = "none";
+  mail.style.display = "block";
+  mail.innerHTML = '<div style="border:1px solid var(--rule);background:var(--paper-2);' +
+    'padding:16px 18px;margin:18px 0 22px;font-size:15px">' +
+    '<div style="font-family:\'Helvetica Neue\',Arial,sans-serif;font-size:10px;letter-spacing:.16em;' +
+    'text-transform:uppercase;color:var(--muted);margin-bottom:6px">Signed in as</div>' +
+    '<div style="font-size:17px">' + esc(email) + '</div></div>';
+
+  if(userRoles().length){
+    /* they hold some access already, just not this course */
+    tag.textContent = "Not on this course";
+    head.textContent = "Your account is active, but this course is separate.";
+    body.textContent = "Critical Appraisal Revision is enrolled on separately from the rest of the site. " +
+      "Once you have enrolled, access is opened against the address above and the whole course appears here.";
+  } else {
+    tag.textContent = "Awaiting approval";
+    head.textContent = "Your account is created. Access is being matched.";
+    body.textContent = "The address above is the one that has to appear on the enrolment list. " +
+      "Once it is matched, the whole course opens on this account, on every device, permanently. " +
+      "If you enrolled under a different address, sign out and create the account with that one instead.";
+  }
+}
+
+/* ---------------------------------------------------------------
+   START
+   --------------------------------------------------------------- */
+function boot(){
+  paintAccountButtons();
+  buildPartCards();
+
+  /* this course has its own role, separate from site membership */
+  var member = hasCourse("critical-appraisal");
+  document.getElementById("gate").style.display   = member ? "none" : "block";
+  document.getElementById("member").style.display = member ? "block" : "none";
+  if(!member){ paintGate(); return; }
+
+  buildRail();
+  setPart(PART);
+
+  document.getElementById("drillClose").onclick = closeDrill;
+  document.getElementById("drillShuffle").onclick = function(){
+    for(var i = Q.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1)); var tmp = Q[i]; Q[i] = Q[j]; Q[j] = tmp;
+    }
+    QI = 0; SHOWN = false; paintCard();
+  };
+  document.getElementById("drillDue").onclick = function(){
+    startDrill(DECK.filter(function(c){ return c.part === PART && isDue(c.id); }), "Due today");
+  };
+  document.getElementById("drillPart").onclick = function(){
+    startDrill(DECK.filter(function(c){ return c.part === PART; }), "Part " + PART);
+  };
+  document.getElementById("drillTables").onclick = function(){
+    startDrill(DECK.filter(function(c){ return c.part === PART && c.kind === "table"; }), "Tables");
+  };
+  document.getElementById("resetPart").onclick = function(){
+    var s = sched();
+    DECK.forEach(function(c){ if(c.part === PART) delete s[c.id]; });
+    saveSched(s); paintDue();
+  };
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  var y = document.getElementById("year");
+  if(y) y.textContent = new Date().getFullYear();
+});
+</script>
+<script src="content/menu.js?v=20261108m"></script>
+<script>(function(){var W="critical-appraisal";function g(){if(!(window.hasAccess&&window.hasAccess(W))){var h=location.pathname.split("/").pop();location.replace("locked.html?w="+W+"&r="+encodeURIComponent(h));}}if(typeof window.onAuthReady==="function")window.onAuthReady(g);else window.addEventListener("load",function(){setTimeout(g,300)});})();</script>
+</body>
+</html>

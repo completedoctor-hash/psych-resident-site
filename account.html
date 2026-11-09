@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your account · The Psychiatric Resident</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --ochre:#C2A032; --forest:#2C6B4C;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --body:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head:"Playfair Display",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1120px;margin:0 auto}
+.mast .brand{font-family:var(--head);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body);font-weight:700;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover{color:var(--ochre)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;width:100%;flex:1 1 auto}
+.lede{padding:32px 0 20px;border-bottom:1px solid var(--line)}
+.lede h1{font-family:var(--head);font-weight:800;font-size:clamp(28px,4.4vw,42px);
+  line-height:1.08;margin-bottom:10px;text-wrap:balance}
+.lede p{font-size:17px;color:#473f33;max-width:64ch}
+
+.cols{display:grid;grid-template-columns:1fr 330px;gap:28px;align-items:start;padding:26px 0 44px}
+@media(max-width:900px){ .cols{grid-template-columns:1fr} }
+
+.formwrap{background:var(--paper);border:1.5px solid var(--line);border-top:5px solid var(--navy);
+  border-radius:14px;padding:26px 28px}
+@media(max-width:560px){ .formwrap{padding:20px 18px} }
+.formwrap h2{font-family:var(--head);font-weight:800;font-size:23px;margin-bottom:5px}
+.formwrap .sub{font-size:15px;color:var(--muted);margin-bottom:20px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 18px}
+@media(max-width:620px){ .grid{grid-template-columns:1fr} }
+.f{display:flex;flex-direction:column}
+.f.wide{grid-column:1/-1}
+.f label{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+.f label em{font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;font-size:12.5px;color:#9A907E}
+.f input,.f select{font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px;width:100%}
+.f input:focus,.f select:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(29,58,95,.12)}
+
+.go{margin-top:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.go button{font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--navy-deep);border:0;border-radius:9px;
+  padding:14px 30px;cursor:pointer}
+.go button:hover{background:var(--navy)}
+.go .note{font-size:14px;color:var(--muted)}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.aside{display:flex;flex-direction:column;gap:15px}
+.box{background:var(--cream-2);border:1.5px solid var(--line);border-radius:13px;padding:19px 21px}
+.box.flag{background:#FBF4E2;border-color:#E8D7A8;border-left:5px solid var(--ochre)}
+.box h3{font-family:var(--head);font-weight:800;font-size:17.5px;margin-bottom:9px}
+.box p{font-size:14.5px;line-height:1.55}
+.box p + p{margin-top:8px}
+.box ol{list-style:none;counter-reset:s;margin:0}
+.box ol li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:10px;
+  font-size:14.5px;line-height:1.5}
+.box ol li:last-child{margin-bottom:0}
+.box ol li:before{content:counter(s);position:absolute;left:0;top:1px;width:21px;height:21px;
+  border-radius:6px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;
+  padding:14px 22px;font-size:12.5px;margin-top:auto}
+footer .in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+.regmsg{margin:16px 0 0;padding:13px 16px;border-radius:4px;font-size:15px;line-height:1.5}
+.regmsg.err{background:#FBEDEF;border:1px solid var(--crimson);color:#7E1526}
+.regmsg.ok{background:#EAF3EE;border:1px solid var(--forest);color:#1E4E37}
+.regmsg.wait{background:var(--cream-2);border:1px solid var(--line-2);color:var(--muted)}
+
+.panel{background:var(--paper);border:1.5px solid var(--line);border-top:5px solid var(--navy);
+  border-radius:14px;padding:26px 28px;max-width:720px}
+.panel h2{font-family:var(--head);font-weight:800;font-size:23px;margin-bottom:8px}
+.panel p{font-size:15.5px;line-height:1.6;color:#473f33}
+.panel p + p{margin-top:10px}
+.btn{display:inline-block;font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--navy-deep);border:0;border-radius:9px;
+  padding:13px 26px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--navy)}
+.btn.ghost{background:transparent;color:var(--navy-deep);border:1.5px solid var(--line-2)}
+.btn.ghost:hover{background:var(--cream-2)}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.addr{font-weight:700;color:var(--navy-deep);word-break:break-all}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:20px}
+.tile{background:var(--cream-2);border:1.5px solid var(--line);border-radius:12px;padding:16px 18px}
+.tile{display:flex;flex-direction:column}
+.tile .key{position:relative;align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;text-decoration:none;
+ color:#0E1A2B;font:800 12px var(--body);letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,#F1D98A,#C9A13B 50%,#9C7A1F);
+ box-shadow:0 6px 16px -8px rgba(110,80,10,.9),inset 0 1px 0 rgba(255,255,255,.6);overflow:hidden;transition:transform .15s ease,box-shadow .15s ease}
+.tile .key svg{width:22px;height:22px;transform:rotate(-35deg);transition:transform .35s ease}
+.tile .key:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:keyshine 3.2s ease-in-out infinite}
+.tile .key:hover{transform:translateY(-2px);box-shadow:0 10px 20px -8px rgba(110,80,10,.95)}.tile .key:hover svg{transform:rotate(55deg)}
+@keyframes keyshine{0%,60%{left:-60%}100%{left:130%}}
+.tile p{margin-bottom:14px}
+.tile .getit{margin-top:auto;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none}.tile .getit:hover{text-decoration:underline}
+.tile .inc{margin:0 0 14px;padding:10px 12px;background:#fff;border:1px solid #CFE2D6;border-radius:8px}
+.tile .inc span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);margin-bottom:6px}
+.tile .inc a{display:block;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none;padding:3px 0}.tile .inc a:before{content:"\2192  ";color:#B8932C}.tile .inc a:hover{text-decoration:underline}
+.tile .inc em{display:block;font-size:11.5px;color:var(--muted);margin-top:4px}
+.tile.on{background:#EAF3EE;border-color:#A9CDB8}
+.tile.off{opacity:.72}
+.tile h4{font-family:var(--head);font-size:16.5px;font-weight:800;margin-bottom:4px}
+.tile .st{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--forest)}
+.tile.off .st{color:var(--muted)}
+.tile p{font-size:13.5px;margin-top:6px;color:var(--muted)}
+.kv{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.kv div{display:flex;gap:14px;font-size:15px;padding:5px 0;flex-wrap:wrap}
+.kv span{min-width:150px;font-size:11.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);padding-top:3px}
+.f{display:flex;flex-direction:column;max-width:340px;margin-top:14px}
+.f label{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+.f input{font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px;width:100%}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Your account</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="paper-a.html">Paper A</a>
+    <a href="curriculum.html">Curriculum</a>
+    <a href="register.html">Register</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+
+  <div class="lede">
+    <h1 id="hi">Your account</h1>
+    <p id="strap">Everything you have is attached to this account, on every device you sign in on.</p>
+  </div>
+
+  <div class="cols" style="grid-template-columns:1fr">
+
+  <!-- shown when the person is not signed in -->
+  <div class="panel" id="out" hidden>
+    <h2>Sign in</h2>
+    <p>Use the email address and password you registered with. No account yet? <a href="register.html">Register free</a>.</p>
+    <div class="f"><label for="em">Email address</label><input id="em" type="email" autocomplete="username"></div>
+    <div class="f"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password"></div>
+    <div class="btnrow">
+      <button class="btn" type="button" id="go">Sign in</button>
+      <a class="btn ghost" href="register.html">Create an account</a>
+    </div>
+    <div class="regmsg" id="m1" hidden></div>
+    <div class="kv"><div><span>Forgotten it?</span> <a href="#" id="forgot">Forgot password</a></div></div>
+  </div>
+
+  <!-- shown when a reset or invite link has just been used -->
+  <div class="panel" id="setpw" hidden>
+    <h2>Choose a new password</h2>
+    <p>You are signed in. Set a password now and use it from here on.</p>
+    <div class="f"><label for="np">New password</label><input id="np" type="password" autocomplete="new-password"></div>
+    <div class="f"><label for="np2">Confirm password</label><input id="np2" type="password" autocomplete="new-password"></div>
+    <div class="btnrow"><button class="btn" type="button" id="savepw">Save password</button></div>
+    <div class="regmsg" id="m2" hidden></div>
+  </div>
+
+  <!-- shown when the person is signed in -->
+  <div class="panel" id="in" hidden>
+    <h2 id="welcomehead">You are signed in</h2>
+    <p id="welcometext">Your account is confirmed. What is open to you is listed below.</p>
+
+    <div class="tiles" id="tiles"></div>
+
+    <div class="kv">
+      <div><span>Name</span> <b id="nm">&mdash;</b></div>
+      <div><span>Email address</span> <b id="mail">&mdash;</b></div>
+      <div><span>Member since</span> <b id="since">&mdash;</b></div>
+      <div><span>What is on this account</span> <b id="roles">&mdash;</b></div>
+      <div id="untilrow" hidden><span>Runs until</span> <b id="until">&mdash;</b></div>
+    </div>
+
+    <div class="regmsg" id="m4" hidden></div>
+
+    <div class="btnrow">
+      <span id="gos" style="display:contents"></span>
+      <a class="btn ghost" href="buy.html">Buy the course</a>
+      <button class="btn ghost" type="button" id="restore">I have paid, open my access</button>
+      <button class="btn ghost" type="button" id="manage" hidden>Manage or cancel subscription</button>
+      <a class="btn ghost" href="receipt.html">My receipts</a>
+      <a class="btn ghost" href="index.html">Home</a>
+      <button class="btn ghost" type="button" id="out2">Sign out</button>
+    </div>
+  </div>
+
+  <div class="regmsg err" id="problem" hidden></div>
+
+  </div>
+
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>&copy; <span id="yr"></span>. A structured reference for doctors training in psychiatry. &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div>
+</div></footer>
+
+<script src="content/auth.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+(function(){
+  function qs(k){ var m=new RegExp("[?&]"+k+"=([^&]*)").exec(location.search); return m?decodeURIComponent(m[1].replace(/\+/g," ")):""; }
+  function $(i){ return document.getElementById(i); }
+  function say(id,k,t){ var m=$(id); m.className="regmsg "+k; m.textContent=t; m.hidden=false; }
+  function hideAll(){ ["out","setpw","in"].forEach(function(i){ $(i).hidden = true; }); }
+
+  var problem = qs("problem"), invite = qs("invite");
+  if(problem){ $("problem").textContent = problem; $("problem").hidden = false; }
+
+  var BUY = {"live-b":"live","res-audio":"residents-audio","res-sub":"residents","paper-a":"m","flashcards":"fa","paper-b":"b","ca-full":"cf","critical-appraisal":"ca"};
+  ["pa-neuro","pa-psych","pa-pharm","pa-ca","pb-ebm","pb-rm","pb-stats","pb-econ"].forEach(function(b){ BUY["book-"+b]="bk-"+b; BUY["dl-"+b]="bk-"+b; });
+  var TIERS = [
+    ["live-b", "Paper B Live Course", "8 weeks of workbooks and live classes.", "live-b.html"],
+    ["res-audio", "Clinical Communication Skills audio course", "195 audio lessons, plus every practice challenge.", "rcourse/index.html"],
+    ["res-sub", "Psychiatry for Residents: every specialty", "All specialty challenges. Old Age, Core and Specific skills are free.", "ward-challenges.html"],
+    ["paper-a",            "Paper A Full Course",              "78 chapters, EMIs and SBA practice.",            "paper-a.html"],
+    ["flashcards",         "Paper A Flashcard Revision Course", "Psychopharmacology and neuroscience flashcards.", "flashcards.html"],
+    ["paper-b",            "Paper B Clinical Course",           "96 chapters across Domains 5 to 12.",            "paper-b.html"],
+    ["ca-full",            "Critical Appraisal Course",         "27 chapters, 1,634 questions, EMIs.",            "paper-b-research-methods.html"],
+    ["critical-appraisal", "Critical Appraisal Intro",          "Five parts, flashcards, practice and drill.",    "critical-appraisal.html"],
+    ["book-pa-neuro", "Neuroscience Essentials (textbook)", "Full interactive textbook online.", "book.html?b=pa-neuro"],
+    ["book-pa-psych", "Psychology & Human Development (textbook)", "Full interactive textbook online.", "book.html?b=pa-psych"],
+    ["book-pa-pharm", "Clinical Psychopharmacology (textbook)", "Full interactive textbook online.", "book.html?b=pa-pharm"],
+    ["book-pa-ca", "Classification & Assessment (textbook)", "Full interactive textbook online.", "book.html?b=pa-ca"],
+    ["book-pb-ebm", "Evidence-Based Medicine (textbook)", "Full interactive textbook online.", "book.html?b=pb-ebm"],
+    ["book-pb-rm", "Research Methods (textbook)", "Full interactive textbook online.", "book.html?b=pb-rm"],
+    ["book-pb-stats", "Statistics (textbook)", "Full interactive textbook online.", "book.html?b=pb-stats"],
+    ["book-pb-econ", "Economics, QI & Governance (textbook)", "Full interactive textbook online.", "book.html?b=pb-econ"],
+    ["dl-pa-neuro", "Neuroscience Essentials (Box copy)", "View-only copy on Box.", "paid/books/box-pa-neuro.html"],
+    ["dl-pa-psych", "Psychology & Human Development (Box copy)", "View-only copy on Box.", "paid/books/box-pa-psych.html"],
+    ["dl-pa-pharm", "Clinical Psychopharmacology (Box copy)", "View-only copy on Box.", "paid/books/box-pa-pharm.html"],
+    ["dl-pa-ca", "Classification & Assessment (Box copy)", "View-only copy on Box.", "paid/books/box-pa-ca.html"],
+    ["dl-pb-ebm", "Evidence-Based Medicine (Box copy)", "View-only copy on Box.", "paid/books/box-pb-ebm.html"],
+    ["dl-pb-rm", "Research Methods (Box copy)", "View-only copy on Box.", "paid/books/box-pb-rm.html"],
+    ["dl-pb-stats", "Statistics (Box copy)", "View-only copy on Box.", "paid/books/box-pb-stats.html"],
+    ["dl-pb-econ", "Economics, QI & Governance (Box copy)", "View-only copy on Box.", "paid/books/box-pb-econ.html"]
+  ];
+
+  function paint(){
+    hideAll();
+    var email = window.userEmail() || "";
+    var roles = window.userRoles() || [];
+
+    /* 1. Arrived from an invite email: choose a password first. */
+    if(invite && !email){
+      $("setpw").hidden = false;
+      $("setpw").querySelector("h2").textContent = "Welcome. Choose your password.";
+      $("setpw").querySelector("p").textContent = "This finishes setting up your account. You will be signed in straight away.";
+      return;
+    }
+
+    /* 2. Not signed in: the sign in box. */
+    if(!email){ $("out").hidden = false;
+      if(qs("e")){ $("em").value = qs("e"); }
+      if(qs("new")){ var mm=$("m1"); mm.hidden=false; mm.className="regmsg ok"; mm.textContent="Your account is created. Type your password once more and press Sign in."; try{$("pw").focus()}catch(x){} }
+      return; }
+
+    /* 3. Arrived from a reset email: new password only. */
+    if(qs("setpassword")){ $("setpw").hidden = false; return; }
+
+    /* 4. Signed in: the account. */
+    $("in").hidden = false;
+    $("mail").textContent = email;
+    var admin = roles.indexOf("admin") >= 0;
+    var html = "", gos = "";
+    var ends = [];
+    TIERS.forEach(function(r){
+      var on = admin || roles.indexOf(r[0]) >= 0 || (window.hasAccess && window.hasAccess(r[0]));
+      if(!on && /^(book|dl)-/.test(r[0])) return;
+
+      var til = (on && window.tprPlanEnds) ? window.tprPlanEnds(r[0]) : "";
+      var left = (on && window.tprDaysLeft) ? window.tprDaysLeft(r[0]) : null;
+      if(til && !admin){ ends.push(r[1] + ", " + til); }
+      var extra = "";
+      if(on && r[0]==="live-b"){
+        extra = '<div class="inc"><span>Included with your live course</span>' +
+          '<a href="paper-b-research-methods.html">Critical Appraisal Course</a>' +
+          '<a href="book.html?b=pb-ebm">Evidence-Based Medicine</a><a href="book.html?b=pb-rm">Research Methods</a>' +
+          '<a href="book.html?b=pb-stats">Statistics</a><a href="book.html?b=pb-econ">Economic Evaluation, QI &amp; Governance</a>' +
+          '<em>Online reading only, for the 3 months of your course.</em></div>';
+      }
+      html += '<div class="tile ' + (on?"on":"off") + '"><div class="st">' + (on?"Open":"Locked") +
+              '</div><h4>' + r[1] + '</h4><p>' + r[2] +
+              (til ? '<br><b>Until ' + til + '</b>' + (left !== null && left <= 14 ? ' (' + left + ' days left)' : '') : '') +
+              '</p>' + extra + (on
+                ? '<a class="key" href="' + r[3] + '"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11.7 12H21M17.5 12v3.2M20.2 12v2.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Enter</span></a>'
+                : '<a class="getit" href="buy.html#' + (BUY[r[0]]||"") + '">Get access &rarr;</a>') + '</div>';
+    });
+    $("tiles").innerHTML = html;
+    try{ var su=(window.tprIdentityUser().app_metadata||{}).tpr_subs||{}; for(var k in su){ if(su[k]&&su[k].id){ $("manage").hidden=false; if(su[k].cancel_at_period_end||su[k].status==="canceled") ends.push("Subscription cancelled: it stays open to the date shown"); } } }catch(e){}
+    $("manage").onclick=function(){ var b=this; b.disabled=true; b.textContent="Opening Stripe…";
+      window.tprCallFn("billing-portal",{},function(r){ if(r&&r.url){location.href=r.url;return} b.disabled=false; b.textContent="Manage or cancel subscription";
+        var m=$("m4"); m.hidden=false; m.className="regmsg err"; m.textContent=(r&&r.message)||"Stripe could not be reached. Please try again, or write to completedoctor@gmail.com."; }); };
+    $("gos").innerHTML = gos;
+    $("roles").textContent = admin ? "Owner (everything open)" :
+      (roles.length ? window.tprNiceGrants(roles) : "Free account. The syllabus, flashcards and notebooks are all open. The courses are bought separately.");
+    if(admin){ $("until").textContent = "No end date (owner)"; $("untilrow").hidden = false; }
+    else if(ends.length){ $("until").textContent = ends.join(" \u00b7 "); $("untilrow").hidden = false; }
+
+    if(qs("welcome")){
+      $("hi").textContent = "Welcome to The Psychiatric Resident";
+      $("welcomehead").textContent = "Your account is ready.";
+      $("welcometext").textContent = "You are signed in and will stay signed in on this device. Anything you buy opens on this same account.";
+    }
+    try{
+      var u = window.tprIdentityUser();
+      var d = (u && u.user_metadata) || {};
+      if(d.full_name) $("nm").textContent = d.full_name;
+      if(u && u.created_at) $("since").textContent = new Date(u.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+    }catch(e){}
+  }
+
+  $("go").addEventListener("click", function(){
+    var e=$("em").value.trim(), p=$("pw").value;
+    if(!e||!p){ say("m1","err","Type your email address and your password."); return; }
+    say("m1","wait","Signing in...");
+    window.tprSignIn(e,p,function(r){
+      if(r.ok){ location.href="account.html"; return; }
+      if(r.error==="not confirmed"){ location.href="check-email.html?e="+encodeURIComponent(e); return; }
+      say("m1","err",r.error);
+    });
+  });
+  $("pw").addEventListener("keydown", function(ev){ if(ev.key==="Enter") $("go").click(); });
+
+  $("forgot").addEventListener("click", function(ev){
+    ev.preventDefault();
+    var e=$("em").value.trim();
+    if(!e){ say("m1","err","Type your email address in the box above first, then press Forgot password again."); $("em").focus(); return; }
+    say("m1","wait","Sending...");
+    window.tprForgotPassword(e,function(r){
+      if(r.ok) say("m1","ok","Done. Check your inbox (and spam) for the reset email. The link opens a page here where you choose a new password.");
+      else say("m1","err",r.error);
+    });
+  });
+
+  $("savepw").addEventListener("click", function(){
+    var a=$("np").value, b=$("np2").value;
+    if(a.length<8){ say("m2","err","Your password needs at least 8 characters."); return; }
+    if(a!==b){ say("m2","err","The two passwords do not match."); return; }
+    say("m2","wait","Saving...");
+    var done = function(r){
+      if(r.ok){ say("m2","ok","Saved. Taking you to your account..."); setTimeout(function(){ location.href="account.html?welcome=1"; }, 900); }
+      else say("m2","err",r.error);
+    };
+    if(invite && !window.userEmail()) window.tprAcceptInvite(invite, a, done);
+    else window.tprSetPassword(a, done);
+  });
+
+  $("out2").addEventListener("click", function(){ window.tprSignOut(); });
+
+  /* ---- paying ---- */
+
+  function afterSignIn(){
+    /* Came here from the buy page before signing in. */
+    var want = qs("buy");
+    if(want && window.userEmail()){
+      say("m4","wait","Opening the secure card page at Stripe...");
+      window.tprBuy(want, function(r){
+        say("m4","err",(r && r.message) || "The card page could not be opened. Please try again.");
+      });
+      return;
+    }
+    /* Came back from Stripe but was not signed in at the time. */
+    var pending = "";
+    try{ pending = localStorage.getItem("tpr-claim") || ""; }catch(e){}
+    if((qs("claim") || pending) && window.userEmail()) restore(pending);
+  }
+
+  function restore(sid){
+    if(!window.userEmail()){ say("m4","err","Please sign in first."); return; }
+    say("m4","wait","Asking Stripe what you have paid for...");
+    window.tprClaim(sid || "", function(r){
+      if(r && r.ok){
+        var n = 0, k;
+        for(k in (r.plans||{})) if(window.tprDaysLeft(k) > 0) n++;
+        if(n){
+          try{ localStorage.removeItem("tpr-claim"); }catch(e){}
+          say("m4","ok","Done. Your access is open. Reloading...");
+          setTimeout(function(){ location.href="account.html"; }, 900);
+          return;
+        }
+        say("m4","err","Stripe has no payment on this email address. If you paid with a different "
+          + "email address, write to completedoctor@gmail.com and it will be moved across.");
+        return;
+      }
+      if(r && r.error==="not-set-up"){ say("m4","err","Card payment is not switched on for this site yet."); return; }
+      say("m4","err",(r && r.message) || "That did not work. Please write to completedoctor@gmail.com.");
+    });
+  }
+
+  var rb = $("restore");
+  if(rb) rb.addEventListener("click", function(){ restore(""); });
+
+  window.onAuthReady(function(){ paint(); afterSignIn(); });
+})();
+</script>
+
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

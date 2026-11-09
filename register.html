@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register · The Psychiatric Resident</title>
+<meta name="description" content="Register for The Psychiatric Resident. Takes a minute and costs nothing.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --ochre:#C2A032; --forest:#2C6B4C;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --body:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head:"Playfair Display",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1120px;margin:0 auto}
+.mast .brand{font-family:var(--head);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body);font-weight:700;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover{color:var(--ochre)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;width:100%;flex:1 1 auto}
+.lede{padding:32px 0 20px;border-bottom:1px solid var(--line)}
+.lede h1{font-family:var(--head);font-weight:800;font-size:clamp(28px,4.4vw,42px);
+  line-height:1.08;margin-bottom:10px;text-wrap:balance}
+.lede p{font-size:17px;color:#473f33;max-width:64ch}
+
+.cols{display:grid;grid-template-columns:1fr 330px;gap:28px;align-items:start;padding:26px 0 44px}
+@media(max-width:900px){ .cols{grid-template-columns:1fr} }
+
+.formwrap{background:var(--paper);border:1.5px solid var(--line);border-top:5px solid var(--navy);
+  border-radius:14px;padding:26px 28px}
+@media(max-width:560px){ .formwrap{padding:20px 18px} }
+.formwrap h2{font-family:var(--head);font-weight:800;font-size:23px;margin-bottom:5px}
+.formwrap .sub{font-size:15px;color:var(--muted);margin-bottom:20px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 18px}
+@media(max-width:620px){ .grid{grid-template-columns:1fr} }
+.f{display:flex;flex-direction:column}
+.f.wide{grid-column:1/-1}
+.f label{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+.f label em{font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;font-size:12.5px;color:#9A907E}
+.f input,.f select{font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px;width:100%}
+.f input:focus,.f select:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(29,58,95,.12)}
+
+.go{margin-top:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.go button{font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--navy-deep);border:0;border-radius:9px;
+  padding:14px 30px;cursor:pointer}
+.go button:hover{background:var(--navy)}
+.go .note{font-size:14px;color:var(--muted)}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.aside{display:flex;flex-direction:column;gap:15px}
+.box{background:var(--cream-2);border:1.5px solid var(--line);border-radius:13px;padding:19px 21px}
+.box.flag{background:#FBF4E2;border-color:#E8D7A8;border-left:5px solid var(--ochre)}
+.box h3{font-family:var(--head);font-weight:800;font-size:17.5px;margin-bottom:9px}
+.box p{font-size:14.5px;line-height:1.55}
+.box p + p{margin-top:8px}
+.box ol{list-style:none;counter-reset:s;margin:0}
+.box ol li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:10px;
+  font-size:14.5px;line-height:1.5}
+.box ol li:last-child{margin-bottom:0}
+.box ol li:before{content:counter(s);position:absolute;left:0;top:1px;width:21px;height:21px;
+  border-radius:6px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;
+  padding:14px 22px;font-size:12.5px;margin-top:auto}
+footer .in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+.regmsg{margin:16px 0 0;padding:13px 16px;border-radius:4px;font-size:15px;line-height:1.5}
+.regmsg.err{background:#FBEDEF;border:1px solid var(--crimson);color:#7E1526}
+.regmsg.ok{background:#EAF3EE;border:1px solid var(--forest);color:#1E4E37}
+.regmsg.wait{background:var(--cream-2);border:1px solid var(--line-2);color:var(--muted)}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Register</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="curriculum.html">Curriculum</a>
+    <a href="paper-a-courses.html">Courses</a>
+    <a href="account.html">Sign in</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+
+  <div class="lede">
+    <h1>Create a free account.</h1>
+    <p>It takes under a minute and costs nothing. You are signed in straight away:
+       Old Age Psychiatry, Core, Formulation, Ward realities, Specific skills, the syllabus and notebooks are all free.</p>
+  </div>
+
+  <div class="cols">
+
+    <!-- ================================================================
+         A plain HTML form. No JavaScript is involved in sending it.
+         The browser posts it straight to Netlify, which records it and
+         then the page moves on to your account.
+         ================================================================ -->
+    <form class="formwrap"
+          name="registration"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="company"
+          action="/account.html">
+
+      <input type="hidden" name="form-name" value="registration">
+
+      <p class="hp">
+        <label>Leave this empty: <input name="company" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <h2>Create your free account</h2>
+      <p class="sub">Three things and you are in. No card, no confirmation email to wait for.</p>
+      <div class="grid">
+        <div class="f">
+          <label for="f_first">First name</label>
+          <input id="f_first" name="first_name" type="text" required autocomplete="given-name">
+        </div>
+        <div class="f">
+          <label for="f_last">Surname <em>optional</em></label>
+          <input id="f_last" name="surname" type="text" autocomplete="family-name">
+        </div>
+        <div class="f wide">
+          <label for="f_email">Email address</label>
+          <input id="f_email" name="email" type="email" required autocomplete="email" inputmode="email"
+                 placeholder="you@example.com">
+        </div>
+        <div class="f wide">
+          <label for="f_pw">Choose a password</label>
+          <div style="display:flex;gap:8px">
+            <input id="f_pw" name="password" type="password" required autocomplete="new-password"
+                   minlength="8" placeholder="at least 8 characters" style="flex:1">
+            <button type="button" id="showpw" style="flex:none;padding:0 14px;border:1px solid #D8CDB4;background:#fff;cursor:pointer;font:600 13px inherit">Show</button>
+          </div>
+        </div>
+      </div>
+      <details style="margin:14px 0 4px">
+        <summary style="cursor:pointer;font-weight:600">About you <em style="font-weight:400">(optional, helps us tailor the site)</em></summary>
+        <div class="grid" style="margin-top:12px">
+          <div class="f">
+            <label for="f_country">Country <em>optional</em></label>
+            <input id="f_country" name="country" type="text" autocomplete="country-name">
+          </div>
+          <div class="f">
+            <label for="f_desig">Designation <em>optional</em></label>
+            <select id="f_desig" name="designation">
+              <option value="">Prefer not to say</option>
+              <option>Medical student</option>
+              <option>Doctor</option>
+              <option>Psychiatry trainee</option>
+              <option>Psychiatrist</option>
+              <option>Nurse</option>
+              <option>Psychologist</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="f wide">
+            <label for="f_prog">Training programme or deanery <em>optional</em></label>
+            <input id="f_prog" name="programme" type="text">
+          </div>
+        </div>
+      </details>
+      <div id="regmsg" class="regmsg" hidden></div>
+
+      <div class="go">
+        <button type="submit" id="regbtn">Create my account</button>
+        <span class="note">Takes under a minute. Already registered?
+          <a href="#" id="signinlink">Sign in</a>.</span>
+      </div>
+
+    </form>
+
+    <div class="aside">
+      <div class="box">
+        <h3>What happens next</h3>
+        <ol>
+          <li>You choose a password and press Create my account.</li>
+          <li>You are signed in straight away. (If the site asks, confirm the link we email you.)</li>
+          <li>You can then sign in on any device, and the site remembers where you are.</li>
+          <li>Anything you buy is added to this same account.</li>
+        </ol>
+      </div>
+
+      <div class="box flag">
+        <h3>What an account gives you</h3>
+        <p>An account is free and keeps your place across your phone and your computer.
+           It does not open the paid material on its own.</p>
+        <p>Membership opens the teaching, the notebooks and the flashcards. The course opens
+           the question banks: Paper A, 6,012 questions across 78 chapters, and Paper B, 6,798 across 96. Whatever you buy
+           is attached to this account, so you never type a code or wait to be let in.</p>
+      </div>
+
+      <div class="box">
+        <h3>Trouble registering</h3>
+        <p>If the confirmation email does not arrive, look in your spam folder first. If it is
+           still missing, write to
+           <a href="mailto:completedoctor@gmail.com">completedoctor@gmail.com</a>
+           and you will be set up by hand.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>© <span id="yr"></span>. A structured reference for doctors training in psychiatry.</div>
+ &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div></footer>
+
+<script src="content/auth.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+(function(){
+  var form = document.querySelector("form.formwrap");
+  var btn = document.getElementById("regbtn");
+  var box = document.getElementById("regmsg");
+  function say(k,h){ box.className="regmsg "+k; box.innerHTML=h; box.hidden=false; }
+  function val(n){ var e=form.querySelector('[name="'+n+'"]'); return e ? e.value.trim() : ""; }
+
+  document.getElementById("showpw").onclick=function(){var i=document.getElementById("f_pw");i.type=i.type==="password"?"text":"password";this.textContent=i.type==="password"?"Show":"Hide"};
+  document.getElementById("signinlink").addEventListener("click", function(e){ e.preventDefault(); location.href="account.html"; });
+
+  /* Already signed in? Go to the account page. */
+  window.onAuthReady(function(){ if(window.userEmail()) location.href = "account.html"; });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var email=val("email"), pw=val("password");
+    if(!val("first_name")){ say("err","Type your first name."); return; }
+    if(!email || email.indexOf("@")<1){ say("err","Type your email address."); return; }
+    if(pw.length<8){ say("err","Your password needs at least 8 characters."); return; }
+    btn.disabled = true;
+    say("wait","Creating your account...");
+
+    window.tprSignUp(email, pw, {
+      full_name: (val("first_name")+" "+val("surname")).trim(),
+      first_name: val("first_name"), surname: val("surname"),
+      country: val("country"), designation: val("designation"), programme: val("programme")
+    }, function(r){
+      if(r.error){
+        btn.disabled = false;
+        if(r.error==="already registered"){
+          say("err","That email already has an account, and that password does not match it. <a href='account.html'>Sign in</a>, or press Forgot password there.");
+        } else say("err", r.error);
+        return;
+      }
+      /* Keep a copy of the details for Dr Ezeanyika (Netlify Forms). */
+      try{
+        var fd = new FormData(form); fd.set("form-name","registration"); fd.delete("password");
+        fetch("/", { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:new URLSearchParams(fd).toString() });
+      }catch(x){}
+      try{ localStorage.setItem("tpr-pending-email", email); }catch(x){}
+      say("ok","<b>Your account is created.</b> One moment...");
+      setTimeout(function(){
+        location.href = r.signedIn ? "account.html?welcome=1" : "account.html?e="+encodeURIComponent(email)+"&new=1";
+      }, 600);
+    });
+  });
+})();
+</script>
+
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper A practice platform · The Psychiatric Resident</title>
+<meta name="description" content="MRCPsych Paper A: interleaved teaching, question bank, flashcards and high-yield short notes. Built for active recall and designed to be usable by neurodivergent candidates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   THE PSYCHIATRIC RESIDENT · PAPER A
+   Single file. Styles here, behaviour at the bottom, content in the DATA block.
+   ========================================================================== */
+
+:root{
+  --navy:#0C1F3F;          /* header, nav, primary titles */
+  --navy-2:#16305c;
+  --gold:#C8972A;          /* accents, badges, high-yield */
+  --gold-soft:#f7edd6;
+  --slate:#F8F9FA;         /* card backdrops */
+  --white:#FFFFFF;         /* core reading surface */
+  --line:#e3e6ea;
+  --ink:#16202e;
+  --muted:#5d6875;
+
+  --pearl:#b8860b;  --pearl-bg:#fdf6e3;   /* yellow  clinical pearls */
+  --alert:#a92727;  --alert-bg:#fdeeee;   /* red     exam alerts */
+  --mnem:#6b3fa0;   --mnem-bg:#f4eefc;    /* purple  mnemonics */
+  --dist:#1a5f9e;   --dist-bg:#eaf3fb;    /* blue    key distinctions */
+  --ok:#1d7a4f;     --warn:#c07a10;       --hard:#a92727;
+
+  --body-font:"DM Sans","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --lh:1.72; --ls:0em; --fs:17px;
+}
+
+/* Dyslexia-friendly mode */
+[data-dys="on"]{
+  --body-font:"Atkinson Hyperlegible","OpenDyslexic","DM Sans",Verdana,sans-serif;
+  --lh:1.9; --ls:.022em; --fs:18px;
+}
+[data-dys="on"] p,[data-dys="on"] li{max-width:62ch}
+[data-dys="on"] .card,[data-dys="on"] .callout{background:#fffdf7}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:var(--body-font);font-size:var(--fs);line-height:var(--lh);letter-spacing:var(--ls);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- masthead ---------- */
+.mast{background:var(--navy);color:#fff}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.mast .brand{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:23px;line-height:1.1;text-decoration:none;color:#fff}
+.mast .brand span{display:block;font-family:var(--body-font);font-weight:400;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:#a9bad3;margin-top:3px}
+.mast .home{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a9bad3;text-decoration:none}
+.mast .home:hover{color:var(--gold)}
+
+/* ---------- accessibility bar ---------- */
+.a11y{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.a11y button{
+  font-family:var(--body-font);font-size:12px;font-weight:500;
+  background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.28);
+  padding:7px 12px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.a11y button:hover{background:rgba(255,255,255,.18);border-color:var(--gold)}
+.a11y button[aria-pressed="true"]{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+
+/* ---------- mode nav ---------- */
+nav.modes{background:var(--navy-2);position:sticky;top:0;z-index:60}
+nav.modes .wrap{display:flex;gap:2px;overflow-x:auto}
+nav.modes button{
+  font-family:var(--body-font);font-size:13px;font-weight:700;letter-spacing:.04em;
+  background:none;border:none;border-bottom:3px solid transparent;color:#c6d3e6;
+  padding:14px 16px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px}
+nav.modes button:hover{color:#fff}
+nav.modes button[aria-selected="true"]{color:#fff;border-bottom-color:var(--gold);background:rgba(255,255,255,.06)}
+nav.modes .ico{font-size:15px}
+
+/* ---------- progress ---------- */
+.tracker{background:var(--slate);border-bottom:1px solid var(--line)}
+.tracker .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:13px;padding-bottom:13px}
+.metric .lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;
+  display:flex;justify-content:space-between;gap:8px}
+.metric .lab b{color:var(--navy);letter-spacing:0;font-size:12px}
+.bar{height:7px;background:#e6e9ee;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--gold);border-radius:6px;transition:width .35s ease}
+.bar.green i{background:var(--ok)}
+.bar.navy i{background:var(--navy)}
+
+/* ---------- shared bits ---------- */
+.panel{display:none;padding:26px 0 60px}
+.panel.on{display:block}
+.phead{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:20px}
+.phead h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(25px,4vw,36px);color:var(--navy);line-height:1.12}
+.phead p{color:var(--muted);font-size:15px;margin-top:6px;max-width:76ch}
+
+.time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
+  background:var(--gold-soft);color:#7a5a12;border:1px solid #e8d5a5;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:3px;background:#eef1f5;color:var(--navy)}
+.chip.gold{background:var(--gold-soft);color:#7a5a12}
+.chip.done{background:#e4f3ea;color:var(--ok)}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.card h3{font-family:"Playfair Display",Georgia,serif;font-size:21px;color:var(--navy);margin-bottom:4px}
+.card p{margin-bottom:13px}
+.card ul,.card ol{margin:0 0 13px 22px}
+.card li{padding:3px 0}
+
+/* callouts */
+.callout{border-radius:8px;padding:15px 18px;margin:16px 0;border-left:5px solid}
+.callout .t{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;
+  display:flex;align-items:center;gap:7px}
+.callout p:last-child{margin-bottom:0}
+.callout.pearl{background:var(--pearl-bg);border-color:var(--pearl)} .callout.pearl .t{color:#8a6508}
+.callout.alert{background:var(--alert-bg);border-color:var(--alert)} .callout.alert .t{color:var(--alert)}
+.callout.mnem {background:var(--mnem-bg); border-color:var(--mnem)}  .callout.mnem .t{color:var(--mnem)}
+.callout.dist {background:var(--dist-bg); border-color:var(--dist)}  .callout.dist .t{color:var(--dist)}
+
+table{width:100%;border-collapse:collapse;font-size:15px;margin:14px 0}
+th{text-align:left;background:var(--navy);color:#fff;font-size:12px;letter-spacing:.06em;padding:9px 12px;font-weight:700}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--slate)}
+
+.btn{font-family:var(--body-font);font-size:13px;font-weight:700;letter-spacing:.04em;
+  padding:11px 20px;border-radius:6px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
+.btn:hover{background:var(--navy-2)}
+.btn.ghost{background:none;color:var(--navy)}
+.btn.ghost:hover{background:var(--slate)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- mastery ---------- */
+.modlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:24px}
+.modcard{text-align:left;background:var(--slate);border:1px solid var(--line);border-radius:10px;padding:16px;cursor:pointer;
+  font-family:var(--body-font);font-size:15px;display:flex;flex-direction:column;gap:8px}
+.modcard:hover{border-color:var(--gold);background:#fff}
+.modcard[aria-current="true"]{border-color:var(--navy);border-width:2px;background:#fff}
+.modcard b{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--navy);line-height:1.2}
+.modcard .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.step{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
+.step .n{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:12px}
+.step .l{flex:1;height:1px;background:var(--line)}
+
+/* ---------- questions ---------- */
+.qstem{font-size:17px;font-weight:500;margin-bottom:14px}
+.opts{list-style:none;margin:0 0 4px 0;display:grid;gap:8px}
+.opt{width:100%;text-align:left;font-family:var(--body-font);font-size:16px;line-height:1.5;
+  background:var(--white);border:1.5px solid var(--line);border-radius:8px;padding:12px 15px;cursor:pointer;
+  display:flex;gap:12px;align-items:flex-start}
+.opt:hover{border-color:var(--navy);background:var(--slate)}
+.opt .k{font-weight:700;color:var(--navy);min-width:18px}
+.opt.right{border-color:var(--ok);background:#eef8f2}
+.opt.right .k{color:var(--ok)}
+.opt.wrong{border-color:var(--alert);background:var(--alert-bg)}
+.opt.wrong .k{color:var(--alert)}
+.opt[disabled]{cursor:default}
+.why{margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}
+.why .row{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:6px 0;font-size:15px}
+.why .row .m{font-weight:700}
+.why .row.y .m{color:var(--ok)} .why .row.n .m{color:var(--muted)}
+.verdict{font-weight:700;margin-bottom:10px}
+.verdict.y{color:var(--ok)} .verdict.n{color:var(--alert)}
+
+/* ---------- flashcards ---------- */
+.deckbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.scene{perspective:1400px;margin:0 auto 16px;max-width:640px}
+.flip{position:relative;width:100%;min-height:280px;transform-style:preserve-3d;transition:transform .5s;cursor:pointer}
+.flip.turned{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);border-radius:14px;
+  padding:30px 28px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:var(--white)}
+.face .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.face .q{font-family:"Playfair Display",Georgia,serif;font-size:24px;color:var(--navy);line-height:1.3}
+.face .a{font-size:19px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.face .x{font-size:15px;color:var(--muted)}
+.face.back{transform:rotateY(180deg);background:var(--slate);border-color:var(--navy)}
+.rate{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:640px;margin:0 auto}
+.rate button{font-family:var(--body-font);font-weight:700;font-size:14px;padding:13px;border-radius:8px;
+  border:1.5px solid;cursor:pointer;background:#fff}
+.rate .h{border-color:var(--hard);color:var(--hard)} .rate .h:hover{background:var(--alert-bg)}
+.rate .m{border-color:var(--warn);color:var(--warn)} .rate .m:hover{background:var(--pearl-bg)}
+.rate .e{border-color:var(--ok);color:var(--ok)}     .rate .e:hover{background:#eef8f2}
+.rate button small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:3px}
+.keys{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+.keys kbd{background:var(--slate);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;
+  padding:1px 6px;font-family:ui-monospace,Menlo,monospace;font-size:11px}
+
+/* ---------- short notes ---------- */
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.search{flex:1;min-width:220px;font-family:var(--body-font);font-size:16px;padding:12px 15px;
+  border:1.5px solid var(--line);border-radius:8px}
+.search:focus{border-color:var(--navy)}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{font-family:var(--body-font);font-size:12px;font-weight:700;padding:8px 13px;border-radius:20px;
+  border:1.5px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+.filters button:hover{border-color:var(--navy);color:var(--navy)}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+details.note{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:var(--white);overflow:hidden}
+details.note[open]{border-color:var(--navy)}
+details.note summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px;
+  background:var(--slate);font-weight:700;color:var(--navy)}
+details.note[open] summary{background:var(--navy);color:#fff}
+details.note summary::-webkit-details-marker{display:none}
+details.note summary .tw{margin-left:auto;font-size:18px;transition:transform .2s;flex-shrink:0}
+details.note[open] summary .tw{transform:rotate(45deg)}
+details.note .body{padding:18px 20px}
+details.note .body ul{margin:0 0 12px 20px}
+details.note .body li{padding:4px 0}
+mark{background:var(--gold-soft);padding:0 2px}
+
+/* ---------- lock ---------- */
+.lock{background:var(--slate);border:1px solid var(--line);border-top:4px solid var(--gold);
+  border-radius:10px;padding:30px 26px;text-align:center;margin-top:20px}
+.lock .t{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7a5a12;font-weight:700;margin-bottom:9px}
+.lock h3{font-family:"Playfair Display",Georgia,serif;font-size:23px;color:var(--navy);margin-bottom:9px}
+.lock p{color:var(--muted);max-width:52ch;margin:0 auto 16px;font-size:15px}
+
+footer{background:var(--navy);color:#a9bad3;padding:26px 0 46px;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff;font-family:"Playfair Display",Georgia,serif;font-size:17px;font-weight:800}
+
+@media(max-width:760px){
+  .tracker .wrap{grid-template-columns:1fr;gap:11px}
+  .rate{grid-template-columns:1fr}
+  .keys{display:none}
+}
+@media print{nav.modes,.a11y,.tracker{display:none}.panel{display:block!important}}
+</style>
+<script src="content/protect.js"></script></head>
+<body data-dys="off">
+
+<a class="sr" href="#main">Skip to content</a>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="index.html">The Psychiatric Resident<span>Paper A practice platform</span></a>
+    <div class="a11y" role="group" aria-label="Accessibility and display controls">
+      <button id="dysBtn" aria-pressed="false" title="Larger, more spaced, dyslexia-friendly typography">
+        <span aria-hidden="true">🟢</span> Dyslexia mode
+      </button>
+      <button id="resetBtn" title="Clear all saved progress on this device">
+        <span aria-hidden="true">↺</span> Reset progress
+      </button>
+      <a class="home" href="paper-a.html">Syllabus →</a>
+      <a class="home" href="paper-a-skills.html">Skills →</a>
+      <a class="home" href="flashcards.html">Flashcards →</a>
+      <a class="home" href="index.html">← Home</a>
+    </div>
+  </div>
+</header>
+
+<nav class="modes" role="tablist" aria-label="Learning modes">
+  <div class="wrap">
+    <button role="tab" id="tab-mastery" aria-controls="p-mastery" aria-selected="true"><span class="ico" aria-hidden="true">📘</span> Mastery</button>
+    <button role="tab" id="tab-qbank"   aria-controls="p-qbank"   aria-selected="false"><span class="ico" aria-hidden="true">🎯</span> Q-Bank</button>
+    <button role="tab" id="tab-cards"   aria-controls="p-cards"   aria-selected="false"><span class="ico" aria-hidden="true">🔄</span> Flashcards</button>
+    <button role="tab" id="tab-notes"   aria-controls="p-notes"   aria-selected="false"><span class="ico" aria-hidden="true">📝</span> Short Notes</button>
+    <button role="tab" id="tab-lessons" aria-controls="p-lessons" aria-selected="false"><span class="ico" aria-hidden="true">📰</span> Lessons</button>
+  </div>
+</nav>
+
+<div class="tracker">
+  <div class="wrap">
+    <div class="metric">
+      <div class="lab"><span>Syllabus modules read</span><b id="m1">0 of 6</b></div>
+      <div class="bar navy"><i id="b1"></i></div>
+    </div>
+    <div class="metric">
+      <div class="lab"><span>Flashcards mastered</span><b id="m2">0%</b></div>
+      <div class="bar green"><i id="b2"></i></div>
+    </div>
+    <div class="metric">
+      <div class="lab"><span>Q-Bank accuracy</span><b id="m3">no answers yet</b></div>
+      <div class="bar"><i id="b3"></i></div>
+    </div>
+  </div>
+</div>
+
+<main id="main" class="wrap">
+
+  <!-- ============================ MASTERY ============================ -->
+  <section class="panel on" id="p-mastery" role="tabpanel" aria-labelledby="tab-mastery">
+    <div class="phead">
+      <h1>Mastery Mode</h1>
+      <p>Teaching, then a question, then a clinical pearl, then an applied matching item. The interleaving is deliberate. Reading alone feels productive and does very little; being asked immediately is what fixes it.</p>
+    </div>
+    <div class="modlist" id="modList"></div>
+    <div id="modBody"></div>
+  </section>
+
+  <!-- ============================ Q-BANK ============================= -->
+  <section class="panel" id="p-qbank" role="tabpanel" aria-labelledby="tab-qbank">
+    <div class="phead">
+      <h1>Q-Bank</h1>
+      <p>Exam-style single best answers with an option-by-option breakdown. Every distractor is explained, because knowing why the wrong answer is wrong is what separates a pass from a scrape.</p>
+    </div>
+    <div class="deckbar">
+      <span class="time" aria-hidden="true">⏱️ About 1 minute per question</span>
+      <span id="qProgress" class="chip"></span>
+      <button class="btn ghost" id="qRestart">Start again</button>
+    </div>
+    <div id="qBox"></div>
+  </section>
+
+  <!-- =========================== FLASHCARDS ========================== -->
+  <section class="panel" id="p-cards" role="tabpanel" aria-labelledby="tab-cards">
+    <div class="phead">
+      <h1>Flashcards</h1>
+      <p>Rate yourself honestly. Hard comes straight back, medium returns later in the session, easy is retired to long-term review. Being generous with yourself here costs you marks in April.</p>
+    </div>
+    <div class="deckbar">
+      <span class="time" aria-hidden="true">⏱️ 10 to 12 minutes for the deck</span>
+      <span id="cProgress" class="chip"></span>
+      <button class="btn ghost" id="cRestart">Reshuffle deck</button>
+    </div>
+    <div id="cBox"></div>
+  </section>
+
+  <!-- =========================== SHORT NOTES ========================= -->
+  <section class="panel" id="p-notes" role="tabpanel" aria-labelledby="tab-notes">
+    <div class="phead">
+      <h1>Short Notes</h1>
+      <p>Condensed to the bone, for the week before the examination. Search for anything, or filter by domain.</p>
+    </div>
+    <div class="tools">
+      <input class="search" id="noteSearch" type="search" placeholder="Search: cytochrome, dopamine, attachment, lithium…" aria-label="Search short notes">
+    </div>
+    <div class="filters" id="noteFilters" role="group" aria-label="Filter notes by syllabus domain"></div>
+    <div id="noteBox"></div>
+  </section>
+
+  <!-- ============================ LESSONS ============================ -->
+  <section class="panel" id="p-lessons" role="tabpanel" aria-labelledby="tab-lessons">
+    <div class="phead">
+      <h1>Paper A lessons</h1>
+      <p>Full written teaching, published as the course runs. Free to read.</p>
+    </div>
+    <div id="lesson-list" data-paper="Paper A"></div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b>The Psychiatric Resident</b><br>Dr Chinonso Stanley Ezeanyika · Medical Education Specialist</div>
+  <div style="text-align:right">All teaching and all questions on this page are original.<br>Progress is saved on this device only.</div>
+ &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div></footer>
+
+<script src="content/auth-config.js"></script>
+<script src="content/auth.js"></script>
+<script src="content/lessons.js"></script>
+<script src="content/stories.js"></script>
+<script>
+
+/* Stories and lessons share one list. Stories come first. */
+if (typeof LESSONS === "undefined") { window.LESSONS = []; }
+if (!Array.isArray(LESSONS)) { window.LESSONS = []; }
+if (typeof STORIES !== "undefined" && Array.isArray(STORIES)) { LESSONS = STORIES.concat(LESSONS); }
+
+/* The Psychiatric Resident
+   Small script. Two jobs: show the lesson list, and lock members lessons.
+   Written to be readable. You can change the words in it safely. */
+
+/* ---------------------------------------------------------------
+   1. WHO IS LOGGED IN
+   Uses Netlify Identity. If Identity is not switched on yet,
+   everything still works and members lessons simply stay locked.
+   --------------------------------------------------------------- */
+
+/* Access is handled in content/auth.js. It defines currentUser, userRoles,
+   hasRole, isMember, hasCourse, awaitingApproval, userEmail and
+   paintAccountButtons, and calls back here once it knows who is in. */
+onAuthReady(function(){ render(); });
+
+/* ---------------------------------------------------------------
+   2. THE LESSON LIST
+   Any page with <div id="lesson-list" data-paper="Paper A"></div>
+   gets a list. Leave out data-paper to show everything.
+   --------------------------------------------------------------- */
+
+function niceDate(s) {
+  var d = new Date(s + "T00:00:00");
+  if (isNaN(d)) return s;
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function renderList(box) {
+  var wanted = box.getAttribute("data-paper");
+  var notWanted = box.getAttribute("data-not");
+  var col = box.getAttribute("data-column");
+  var limit  = parseInt(box.getAttribute("data-limit") || "0", 10);
+  var list   = LESSONS.filter(function (l) {
+    if (wanted && l.paper !== wanted) return false;
+    if (notWanted && l.paper === notWanted) return false;
+    if (col && l.column !== col) return false;
+    return true;
+  });
+  if (limit > 0) list = list.slice(0, limit);
+
+  if (!list.length) {
+    box.innerHTML = '<div class="empty">Nothing to show here yet. If you are opening this file on its own, the list lives in the content folder and only loads when the whole site is published.</div>';
+    return;
+  }
+
+  box.classList.add("lessons");
+  box.innerHTML = list.map(function (l) {
+    var tag = '';
+    var page = (l.type === "story") ? "story.html" : "lesson.html";
+    var head = l.column ? l.column : (l.paper + ' &middot; ' + l.topic);
+    var lv = (l.level || []).map(function(x){ return '<span class="lv '+x+'">'+x+'</span>'; }).join("");
+    return '<a class="lesson-row" href="' + page + '?id=' + encodeURIComponent(l.id) + '">' +
+             '<div>' +
+               '<div class="cat">' + head + '</div>' +
+               '<h4>' + l.title + '</h4>' +
+               '<p>' + l.summary + '</p>' +
+               '<div class="meta">' + niceDate(l.date) + ' &nbsp;' + lv + '</div>' +
+             '</div>' + tag +
+           '</a>';
+  }).join("");
+}
+
+/* ---------------------------------------------------------------
+   3. ONE LESSON PAGE
+   lesson.html?id=l001
+   --------------------------------------------------------------- */
+
+function renderLesson(box) {
+  var id = new URLSearchParams(window.location.search).get("id");
+  var lesson = LESSONS.filter(function (l) { return l.id === id; })[0];
+
+  if (!lesson) {
+    box.innerHTML = '<h1>Lesson not found</h1><p>That lesson does not exist yet. ' +
+                    '<a href="index.html">Back to the front page</a>.</p>';
+    return;
+  }
+
+  document.title = lesson.title + " · The Psychiatric Resident";
+
+  var lv = (lesson.level || []).map(function(x){ return '<span class="lv '+x+'">'+x+'</span>'; }).join("");
+  var header =
+    (lesson.column ? '<div class="col-line">' + lesson.column + '</div>' : '') +
+    '<div class="cat">' + lesson.topic + '</div>' +
+    '<h1>' + lesson.title + '</h1>' +
+    '<p class="standfirst">' + lesson.summary + '</p>' +
+    '<div class="meta">' + niceDate(lesson.date) +
+            ' &nbsp;·&nbsp; Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>' +
+    '<div class="levels">' + lv + '</div>';
+
+  if (false) {
+    box.innerHTML = header + lockedPanel();
+    return;
+  }
+
+  box.innerHTML = header + '<p class="empty">Loading…</p>';
+  fetch(lesson.file)
+    .then(function (r) { if (!r.ok) throw new Error("missing"); return r.text(); })
+    .then(function (html) { box.innerHTML = header + html; })
+    .catch(function () {
+      box.innerHTML = header +
+        '<div class="box brass"><b>This lesson has no content file yet.</b>' +
+        'Create <code>' + lesson.file + '</code> and put your teaching in it.</div>';
+    });
+}
+
+function lockedPanel() {
+  return '<div class="locked">' +
+           '<div class="t">Members</div>' +
+           '<h3>This lesson is for members</h3>' +
+           '<p>The essentials of every topic are free to read. The full teaching, ' +
+              'the exam layer and the question sets are for members.</p>' +
+           '<a class="btn" href="paper-a-courses.html">See access options</a> ' +
+           '<button class="btn ghost" data-account>Sign in</button>' +
+         '</div>';
+}
+
+/* ---------------------------------------------------------------
+   4. START
+   --------------------------------------------------------------- */
+
+function render() {
+  document.querySelectorAll("#lesson-list, [data-lessons]").forEach(renderList);
+  var one = document.getElementById("lesson");
+  if (one) renderLesson(one);
+  paintAccountButtons();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  render();
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+});
+
+</script>
+
+<script>
+/* ==========================================================================
+   DATA
+   Everything you would edit lives in this block. Add a module, a question,
+   a card or a note by copying the one above it.
+   ========================================================================== */
+
+const MODULES = [
+{
+  id:"m1", title:"Making and breaking the transmitters", domain:"Neuroscience & Genetics", mins:9,
+  teach:`
+   <p>Every monoamine begins as an ordinary dietary amino acid and is converted, step by step, by enzymes the examination expects you to name. Tyrosine becomes L-DOPA under <strong>tyrosine hydroxylase</strong>, and that step is rate limiting for the whole catecholamine family. L-DOPA becomes dopamine under <strong>aromatic L-amino acid decarboxylase</strong>. Dopamine becomes noradrenaline under <strong>dopamine beta-hydroxylase</strong>, and uniquely this happens inside the vesicle rather than in the cytoplasm. Noradrenaline becomes adrenaline under <strong>PNMT</strong>, an enzyme essentially confined to the adrenal medulla.</p>
+   <p>Serotonin runs the same shape of pathway from a different starting point. Tryptophan becomes 5-hydroxytryptophan under <strong>tryptophan hydroxylase</strong>, the rate limiting step, and 5-HTP becomes serotonin under the very same decarboxylase that made dopamine. One enzyme, two products, and a favourite examination point.</p>
+   <p>Switching off is a separate question from making. Monoamines are mostly recaptured by transporters, SERT, NET and DAT, which is where antidepressants and cocaine act. What is not recaptured is destroyed by two enzymes that differ by <strong>compartment</strong>: monoamine oxidase works inside the neuron, in presynaptic mitochondria, while catechol-O-methyltransferase works outside it, in the cleft and the periphery. Acetylcholine is the exception to all of this. It has no transporter of its own and is destroyed in the cleft by acetylcholinesterase almost the instant it arrives.</p>`,
+  pearl:`A patient on an irreversible MAO inhibitor eats mature cheese and becomes acutely hypertensive. Tyramine is normally destroyed by MAO in the gut wall before it ever reaches the circulation. Block that enzyme and dietary tyramine is absorbed intact, displaces noradrenaline from vesicles, and the pressure rises. The reaction is a synthesis pathway fact wearing clinical clothes.`,
+  alert:`When a stem asks which enzyme degrades noradrenaline, find the location word before you look at the options. Presynaptic, intraneuronal or mitochondrial means monoamine oxidase. Synaptic cleft, extracellular or peripheral means COMT. Both enzymes are correct answers to different questions, and candidates lose the mark by memorising one of them as "the" answer.`,
+  mnem:`<strong>Tyrosine Does Dopamine's Personal Admin.</strong> Tyrosine hydroxylase, DOPA decarboxylase, Dopamine beta-hydroxylase, PNMT, Adrenaline. Four enzymes, one chain, in order.`,
+  sba:{
+    stem:"A researcher wishes to slow the production of noradrenaline in cultured sympathetic neurons by inhibiting a single enzyme. Which enzyme should be targeted to produce the greatest reduction?",
+    opts:["Tyrosine hydroxylase","Aromatic L-amino acid decarboxylase","Dopamine beta-hydroxylase","Catechol-O-methyltransferase","Monoamine oxidase A"],
+    ans:0,
+    why:["Correct. Tyrosine hydroxylase is the rate limiting step of the whole catecholamine pathway, so inhibiting it constrains every downstream product.",
+         "This step is fast and not rate limiting, and the same enzyme also serves serotonin synthesis, so inhibition is neither selective nor limiting.",
+         "This would reduce noradrenaline, but it acts after the bottleneck, so the effect is smaller than blocking the rate limiting step.",
+         "COMT degrades catecholamines rather than making them. Inhibiting it would raise, not lower, extracellular noradrenaline.",
+         "MAO degrades monoamines. Inhibiting it increases available noradrenaline, which is the opposite of what is asked."]
+  },
+  emq:{
+    lead:"For each description, select the single most appropriate enzyme.",
+    opts:["Tyrosine hydroxylase","Tryptophan hydroxylase","Aromatic L-amino acid decarboxylase","Dopamine beta-hydroxylase","Phenylethanolamine N-methyltransferase","Glutamic acid decarboxylase","Acetylcholinesterase","Monoamine oxidase","Catechol-O-methyltransferase"],
+    items:[
+      {q:"Acts on both L-DOPA and 5-hydroxytryptophan.",a:2,
+       why:"The same decarboxylase serves both pathways, producing dopamine from L-DOPA and serotonin from 5-HTP."},
+      {q:"Located almost exclusively in the adrenal medulla.",a:4,
+       why:"PNMT methylates noradrenaline to adrenaline and is essentially confined to the adrenal medulla."},
+      {q:"Terminates transmission at the neuromuscular junction.",a:6,
+       why:"Acetylcholinesterase sits in the cleft and hydrolyses acetylcholine within milliseconds."},
+      {q:"Found in neurons but not in glial cells, and makes the main inhibitory transmitter.",a:5,
+       why:"Glutamic acid decarboxylase converts glutamate to GABA and is neuron specific."}
+    ]
+  }
+},
+{
+  id:"m2", title:"Receptor families: channels and G proteins", domain:"Neuroscience & Genetics", mins:8,
+  teach:`
+   <p>Every receptor in Paper A is one of two things, and knowing which tells you how fast it acts and what a drug at that site will do. An <strong>ionotropic</strong> receptor is a channel that the transmitter opens directly. Binding and current are the same event, so the response arrives in milliseconds. A <strong>metabotropic</strong> receptor is coupled to a G protein and works through a second messenger, so nothing happens for hundreds of milliseconds but the consequences last far longer and can reach the nucleus.</p>
+   <p>The ionotropic list is short enough to memorise: GABA-A, the glutamate receptors NMDA, AMPA and kainate, nicotinic acetylcholine, 5-HT3 and glycine. Everything else you will meet is metabotropic, including GABA-B, every dopamine receptor, every serotonin receptor other than 5-HT3, muscarinic receptors, cannabinoid CB1 and the opioid receptors. Two pairs carry most of the marks because they break the pattern you would expect: GABA-A is a channel while GABA-B is a G protein receptor, and 5-HT3 is a channel while every other serotonin receptor is not.</p>
+   <p>Shape is asked directly. Pentamers, five subunits round a central pore, are GABA-A, nicotinic, 5-HT3 and glycine. Tetramers are the ionotropic glutamate receptors. Dimers are the metabotropic glutamate receptors. And every G protein coupled receptor crosses the membrane seven times, which appears as a bare number in the options.</p>`,
+  pearl:`Ondansetron settles chemotherapy nausea and mirtazapine settles nausea in a depressed patient for the same reason. Both are 5-HT3 antagonists. Turn that round and you have the explanation for SSRI nausea in the first fortnight: more serotonin at 5-HT3 means more nausea, which is why it settles as the receptor adapts.`,
+  alert:`Watch for the receptor whose name suggests the wrong family. GABA-B looks like a sibling of GABA-A and behaves nothing like it. Read the letter, not the transmitter.`,
+  dist:`<table><tr><th>Feature</th><th>Ionotropic</th><th>Metabotropic</th></tr>
+   <tr><td>Mechanism</td><td>Transmitter opens the channel itself</td><td>G protein and second messenger</td></tr>
+   <tr><td>Speed</td><td>Milliseconds</td><td>Hundreds of milliseconds to seconds</td></tr>
+   <tr><td>Duration</td><td>Brief</td><td>Prolonged, can alter transcription</td></tr>
+   <tr><td>Examples</td><td>GABA-A, NMDA, AMPA, nicotinic, 5-HT3, glycine</td><td>GABA-B, all dopamine, all serotonin except 5-HT3, muscarinic, CB1, opioid</td></tr></table>`,
+  sba:{
+    stem:"A compound produces its full electrophysiological effect within two milliseconds of application and the effect disappears as soon as it is washed off. Which receptor is it most likely acting on?",
+    opts:["GABA-B","Dopamine D2","5-HT1A","5-HT3","Muscarinic M1"],
+    ans:3,
+    why:["GABA-B is metabotropic. Its effects build over hundreds of milliseconds and outlast removal of the agonist.",
+         "All dopamine receptors are G protein coupled and cannot produce a response in two milliseconds.",
+         "5-HT1A is metabotropic, and its best known action is slow presynaptic autoreceptor feedback.",
+         "Correct. 5-HT3 is the only ionotropic serotonin receptor, a ligand gated cation channel, so the response is immediate and stops on washout.",
+         "Muscarinic receptors are metabotropic. The nicotinic receptor is the fast cholinergic one."]
+  },
+  emq:{
+    lead:"For each receptor, select its correct structural description.",
+    opts:["Pentameric ligand gated ion channel","Tetrameric ligand gated ion channel","Dimeric G protein coupled receptor","Seven transmembrane G protein coupled receptor","Intracellular nuclear receptor"],
+    items:[
+      {q:"GABA-A receptor",a:0,why:"Five subunits arranged around a chloride channel, with separate benzodiazepine and barbiturate sites."},
+      {q:"NMDA receptor",a:1,why:"Ionotropic glutamate receptors assemble as tetramers."},
+      {q:"Dopamine D2 receptor",a:3,why:"All dopamine receptors are seven transmembrane G protein coupled receptors."},
+      {q:"Glucocorticoid receptor",a:4,why:"Steroids cross the membrane and bind an intracellular receptor that regulates transcription."}
+    ]
+  }
+},
+{
+  id:"m3", title:"The four dopamine pathways", domain:"Clinical Psychopharmacology", mins:8,
+  teach:`
+   <p>Four dopamine pathways explain almost every effect and side effect of antipsychotic treatment, and they are worth learning as a single map rather than four separate facts.</p>
+   <p>The <strong>mesolimbic</strong> pathway runs from the ventral tegmental area to the nucleus accumbens. Excess activity here produces positive symptoms, and D2 blockade here is the therapeutic effect. The <strong>mesocortical</strong> pathway runs from the same origin to the prefrontal cortex, and here dopamine is thought to be deficient, so blockade worsens negative and cognitive symptoms rather than helping them. That single asymmetry is why a drug can clear hallucinations and leave a patient flat.</p>
+   <p>The <strong>nigrostriatal</strong> pathway runs from substantia nigra to striatum and governs movement. Blockade produces the extrapyramidal syndromes, and the accepted threshold is around eighty per cent D2 occupancy. Chronic blockade can cause receptor upregulation, which is the leading account of tardive dyskinesia. The <strong>tuberoinfundibular</strong> pathway runs from hypothalamus to anterior pituitary, where dopamine tonically inhibits prolactin. Block it and prolactin rises, producing amenorrhoea, galactorrhoea and sexual dysfunction.</p>
+   <p>Occupancy explains the therapeutic window. Below about sixty five per cent there is little antipsychotic effect. Above about eighty per cent extrapyramidal effects appear. The useful range is narrow, which is why dose creep is rarely rewarded.</p>`,
+  pearl:`A woman on risperidone develops amenorrhoea and galactorrhoea. Adding aripiprazole often corrects it, because a D2 partial agonist provides just enough tone at the tuberoinfundibular receptor to restore prolactin inhibition while leaving the antipsychotic effect intact.`,
+  alert:`Do not confuse the two dopamine movement problems. High occupancy now, meaning acute blockade, gives parkinsonism and acute dystonia. Chronic blockade over months to years gives supersensitivity and tardive dyskinesia. Stems signal which one by the time course, so read the duration before the drug name.`,
+  mnem:`<strong>Limbic Likes it, Cortex Complains, Striatum Stiffens, Infundibulum Lactates.</strong> Mesolimbic therapeutic, mesocortical negative symptoms, nigrostriatal extrapyramidal, tuberoinfundibular prolactin.`,
+  sba:{
+    stem:"A 24-year-old man treated with a first generation antipsychotic for six weeks develops cogwheel rigidity and a resting tremor. Blockade in which pathway best explains this?",
+    opts:["Mesolimbic","Mesocortical","Nigrostriatal","Tuberoinfundibular","Mesostriatal reward pathway"],
+    ans:2,
+    why:["Mesolimbic blockade produces the therapeutic reduction in positive symptoms, not motor signs.",
+         "Mesocortical blockade is associated with worsening negative and cognitive symptoms, not rigidity.",
+         "Correct. The nigrostriatal pathway governs movement, and blockade above roughly eighty per cent occupancy produces parkinsonism.",
+         "Tuberoinfundibular blockade raises prolactin and causes endocrine effects, not extrapyramidal signs.",
+         "Not a standard named pathway. The reward pathway is the mesolimbic one already listed."]
+  },
+  emq:{
+    lead:"For each clinical picture in a patient taking an antipsychotic, select the pathway responsible.",
+    opts:["Mesolimbic","Mesocortical","Nigrostriatal","Tuberoinfundibular"],
+    items:[
+      {q:"Hallucinations settle over three weeks.",a:0,why:"Mesolimbic D2 blockade is the therapeutic action against positive symptoms."},
+      {q:"Galactorrhoea and secondary amenorrhoea.",a:3,why:"Dopamine normally inhibits prolactin release; blockade removes that inhibition."},
+      {q:"Choreiform tongue and lip movements after four years of treatment.",a:2,why:"Chronic nigrostriatal blockade with receptor supersensitivity underlies tardive dyskinesia."},
+      {q:"Increasing apathy and poverty of speech after the dose is raised.",a:1,why:"Mesocortical dopamine is already low; further blockade worsens negative symptoms."}
+    ]
+  }
+},
+{
+  id:"m4", title:"Cytochrome P450 and the interactions that matter", domain:"Clinical Psychopharmacology", mins:9,
+  teach:`
+   <p>Most psychotropic interactions come down to a small number of enzymes and one idea: an inhibitor raises the level of the drug the enzyme clears, and an inducer lowers it. Inhibition is fast, often within a day or two, because it is direct competition. Induction is slow, taking one to two weeks, because new enzyme has to be made, and it takes a similar time to wear off.</p>
+   <p><strong>CYP1A2</strong> is the clinically loudest in psychiatry because it clears clozapine and olanzapine and is induced by the polycyclic hydrocarbons in tobacco smoke, not by nicotine. A patient admitted to a smoke free ward loses that induction over about a week and clozapine levels climb, sometimes to toxicity. The reverse happens on discharge. Fluvoxamine is a potent 1A2 inhibitor and can multiply clozapine levels several fold.</p>
+   <p><strong>CYP2D6</strong> shows marked genetic polymorphism, with poor and ultrarapid metaboliser phenotypes. Fluoxetine and paroxetine are strong 2D6 inhibitors, which matters when a patient is also taking a tricyclic or codeine, since codeine requires 2D6 to become morphine and is therefore ineffective in poor metabolisers. <strong>CYP3A4</strong> handles the largest share of all drugs and is inhibited by grapefruit juice, macrolides and antifungals, and induced by carbamazepine, rifampicin and St John's wort. Carbamazepine also induces its own metabolism, which is why levels fall in the first weeks of treatment.</p>
+   <p>Lithium sits outside all of this. It is not metabolised at all, is cleared entirely by the kidney, and interacts through renal handling with thiazides, ACE inhibitors and non-steroidal anti-inflammatories.</p>`,
+  pearl:`A stable clozapine patient is admitted to a smoke free ward and becomes sedated and unsteady after five days. This is loss of CYP1A2 induction, not a new illness. Anticipate it, monitor levels, and reduce the dose rather than reaching for a differential diagnosis.`,
+  alert:`It is the smoke that induces, not the nicotine. A patient who switches to a nicotine patch loses the induction just as completely as one who stops entirely. Stems set this trap regularly.`,
+  dist:`<table><tr><th></th><th>Inhibition</th><th>Induction</th></tr>
+   <tr><td>Speed of onset</td><td>One to two days</td><td>One to two weeks</td></tr>
+   <tr><td>Effect on substrate level</td><td>Rises</td><td>Falls</td></tr>
+   <tr><td>Classic psychiatric examples</td><td>Fluvoxamine on clozapine; fluoxetine and paroxetine on 2D6</td><td>Tobacco smoke on clozapine; carbamazepine on 3A4</td></tr>
+   <tr><td>Clinical consequence</td><td>Toxicity</td><td>Loss of efficacy or relapse</td></tr></table>`,
+  sba:{
+    stem:"A man stable on clozapine 400 mg daily stops smoking on admission to hospital. Five days later he is drowsy, ataxic and hypersalivating. What is the most likely explanation?",
+    opts:["Loss of CYP1A2 induction has raised clozapine levels","Nicotine withdrawal is producing the symptoms","CYP3A4 induction by the ward diet has lowered clozapine levels","Clozapine has inhibited its own metabolism","Acute renal impairment has reduced clozapine clearance"],
+    ans:0,
+    why:["Correct. Tobacco smoke induces CYP1A2. Stopping removes the induction over roughly a week and clozapine levels rise, producing dose related toxicity.",
+         "Nicotine withdrawal causes craving, irritability and appetite change, not ataxia and hypersalivation.",
+         "Induction would lower levels and reduce these effects, and no ordinary diet induces 3A4 to this degree.",
+         "Clozapine is not a significant autoinhibitor. Carbamazepine is the drug known for acting on its own metabolism, and it induces.",
+         "Clozapine is cleared by hepatic metabolism, not renal excretion. Lithium is the drug where renal function dominates."]
+  },
+  emq:{
+    lead:"For each scenario, select the single most likely mechanism.",
+    opts:["CYP1A2 induction","CYP1A2 inhibition","CYP2D6 inhibition","CYP3A4 inhibition","CYP3A4 induction","Renal interaction, no hepatic metabolism"],
+    items:[
+      {q:"Fluvoxamine is added to clozapine and the clozapine level trebles within days.",a:1,
+       why:"Fluvoxamine is a potent CYP1A2 inhibitor, and clozapine is a 1A2 substrate."},
+      {q:"Codeine gives no analgesia in a patient taking paroxetine.",a:2,
+       why:"Codeine is a prodrug requiring CYP2D6 to form morphine. Paroxetine inhibits 2D6."},
+      {q:"Carbamazepine is started and the level of a co-prescribed antipsychotic falls over two weeks.",a:4,
+       why:"Carbamazepine is a strong CYP3A4 inducer, with the slow onset typical of induction."},
+      {q:"A thiazide is started and lithium level rises into the toxic range.",a:5,
+       why:"Lithium is not metabolised. Thiazides increase proximal tubular reabsorption of lithium."}
+    ]
+  }
+},
+{
+  id:"m5", title:"Antidepressants by mechanism", domain:"Clinical Psychopharmacology", mins:8,
+  teach:`
+   <p>Antidepressants are best held as mechanisms rather than as a list of names, because the examination asks about receptors and side effects rather than brands.</p>
+   <p><strong>SSRIs</strong> block the serotonin transporter. Early nausea comes from 5-HT3 stimulation, insomnia and sexual dysfunction from 5-HT2 stimulation, and hyponatraemia through inappropriate ADH secretion, particularly in older and lighter patients. <strong>SNRIs</strong> add noradrenaline reuptake inhibition, which brings a dose related rise in blood pressure. <strong>Mirtazapine</strong> works from the other direction, blocking presynaptic alpha-2 autoreceptors to increase release of both transmitters while antagonising 5-HT2 and 5-HT3, which is why it improves sleep and appetite and does not cause nausea or sexual dysfunction. Its sedation and weight gain come from H1 antagonism.</p>
+   <p><strong>Tricyclics</strong> inhibit reuptake but also block muscarinic, H1 and alpha-1 receptors, which accounts for dry mouth and constipation, sedation, and postural hypotension respectively, and for their danger in overdose through sodium channel blockade. <strong>MAO inhibitors</strong> prevent monoamine breakdown, and the irreversible ones require dietary tyramine restriction. <strong>Agomelatine</strong> is a melatonin MT1 and MT2 agonist with 5-HT2C antagonism and needs liver function monitoring. <strong>Bupropion</strong> inhibits noradrenaline and dopamine reuptake and lowers the seizure threshold.</p>`,
+  pearl:`When a depressed patient cannot sleep, has lost weight, and has already stopped one SSRI because of nausea and sexual dysfunction, mirtazapine answers all four complaints through a single mechanism. Reading the side effect profile as a therapeutic profile is the skill worth practising.`,
+  alert:`Sedation and postural hypotension are different receptors and are asked as different questions. Sedation is H1. Postural hypotension is alpha-1. Where a stem describes dizziness on standing, resist the pull towards the sedating drug and go to alpha-1.`,
+  sba:{
+    stem:"A 72-year-old woman started on an antidepressant two weeks ago is admitted confused. Sodium is 121 mmol per litre with concentrated urine and normal volume status. Which mechanism best explains this?",
+    opts:["Inappropriate ADH secretion associated with serotonin reuptake inhibition","Alpha-1 adrenergic blockade","Histamine H1 antagonism","Muscarinic receptor blockade","Dopamine D2 blockade in the tuberoinfundibular pathway"],
+    ans:0,
+    why:["Correct. SSRI associated hyponatraemia through inappropriate ADH secretion typically appears in the first weeks and is commoner in older women.",
+         "Alpha-1 blockade causes postural hypotension, not hyponatraemia.",
+         "H1 antagonism causes sedation and weight gain.",
+         "Antimuscarinic effects give dry mouth, constipation, urinary retention and confusion, but not a low sodium with concentrated urine.",
+         "That mechanism raises prolactin and is a feature of antipsychotics rather than antidepressants."]
+  },
+  emq:{
+    lead:"For each unwanted effect, select the receptor action responsible.",
+    opts:["H1 antagonism","Alpha-1 antagonism","Muscarinic antagonism","5-HT2 stimulation","5-HT3 stimulation","Noradrenaline reuptake inhibition"],
+    items:[
+      {q:"Sedation and weight gain on mirtazapine.",a:0,why:"H1 antagonism is the classic cause of sedation with appetite increase."},
+      {q:"Dizziness on standing after a tricyclic is started.",a:1,why:"Alpha-1 blockade prevents reflex vasoconstriction, giving postural hypotension."},
+      {q:"Nausea in the first fortnight of an SSRI.",a:4,why:"Increased serotonin at 5-HT3 receptors causes the early gastrointestinal effects."},
+      {q:"A dose related rise in blood pressure on venlafaxine.",a:5,why:"Noradrenaline reuptake inhibition raises blood pressure at higher doses."}
+    ]
+  }
+},
+{
+  id:"m6", title:"Lithium: a drug that behaves like an electrolyte", domain:"Clinical Psychopharmacology", mins:8,
+  teach:`
+   <p>Lithium is unusual among psychotropics because it is not metabolised at all. It is an ion, distributed in total body water, not protein bound, and cleared entirely by the kidney where it is handled like sodium. Every important fact about it follows from that single sentence.</p>
+   <p>Because it is handled like sodium, anything that makes the kidney retain sodium makes it retain lithium. Thiazides, ACE inhibitors, angiotensin receptor blockers, non-steroidal anti-inflammatories, dehydration and a low salt diet all raise the level. Loop diuretics are less risky than thiazides. The therapeutic range is narrow, roughly 0.6 to 1.0 mmol per litre for maintenance, with levels taken twelve hours after the dose.</p>
+   <p>Side effects separate into the expected and the ominous. Fine tremor, polyuria and thirst, weight gain and mild cognitive dulling are common and dose related. Hypothyroidism appears in a substantial minority, more often in middle aged women, and nephrogenic diabetes insipidus reflects reduced renal responsiveness to ADH. <strong>Coarse tremor, vomiting, diarrhoea, ataxia, dysarthria and drowsiness indicate toxicity</strong>, not tolerance, and that distinction between fine and coarse tremor is asked directly. In pregnancy, first trimester exposure carries a raised risk of Ebstein's anomaly, and the absolute risk remains low.</p>`,
+  pearl:`An elderly patient on lithium develops gastroenteritis and becomes confused and ataxic. Volume depletion has raised the level. Withholding lithium and rehydrating is the immediate action, and it is a far more common route to toxicity than deliberate overdose.`,
+  alert:`Fine tremor is an ordinary dose related effect. Coarse tremor is toxicity. Stems that describe worsening tremor with vomiting and unsteadiness are describing toxicity, whatever the reported level, and the level may lag behind the clinical picture.`,
+  mnem:`Things that raise lithium: <strong>TAN D</strong>. Thiazides, ACE inhibitors and ARBs, NSAIDs, Dehydration.`,
+  sba:{
+    stem:"A 58-year-old woman on long term lithium is started on a new medication by her general practitioner. Two weeks later she has a coarse tremor, vomiting and unsteadiness. Which drug was most likely started?",
+    opts:["Bendroflumethiazide","Furosemide","Amlodipine","Atenolol","Amoxicillin"],
+    ans:0,
+    why:["Correct. Thiazides increase proximal tubular reabsorption of lithium, raising the level, and are the classic culprit.",
+         "Loop diuretics can raise lithium levels but do so considerably less reliably than thiazides.",
+         "Calcium channel blockers have no meaningful effect on lithium handling.",
+         "Beta blockers do not alter lithium clearance and are in fact used to treat lithium tremor.",
+         "Amoxicillin has no clinically important interaction with lithium."]
+  },
+  emq:{
+    lead:"For each finding in a patient taking lithium, select the single best interpretation.",
+    opts:["Expected dose related effect","Sign of toxicity","Long term endocrine effect","Long term renal effect","Teratogenic risk"],
+    items:[
+      {q:"Fine tremor of the outstretched hands.",a:0,why:"A common dose related effect that does not by itself indicate toxicity."},
+      {q:"Coarse tremor with vomiting and ataxia.",a:1,why:"The classic toxicity triad. Withhold the drug and check the level urgently."},
+      {q:"Raised TSH with a normal free T4 after two years.",a:2,why:"Subclinical hypothyroidism is common, particularly in middle aged women, and is treatable with thyroxine."},
+      {q:"Polyuria with dilute urine unresponsive to desmopressin.",a:3,why:"Nephrogenic diabetes insipidus from reduced renal responsiveness to ADH."},
+      {q:"First trimester exposure.",a:4,why:"Associated with Ebstein's anomaly, a right sided cardiac malformation, at low absolute risk."}
+    ]
+  }
+}
+];
+
+/* ---- Q-Bank. First six are free, the rest are for members. ---- */
+const QBANK = [
+{stem:"Which single feature most reliably distinguishes serotonin syndrome from neuroleptic malignant syndrome at the bedside?",
+ opts:["Clonus and hyperreflexia","Pyrexia","Autonomic instability","Raised creatine kinase","Altered consciousness"],ans:0,free:true,
+ why:["Correct. Neuromuscular hyperactivity with clonus and hyperreflexia points to serotonin syndrome, whereas neuroleptic malignant syndrome is characterised by lead pipe rigidity with hyporeflexia.",
+      "Both syndromes cause pyrexia, so it does not discriminate.",
+      "Both cause autonomic instability.",
+      "Creatine kinase rises in both, though usually higher in neuroleptic malignant syndrome, so it is supportive rather than distinguishing.",
+      "Both alter consciousness. Onset speed helps more, since serotonin syndrome usually develops within hours."]},
+{stem:"A drug crosses the cell membrane and binds a receptor that directly regulates gene transcription. Which receptor is this most likely to be?",
+ opts:["GABA-A","Dopamine D2","Glucocorticoid receptor","5-HT3","Nicotinic acetylcholine"],ans:2,free:true,
+ why:["A pentameric chloride channel in the membrane, not intracellular.",
+      "A seven transmembrane G protein coupled receptor sitting in the membrane.",
+      "Correct. Steroid hormones are lipophilic, cross the membrane and bind intracellular receptors that act as transcription factors.",
+      "An ionotropic membrane channel.",
+      "A pentameric ligand gated cation channel in the membrane."]},
+{stem:"Which statement about zero order kinetics is correct?",
+ opts:["A constant fraction of drug is eliminated per unit time","A constant amount of drug is eliminated per unit time","Half-life is independent of dose","Elimination is unaffected by enzyme saturation","Steady state is reached after five half-lives regardless of dose"],ans:1,free:true,
+ why:["That describes first order kinetics, which applies to most drugs at therapeutic doses.",
+      "Correct. In zero order kinetics the eliminating enzyme is saturated, so a fixed amount is cleared per unit time and small dose increases produce large level rises.",
+      "In zero order kinetics there is no constant half-life, because the proportion cleared changes with concentration.",
+      "Saturation is precisely the reason zero order kinetics occurs.",
+      "The five half-lives rule applies to first order kinetics."]},
+{stem:"Which receptor action best explains the therapeutic effect of benzodiazepines?",
+ opts:["Direct GABA-A receptor agonism","Positive allosteric modulation of the GABA-A receptor","GABA-B receptor agonism","Glutamate receptor antagonism","Inhibition of GABA transaminase"],ans:1,free:true,
+ why:["Benzodiazepines cannot open the channel by themselves, which is why they are safer in overdose than barbiturates.",
+      "Correct. They bind a separate site and increase the frequency of channel opening in the presence of GABA.",
+      "That is the mechanism of baclofen and, in part, of gamma-hydroxybutyrate.",
+      "That describes ketamine and memantine at NMDA receptors.",
+      "That is the mechanism of vigabatrin."]},
+{stem:"Which antipsychotic side effect is most directly attributable to blockade of the tuberoinfundibular pathway?",
+ opts:["Acute dystonia","Galactorrhoea","Postural hypotension","Sedation","Tardive dyskinesia"],ans:1,free:true,
+ why:["Acute dystonia arises from nigrostriatal blockade.",
+      "Correct. Dopamine tonically inhibits prolactin release, so blockade in this pathway raises prolactin and produces galactorrhoea and amenorrhoea.",
+      "Postural hypotension is alpha-1 blockade.",
+      "Sedation is chiefly H1 blockade.",
+      "Tardive dyskinesia follows chronic nigrostriatal blockade with receptor supersensitivity."]},
+{stem:"Which enzyme is responsible for terminating acetylcholine action at the neuromuscular junction?",
+ opts:["Choline acetyltransferase","Acetylcholinesterase","Monoamine oxidase B","Catechol-O-methyltransferase","Butyrylcholinesterase"],ans:1,free:true,
+ why:["This synthesises acetylcholine rather than destroying it.",
+      "Correct. Acetylcholinesterase sits in the synaptic cleft and hydrolyses acetylcholine within milliseconds, which is why cholinergic transmission has no reuptake step.",
+      "MAO-B preferentially metabolises dopamine.",
+      "COMT acts on catecholamines, not acetylcholine.",
+      "Present in plasma and inhibited by rivastigmine, but not the principal enzyme at the neuromuscular junction."]},
+{stem:"Which of the following is the strongest evidence that a receptor is metabotropic rather than ionotropic?",
+ opts:["It is permeable to chloride","Its response is measurable within one millisecond","It couples to adenylyl cyclase","It is a pentamer","It is blocked by a competitive antagonist"],ans:2,free:false,
+ why:["Chloride permeability indicates an ion channel, as in GABA-A and glycine receptors.",
+      "Millisecond responses indicate a directly gated channel.",
+      "Correct. Coupling to a second messenger system such as adenylyl cyclase is the defining feature of a metabotropic receptor.",
+      "Pentameric assembly is characteristic of ionotropic receptors such as GABA-A and nicotinic.",
+      "Competitive antagonism occurs at both types and tells you nothing about the mechanism."]},
+{stem:"A patient develops akathisia on an antipsychotic. Which is the most appropriate first pharmacological step?",
+ opts:["Add procyclidine","Add propranolol","Increase the antipsychotic dose","Add lithium","Add an anticholinesterase"],ans:1,free:false,
+ why:["Anticholinergics help dystonia and parkinsonism but are of limited value in akathisia.",
+      "Correct. After reviewing the dose, a beta blocker such as propranolol is the usual first pharmacological step, with a benzodiazepine as an alternative.",
+      "Raising the dose will worsen akathisia, which is dose related.",
+      "Lithium has no role and may itself cause tremor.",
+      "Anticholinesterases increase cholinergic tone and would not help."]},
+{stem:"Which finding is most consistently reported in the cerebrospinal fluid of people who have attempted suicide?",
+ opts:["Raised homovanillic acid","Reduced 5-hydroxyindoleacetic acid","Raised gamma-aminobutyric acid","Reduced choline","Raised glutamate"],ans:1,free:false,
+ why:["Homovanillic acid is the dopamine metabolite and is not the consistent finding.",
+      "Correct. Reduced 5-HIAA, the serotonin metabolite, is among the most replicated biological findings in suicidal behaviour and is linked to impulsivity.",
+      "Not a consistent cerebrospinal fluid finding in this context.",
+      "Choline measures relate to membrane turnover on spectroscopy rather than to suicide risk.",
+      "Glutamate abnormalities are described in mood disorder but are not the consistent finding here."]},
+{stem:"Which drug requires CYP2D6 activity to exert its analgesic effect?",
+ opts:["Morphine","Codeine","Buprenorphine","Methadone","Naltrexone"],ans:1,free:false,
+ why:["Morphine is already active and does not require conversion.",
+      "Correct. Codeine is a prodrug converted to morphine by CYP2D6, so it is ineffective in poor metabolisers and in patients taking 2D6 inhibitors such as paroxetine or fluoxetine.",
+      "Buprenorphine is a partial mu agonist and is active as given.",
+      "Methadone is a full mu agonist and is active as given.",
+      "Naltrexone is an antagonist with no analgesic action."]},
+{stem:"Which best describes the mechanism of memantine?",
+ opts:["Competitive NMDA receptor antagonist","Non-competitive NMDA receptor antagonist","Acetylcholinesterase inhibitor","NMDA receptor partial agonist","AMPA receptor antagonist"],ans:1,free:false,
+ why:["Memantine does not compete at the glutamate binding site.",
+      "Correct. It is a low affinity, voltage dependent, non-competitive antagonist within the channel, which allows normal physiological signalling while damping excess tonic activation.",
+      "That describes donepezil, rivastigmine and galantamine.",
+      "There is no clinically used NMDA partial agonist of this kind.",
+      "Memantine does not act principally at AMPA receptors."]},
+{stem:"Which single fact best explains why lithium interacts with thiazide diuretics?",
+ opts:["Lithium is highly protein bound","Lithium is metabolised by CYP3A4","Lithium is handled by the kidney in the same way as sodium","Lithium induces its own metabolism","Lithium is a substrate for P-glycoprotein"],ans:2,free:false,
+ why:["Lithium is not protein bound at all.",
+      "Lithium is not metabolised by any hepatic enzyme.",
+      "Correct. Lithium is reabsorbed in the proximal tubule alongside sodium, so sodium depletion or any drug promoting sodium reabsorption raises the lithium level.",
+      "Carbamazepine induces its own metabolism. Lithium is not metabolised.",
+      "Transporter handling is not the mechanism of the thiazide interaction."]}
+];
+
+/* ---- Flashcards. First fourteen free. ---- */
+const CARDS = [
+ {f:"Rate limiting enzyme of catecholamine synthesis",b:"Tyrosine hydroxylase",x:"Converts tyrosine to L-DOPA. The bottleneck for dopamine, noradrenaline and adrenaline.",free:true},
+ {f:"Rate limiting enzyme of serotonin synthesis",b:"Tryptophan hydroxylase",x:"Converts tryptophan to 5-HTP. The decarboxylase that follows is shared with dopamine.",free:true},
+ {f:"Immediate precursor of serotonin",b:"5-hydroxytryptophan",x:"Decarboxylated to serotonin by aromatic L-amino acid decarboxylase.",free:true},
+ {f:"Enzyme converting dopamine to noradrenaline",b:"Dopamine beta-hydroxylase",x:"Uniquely this step happens inside the vesicle.",free:true},
+ {f:"Enzyme essentially confined to the adrenal medulla",b:"PNMT",x:"Methylates noradrenaline to adrenaline.",free:true},
+ {f:"Enzyme that makes GABA, found in neurons but not glia",b:"Glutamic acid decarboxylase",x:"Converts glutamate to GABA. Antibodies to it appear in limbic encephalitis and stiff person syndrome.",free:true},
+ {f:"Where does MAO act, and where does COMT act?",b:"MAO inside the neuron, COMT outside it",x:"MAO is in presynaptic mitochondria. COMT is in the cleft and periphery. The stem's location word tells you which is wanted.",free:true},
+ {f:"The only ionotropic serotonin receptor",b:"5-HT3",x:"A ligand gated cation channel. Blocking it is antiemetic; stimulating it causes early SSRI nausea.",free:true},
+ {f:"Obligatory co-agonists at the NMDA receptor",b:"Glycine or D-serine",x:"Glutamate alone will not open the channel. When open it admits calcium.",free:true},
+ {f:"How many times does a G protein coupled receptor cross the membrane?",b:"Seven",x:"True of all dopamine, most serotonin, muscarinic, opioid and cannabinoid receptors.",free:true},
+ {f:"Receptor families that are pentamers",b:"GABA-A, nicotinic, 5-HT3, glycine",x:"Five subunits around a central pore. Ionotropic glutamate receptors are tetramers instead.",free:true},
+ {f:"Most abundant dopamine receptor in the human brain",b:"D1",x:"D1-like receptors are stimulatory through Gs. D2-like are inhibitory through Gi and are the antipsychotic target.",free:true},
+ {f:"D2 occupancy threshold for extrapyramidal side effects",b:"About 80 per cent",x:"Antipsychotic effect begins around 65 per cent, so the useful window is narrow.",free:true},
+ {f:"Fine tremor or coarse tremor: which indicates lithium toxicity?",b:"Coarse tremor",x:"Fine tremor is an ordinary dose related effect. Coarse tremor with vomiting and ataxia is toxicity.",free:true},
+ {f:"Enzyme induced by tobacco smoke that clears clozapine",b:"CYP1A2",x:"It is the smoke, not the nicotine. Stopping raises clozapine levels over about a week.",free:false},
+ {f:"Receptor action causing postural hypotension",b:"Alpha-1 antagonism",x:"Distinct from sedation, which is chiefly H1 antagonism.",free:false},
+ {f:"Receptor action causing sedation and weight gain",b:"H1 antagonism",x:"Prominent with mirtazapine, olanzapine and many tricyclics.",free:false},
+ {f:"Mechanism of mirtazapine",b:"Alpha-2 antagonist with 5-HT2 and 5-HT3 blockade",x:"Increases noradrenaline and serotonin release. H1 blockade adds sedation and appetite.",free:false},
+ {f:"Drugs that raise lithium levels",b:"Thiazides, ACE inhibitors and ARBs, NSAIDs, dehydration",x:"Lithium is handled like sodium, so sodium retention means lithium retention.",free:false},
+ {f:"Cardiac malformation associated with first trimester lithium",b:"Ebstein's anomaly",x:"A right sided lesion. Relative risk is raised but absolute risk remains low.",free:false},
+ {f:"Mechanism of varenicline",b:"Partial agonist at the alpha-4 beta-2 nicotinic receptor",x:"Reduces craving while blunting the reward from smoking.",free:false},
+ {f:"Receptor targeted by psilocybin and LSD",b:"5-HT2A, as an agonist",x:"Ketamine is the NMDA drug. Do not let the two blur.",free:false},
+ {f:"Mechanism of caffeine",b:"Adenosine receptor antagonist",x:"Its effect is therefore reversed by an adenosine agonist, which is how the question is usually posed.",free:false},
+ {f:"Endogenous cannabinoid, and its receptor type",b:"Anandamide, acting at metabotropic CB1",x:"Synthesised from arachidonic acid on demand rather than stored in vesicles.",free:false},
+ {f:"Main noradrenergic nucleus of the brain",b:"Locus coeruleus",x:"In the pons. Governs arousal, attention and the stress response.",free:false},
+ {f:"Cholinergic nucleus that degenerates in Alzheimer's disease",b:"Nucleus basalis of Meynert",x:"In the basal forebrain. The rationale for cholinesterase inhibitors.",free:false},
+ {f:"Ion that triggers synaptic vesicle release",b:"Calcium",x:"Entry through voltage gated channels causes vesicle fusion.",free:false},
+ {f:"Ion passing through the GABA-A receptor",b:"Chloride",x:"Influx hyperpolarises the membrane, producing inhibition.",free:false},
+ {f:"Zero order kinetics, in one sentence",b:"A constant amount is cleared per unit time because the enzyme is saturated",x:"Small dose rises then produce large level rises. Phenytoin and ethanol are the classic examples.",free:false},
+ {f:"Time to steady state in first order kinetics",b:"About five half-lives",x:"Independent of dose and of dosing frequency.",free:false}
+];
+
+const NOTES = [
+{d:"Neuroscience & Genetics", t:"Transmitter synthesis and breakdown", mins:3, body:`
+ <ul>
+  <li><strong>Tyrosine → L-DOPA</strong>: tyrosine hydroxylase. <mark>Rate limiting</mark> for all catecholamines.</li>
+  <li><strong>L-DOPA → dopamine</strong>: aromatic L-amino acid decarboxylase. Same enzyme takes <strong>5-HTP → serotonin</strong>.</li>
+  <li><strong>Dopamine → noradrenaline</strong>: dopamine beta-hydroxylase, inside the vesicle.</li>
+  <li><strong>Noradrenaline → adrenaline</strong>: PNMT, adrenal medulla only.</li>
+  <li><strong>Tryptophan → 5-HTP</strong>: tryptophan hydroxylase. <mark>Rate limiting</mark> for serotonin.</li>
+  <li><strong>Glutamate → GABA</strong>: glutamic acid decarboxylase, neurons not glia.</li>
+  <li>Breakdown: <mark>MAO inside the neuron</mark>, <mark>COMT outside it</mark>. GABA is broken down by GABA transaminase.</li>
+  <li>Metabolites: dopamine → HVA; noradrenaline → MHPG centrally, VMA peripherally; serotonin → 5-HIAA.</li>
+ </ul>`},
+{d:"Neuroscience & Genetics", t:"Receptor families and shapes", mins:2, body:`
+ <ul>
+  <li><strong>Ionotropic</strong>: GABA-A, NMDA, AMPA, kainate, nicotinic, 5-HT3, glycine. Millisecond responses.</li>
+  <li><strong>Metabotropic</strong>: GABA-B, all dopamine, all serotonin except 5-HT3, muscarinic, CB1, opioid. Slower, longer, second messengers.</li>
+  <li><strong>Pentamers</strong>: GABA-A, nicotinic, 5-HT3, glycine. <strong>Tetramers</strong>: ionotropic glutamate. <strong>Dimers</strong>: metabotropic glutamate.</li>
+  <li>Every G protein coupled receptor has <mark>seven transmembrane domains</mark>.</li>
+  <li>NMDA needs <mark>glycine or D-serine</mark> as co-agonist and admits <mark>calcium</mark>.</li>
+ </ul>`},
+{d:"Neuroscience & Genetics", t:"Transmitter nuclei and pathways", mins:2, body:`
+ <ul>
+  <li><strong>Serotonin</strong>: raphe nuclei, brainstem.</li>
+  <li><strong>Noradrenaline</strong>: locus coeruleus, pons.</li>
+  <li><strong>Dopamine</strong>: substantia nigra and ventral tegmental area, midbrain.</li>
+  <li><strong>Acetylcholine</strong>: nucleus basalis of Meynert, basal forebrain. Degenerates in Alzheimer's disease.</li>
+  <li><strong>Glutamate</strong>: pyramidal cells. <strong>GABA</strong>: interneurons. Neither has a discrete nucleus.</li>
+  <li>Astrocytes run the <mark>glutamate to glutamine shuttle</mark> and can release glutamate as a gliotransmitter.</li>
+ </ul>`},
+{d:"Clinical Psychopharmacology", t:"The four dopamine pathways", mins:2, body:`
+ <ul>
+  <li><strong>Mesolimbic</strong> → positive symptoms. Blockade is <mark>therapeutic</mark>.</li>
+  <li><strong>Mesocortical</strong> → negative and cognitive symptoms. Blockade <mark>worsens</mark> them.</li>
+  <li><strong>Nigrostriatal</strong> → movement. Blockade gives extrapyramidal effects above about 80 per cent occupancy; chronic blockade gives tardive dyskinesia.</li>
+  <li><strong>Tuberoinfundibular</strong> → prolactin. Blockade gives galactorrhoea, amenorrhoea, sexual dysfunction.</li>
+  <li>Prolactin sparing: aripiprazole, clozapine, quetiapine. High risk: risperidone, amisulpride, paliperidone, typicals.</li>
+ </ul>`},
+{d:"Clinical Psychopharmacology", t:"Cytochrome P450 in one screen", mins:3, body:`
+ <ul>
+  <li><strong>Inhibition</strong> is fast (1 to 2 days) and raises levels. <strong>Induction</strong> is slow (1 to 2 weeks) and lowers them.</li>
+  <li><strong>CYP1A2</strong>: clozapine, olanzapine. Induced by <mark>tobacco smoke, not nicotine</mark>. Inhibited by fluvoxamine.</li>
+  <li><strong>CYP2D6</strong>: polymorphic. Inhibited by fluoxetine and paroxetine. Codeine needs it to work.</li>
+  <li><strong>CYP3A4</strong>: the largest share of drugs. Inhibited by grapefruit, macrolides, azoles. Induced by carbamazepine, rifampicin, St John's wort.</li>
+  <li>Carbamazepine <mark>induces its own metabolism</mark>, so levels fall over the first weeks.</li>
+  <li>Lithium is not metabolised at all. Its interactions are renal.</li>
+ </ul>`},
+{d:"Clinical Psychopharmacology", t:"Lithium", mins:3, body:`
+ <ul>
+  <li>Not metabolised, not protein bound, cleared by the kidney, handled like <mark>sodium</mark>.</li>
+  <li>Maintenance range roughly 0.6 to 1.0 mmol/L, sampled <mark>12 hours post dose</mark>.</li>
+  <li>Raised by thiazides, ACE inhibitors and ARBs, NSAIDs, dehydration, low salt intake.</li>
+  <li>Common: fine tremor, polyuria, thirst, weight gain, mild cognitive dulling.</li>
+  <li>Long term: hypothyroidism, nephrogenic diabetes insipidus, reduced renal concentrating ability.</li>
+  <li>Toxicity: <mark>coarse tremor</mark>, vomiting, diarrhoea, ataxia, dysarthria, drowsiness, seizures.</li>
+  <li>Pregnancy: first trimester exposure and <mark>Ebstein's anomaly</mark>. Absolute risk low.</li>
+ </ul>`},
+{d:"Clinical Psychopharmacology", t:"Antidepressants by mechanism", mins:3, body:`
+ <ul>
+  <li><strong>SSRI</strong>: SERT blockade. Nausea via 5-HT3, insomnia and sexual dysfunction via 5-HT2, hyponatraemia via SIADH.</li>
+  <li><strong>SNRI</strong>: adds NET blockade. Dose related blood pressure rise.</li>
+  <li><strong>Mirtazapine</strong>: alpha-2 antagonist, 5-HT2 and 5-HT3 blockade, H1 blockade. Sedation, appetite, no nausea, little sexual dysfunction.</li>
+  <li><strong>Tricyclics</strong>: reuptake inhibition plus muscarinic, H1, alpha-1 blockade. Dangerous in overdose through sodium channel blockade.</li>
+  <li><strong>MAOI</strong>: irreversible ones need tyramine restriction. Moclobemide is reversible and selective for MAO-A.</li>
+  <li><strong>Agomelatine</strong>: MT1 and MT2 agonist, 5-HT2C antagonist. Monitor liver function.</li>
+  <li><strong>Bupropion</strong>: noradrenaline and dopamine reuptake inhibition. Lowers seizure threshold.</li>
+ </ul>`},
+{d:"Classification & Assessment", t:"Serotonin syndrome against neuroleptic malignant syndrome", mins:2, body:`
+ <ul>
+  <li><strong>Onset</strong>: serotonin syndrome within hours; neuroleptic malignant syndrome over days.</li>
+  <li><strong>Neuromuscular</strong>: <mark>clonus and hyperreflexia</mark> in serotonin syndrome; <mark>lead pipe rigidity with hyporeflexia</mark> in NMS.</li>
+  <li><strong>Pupils</strong>: dilated in serotonin syndrome.</li>
+  <li><strong>Bowel sounds</strong>: hyperactive in serotonin syndrome.</li>
+  <li><strong>Creatine kinase</strong>: markedly raised in NMS.</li>
+  <li>Both cause pyrexia, autonomic instability and altered consciousness, so those do not discriminate.</li>
+ </ul>`},
+{d:"Behavioural Science & Sociocultural", t:"Learning theory, the discriminations that are examined", mins:2, body:`
+ <ul>
+  <li><strong>Classical</strong>: a neutral stimulus becomes conditioned by pairing. <strong>Operant</strong>: behaviour changes by consequence.</li>
+  <li><strong>Negative reinforcement</strong> increases behaviour by removing something aversive. It is not punishment.</li>
+  <li><strong>Shaping</strong>: rewarding successive approximations. <strong>Chaining</strong>: linking steps into a sequence.</li>
+  <li><strong>Stimulus generalisation</strong>: the response spreads to similar stimuli. <strong>Preparedness</strong>: some associations are learned far more readily.</li>
+  <li>Schedules: <mark>variable ratio</mark> is the most resistant to extinction, which is the gambling answer.</li>
+ </ul>`},
+{d:"Human Development", t:"Attachment in one screen", mins:2, body:`
+ <ul>
+  <li><strong>Secure</strong>: distressed at separation, comforted on reunion, returns to exploring.</li>
+  <li><strong>Insecure avoidant</strong>: little distress, avoids the caregiver on reunion.</li>
+  <li><strong>Insecure ambivalent or resistant</strong>: high distress, cannot be settled, angry and clingy at once.</li>
+  <li><strong>Disorganised</strong>: contradictory approaches, freezing. Associated with maltreatment.</li>
+  <li><strong>Monotropy</strong>: Bowlby's claim of one principal attachment figure.</li>
+  <li>Bowlby's separation sequence: <mark>protest, despair, detachment</mark>. Harlow showed contact comfort outweighs feeding.</li>
+ </ul>`}
+];
+
+/* ==========================================================================
+   BEHAVIOUR
+   ========================================================================== */
+const KEY="tpr_paperA_v1";
+const S = Object.assign({read:[],cards:{},qDone:{},qRight:0,qTotal:0,dys:"off"},
+  JSON.parse(localStorage.getItem(KEY) || "{}"));
+const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const signedIn = () => { try{ return !!currentUser(); }catch(e){ return false; } };
+
+function lockPanel(what){
+  return `<div class="lock"><div class="t">Members</div>
+    <h3>${esc(what)} continues for members</h3>
+    <p>That is the full set so far, and it grows every week as the course runs.</p>
+    <a class="btn gold" href="paper-a-courses.html">See access options</a>
+    <button class="btn ghost" data-account>Sign in</button></div>`;
+}
+
+/* ---- tracker ---- */
+function tracker(){
+  const nRead = S.read.length, nMod = MODULES.length;
+  document.getElementById("m1").textContent = `${nRead} of ${nMod}`;
+  document.getElementById("b1").style.width = (nRead/nMod*100)+"%";
+
+  const cards = availableCards();
+  const mastered = cards.filter(c => S.cards[c.f]==="easy").length;
+  const pct = cards.length ? Math.round(mastered/cards.length*100) : 0;
+  document.getElementById("m2").textContent = pct+"%";
+  document.getElementById("b2").style.width = pct+"%";
+
+  if(S.qTotal){
+    const acc = Math.round(S.qRight/S.qTotal*100);
+    document.getElementById("m3").textContent = `${acc}%  (${S.qRight} of ${S.qTotal})`;
+    document.getElementById("b3").style.width = acc+"%";
+  } else {
+    document.getElementById("m3").textContent = "no answers yet";
+    document.getElementById("b3").style.width = "0%";
+  }
+}
+
+/* ---- tabs ---- */
+document.querySelectorAll('nav.modes button[role="tab"]').forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll('nav.modes button[role="tab"]').forEach(b=>b.setAttribute("aria-selected","false"));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+    btn.setAttribute("aria-selected","true");
+    document.getElementById(btn.getAttribute("aria-controls")).classList.add("on");
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
+/* ---- accessibility ---- */
+const dysBtn=document.getElementById("dysBtn");
+function paintDys(){
+  document.body.setAttribute("data-dys",S.dys);
+  dysBtn.setAttribute("aria-pressed", S.dys==="on" ? "true":"false");
+}
+dysBtn.addEventListener("click",()=>{ S.dys = S.dys==="on"?"off":"on"; save(); paintDys(); });
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  if(!confirm("Clear all saved progress on this device?")) return;
+  localStorage.removeItem(KEY); location.reload();
+});
+
+/* ---- mastery ---- */
+let openMod = MODULES[0].id;
+function drawModList(){
+  document.getElementById("modList").innerHTML = MODULES.map(m=>{
+    const done = S.read.includes(m.id);
+    return `<button class="modcard" data-mod="${m.id}" aria-current="${m.id===openMod}">
+      <b>${esc(m.title)}</b>
+      <span style="font-size:13px;color:var(--muted)">${esc(m.domain)}</span>
+      <span class="row"><span class="time">⏱️ ${m.mins} min</span>${done?'<span class="chip done">Read</span>':''}</span>
+    </button>`;
+  }).join("");
+  document.querySelectorAll("[data-mod]").forEach(b=>b.addEventListener("click",()=>{
+    openMod=b.dataset.mod; drawModList(); drawMod();
+    document.getElementById("modBody").scrollIntoView({behavior:"smooth",block:"start"});
+  }));
+}
+function callout(kind,icon,title,html){
+  return `<div class="callout ${kind}"><div class="t"><span aria-hidden="true">${icon}</span> ${title}</div>${html.startsWith("<")?html:"<p>"+html+"</p>"}</div>`;
+}
+function drawMod(){
+  const m = MODULES.find(x=>x.id===openMod);
+  if(!S.read.includes(m.id)){ S.read.push(m.id); save(); tracker(); drawModList(); }
+  let h = `<div class="card">
+      <h3>${esc(m.title)}</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">${esc(m.domain)} &nbsp; <span class="time">⏱️ ${m.mins} min including the questions</span></p>
+      <div class="step"><span class="n">1</span> Teaching <span class="l"></span></div>
+      ${m.teach}`;
+  if(m.dist) h += callout("dist","🔵","Key distinction",m.dist);
+  h += `<div class="step"><span class="n">2</span> Answer before you read on <span class="l"></span></div>
+        <div id="mSBA"></div>`;
+  h += `<div class="step"><span class="n">3</span> On the ward <span class="l"></span></div>` + callout("pearl","🟡","Clinical pearl",m.pearl);
+  h += callout("alert","🔴","Exam alert",m.alert);
+  if(m.mnem) h += callout("mnem","🟣","Mnemonic",m.mnem);
+  h += `<div class="step"><span class="n">4</span> Now apply it <span class="l"></span></div><div id="mEMQ"></div>`;
+  h += `</div>`;
+  document.getElementById("modBody").innerHTML = h;
+  renderSBA(document.getElementById("mSBA"), m.sba, "mastery:"+m.id);
+  renderEMQ(document.getElementById("mEMQ"), m.emq, "emq:"+m.id);
+}
+
+/* ---- a single best answer ---- */
+function renderSBA(box,q,tag){
+  box.innerHTML = `<div class="card" style="background:var(--slate)">
+    <p class="qstem">${esc(q.stem)}</p>
+    <ul class="opts">${q.opts.map((o,i)=>
+      `<li><button class="opt" data-i="${i}"><span class="k">${"ABCDE"[i]}</span><span>${esc(o)}</span></button></li>`).join("")}</ul>
+    <div class="why" hidden></div></div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+    const i=+b.dataset.i, right=i===q.ans;
+    box.querySelectorAll(".opt").forEach((el,j)=>{
+      el.disabled=true;
+      if(j===q.ans) el.classList.add("right");
+      else if(j===i) el.classList.add("wrong");
+    });
+    if(!S.qDone[tag]){ S.qDone[tag]=1; S.qTotal++; if(right) S.qRight++; save(); tracker(); }
+    const w=box.querySelector(".why"); w.hidden=false;
+    w.innerHTML = `<p class="verdict ${right?'y':'n'}">${right?'Correct.':'Not this time.'}</p>` +
+      q.why.map((t,j)=>`<div class="row ${j===q.ans?'y':'n'}"><span class="m">${"ABCDE"[j]}</span><span>${esc(t)}</span></div>`).join("");
+    w.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }));
+}
+
+/* ---- an extended matching set ---- */
+function renderEMQ(box,e,tag){
+  box.innerHTML = `<div class="card" style="background:var(--slate)">
+    <p style="font-weight:700;margin-bottom:8px">Options</p>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:16px">${e.opts.map((o,i)=>`<strong>${"ABCDEFGHI"[i]}</strong> ${esc(o)}`).join(" &nbsp;·&nbsp; ")}</p>
+    ${e.items.map((it,k)=>`<div style="margin-bottom:18px" data-emq="${k}">
+        <p class="qstem" style="font-size:16px">${k+1}. ${esc(it.q)}</p>
+        <ul class="opts" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+          ${e.opts.map((o,i)=>`<button class="opt" data-i="${i}" style="padding:9px 11px;font-size:14px"><span class="k">${"ABCDEFGHI"[i]}</span><span>${esc(o)}</span></button>`).join("")}
+        </ul><div class="why" hidden></div></div>`).join("")}
+  </div>`;
+  box.querySelectorAll("[data-emq]").forEach(grp=>{
+    const k=+grp.dataset.emq, it=e.items[k];
+    grp.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+      const i=+b.dataset.i, right=i===it.a;
+      grp.querySelectorAll(".opt").forEach((el,j)=>{ el.disabled=true;
+        if(j===it.a) el.classList.add("right"); else if(j===i) el.classList.add("wrong"); });
+      const t=tag+":"+k;
+      if(!S.qDone[t]){ S.qDone[t]=1; S.qTotal++; if(right) S.qRight++; save(); tracker(); }
+      const w=grp.querySelector(".why"); w.hidden=false;
+      w.innerHTML=`<p class="verdict ${right?'y':'n'}">${right?'Correct.':'The answer is '+"ABCDEFGHI"[it.a]+'.'}</p><p>${esc(it.why)}</p>`;
+    }));
+  });
+}
+
+/* ---- q-bank ---- */
+function availableQs(){ return QBANK.filter(q=>q.free || signedIn()); }
+let qi=0;
+function drawQ(){
+  const list=availableQs(), box=document.getElementById("qBox");
+  document.getElementById("qProgress").textContent = `Question ${Math.min(qi+1,list.length)} of ${list.length}`;
+  if(qi>=list.length){
+    const acc = S.qTotal ? Math.round(S.qRight/S.qTotal*100) : 0;
+    box.innerHTML = `<div class="card"><h3>Set complete</h3>
+      <p>Your running accuracy across everything you have answered on this device is <strong>${acc}%</strong>.</p>
+      <p>Accuracy on a first pass matters less than what you do with the misses. Take the ones you got wrong into the flashcard deck and rate them hard.</p>
+      <button class="btn" id="qAgain">Go again</button></div>` + (signedIn()?"":lockPanel("The question bank"));
+      document.getElementById("qAgain").onclick=()=>{qi=0;drawQ();};
+      if(typeof paintAccountButtons==="function") paintAccountButtons();
+      return;
+  }
+  box.innerHTML = `<div id="qHere"></div>
+    <div style="display:flex;gap:10px;margin-top:6px"><button class="btn" id="qNext">Next question →</button></div>`;
+  renderSBA(document.getElementById("qHere"), list[qi], "qbank:"+qi);
+  document.getElementById("qNext").onclick=()=>{qi++;drawQ();window.scrollTo({top:0,behavior:"smooth"});};
+}
+document.getElementById("qRestart").onclick=()=>{qi=0;drawQ();};
+
+/* ---- flashcards ---- */
+function availableCards(){ return CARDS.filter(c=>c.free || signedIn()); }
+let deck=[], ci=0, turned=false;
+function buildDeck(){ deck=availableCards().slice(); ci=0; turned=false; }
+function drawCard(){
+  const box=document.getElementById("cBox");
+  document.getElementById("cProgress").textContent = deck.length ? `Card ${Math.min(ci+1,deck.length)} of ${deck.length}` : "";
+  if(ci>=deck.length){
+    const cards=availableCards(), m=cards.filter(c=>S.cards[c.f]==="easy").length;
+    box.innerHTML = `<div class="card"><h3>Deck finished</h3>
+      <p>You have retired <strong>${m} of ${cards.length}</strong> cards to long-term review.</p>
+      <p>Come back tomorrow rather than going again now. The gap is what does the work.</p>
+      <button class="btn" id="cAgain">Run it again anyway</button></div>` + (signedIn()?"":lockPanel("The flashcard deck"));
+    document.getElementById("cAgain").onclick=()=>{buildDeck();drawCard();};
+    if(typeof paintAccountButtons==="function") paintAccountButtons();
+    return;
+  }
+  const c=deck[ci];
+  box.innerHTML = `
+   <div class="scene"><div class="flip ${turned?'turned':''}" id="flip" role="button" tabindex="0"
+      aria-label="Flashcard. Press space to reveal the answer.">
+     <div class="face"><div class="lab">Recall</div><div class="q">${esc(c.f)}</div>
+       <div style="margin-top:16px;font-size:13px;color:var(--muted)">Tap the card, or press space</div></div>
+     <div class="face back"><div class="lab">Answer</div><div class="a">${esc(c.b)}</div><div class="x">${esc(c.x)}</div></div>
+   </div></div>
+   <div class="rate" ${turned?'':'hidden'}>
+     <button class="h" data-r="hard">Hard<small>comes straight back</small></button>
+     <button class="m" data-r="med">Medium<small>returns later</small></button>
+     <button class="e" data-r="easy">Easy<small>retired</small></button>
+   </div>
+   <p class="keys"><kbd>Space</kbd> flip &nbsp; <kbd>←</kbd> hard &nbsp; <kbd>↓</kbd> medium &nbsp; <kbd>→</kbd> easy</p>`;
+  const flip=document.getElementById("flip");
+  const doFlip=()=>{turned=!turned;drawCard();};
+  flip.onclick=doFlip;
+  flip.onkeydown=ev=>{ if(ev.key===" "||ev.key==="Enter"){ev.preventDefault();doFlip();} };
+  box.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>rate(b.dataset.r));
+}
+function rate(r){
+  const c=deck[ci];
+  S.cards[c.f]=r; save(); tracker();
+  if(r==="hard"){ deck.splice(ci+1,0,c); }
+  else if(r==="med"){ const at=Math.min(ci+10,deck.length); deck.splice(at,0,c); }
+  ci++; turned=false; drawCard();
+}
+document.addEventListener("keydown",ev=>{
+  if(!document.getElementById("p-cards").classList.contains("on")) return;
+  if(ev.target.tagName==="INPUT") return;
+  if(ev.key===" "){ ev.preventDefault(); turned=!turned; drawCard(); }
+  if(!turned) return;
+  if(ev.key==="ArrowLeft"){ev.preventDefault();rate("hard");}
+  if(ev.key==="ArrowDown"){ev.preventDefault();rate("med");}
+  if(ev.key==="ArrowRight"){ev.preventDefault();rate("easy");}
+});
+document.getElementById("cRestart").onclick=()=>{buildDeck();drawCard();};
+
+/* ---- short notes ---- */
+const DOMAINS=["All","Behavioural Science & Sociocultural","Human Development","Neuroscience & Genetics","Clinical Psychopharmacology","Classification & Assessment"];
+let noteFilter="All", noteQuery="";
+function drawFilters(){
+  document.getElementById("noteFilters").innerHTML = DOMAINS.map(d=>
+    `<button data-d="${esc(d)}" aria-pressed="${d===noteFilter}">${esc(d)}</button>`).join("");
+  document.querySelectorAll("#noteFilters button").forEach(b=>b.onclick=()=>{noteFilter=b.dataset.d;drawFilters();drawNotes();});
+}
+function drawNotes(){
+  const q=noteQuery.toLowerCase();
+  const list=NOTES.filter(n=>(noteFilter==="All"||n.d===noteFilter) &&
+    (!q || (n.t+" "+n.body+" "+n.d).toLowerCase().includes(q)));
+  const box=document.getElementById("noteBox");
+  if(!list.length){ box.innerHTML=`<div class="card"><p>Nothing matches that. Try a shorter word, or clear the filter.</p></div>`; return; }
+  box.innerHTML = list.map(n=>`<details class="note"${q?" open":""}>
+    <summary><span>${esc(n.t)}</span><span class="time" style="margin-left:8px">⏱️ ${n.mins} min</span><span class="tw" aria-hidden="true">+</span></summary>
+    <div class="body"><p style="font-size:13px;color:var(--muted);margin-bottom:10px">${esc(n.d)}</p>${n.body}</div></details>`).join("");
+}
+document.getElementById("noteSearch").addEventListener("input",e=>{noteQuery=e.target.value.trim();drawNotes();});
+
+/* ---- go ---- */
+function boot(){
+  paintDys(); drawModList(); drawMod(); drawQ(); buildDeck(); drawCard(); drawFilters(); drawNotes(); tracker();
+}
+document.addEventListener("DOMContentLoaded",boot);
+onAuthReady(()=>{ drawQ(); buildDeck(); drawCard(); tracker(); });
+</script>
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

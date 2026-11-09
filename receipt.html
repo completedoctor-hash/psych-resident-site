@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipts · The Complete Doctor Academy</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--navy:#14243A;--gold:#B8932C;--cream:#F6F1E4;--green:#2E7D5B;--ink:#1B2128;--muted:#6B6355}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#EDEAE2;color:var(--ink);font-family:Helvetica Neue,Arial,sans-serif;font-size:15px;line-height:1.5}
+.bar{max-width:820px;margin:22px auto 0;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;background:var(--navy);color:#fff;border:0;padding:11px 18px;font:700 13px Helvetica Neue,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn.g{background:var(--gold);color:#0E1A2B}.btn.l{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.list{max-width:820px;margin:14px auto 0;padding:0 16px}.list a{display:flex;justify-content:space-between;gap:12px;background:#fff;border:1px solid #D8D2C4;padding:12px 16px;margin:0 0 6px;color:var(--navy);text-decoration:none}
+.list a.on{border-color:var(--navy);box-shadow:inset 4px 0 0 var(--gold)}
+.msg{max-width:820px;margin:16px auto;padding:14px 16px;background:#fff;border-left:5px solid var(--gold)}
+.ed{max-width:820px;margin:10px auto 0;padding:14px 16px;background:#fff;border:1px solid #D8D2C4}.ed label{display:block;font-size:12px;color:var(--muted);margin-top:8px}.ed input{width:100%;padding:8px;border:1px solid #CFC7B5;font:inherit}
+.page{width:794px;max-width:100%;margin:18px auto 40px;background:#fff;border:3px solid var(--navy);padding:8px}
+.inner{border:1px solid var(--gold);padding:40px 44px 36px;min-height:1000px;display:flex;flex-direction:column}
+.logo{display:block;margin:0 auto;width:310px;max-width:70%}
+h1{text-align:center;font:800 40px Helvetica Neue,Arial,sans-serif;color:var(--navy);margin:26px 0 14px;letter-spacing:.01em}
+.rule{width:260px;height:2px;background:var(--gold);margin:0 auto 34px}
+.meta{display:flex;justify-content:space-between;color:#555;margin-bottom:22px}.meta b{color:var(--ink)}
+.billed{background:var(--cream);border:1px solid #E3DAC5;border-radius:10px;padding:16px 26px;margin-bottom:46px}
+.billed h3{font-size:15px;color:var(--navy);margin-bottom:6px}.billed div{display:grid;grid-template-columns:170px 1fr;gap:2px 10px;font-size:14.5px}.billed span{color:#666}.billed b{color:var(--navy)}
+table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;text-align:left;padding:12px 26px;font-size:14.5px}th:last-child,td:last-child{text-align:right}
+td{padding:13px 26px;border-bottom:1px solid #E8E1D0}tr:nth-child(even) td{background:var(--cream)}
+.tot{display:flex;justify-content:flex-end;margin-top:8px}.tot div{background:var(--gold);color:var(--navy);font-weight:800;font-size:19px;padding:12px 26px;display:flex;gap:60px}
+.paid{text-align:center;color:var(--green);font-weight:800;font-size:19px;margin:36px 0 6px}.pm{text-align:center;color:#555;font-size:14px}.pm span{margin:0 14px}
+.foot{margin-top:auto;padding-top:26px;border-top:1px solid var(--gold);text-align:center;color:#555;font-size:13px;line-height:1.75}.foot i{color:var(--navy);font-size:14.5px}
+th{white-space:nowrap}
+@media print{body{background:#fff}.bar,.list,.msg,.ed,.noprint{display:none!important}.page{margin:0 auto;width:190mm;height:276mm;overflow:hidden}.inner{min-height:0;height:100%;padding:28px 36px 24px}h1{margin:18px 0 10px}.rule{margin-bottom:24px}.billed{margin-bottom:30px}.paid{margin-top:26px}@page{size:A4;margin:10mm}}
+</style>
+<script src="content/auth-config.js"></script><script src="content/auth.js"></script>
+</head><body>
+<div class="bar noprint"><a class="btn l" href="account.html">&larr; My account</a><button class="btn g" id="print" hidden>Print or save as PDF</button><button class="btn l" id="edit" hidden>Edit name or deanery</button></div>
+<div class="msg" id="msg">Loading your receipts&hellip;</div>
+<div class="ed noprint" id="ed" hidden>
+  <b>Details printed on your receipts</b>
+  <label for="e_name">Name as it should appear (e.g. Dr Jane Smith)</label><input id="e_name">
+  <label for="e_prog">Service / deanery</label><input id="e_prog">
+  <label for="e_country">Country</label><input id="e_country">
+  <p style="margin-top:12px"><button class="btn" id="save">Save</button></p>
+</div>
+<div class="list noprint" id="list"></div>
+<div class="page" id="page" hidden><div class="inner">
+  <img class="logo" src="tcda-logo.png" alt="The Complete Doctor Academy">
+  <h1>PAYMENT RECEIPT</h1><div class="rule"></div>
+  <div class="meta"><div>Receipt No: <b id="r_no"></b></div><div>Date Issued: &nbsp;&nbsp;<b id="r_date"></b></div></div>
+  <div class="billed"><h3>BILLED TO</h3><div><span>Name of Candidate:</span><b id="b_name"></b><span>Email:</span><b id="b_email"></b><span>Service / Deanery:</span><b id="b_prog"></b></div></div>
+  <table><thead><tr><th>DESCRIPTION</th><th>AMOUNT (GBP)</th></tr></thead><tbody id="items"></tbody></table>
+  <div class="tot"><div><span>TOTAL PAID</span><span id="r_total"></span></div></div>
+  <div class="paid">&#10003; PAID IN FULL</div>
+  <div class="pm"><span>Payment Method: <span id="r_method"></span></span><span>Status: Received &amp; Confirmed</span></div>
+  <div class="foot"><i>Teaching provided by The Complete Doctor Academy</i><br>Medical Excellence &middot; Academic Success &nbsp;|&nbsp; Established 2021<br>Issued by Dr Chinonso S. Ezeanyika, Medical Education Specialist, The Complete Doctor Academy<br>This receipt confirms payment received in full for the courses listed above. Thank you.</div>
+</div></div>
+<script>
+(function(){
+  function $(i){return document.getElementById(i)}
+  function qs(k){var m=new RegExp("[?&]"+k+"=([^&]*)").exec(location.search);return m?decodeURIComponent(m[1]):""}
+  function e(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function gbp(p){return "£"+((p||0)/100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+  function day(t){return new Date(t*1000).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+  var DATA=null;
+  function billedLine(b){return [b.programme,b.country].filter(Boolean).join(", ")||"—"}
+  function show(r){
+    var b=DATA.billed;
+    $("r_no").textContent=r.no;$("r_date").textContent=day(r.date);
+    $("b_name").textContent=b.name||"—";$("b_email").textContent=b.email;$("b_prog").textContent=billedLine(b);
+    var rows=r.items.map(function(i){return "<tr><td>"+e(i.d)+"</td><td>"+gbp(i.p)+"</td></tr>"}).join("");
+    if(r.discount>0)rows+="<tr><td>Discount</td><td>&minus;"+gbp(r.discount)+"</td></tr>";
+    $("items").innerHTML=rows;$("r_total").textContent=gbp(r.total);$("r_method").textContent=r.method;
+    $("page").hidden=false;$("print").hidden=false;
+    [].forEach.call(document.querySelectorAll("#list a"),function(a){a.classList.toggle("on",a.dataset.id===r.id)});
+    document.title="Receipt "+r.no+" · The Complete Doctor Academy";
+  }
+  function load(){
+    window.tprCallFn("receipts",{},function(j){
+      if(!j||j.error==="signin"){$("msg").innerHTML='Please <a href="account.html">sign in</a> to see your receipts.';return}
+      if(j.error){$("msg").textContent=(j.message||"Your receipts could not be loaded just now.")+" Please try again, or write to completedoctor@gmail.com.";return}
+      DATA=j;$("edit").hidden=false;
+      var b=j.billed;$("e_name").value=b.name;$("e_prog").value=b.programme;$("e_country").value=b.country;
+      if(!j.receipts.length){$("msg").innerHTML="There are no card payments on this account yet. Receipts appear here automatically after each payment.";return}
+      $("msg").hidden=true;
+      $("list").innerHTML=j.receipts.length>1?j.receipts.map(function(r){return '<a href="#" data-id="'+e(r.id)+'"><span>'+e(r.items[0].d)+'</span><span>'+day(r.date)+' &middot; '+gbp(r.total)+'</span></a>'}).join(""):"";
+      [].forEach.call(document.querySelectorAll("#list a"),function(a){a.onclick=function(ev){ev.preventDefault();show(j.receipts.filter(function(r){return r.id===a.dataset.id})[0])}});
+      var want=qs("r"),pick=j.receipts.filter(function(r){return r.id===want})[0]||j.receipts[0];show(pick);
+      if(!b.name||(!b.programme&&!b.country))$("ed").hidden=false;
+    });
+  }
+  $("print").onclick=function(){window.print()};
+  $("edit").onclick=function(){$("ed").hidden=!$("ed").hidden};
+  $("save").onclick=function(){
+    var d={full_name:$("e_name").value.trim(),programme:$("e_prog").value.trim(),country:$("e_country").value.trim()};
+    this.disabled=true;var btn=this;
+    window.tprUpdateDetails(d,function(r){btn.disabled=false;if(r.ok){DATA.billed.name=d.full_name;DATA.billed.programme=d.programme;DATA.billed.country=d.country;$("ed").hidden=true;var cur=document.querySelector("#list a.on");show(cur?DATA.receipts.filter(function(x){return x.id===cur.dataset.id})[0]:DATA.receipts.filter(function(x){return x.no===$("r_no").textContent})[0]||DATA.receipts[0])}else alert(r.error)});
+  };
+  if(window.onAuthReady)onAuthReady(load);else load();
+})();
+</script>
+<script src="content/coursenav.js?v=4"></script></body></html>

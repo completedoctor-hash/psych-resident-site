@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice Questions · Critical Appraisal · The Psychiatric Resident</title>
+<link rel="stylesheet" href="content/ca-theme.css">
+<style>
+body{margin:0;font:17px/1.6 Georgia,serif}
+.mast{color:#fff}.mast .in{max-width:1200px;margin:0 auto;padding:16px 22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{color:#fff;text-decoration:none;font:800 24px "Playfair Display",Georgia,serif}.brand span{display:block;font:700 11px Helvetica Neue,Arial,sans-serif;letter-spacing:.2em;color:#B8932C;text-transform:uppercase}
+.mast nav{margin-left:auto;display:flex;gap:18px}.mast nav a{color:#fff;text-decoration:none;font:700 12px Helvetica Neue,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.shell{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:270px 1fr;min-height:80vh}
+.side{padding:0}.side h2{font:700 20px "Playfair Display",Georgia,serif;margin:0;padding:18px}
+.side button{display:flex;justify-content:space-between;width:100%;text-align:left;padding:11px 18px;font:15px Helvetica Neue,Arial,sans-serif;cursor:pointer}
+.side button{background:#fff;border:0;border-bottom:1px solid #EEF0F3;border-left:3px solid transparent;color:#14243A}.side button:hover,.side button.on{border-left-color:#B8932C;background:#F7F8FA}
+.side button small{color:#B8932C;font-weight:700}
+.stage{padding:26px 30px}.top{display:flex;justify-content:space-between;align-items:baseline;font:12px Helvetica Neue,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5B6474}
+h1{font:800 30px "Playfair Display",Georgia,serif;margin:6px 0 14px}
+.card{padding:22px 24px}.q{font-size:19px;margin:0 0 16px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+input{font:600 18px Menlo,Consolas,monospace;padding:9px 12px;border:1px solid #14243A;width:160px}
+.btn{font:700 13px Helvetica Neue,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:11px 18px;cursor:pointer}
+.res{margin-top:18px}.verdict{font:700 15px Helvetica Neue,Arial,sans-serif;padding:8px 12px;display:inline-block;margin-bottom:10px}
+.ok{background:#14243A;color:#fff}.no{background:#B8932C;color:#0E1A2B}
+.formula{padding:12px 16px;margin:10px 0}.formula b,.work .lab{display:block;font:700 10px Helvetica Neue,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+.formula div{font:600 16px Menlo,Consolas,monospace}.plain{font-size:16px;color:#3d4452;margin:6px 0 0}
+.work{padding:12px 16px}.work ol{margin:0;padding-left:20px;font:15px Menlo,Consolas,monospace}
+.score{font:700 13px Helvetica Neue,Arial,sans-serif;color:#14243A}
+@media(max-width:760px){.shell{grid-template-columns:1fr}.side{border-right:0!important;border-bottom:1px solid #D6DAE1}.side .list{display:flex;overflow-x:auto}.side button{white-space:nowrap;width:auto}.stage{padding:18px}}
+.opts{display:grid;gap:8px;margin:0 0 6px}.opt{display:flex;gap:12px;text-align:left;background:#fff;border:1px solid #D6DAE1;padding:12px 14px;font:16px/1.45 Georgia,serif;color:#14243A;cursor:pointer}
+.opt:hover{border-color:#14243A}.opt b{font:700 13px Helvetica Neue,Arial,sans-serif;color:#B8932C;min-width:16px}
+.opt.right{border:2px solid #14243A;background:#F2F4F7}.opt.wrong{border:2px solid #B8932C;background:#FBF6E8}
+.dg{border:1px solid #D6DAE1;padding:8px;margin:0 0 16px}.exp{font-size:16px;margin:10px 0}
+.side h3{font:700 10px Helvetica Neue,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B8932C;margin:14px 18px 4px}
+</style><script src="content/protect.js"></script></head><body>
+<header class="mast"><div class="in"><a class="brand" href="index.html">The Psychiatric Resident<span>Critical Appraisal · Practice questions</span></a>
+<nav><a href="critical-appraisal.html">The course</a><a href="ca-flashcards.html">Flashcards</a><a href="ca-practice.html">Practice</a><a href="ca-drill.html">Calculation drill</a><a href="formulas.html">Formulas</a></nav></div></header>
+<div class="shell"><aside class="side"><h2>Practice</h2><div class="list" id="list"></div></aside>
+<main class="stage"><div class="top"><span id="where"></span><span class="score" id="score">0 / 0</span></div>
+<h1 id="title">&nbsp;</h1><div class="card" id="card"></div>
+<p style="font:12px Helvetica Neue,Arial,sans-serif;color:#5B6474">Keys 1–5 answer · Enter or → next. Questions you miss go into “Weakest”.</p></main></div>
+<script src="content/ca-extras.js"></script><script src="paid/appraisal/ca-practice.dat.js"></script>
+<script>
+var P={A:"A · Statistics",B:"B · Research Methods",C:"C · Evidence-Based Medicine",D:"D · Calculations",E:"E · Advanced Topics",P:"Read the picture"};
+var Q=window.CA_PRACTICE||[],mode="all",deck=[],i=0,score=[0,0],miss={};
+try{miss=JSON.parse(localStorage.getItem("caPracMiss")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("caPracMiss",JSON.stringify(miss))}catch(e){}}
+function shuffle(a){for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[k];a[k]=t}return a}
+function build(){deck=[];Q.forEach(function(q,n){if(mode==="all"||q[0]===mode||(mode==="weak"&&miss[n]))deck.push(n)});shuffle(deck);i=0;show()}
+function list(){var c=function(m){return Q.filter(function(q){return q[0]===m}).length};
+ var h='<button data-m="all">Mixed: everything <small>'+Q.length+'</small></button><button data-m="weak">Weakest (missed) <small id="wk">'+Object.keys(miss).length+'</small></button><h3>By part</h3>';
+ for(var k in P)h+='<button data-m="'+k+'">'+P[k]+' <small>'+c(k)+'</small></button>';
+ var L=document.getElementById("list");L.innerHTML=h;
+ [].forEach.call(L.querySelectorAll("button"),function(b){b.onclick=function(){mode=b.dataset.m;[].forEach.call(L.querySelectorAll("button"),function(x){x.classList.toggle("on",x===b)});build()}});L.querySelector("button").classList.add("on")}
+var done=false;
+function show(){var C=document.getElementById("card");done=false;
+ if(!Q.length){C.innerHTML='<p class="q">The practice bank is for members. <a href="buy.html">See membership</a>.</p>';return}
+ if(!deck.length){C.innerHTML='<p class="q">Nothing here yet. Questions you get wrong will appear in Weakest.</p>';return}
+ var q=Q[deck[i]];document.getElementById("where").textContent=P[q[0]]+" · "+(i+1)+" of "+deck.length;document.getElementById("title").textContent=q[1];
+ var h=(q[0]==="P"&&q[6]&&window.CA_DIAGRAMS?'<div class="dg">'+CA_DIAGRAMS[q[6]]+'</div>':'')+'<p class="q">'+q[2]+'</p><div class="opts">'+
+  shuffle(q[3].map(function(o,k){return k})).map(function(k,pos){return '<button class="opt" data-k="'+k+'"><b>'+(pos+1)+'</b><span>'+q[3][k]+'</span></button>'}).join("")+'</div><div id="res"></div>';
+ C.innerHTML=h;[].forEach.call(C.querySelectorAll(".opt"),function(b){b.onclick=function(){answer(+b.dataset.k)}})}
+function answer(k){if(done)return;done=true;var n=deck[i],q=Q[n],ok=k===q[4];score[1]++;if(ok){score[0]++;delete miss[n]}else miss[n]=1;save();
+ document.getElementById("score").textContent=score[0]+" / "+score[1];document.getElementById("wk").textContent=Object.keys(miss).length;
+ [].forEach.call(document.querySelectorAll(".opt"),function(b){var d=+b.dataset.k;if(d===q[4])b.classList.add("right");else if(d===k)b.classList.add("wrong")});
+ document.getElementById("res").innerHTML='<div class="verdict '+(ok?'ok':'no')+'">'+(ok?'Correct':'Not quite · answer: '+q[3][q[4]])+'</div><p class="exp">'+q[5]+'</p>'+
+  (window.caFormulaFor?caFormulaFor(q[2]+' '+q[5]):'')+(q[0]!=="P"&&q[6]&&window.CA_DIAGRAMS?'<div class="dg">'+CA_DIAGRAMS[q[6]]+'</div>':'')+
+  '<button class="btn gold" id="nx">Next question →</button>';document.getElementById("nx").onclick=next}
+function next(){i++;if(i>=deck.length){shuffle(deck);i=0}show()}
+document.addEventListener("keydown",function(e){if(/^[1-5]$/.test(e.key)&&!done){var b=document.querySelectorAll(".opt")[+e.key-1];b&&b.click()}else if((e.key==="Enter"||e.key==="ArrowRight")&&done)next()});
+list();build();
+</script><script src="content/auth-config.js"></script><script src="content/auth.js"></script>
+<script>(function(){var W="critical-appraisal";function g(){if(!(window.hasAccess&&window.hasAccess(W))){var h=location.pathname.split("/").pop();location.replace("locked.html?w="+W+"&r="+encodeURIComponent(h));}}if(typeof window.onAuthReady==="function")window.onAuthReady(g);else window.addEventListener("load",function(){setTimeout(g,300)});})();</script>
+<script src="content/coursenav.js?v=4"></script></body></html>

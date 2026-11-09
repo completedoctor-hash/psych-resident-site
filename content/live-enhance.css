@@ -1,0 +1,345 @@
+/* ───────────────────────────────────────────────
+   LIVE COURSE VISUAL ENHANCEMENT  v1
+   Injected into all wb-*.html pages.
+   Changes appearance only — no content altered.
+─────────────────────────────────────────────── */
+
+/* ── Google Font for display text ─────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap');
+
+/* ── HERO: richer gradient + pattern overlay ─ */
+.hero {
+  background: linear-gradient(150deg, #0C1E34 0%, #14243A 50%, #1b3050 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0 50px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(184,147,44,.12) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(46,125,91,.10) 0%, transparent 45%);
+  pointer-events: none;
+}
+.hero .in { position: relative; }
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.03;
+  letter-spacing: -.02em;
+  margin: 12px 0 16px;
+}
+.hero p { font-size: 18px; line-height: 1.65; }
+
+/* ── FACTS STRIP: larger numbers ─────────── */
+.facts b { font-size: 34px; }
+.facts div { border-right: 1px solid #33445E; padding-right: 16px; }
+.facts div:last-child { border-right: none; }
+
+/* ── MAIN SECTION HEADERS (h2 inside .wb) ── */
+.wb h2 {
+  background: linear-gradient(135deg, #0E1A2B 0%, #1a2f47 100%);
+  color: #fff;
+  padding: 18px 22px 16px;
+  margin: 52px -6px 24px;
+  border-bottom: none;
+  border-left: 8px solid #B8932C;
+  font: 800 26px/1.1 "Playfair Display", Georgia, serif;
+  letter-spacing: -.01em;
+  border-radius: 0 2px 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wb h2::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: rgba(184,147,44,.35);
+  display: block;
+}
+
+/* ── BIG PULL QUOTE ───────────────────────── */
+.big {
+  border-left: 6px solid #B8932C;
+  background: linear-gradient(to right, #FFF9EE, #fff);
+  padding: 20px 24px;
+  font: italic 19px/1.6 Georgia, serif;
+  color: #14243A;
+  margin: 20px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── AIMS BOX: richer ─────────────────────── */
+.aims {
+  border: none;
+  border-left: 8px solid #B8932C;
+  background: linear-gradient(to right, #FFF6E0, #fff);
+  padding: 22px 26px;
+  margin: 0 0 28px;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 2px 10px rgba(184,147,44,.12);
+}
+.aims .t {
+  color: #8A6A12;
+  letter-spacing: .18em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.aims .t::before {
+  content: "✦";
+  color: #B8932C;
+  font-size: 10px;
+}
+.aims .aim { font-size: 17px; line-height: 1.6; }
+
+/* ── RULE (green-flagged rule box) ───────── */
+.rule {
+  background: #F3FBF7;
+  border-left: 5px solid #2E7D5B;
+  padding: 12px 16px 12px 42px;
+  margin: 12px 0;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+  font: 15px/1.6 Helvetica Neue, Arial, sans-serif;
+}
+.rule::before {
+  content: "✓";
+  position: absolute;
+  left: 12px;
+  top: 11px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #2E7D5B;
+}
+
+/* ── TRAP (red-flagged pitfall box) ──────── */
+.trap {
+  background: #FEF4F4;
+  border-left: 5px solid #B63232;
+  padding: 12px 16px 12px 42px;
+  margin: 12px 0;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+  font: 15px/1.6 Helvetica Neue, Arial, sans-serif;
+}
+.trap::before {
+  content: "✗";
+  position: absolute;
+  left: 12px;
+  top: 11px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #B63232;
+}
+
+/* ── CHALLENGE CARDS (.ch) ───────────────── */
+.ch {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 14px rgba(20,36,58,.10);
+  margin: 20px 0;
+  padding: 0;
+  overflow: hidden;
+}
+.ch .n {
+  background: linear-gradient(135deg, #14243A, #1e3550);
+  color: #E9C870;
+  margin: 0;
+  padding: 10px 18px;
+  font: 700 11px Helvetica Neue, Arial, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border-left: 6px solid #B8932C;
+}
+.ch .st {
+  padding: 14px 18px 4px;
+  font: 700 17px/1.5 Georgia, serif;
+  color: #14243A;
+}
+.ch ol {
+  padding: 0 18px 0 36px;
+  margin: 6px 0 12px;
+}
+.sh {
+  background: #F4FBF8;
+  border-top: 3px solid #2E7D5B;
+  margin: 0;
+  padding: 14px 18px;
+  font: 15px/1.6 Georgia, serif;
+}
+.btn2 {
+  margin: 8px 18px 14px !important;
+  border-radius: 2px;
+  font-size: 11px !important;
+  letter-spacing: .14em !important;
+}
+
+/* ── PLAN GRID ────────────────────────────── */
+.plan div {
+  border: none;
+  border-top: 5px solid #B8932C;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 10px rgba(20,36,58,.09);
+  padding: 16px;
+  background: #fff;
+}
+.plan b {
+  font-size: 26px;
+  color: #14243A;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── FLASHCARDS (.card) ───────────────────── */
+.card {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(20,36,58,.09);
+  padding: 0;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .15s;
+}
+.card:hover { box-shadow: 0 6px 24px rgba(20,36,58,.16); transform: translateY(-2px); }
+.cct {
+  background: linear-gradient(135deg, #14243A, #1e3550);
+  border-left: 5px solid #B8932C;
+  padding: 7px 12px;
+  margin: 0;
+  font: 700 10px Helvetica Neue, Arial, sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.cq { padding: 12px 14px 6px; font-size: 16px; }
+.cx { padding: 0 14px 10px; }
+.card .a {
+  border-top: 3px solid #B8932C;
+  padding: 12px 14px;
+  background: #FAFAF8;
+}
+.ca {
+  border-left: 5px solid #B8932C;
+  padding-left: 10px;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+.cr { background: #FFF8E6; border-radius: 3px; padding: 8px 10px; margin: 6px 0; }
+.ctp { background: #FEF4F4; border-radius: 3px; padding: 8px 10px; margin: 6px 0; }
+
+/* ── FIGURE BOXES ─────────────────────────── */
+.fig {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 14px rgba(20,36,58,.10);
+  padding: 14px;
+  background: #fff;
+  margin: 20px 0;
+}
+.dg {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 14px rgba(20,36,58,.10);
+  padding: 20px 22px;
+  margin: 24px 0;
+  background: #fff;
+}
+.dg .cat { letter-spacing: .18em; }
+
+/* ── AUDIO SIDEBAR (.aud) ─────────────────── */
+.aud {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(20,36,58,.14);
+  background: #fff;
+}
+.aud h4 {
+  font: 800 20px "Playfair Display", Georgia, serif;
+  color: #14243A;
+  border-bottom: 2px solid #B8932C;
+  padding-bottom: 8px;
+  margin-bottom: 2px;
+}
+.aud li button {
+  font-size: 12.5px;
+  transition: background .15s;
+}
+.aud li button:hover:not(.on) { background: #F7F8FA; }
+.aud li button.on {
+  background: linear-gradient(to right, #0E1A2B, #14243A);
+  border-left: 4px solid #B8932C;
+}
+.aud li button i { color: #B8932C; font-size: 13px; }
+.aud u { height: 4px; border-radius: 2px; }
+.aud u b { border-radius: 2px; }
+
+/* ── PLAY BUTTON POLISH ───────────────────── */
+.ctl .btn2 {
+  border-radius: 3px !important;
+  transition: background .15s !important;
+}
+.ctl select {
+  border-radius: 3px;
+  font-size: 12px;
+  color: #14243A;
+}
+
+/* ── TOC ──────────────────────────────────── */
+.toc2 {
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(184,147,44,.12);
+  border-top: 6px solid #B8932C;
+  border-left: none;
+  background: linear-gradient(to bottom, #FFFDF7, #fff);
+}
+
+/* ── CAT HEADINGS ─────────────────────────── */
+.cat {
+  border-radius: 2px;
+  font-size: 20px;
+  margin: 36px 0 10px;
+}
+
+/* ── SEC LEFT-BORDER ─────────────────────── */
+.sec { border-color: #B8932C; border-left-width: 4px; padding-left: 20px; }
+.sec h3 { font-size: 19px; color: #14243A; }
+.sec p { font-size: 16.5px; }
+
+/* ── "DONE" COMPLETION BAR ───────────────── */
+.done {
+  border-radius: 6px;
+  border: none;
+  border-left: 8px solid #2E7D5B;
+  background: linear-gradient(to right, #EBF7F1, #fff);
+  padding: 20px 24px;
+  font-size: 16px;
+  box-shadow: 0 2px 10px rgba(46,125,91,.12);
+}
+.done::before {
+  content: "Session complete ✓";
+  display: block;
+  font: 700 11px Helvetica Neue, Arial, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #2E7D5B;
+  margin-bottom: 6px;
+}
+
+/* ── SECTION DIVIDERS (.x-sec) ───────────── */
+.x-sec span { color: #B8932C; letter-spacing: .24em; font-size: 11px; }
+.x-sec:after { background: linear-gradient(to right, #B8932C, #E1E4EA); height: 2px; }
+
+/* ── RESPONSIVE TWEAKS ───────────────────── */
+@media (max-width: 760px) {
+  .wb h2 { font-size: 21px; padding: 14px 16px; margin-left: -6px; }
+  .hero h1 { font-size: 38px; }
+}
+
+/* ── PRINT: keep clean ───────────────────── */
+@media print {
+  .aud, .ctl { display: none !important; }
+  .sh, .card .a { display: block !important; }
+  .wb h2 { background: #fff !important; color: #14243A !important; border-left: 6px solid #B8932C; }
+}

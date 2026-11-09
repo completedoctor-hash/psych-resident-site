@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Classification &amp; Assessment &middot; MRCPsych Paper A &middot; CDA</title>
+<style>
+:root{--bg:#fbfaf7;--ink:#14161a;--ink2:#3c424d;--mute:#6f7681;--line:#e0dccf;--card:#fff;--panel:#f4f2ec;
+--navy:#0B2545;--gold:#B8892B;--sage:#2f5a4a;--red:#8c2f2f;--blue:#2E6DB4;--hit:#e9f4ed;--hitB:#1a5c38;--miss:#fbeeee;--missB:#8c2f2f;
+--plum:#4a1f4d;--amber:#8a5510;--mono:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+--read:Lexend,"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;--sans:Lexend,"Helvetica Neue",system-ui,sans-serif;--disp:"Playfair Display",Georgia,serif}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--read);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+button{font-family:var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 22px}
+header.bar{background:var(--navy);color:#fff;position:sticky;top:0;z-index:60;border-bottom:3px solid var(--gold)}
+.bar .in{max-width:1320px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar .brand{font-family:var(--sans);font-size:12.5px;font-weight:800;letter-spacing:.05em;line-height:1.25}
+.bar .brand span{display:block;font-weight:400;font-size:10px;color:#c9cede;letter-spacing:.09em;text-transform:uppercase}
+.bar .cnt{font-family:var(--sans);font-size:13px;color:#dfe3ec}.bar .cnt b{color:#fff}
+.bar .right{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.bbtn{font-size:12px;font-weight:700;padding:6px 11px;border-radius:3px;border:1.5px solid #46557a;background:transparent;color:#fff;cursor:pointer}
+.bbtn:hover{background:#22335c}
+#prog{height:4px;background:#22335c}#progfill{height:100%;background:var(--gold);width:0;transition:width .3s}
+nav.secnav{background:#fff;border-bottom:1px solid var(--line)}
+nav.secnav .in{max-width:1320px;margin:0 auto;padding:8px 22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.crumb{font-family:var(--sans);font-size:12px;color:var(--mute)}
+.tabs{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.tab{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--navy);text-decoration:none;padding:4px 9px;border:1.5px solid var(--line);border-radius:3px}
+.tab:hover{border-color:var(--navy)}.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}.tab.emi{border-style:dotted}
+h1{font-family:var(--disp);font-size:34px;line-height:1.1;font-weight:700;margin:0 0 12px}
+h2{font-family:var(--disp);font-size:24px;line-height:1.2;margin:0 0 10px}
+.eyebrow{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.small{font-family:var(--sans);font-size:13px;color:var(--mute)}
+.screen{display:none;padding:26px 0 80px}.screen.on{display:block}
+/* cover */
+.band{background:var(--navy);color:#f4e6c4;font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;border-radius:4px;border-left:6px solid var(--gold);margin-bottom:18px}
+.cover h1{font-size:44px;max-width:920px}
+.strap{font-family:var(--sans);font-size:16px;color:var(--ink2);border-left:3px solid var(--gold);padding-left:12px;max-width:860px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.stat{background:#fff;border:2px solid var(--line);border-radius:5px;padding:15px;border-top-width:6px}
+.stat b{display:block;font-family:var(--sans);font-size:26px;color:var(--navy);line-height:1}
+.stat span{font-family:var(--sans);font-size:11.5px;color:var(--mute);letter-spacing:.05em;text-transform:uppercase}
+.stat.c1{border-top-color:var(--navy)}.stat.c2{border-top-color:var(--gold)}.stat.c2 b{color:var(--amber)}.stat.c3{border-top-color:var(--sage)}.stat.c3 b{color:var(--sage)}.stat.c4{border-top-color:var(--red)}.stat.c4 b{color:var(--red)}
+.warn{background:#fbeeee;border:2px solid var(--red);border-left-width:8px;border-radius:5px;padding:14px 18px;margin:18px 0}
+.warn .t{font-family:var(--sans);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.warn ol{margin:0;padding-left:20px;font-size:14px}.warn li{margin:3px 0}
+.cdabox{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:#fff;border:2px solid var(--line);border-radius:6px;padding:14px 18px;margin:18px 0}
+.cdabox .logo{font-family:var(--disp);font-weight:700;font-size:22px;color:#fff;background:var(--navy);border:3px solid var(--gold);border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cdabox .nm{font-family:var(--sans);font-weight:800;letter-spacing:.06em;color:var(--navy)}.cdabox .cr{font-family:var(--sans);font-size:13px;color:var(--ink2)}
+.srcs{font-family:var(--sans);font-size:13px;columns:2 300px;margin:6px 0 0;padding-left:18px;color:var(--ink2)}
+.startbtn{font-weight:800;font-size:15px;background:var(--gold);color:#241c05;border:none;border-radius:4px;padding:13px 26px;cursor:pointer}
+.ghostbtn{font-weight:800;font-size:14px;background:#fff;color:var(--navy);border:2px solid var(--navy);border-radius:4px;padding:10px 18px;cursor:pointer}
+.ghostbtn.sm{font-size:12.5px;padding:7px 12px}
+/* contents */
+.part{margin:22px 0 6px;font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);display:flex;gap:10px;align-items:center}
+.part .pc{margin-left:auto;font-weight:700;color:var(--navy);letter-spacing:.04em}
+.catlist{margin:8px 0;border:2px solid var(--line);border-radius:5px;overflow:hidden;background:#fff}
+.catlist .row{display:flex;gap:12px;align-items:center;padding:11px 15px;border-bottom:1px solid var(--line);cursor:pointer;font-family:var(--sans);font-size:14px}
+.catlist .row:last-child{border-bottom:none}.catlist .row:hover{background:var(--panel)}
+.catlist .cc{font-weight:800;color:var(--navy);min-width:28px}
+.catlist .code{font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+.catlist .tag{margin-left:auto;font-size:12px;font-weight:800;color:#fff;background:var(--sage);padding:2px 9px;border-radius:11px;white-space:nowrap}
+.sylrow .cc{min-width:70px!important;font-size:12px}.sylrow .txt{font-size:13.5px;line-height:1.4}
+.mini{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:700;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1px 8px;margin-left:4px;white-space:nowrap}
+/* deck layout */
+.deck{display:grid;grid-template-columns:230px minmax(0,1fr);gap:22px;margin-top:20px}
+#side{position:sticky;top:70px;align-self:start;border:2px solid var(--line);border-radius:6px;background:#fff;overflow:hidden;max-height:calc(100vh - 90px);overflow-y:auto}
+#side .sh{font-family:var(--sans);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding:11px 13px;border-bottom:1px solid var(--line)}
+#side .sc{display:flex;gap:8px;align-items:center;padding:10px 13px;border-bottom:1px solid var(--line);cursor:pointer;font-family:var(--sans);font-size:13px;line-height:1.35}
+#side .sc:hover{background:var(--panel)}#side .sc.on{border-left:4px solid var(--gold);background:#fbf6ea;font-weight:700}
+#side .sc .n{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 18px}
+.step{font-size:13px;font-weight:800;padding:8px 14px;border-radius:20px;border:2px solid var(--line);background:#fff;color:var(--ink2);cursor:pointer}
+.step b{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;background:var(--panel);margin-right:6px;font-size:11px}
+.step.on{border-color:var(--navy);background:var(--navy);color:#fff}.step.on b{background:var(--gold);color:#241c05}
+/* lesson */
+.lesson{background:#fff;border:2px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:22px;border-top:6px solid var(--navy)}
+.lesson:nth-of-type(3n+2){border-top-color:var(--gold)}.lesson:nth-of-type(3n+3){border-top-color:var(--sage)}
+.lesson .syl{font-family:var(--sans);font-size:12px;color:var(--mute);margin-bottom:6px}
+.lesson .syl b{font-family:var(--mono);color:var(--red);font-size:12.5px;margin-right:6px}
+.lesson h2{margin-bottom:14px}
+.big{background:#eef3fa;border-left:6px solid var(--navy);border-radius:6px;padding:14px 18px;font-size:17.5px;line-height:1.5;margin:0 0 20px;color:var(--navy)}
+.big .t{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:4px}
+.blk{margin:0 0 18px}.blk h3{font-family:var(--sans);font-size:17px;color:var(--navy);margin:0 0 6px}
+.blk p{margin:0 0 10px;max-width:78ch}
+sup.r a{font-family:var(--sans);font-size:10.5px;font-weight:700;color:var(--blue);text-decoration:none;margin-left:1px}
+.analogy{background:#fdf6e3;border:2px dashed #e5cf98;border-radius:8px;padding:13px 18px;margin:6px 0 20px}
+.atlasblk{margin:18px 0 20px}.atlasblk>.t{color:#1A2E4A;font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;display:block}.atlasfig{margin:0}
+.analogy .t,.clin .t,.traps .t,.tbl .t{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;display:block}
+.analogy .t{color:var(--amber)}
+.tbl{margin:4px 0 18px;overflow-x:auto}.tbl .t{color:var(--navy)}
+.tbl table{border-collapse:collapse;width:100%;font-size:14.5px;background:#fff}
+.tbl th{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;text-align:left;background:var(--navy);color:#fff;padding:8px 10px}
+.tbl td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+.tbl tr:nth-child(even) td{background:#faf8f3}.tbl td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+.tbl td.v{font-family:var(--mono);color:var(--amber);font-weight:700;white-space:nowrap}
+.clin{background:#eef6f1;border-left:6px solid var(--sage);border-radius:6px;padding:12px 18px;margin:0 0 14px}.clin .t{color:var(--sage)}
+.traps{background:#fbeeee;border-left:6px solid var(--red);border-radius:6px;padding:12px 18px}.traps .t{color:var(--red)}
+.traps ul{margin:0;padding-left:20px}.traps li{margin:3px 0}
+.chip{font-weight:700;color:var(--navy);background:#e8edf6;padding:0 5px;border-radius:4px}
+.chip.m{font-family:var(--mono);background:#fbf0d6;color:var(--amber);border:1px solid #ecd9a8}
+.nextbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+/* revision */
+.revhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.revhead .small{margin-right:auto}
+.rsub{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:20px 0 8px;border-bottom:2px solid var(--line);padding-bottom:5px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px}
+.qa{background:#fff;border:2px solid var(--line);border-radius:8px;padding:13px 16px;cursor:pointer;display:flex;gap:12px}
+.qa .num{font-family:var(--sans);font-weight:800;color:#fff;background:var(--navy);border-radius:50%;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11.5px;flex-shrink:0}
+.qa .q{font-size:15px;color:var(--ink);margin-bottom:6px}
+.qa .a{font-size:15px;font-weight:700;color:var(--sage);transition:filter .2s}
+.hideans .qa:not(.shown) .a{filter:blur(6px);user-select:none}
+/* questions */
+.qwrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+.item{border:2px solid var(--line);border-radius:8px;background:#fff;padding:24px 26px}
+.qtop{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+.qtop .k{background:var(--navy);color:#fff;padding:3px 10px;border-radius:3px}.qtop .d{border:1px solid var(--line);padding:2px 9px;border-radius:3px}
+.qtop .d.stretch{border-color:var(--gold);color:var(--amber)}.qtop .d.esoteric{border-color:var(--red);color:var(--red)}
+.qtop .flag{margin-left:auto;border:2px solid var(--line);background:#fff;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:11.5px;font-weight:800;color:var(--ink2)}
+.qtop .flag.on{border-color:#c47a00;background:#fff4dc;color:#8a5510}
+.stem{font-size:17px;margin-bottom:16px}
+ol.opts{list-style:none;margin:0;padding:0}
+ol.opts li{display:flex;gap:11px;align-items:flex-start;border:2px solid var(--line);background:#fff;border-radius:5px;padding:11px 13px;margin-bottom:8px;cursor:pointer}
+ol.opts li:hover{border-color:var(--navy)}
+ol.opts li .let{font-family:var(--sans);font-weight:800;font-size:12px;color:var(--navy);border:2px solid var(--line);border-radius:4px;min-width:25px;height:25px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+ol.opts li.sel{border-color:var(--blue);background:#eef3fa}ol.opts li.sel .let{background:var(--blue);color:#fff;border-color:var(--blue)}
+ol.opts li.hit{border-color:var(--hitB);background:var(--hit)}ol.opts li.hit .let{background:var(--hitB);color:#fff;border-color:var(--hitB)}
+ol.opts li.miss{border-color:var(--missB);background:var(--miss)}ol.opts li.miss .let{background:var(--missB);color:#fff;border-color:var(--missB)}
+ol.opts.lk li{cursor:default}
+.onote{display:block;font-size:13.5px;color:var(--ink2);margin-top:3px}
+.verdict{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:9px 14px;border-radius:4px;margin:16px 0 12px}
+.verdict.ok{background:var(--hit);color:var(--hitB);border:2px solid var(--hitB)}.verdict.no{background:var(--miss);color:var(--missB);border:2px solid var(--missB)}
+.box{border:2px solid var(--line);border-left-width:6px;padding:12px 15px;margin-bottom:10px;background:#fff;border-radius:4px}
+.box .t{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px}
+.box p{margin:0}.box.rule{border-left-color:var(--gold);background:#fdf9ef}.box.rule .t{color:var(--amber)}
+.box.why{border-left-color:var(--navy)}.box.why .t{color:var(--navy)}.box.trap{border-left-color:var(--red)}.box.trap .t{color:var(--red)}
+.box.ref .t{color:var(--mute)}.box.ref p{font-size:13px;color:var(--ink2)}
+.qnav{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.navbtn{font-weight:800;font-size:13px;padding:9px 16px;border-radius:4px;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+.navbtn.pri{background:var(--navy);color:#fff}.navbtn:disabled{opacity:.4;cursor:default}
+/* navigator */
+#navp{position:sticky;top:70px;border:2px solid var(--navy);border-radius:8px;background:#fff;max-height:calc(100vh - 90px);display:flex;flex-direction:column}
+#navp .nh{background:var(--navy);color:#fff;font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;display:flex;align-items:center}
+#navp .nh span{margin-left:auto;font-weight:600;letter-spacing:0;text-transform:none;color:#cfd6e6}
+.modes{display:flex;border-bottom:1px solid var(--line)}
+.modes button{flex:1;font-size:12px;font-weight:800;padding:8px;border:none;background:#fff;color:var(--ink2);cursor:pointer;border-bottom:3px solid transparent}
+.modes button.on{border-bottom-color:var(--gold);color:var(--navy)}
+#ngrid{overflow-y:auto;padding:10px 12px}
+.ngh{font-family:var(--sans);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:8px 0 6px}
+.ngh.cur{color:var(--navy)}
+.nboxes{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.nb{position:relative;font-family:var(--sans);font-size:12px;font-weight:800;height:32px;border:2px solid #c9c4b4;border-radius:4px;background:#fff;color:var(--ink2);cursor:pointer;padding:0}
+.nb.seen{background:#f1efe9}.nb.ans{background:#dbe7f7;border-color:var(--blue);color:var(--navy)}
+.nb.ok{background:var(--hitB);border-color:var(--hitB);color:#fff}.nb.no{background:var(--missB);border-color:var(--missB);color:#fff}
+.nb.cur{outline:3px solid var(--gold);outline-offset:1px}
+.nb.fl:after{content:"";position:absolute;top:-1px;right:-1px;border-style:solid;border-width:0 11px 11px 0;border-color:transparent #e39a00 transparent transparent}
+.legend{border-top:1px solid var(--line);padding:9px 12px;display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-family:var(--sans);font-size:11px;color:var(--ink2)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;border:2px solid #c9c4b4;margin-right:5px;vertical-align:-2px}
+.nfoot{border-top:1px solid var(--line);padding:10px 12px;display:flex;gap:6px;flex-wrap:wrap}
+.nfoot button{flex:1;font-size:11.5px;font-weight:800;padding:8px 6px;border-radius:4px;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+.nfoot button.end{background:var(--red);border-color:var(--red);color:#fff}
+/* fire, keys, refs, results */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
+.fcard{background:#fff;border:2px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer}
+.fcard.cur{border-color:var(--gold);box-shadow:0 0 0 3px #f3e3bd}
+.fcard .q{font-size:15px;margin-bottom:6px}.fcard .q b{font-family:var(--sans);color:var(--red);margin-right:6px}
+.fcard .a{font-weight:700;color:var(--sage);filter:blur(6px);transition:filter .2s;user-select:none}
+.fcard.rev .a,.fcard:hover .a{filter:none;user-select:auto}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.kp{background:#fff;border:2px solid var(--line);border-top-width:6px;border-radius:6px;padding:14px 16px}
+.kp h3{font-family:var(--sans);font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
+.kp ol{margin:0;padding-left:20px;font-size:14.5px}.kp li{margin-bottom:6px}
+ol.refs{font-family:var(--sans);font-size:13.5px;color:var(--ink2);padding-left:30px}ol.refs li{margin-bottom:5px}ol.refs li:target{background:#fff4dc}
+.res{max-width:760px}.sc{font-family:var(--disp);font-size:56px;color:var(--navy)}
+.rtab{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14px;margin:14px 0}.rtab td{border-bottom:1px solid var(--line);padding:7px 8px}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;font-family:var(--sans);font-size:12px;color:var(--mute);text-align:center}
+@media(max-width:1100px){.qwrap{grid-template-columns:minmax(0,1fr)}#navp{position:static;max-height:none}}
+@media(max-width:900px){.deck{grid-template-columns:minmax(0,1fr)}#side{position:static;max-height:none}#side .sh{display:none}
+#sideList,#sideMore{display:flex;gap:6px;overflow-x:auto;padding:8px}#side .sc{flex:0 0 auto;border:1.5px solid var(--line);border-radius:18px;white-space:nowrap}}
+@media(max-width:600px){.wrap{padding:0 16px}.lesson{padding:18px 16px}.item{padding:16px 14px}.cover h1{font-size:32px}header.bar{position:static}.nboxes{grid-template-columns:repeat(8,1fr)}}
+@media print{header.bar,nav.secnav,#side,#navp,.steps,.nextbar,footer{display:none!important}.screen{display:block!important}}
+.aims{border:1px solid #14243A;border-left:6px solid #B8932C;background:#fff;padding:18px 22px;margin:18px 0}.aims .t{font:700 12px var(--sans,Helvetica Neue,Arial,sans-serif);letter-spacing:.14em;text-transform:uppercase;color:#B8932C;margin-bottom:6px}.aims .aim{font-size:16px;margin:0 0 10px;color:#14243A}.aims .st{font-weight:700;margin:6px 0;color:#14243A}.aims ol{margin:0;padding-left:22px}.aims li{margin:5px 0}.endtraps{margin-top:26px}</style><script src="../content/auth.js"></script>
+<script>
+(function () {
+  var NEED = "paper-a";
+  var root = document.documentElement;
+  root.style.visibility = "hidden";
+  function decide() {
+    if (window.hasAccess && window.hasAccess(NEED)) { root.style.visibility = ""; return; }
+    var here = location.pathname.split("/").pop() || "";
+    location.replace("../locked.html?w=" + encodeURIComponent(NEED) + "&r=" + encodeURIComponent(here));
+  }
+  if (typeof window.onAuthReady === "function") window.onAuthReady(decide);
+  else setTimeout(decide, 50);
+  setTimeout(function () {
+    if (root.style.visibility === "hidden") location.replace("../locked.html?w=" + encodeURIComponent(NEED));
+  }, 6000);
+})();
+</script>
+<script src="../content/protect.js"></script></head><body>
+<header class="bar"><div class="in">
+ <div class="brand">THE COMPLETE DOCTOR ACADEMY<span>MRCPsych Paper A &middot; Domain 4 Classification and Assessment</span></div>
+ <div class="cnt" id="cnt"></div>
+ <div class="right"><button class="bbtn" data-exit onclick="location.href='../paper-a-classification-assessment.html'">All chapters</button><button class="bbtn" data-exit onclick="location.href='../paper-a.html'">Paper A</button><button class="bbtn" data-exit onclick="location.href='../index.html'">Front page</button><button class="bbtn" data-go="scCover">Cover</button><button class="bbtn" data-go="scToc">Contents</button><button class="bbtn" data-go="scFire">Rapid fire</button><button class="bbtn" data-go="scKeys">Key points</button><button class="bbtn" data-go="scRefs">References</button></div>
+</div><div id="prog"><div id="progfill"></div></div></header>
+<nav class="secnav"><div class="in"><div class="crumb" id="crumb"></div><div class="tabs" id="tabs"></div></div></nav>
+<main class="wrap">
+<section class="screen on cover" id="scCover">
+ <div class="band" id="cvBand"></div>
+ <div class="eyebrow" id="cvEye"></div><h1 id="cvTitle"></h1><p class="strap" id="cvStrap"></p>
+ <div class="grid4" id="cvStats"></div>
+ <div class="aims" id="cvAims"><div class="t">Aim and objectives</div><p class="aim"><b>Aim.</b> To prepare you to assess risk and build collaborative safety plans for MRCPsych Paper A.</p><p class="st">At the end of this chapter, you should be able to:</p><ol><li>Explain why risk tools and scales should not be used to predict suicide or decide who receives care, as advised by NICE.</li><li>Distinguish static from dynamic risk factors and give two examples of each.</li><li>Describe the parts of a collaborative safety plan, including warning signs, coping strategies, contacts and means restriction.</li><li>Formulate risk in a clinical vignette and link it to a management plan.</li><li>Answer the chapter&#x27;s 7 exam-style questions, scoring at least 80%, by the end of this chapter.</li></ol></div>
+ <p><button class="startbtn" id="startBtn">Start with the teaching</button> <button class="ghostbtn" data-go="scToc">Contents and syllabus map</button></p>
+ <div class="cdabox"><div class="logo">CDA</div><div><div class="nm">THE COMPLETE DOCTOR ACADEMY</div><div class="cr">Dr Chinonso S. Ezeanyika, Medical Education Specialist</div><div class="small" id="cvSyl"></div></div></div>
+ <h2 style="font-size:18px">Key sources</h2><ul class="srcs" id="cvSrcs"></ul>
+ <p class="small" style="margin-top:16px">How to use: each category runs Teaching, then Rapid revision, then Questions. Questions: 1 to 5 choose &middot; arrows move &middot; F flag. Rapid fire: Space flip &middot; J/K next and back &middot; R reveal all &middot; H hide all.</p>
+</section>
+<section class="screen" id="scToc"><div class="eyebrow">Contents</div><h1 id="tocTitle"></h1><div id="tocBody"></div></section>
+<section class="screen" id="scDeck"><div class="deck">
+ <aside id="side"><div class="sh">Categories</div><div id="sideList"></div><div class="sh">Consolidate</div><div id="sideMore"></div></aside>
+ <div id="stage"></div>
+</div></section>
+<section class="screen" id="scFire"><div class="eyebrow">Self-test</div><h1>Rapid fire</h1>
+ <p class="small">Every revision question in this chapter. Answers are frosted: tap a card or press Space to reveal. J/K or arrows move, R reveals all, H hides all.</p>
+ <p><button class="ghostbtn sm" id="fShuf">Shuffle</button> <button class="ghostbtn sm" id="fAll">Reveal all</button> <button class="ghostbtn sm" id="fNone">Hide all</button></p>
+ <div class="fgrid" id="fgrid"></div></section>
+<section class="screen" id="scKeys"><div class="eyebrow">Summary</div><h1>Key points</h1><div class="kgrid" id="kgrid"></div><div class="warn endtraps"><div class="t">Red flags &middot; classic exam traps</div><ol id="cvTraps"></ol></div></section>
+<section class="screen" id="scRefs"><div class="eyebrow">Evidence</div><h1>References</h1><p class="small">Numbers match the superscript citations in the teaching.</p><ol class="refs" id="refs"></ol></section>
+<section class="screen" id="scRes"><div class="res"><div class="eyebrow">Results</div><div class="sc" id="rScore"></div><p class="small" id="rBand"></p><table class="rtab" id="rTab"></table>
+ <button class="startbtn" id="revBtn">Review answers</button> <button class="ghostbtn" id="againBtn">Reset and restart</button></div></section>
+</main>
+<footer><div class="wrap" id="foot">The Complete Doctor Academy &middot; Dr Chinonso S. Ezeanyika, Medical Education Specialist &middot; Written afresh and mapped to the MRCPsych Paper A blueprint.</div></footer>
+<script id="payload" type="application/json">{"meta": {"num": "09", "file": "CDA_PaperA_4-3e_RiskSafety.html", "code": "4.3e", "title": "Risk assessment and safety planning", "strap": "Plain-English lessons, revision questions and exam questions for every sub-point in this chapter, in syllabus order.", "kind": "sba", "syllabus": [{"code": "4", "text": "Classification and Assessment in Psychiatry"}], "parts": [{"label": "Part I", "name": "Risk and safety", "cats": ["A"]}], "sylmap": [{"code": "4.3.7", "text": "Risk assessment and safety planning", "n": 7}]}, "tabs": [{"file": "CDA_PaperA_4-1a_Foundations.html", "short": "4.1a", "on": false, "emi": false, "title": "Foundations: concepts, consciousness and cognition"}, {"file": "CDA_PaperA_4-1b_PerceptionThinking.html", "short": "4.1b", "on": false, "emi": false, "title": "Perception and thinking"}, {"file": "CDA_PaperA_4-1c_SelfSpeechAffectMovement.html", "short": "4.1c", "on": false, "emi": false, "title": "Self, speech, affect and movement"}, {"file": "CDA_PaperA_4-2_Classification.html", "short": "4.2", "on": false, "emi": false, "title": "Classificatory systems"}, {"file": "CDA_PaperA_4-3a_HistoryMSE.html", "short": "4.3a", "on": false, "emi": false, "title": "History and mental state examination"}, {"file": "CDA_PaperA_4-3b_ExamInvestigations.html", "short": "4.3b", "on": false, "emi": false, "title": "Examination and investigations"}, {"file": "CDA_PaperA_4-3c_FormulationFrameworks.html", "short": "4.3c", "on": false, "emi": false, "title": "Formulation and frameworks"}, {"file": "CDA_PaperA_4-3d_RatingScales.html", "short": "4.3d", "on": false, "emi": false, "title": "Rating scales"}, {"file": "CDA_PaperA_4-3e_RiskSafety.html", "short": "4.3e", "on": true, "emi": false, "title": "Risk assessment and safety planning"}, {"file": "CDA_PaperA_4EMI1_Descriptive.html", "short": "EMI 1", "on": false, "emi": true, "title": "EMI: descriptive psychopathology"}, {"file": "CDA_PaperA_4EMI2_ClinicalExam.html", "short": "EMI 2", "on": false, "emi": true, "title": "EMI: clinical examination"}, {"file": "CDA_PaperA_4EMI3_Investigations.html", "short": "EMI 3", "on": false, "emi": true, "title": "EMI: investigations and specialty"}], "cats": [{"id": "A", "name": "Risk and safety planning", "sub": "4.3.7", "badge": "CLINICAL", "codes": ["4.3.7"]}], "notes": {"4.3.7": {"code": "4.3.7", "title": "Risk assessment and safety planning", "syl": "Risk assessment and safety planning", "bigidea": "Risk assessment is not about producing a number; it exists to guide a plan that is made with the patient, not done to them.", "blocks": [{"h": "Assessing risk", "p": ["Assess risk to [[self]], to [[others]], of [[neglect]] and of [[exploitation]], combining [[static]] (historical) and [[dynamic]] (modifiable) factors.", "[[Structured professional judgement]] (for example HCR-20) outperforms both unstructured opinion and rigid actuarial scores; the strongest predictor is a [[past history]]."]}, {"h": "Safety planning", "p": ["Risk assessment exists to drive a [[management plan]] that targets the modifiable dynamic factors.", "A good [[safety plan]] is [[co-produced]] or mutually agreed, names warning signs and coping steps, and is reviewed as risk changes."]}], "analogy": "A risk score is like a weather forecast: useful, but the point is to decide whether to carry an umbrella, not to admire the percentage.", "people": [{"who": "Webster et al (1997)", "did": "Developed the HCR-20", "means": "Structured professional judgement of violence risk", "ref": 1}, {"who": "Royal College of Psychiatrists (2016)", "did": "Set risk-assessment standards", "means": "Risk assessment should lead to management, co-produced with the patient", "ref": 2}], "numbers": [{"what": "Best single predictor", "value": "a previous episode"}, {"what": "Preferred method", "value": "structured professional judgement"}], "clinical": "The value of a risk assessment is the plan it produces, so it must address what can change and be agreed with the person it concerns.", "traps": ["The best predictor of future self-harm or violence is a previous episode.", "Structured professional judgement beats unstructured opinion and rigid actuarial tools.", "A number is not a plan; co-produce the safety plan."], "revise": [{"q": "What domains does risk assessment cover?", "a": "Self-harm, suicide, harm to others, neglect and exploitation."}, {"q": "Static versus dynamic factors?", "a": "Historical and unchangeable versus current and modifiable."}, {"q": "What is structured professional judgement?", "a": "Combining a structured checklist with clinical judgement (for example HCR-20)."}, {"q": "Best single predictor of future risk?", "a": "A previous episode."}, {"q": "What should a risk assessment lead to?", "a": "A management plan."}, {"q": "What makes a good safety plan?", "a": "It is co-produced, names warning signs and coping steps, and is reviewed."}, {"q": "Which method is preferred?", "a": "Structured professional judgement."}, {"q": "Is a risk score the goal?", "a": "No, the plan is the goal."}], "fig": "<div class=\"atlasfig\"><svg viewBox=\"0 0 1000 500\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;height:auto;display:block;background:#fbfaf7;border:2px solid #1A2E4A\" role=\"img\" aria-label=\"Risk management framework\"><rect x=\"0\" y=\"0\" width=\"1000\" height=\"500\" fill=\"#fbfaf7\"/><rect x=\"0\" y=\"0\" width=\"1000\" height=\"46\" fill=\"#1A2E4A\"/><rect x=\"0\" y=\"0\" width=\"7\" height=\"46\" fill=\"#C9A227\"/><text x=\"20\" y=\"20\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"9.5\" fill=\"#d9b25a\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"1.2\" style=\"\">THE COMPLETE DOCTOR ACADEMY  \u00b7  PAPER A CLASSIFICATION &amp; ASSESSMENT ATLAS</text><text x=\"20\" y=\"37\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"17\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Risk management framework</text><text x=\"982\" y=\"30\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11\" fill=\"#cdd9e6\" font-weight=\"normal\" text-anchor=\"end\" letter-spacing=\"0\" style=\"font-style:italic;\">Syllabus 4.3.7 \u00b7 structured judgement and co-produced safety planning</text><text x=\"20\" y=\"78\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"15\" fill=\"#1A2E4A\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Risk assessment is a forecast, not a prediction</text><text x=\"20\" y=\"96\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#687180\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"font-style:italic;\">The point is not the number; it is the plan it drives, made WITH the person.</text><rect x=\"20\" y=\"116\" width=\"300\" height=\"150\" fill=\"#ffffff\"/><rect x=\"20\" y=\"116\" width=\"300\" height=\"150\" fill=\"#1E9E92\" stroke=\"2\" stroke-width=\"1.4\"/><rect x=\"20\" y=\"116\" width=\"300\" height=\"34\" fill=\"#1E9E92\"/><text x=\"34\" y=\"139\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"12\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">STATIC \u2014 historical, fixed</text><text x=\"36\" y=\"174\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Previous self-harm or violence</text><text x=\"36\" y=\"200\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Past episodes (strongest predictor)</text><text x=\"36\" y=\"226\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Early trauma, forensic history</text><rect x=\"20\" y=\"276\" width=\"300\" height=\"150\" fill=\"#ffffff\"/><rect x=\"20\" y=\"276\" width=\"300\" height=\"150\" fill=\"#7A1F2B\" stroke=\"2\" stroke-width=\"1.4\"/><rect x=\"20\" y=\"276\" width=\"300\" height=\"34\" fill=\"#7A1F2B\"/><text x=\"34\" y=\"299\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"12\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">DYNAMIC \u2014 current, MODIFIABLE</text><text x=\"36\" y=\"334\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Active symptoms, hopelessness</text><text x=\"36\" y=\"360\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Intoxication, access to means</text><text x=\"36\" y=\"386\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Poor support, non-adherence</text><text x=\"328\" y=\"276\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"18\" fill=\"#687180\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">\u25b6</text><rect x=\"360\" y=\"208\" width=\"250\" height=\"140\" fill=\"#1A2E4A\"/><rect x=\"360\" y=\"208\" width=\"7\" height=\"140\" fill=\"#C9A227\"/><text x=\"380\" y=\"236\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">STRUCTURED</text><text x=\"380\" y=\"256\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">PROFESSIONAL</text><text x=\"380\" y=\"276\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">JUDGEMENT</text><text x=\"380\" y=\"302\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"10.5\" fill=\"#cdd9e6\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"font-style:italic;\">e.g. HCR-20 \u2014 tools inform,</text><text x=\"380\" y=\"317\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"10.5\" fill=\"#cdd9e6\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"font-style:italic;\">they do not replace judgement</text><text x=\"618\" y=\"276\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"18\" fill=\"#687180\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">\u25b6</text><rect x=\"650\" y=\"156\" width=\"330\" height=\"244\" fill=\"#ffffff\"/><rect x=\"650\" y=\"156\" width=\"330\" height=\"244\" fill=\"#C9A227\" stroke=\"2\" stroke-width=\"1.4\"/><rect x=\"650\" y=\"156\" width=\"330\" height=\"34\" fill=\"#C9A227\"/><text x=\"664\" y=\"179\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"12\" fill=\"#1A2E4A\" font-weight=\"bold\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">CO-PRODUCED SAFETY PLAN</text><text x=\"666\" y=\"212\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Target the MODIFIABLE factors</text><text x=\"666\" y=\"243\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Reduce access to means</text><text x=\"666\" y=\"274\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Name warning signs</text><text x=\"666\" y=\"305\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">List coping steps and contacts</text><text x=\"666\" y=\"336\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Shared, written, agreed</text><text x=\"666\" y=\"367\" font-family=\"Georgia,'Times New Roman',serif\" font-size=\"11.5\" fill=\"#20262e\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0\" style=\"\">Reviewed as risk changes</text><rect x=\"0\" y=\"476\" width=\"1000\" height=\"24\" fill=\"#fbfaf7\"/><line x1=\"18\" y1=\"476\" x2=\"982\" y2=\"476\" stroke=\"#d7d0c2\" stroke-width=\"1\"/><text x=\"20\" y=\"492\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"9\" fill=\"#687180\" font-weight=\"normal\" text-anchor=\"start\" letter-spacing=\"0.4\" style=\"\">The Complete Doctor Academy \u00b7 Paper A Classification &amp; Assessment Atlas</text><text x=\"980\" y=\"492\" font-family=\"'Helvetica Neue',Arial,sans-serif\" font-size=\"9\" fill=\"#687180\" font-weight=\"normal\" text-anchor=\"end\" letter-spacing=\"0\" style=\"\">Dr Chinonso S. Ezeanyika, Medical Education Specialist</text></svg></div>"}}, "items": [{"diff": "core", "stem": "Which of the following is a STATIC (unchangeable) risk factor for future violence?", "opts": ["Current substance misuse", "Active psychotic symptoms", "Treatment non-adherence", "Current living circumstances", "A history of previous violence"], "notes": ["A dynamic (modifiable) factor", "A dynamic factor", "A dynamic factor", "A dynamic factor", "Correct: static, and the strongest predictor"], "ans": 4, "rule": "Static risk factors are historical and unchangeable; past violence is the prime example and the strongest predictor.", "teach": "Risk factors are static (historical and fixed: past violence, age at first offence, childhood adversity) or dynamic (modifiable: current symptoms, substance use, non-adherence, social circumstances). Past violence is the single best predictor of future violence.", "trap": "Past violence is the best predictor of future violence.", "ref": "HCR-20 / risk-assessment literature.", "code": "4.3.7", "fam": "A"}, {"diff": "stretch", "stem": "An approach that combines validated risk items with the clinician's professional judgement, rather than a fixed statistical formula, is:", "opts": ["Purely actuarial assessment", "Unstructured clinical judgement", "Purely intuitive assessment", "Base-rate estimation", "Structured clinical (professional) judgement"], "notes": ["Applies a fixed formula without clinical input", "Reliable methods are structured, not free-form", "Not evidence-based", "A statistical concept, not an approach", "Correct: structured clinical judgement"], "ans": 4, "rule": "Structured clinical judgement blends empirically-derived risk items with clinical reasoning.", "teach": "Unstructured clinical judgement is unreliable; a purely actuarial tool applies a fixed statistical formula. Structured clinical judgement (e.g. HCR-20) guides the clinician through validated items while allowing professional formulation, and is the preferred approach.", "trap": "Unstructured judgement alone is unreliable.", "ref": "HCR-20 literature.", "code": "4.3.7", "fam": "A"}, {"diff": "stretch", "stem": "The HCR-20 violence risk tool groups its items into which three domains?", "opts": ["Static, dynamic and protective", "Past, present and future offences", "Actuarial, clinical and social", "Predisposing, precipitating and perpetuating", "Historical, Clinical and Risk-management"], "notes": ["Not the HCR-20 structure", "Not the HCR-20 structure", "Not the HCR-20 structure", "That is an aetiological formulation grid", "Correct: Historical, Clinical, Risk-management"], "ans": 4, "rule": "HCR-20 comprises Historical (H), Clinical (C) and Risk-management (R) items.", "teach": "The HCR-20 is a structured professional-judgement tool with 20 items across three scales: Historical (largely static), Clinical (current dynamic) and Risk management (future and situational). It guides violence risk formulation.", "trap": "It is structured judgement, not a pure actuarial score.", "ref": "HCR-20 manual.", "code": "4.3.7", "fam": "A"}, {"diff": "stretch", "stem": "Which structured tool is designed specifically to assess the risk of spousal (intimate-partner) assault?", "opts": ["HCR-20", "PCL-R", "VRAG", "Static-99", "SARA"], "notes": ["General violence risk", "A psychopathy rating scale", "An actuarial general-violence tool", "A sexual-reoffending actuarial tool", "Correct: spousal assault risk"], "ans": 4, "rule": "The SARA (Spousal Assault Risk Assessment) targets intimate-partner violence.", "teach": "Different tools suit different risks: SARA for spousal assault, Static-99 for sexual reoffending, VRAG for general violence, the PCL-R for psychopathy, and HCR-20 for general violence risk.", "trap": "Static-99 is for sexual, not spousal, risk.", "ref": "Risk-assessment literature.", "code": "4.3.7", "fam": "A"}, {"diff": "core", "stem": "Which is the single strongest predictor of future violence?", "opts": ["A diagnosis of schizophrenia", "Male sex", "Current unemployment", "Command hallucinations", "A history of past violence"], "notes": ["Raises risk modestly, less than past violence", "A weak predictor alone", "A weak predictor alone", "Contributes, but less than past behaviour", "Correct: past violence"], "ans": 4, "rule": "Past violence is the strongest single predictor of future violence.", "teach": "Across the evidence, previous violent behaviour predicts future violence more strongly than any diagnosis or demographic factor. Substance misuse markedly raises risk; mental illness alone contributes modestly.", "trap": "Diagnosis alone predicts far less than behaviour.", "ref": "Risk-assessment literature.", "code": "4.3.7", "fam": "A"}, {"diff": "stretch", "stem": "When a risk tool is applied to a behaviour with a very low base rate, such as suicide, the main statistical problem is:", "opts": ["Too few items on the tool", "Poor inter-rater reliability", "Excessive sensitivity", "A ceiling effect", "A high rate of false positives"], "notes": ["Not the core statistical issue", "A separate reliability issue", "Sensitivity isn't the problem; positive predictive value is", "Not the issue here", "Correct: many false positives (low positive predictive value)"], "ans": 4, "rule": "For rare outcomes, even a good tool yields many false positives, so its positive predictive value is low.", "teach": "When the base rate of an outcome is very low, most people flagged as high-risk will not go on to the outcome (low positive predictive value), so risk tools produce many false positives and cannot reliably predict rare individual events such as suicide.", "trap": "A low base rate crushes positive predictive value.", "ref": "Risk-assessment literature.", "code": "4.3.7", "fam": "A"}, {"diff": "core", "stem": "Which of the following is a DYNAMIC risk factor and a potential target for intervention?", "opts": ["Age at first offence", "Childhood conduct problems", "Past violent convictions", "Male sex", "Current alcohol misuse"], "notes": ["Static and historical", "Static and historical", "Static and historical", "Static and unmodifiable", "Correct: dynamic and modifiable"], "ans": 4, "rule": "Dynamic risk factors are modifiable; current substance misuse is a key example and an intervention target.", "teach": "Dynamic (changeable) risk factors, such as active substance misuse, untreated symptoms, non-adherence and unstable housing, are the focus of risk-management plans, whereas static factors (past offending, early history, sex) cannot be changed.", "trap": "Static factors (history, sex) can't be intervention targets.", "ref": "HCR-20 literature.", "code": "4.3.7", "fam": "A"}], "traps": ["The best predictor of future self-harm or violence is a previous episode.", "Structured professional judgement beats unstructured opinion and rigid actuarial tools."], "refs": ["Webster CD, Douglas KS, Eaves D, Hart SD. HCR-20: Assessing Risk for Violence. Burnaby: Simon Fraser University; 1997.", "Royal College of Psychiatrists. Assessment and management of risk to others (CR201). London: RCPsych; 2016.", "Oyebode F. Sims' Symptoms in the Mind. 6th ed. Edinburgh: Elsevier; 2018.", "Casey P, Kelly B. Fish's Clinical Psychopathology. 4th ed. Cambridge: Cambridge University Press; 2019.", "Semple D, Smyth R. Oxford Handbook of Psychiatry. 4th ed. Oxford: Oxford University Press; 2019."], "sources": ["Webster CD, Douglas KS, Eaves D, Hart SD. HCR-20: Assessing Risk for Violence. Burnaby: Simon Fraser University; 1997.", "Royal College of Psychiatrists. Assessment and management of risk to others (CR201). London: RCPsych; 2016.", "Oyebode F. Sims' Symptoms in the Mind. 6th ed. Edinburgh: Elsevier; 2018.", "Casey P, Kelly B. Fish's Clinical Psychopathology. 4th ed. Cambridge: Cambridge University Press; 2019.", "Semple D, Smyth R. Oxford Handbook of Psychiatry. 4th ed. Oxford: Oxford University Press; 2019."]}</script>
+<script>
+var D=JSON.parse(document.getElementById('payload').textContent);
+var M=D.meta,CATS=D.cats,ITEMS=D.items,NOTES=D.notes,TOTAL=ITEMS.length;
+var KCOL=['#0B2545','#B8892B','#2f5a4a','#8c2f2f','#2E6DB4','#4a1f4d','#8a5510'];
+var S={sel:{},seen:{},flag:{},submitted:false,mode:'practice'};
+try{var sv=JSON.parse(localStorage.getItem('cda_'+M.file)||'null');if(sv)S=sv;}catch(e){}
+function save(){try{localStorage.setItem('cda_'+M.file,JSON.stringify(S));}catch(e){}}
+var curCat=0,step=0,cur=0,fcur=0;
+function $(i){return document.getElementById(i);}
+function L(i){return String.fromCharCode(65+i);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmt(s){return esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="chip">$1</span>').replace(/\{\{(.+?)\}\}/g,'<span class="chip m">$1</span>');}
+function cites(a){if(!a||!a.length)return '';return '<sup class="r">'+a.map(function(n){return '<a href="#ref'+n+'" onclick="show(\'scRefs\')">['+n+']</a>';}).join('')+'</sup>';}
+function catItems(k){var a=[];ITEMS.forEach(function(it,i){if(it.fam===CATS[k].id)a.push(i);});return a;}
+function isOk(i){return S.sel[i]!==undefined&&S.sel[i]===ITEMS[i].ans;}
+function revealed(i){return S.sel[i]!==undefined&&(S.mode==='practice'||S.submitted);}
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');if(id!=='scRefs')window.scrollTo(0,0);}
+document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){show(b.dataset.go);};});
+/* header, tabs, cover */
+$('cnt').innerHTML=M.code+' '+M.title+' &middot; <b>'+TOTAL+'</b> questions';
+$('crumb').innerHTML='Paper A &rsaquo; Domain 4 &rsaquo; <b>'+M.code+' '+M.title+'</b>';
+$('tabs').innerHTML=D.tabs.map(function(t){return '<a class="tab'+(t.on?' on':'')+(t.emi?' emi':'')+'" href="'+(t.on?'#':t.file)+'" title="'+esc(t.title)+'">'+t.short+'</a>';}).join('');
+$('cvBand').innerHTML='MRCPsych Paper A &middot; Domain 4 Classification and Assessment &middot; File '+(+M.num)+' of '+D.tabs.length;
+$('cvEye').textContent='Syllabus '+M.code;$('cvTitle').textContent=M.title;$('cvStrap').textContent=M.strap;
+var nRev=0;Object.keys(NOTES).forEach(function(c){nRev+=NOTES[c].revise.length;});
+$('cvStats').innerHTML='<div class="stat c1"><b>'+Object.keys(NOTES).length+'</b><span>Syllabus sub-points taught</span></div><div class="stat c2"><b>'+TOTAL+'</b><span>Questions</span></div><div class="stat c3"><b>'+nRev+'</b><span>Revision questions</span></div><div class="stat c4"><b>'+D.refs.length+'</b><span>References</span></div>';
+$('cvTraps').innerHTML=D.traps.map(function(t){return '<li>'+fmt(t)+'</li>';}).join('');
+$('cvSyl').innerHTML='Mapped to the RCPsych Paper A syllabus: '+M.syllabus.map(function(s){return '<b>'+s.code+'</b> '+esc(s.text);}).join(' &middot; ');
+$('cvSrcs').innerHTML=D.sources.map(function(s){return '<li>'+esc(s)+'</li>';}).join('');
+$('startBtn').onclick=function(){openCat(0,0);};
+/* contents */
+$('tocTitle').textContent=M.code+' '+M.title;
+(function(){var h='<div class="part">Syllabus map<span class="pc">'+M.sylmap.length+' sub-points, all covered</span></div><div class="catlist">';
+ M.sylmap.forEach(function(s){var k=-1;CATS.forEach(function(c,j){if(c.codes.indexOf(s.code)>=0&&k<0)k=j;});
+  h+='<div class="row sylrow" data-c="'+k+'"><span class="cc">'+s.code+'</span><span class="txt">'+esc(s.text)+'</span><span class="tag">'+s.n+' Qs</span></div>';});
+ h+='</div>';
+ M.parts.forEach(function(p){var ks=p.cats.map(function(id){for(var k=0;k<CATS.length;k++)if(CATS[k].id===id)return k;});var n=0;ks.forEach(function(k){n+=catItems(k).length;});
+  h+='<div class="part">'+p.label+' &middot; '+esc(p.name)+'<span class="pc">'+n+' questions</span></div><div class="catlist">';
+  ks.forEach(function(k){var c=CATS[k],rv=0;c.codes.forEach(function(cd){if(NOTES[cd])rv+=NOTES[cd].revise.length;});
+   h+='<div class="row" data-c="'+k+'"><span class="cc">'+c.id+'</span><span>'+esc(c.name)+' <span class="code">'+c.sub+'</span></span><span style="margin-left:auto"><span class="mini">'+c.codes.length+' lessons</span><span class="mini">'+rv+' revision</span><span class="mini">'+catItems(k).length+' Qs</span></span></div>';});
+  h+='</div>';});
+ h+='<div class="part">Consolidation</div><div class="catlist"><div class="row" data-g="scFire"><span class="cc">RF</span><span>Rapid fire self-test</span><span class="tag">'+nRev+'</span></div><div class="row" data-g="scKeys"><span class="cc">KP</span><span>Key points summary</span></div><div class="row" data-g="scRefs"><span class="cc">RE</span><span>References</span><span class="tag">'+D.refs.length+'</span></div></div>';
+ $('tocBody').innerHTML=h;
+ document.querySelectorAll('#tocBody .row').forEach(function(r){r.onclick=function(){if(r.dataset.g)show(r.dataset.g);else if(+r.dataset.c>=0)openCat(+r.dataset.c,0);};});})();
+/* side */
+function renderSide(){var h='';CATS.forEach(function(c,k){var ci=catItems(k),d=0;ci.forEach(function(i){if(S.sel[i]!==undefined)d++;});
+ h+='<div class="sc'+(k===curCat?' on':'')+'" data-k="'+k+'"><span>'+c.id+' &middot; '+esc(c.name)+'</span><span class="n">'+d+'/'+ci.length+'</span></div>';});
+ $('sideList').innerHTML=h;
+ $('sideMore').innerHTML='<div class="sc" data-g="scFire"><span>Rapid fire</span></div><div class="sc" data-g="scKeys"><span>Key points</span></div><div class="sc" data-g="scRefs"><span>References</span></div>';
+ document.querySelectorAll('#side .sc').forEach(function(s){s.onclick=function(){if(s.dataset.g)show(s.dataset.g);else openCat(+s.dataset.k,0);};});
+ $('progfill').style.width=(Object.keys(S.sel).length/TOTAL*100)+'%';}
+function openCat(k,s){curCat=k;step=s;var ci=catItems(k);if(ITEMS[cur]===undefined||ITEMS[cur].fam!==CATS[k].id)cur=ci[0];show('scDeck');render();}
+function stepsHTML(){var n=catItems(curCat).length,lab=['Teaching','Rapid revision','Questions ('+n+')'];
+ return '<div class="steps">'+lab.map(function(l,i){return '<button class="step'+(i===step?' on':'')+'" data-s="'+i+'"><b>'+(i+1)+'</b>'+l+'</button>';}).join('')+'</div>';}
+function render(){var c=CATS[curCat];
+ var h='<div class="eyebrow">Category '+c.id+' &middot; '+c.sub+' &middot; '+(curCat+1)+' of '+CATS.length+'</div><h1 style="font-size:30px">'+esc(c.name)+'</h1>'+stepsHTML();
+ if(step===0)h+=teachHTML(c);else if(step===1)h+=reviseHTML(c);else h+=qHTML();
+ $('stage').innerHTML=h;
+ document.querySelectorAll('.step').forEach(function(b){b.onclick=function(){step=+b.dataset.s;render();window.scrollTo(0,0);};});
+ if(step===1)bindRev();if(step===2)bindQ();renderSide();}
+/* teaching */
+function teachHTML(c){var h='';c.codes.forEach(function(cd){var n=NOTES[cd];if(!n)return;
+ h+='<article class="lesson"><div class="syl"><b>'+cd+'</b>'+esc(n.syl)+'</div><h2>'+esc(n.title)+'</h2>';
+ h+='<div class="big"><span class="t">The big idea</span>'+fmt(n.bigidea)+'</div>';
+ n.blocks.forEach(function(b,bi){h+='<div class="blk"><h3>'+esc(b.h)+'</h3>'+b.p.map(function(p,pi){return '<p>'+fmt(p)+(pi===b.p.length-1?cites(b.refs):'')+'</p>';}).join('')+'</div>';
+  if(bi===0&&n.analogy)h+='<div class="analogy"><span class="t">Think of it like this</span>'+fmt(n.analogy)+'</div>';});
+ if(n.fig)h+='<div class="atlasblk"><span class="t">Atlas figure</span>'+n.fig+'</div>';
+ if(n.people&&n.people.length)h+='<div class="tbl"><span class="t">Key people and studies</span><table><tr><th>Who</th><th>What they did</th><th>What it shows</th></tr>'+n.people.map(function(p){return '<tr><td>'+esc(p.who)+'</td><td>'+fmt(p.did)+'</td><td>'+fmt(p.means)+cites(p.ref?[p.ref]:[])+'</td></tr>';}).join('')+'</table></div>';
+ if(n.numbers&&n.numbers.length)h+='<div class="tbl"><span class="t">Numbers to know</span><table><tr><th>What</th><th>Value</th></tr>'+n.numbers.map(function(p){return '<tr><td style="white-space:normal;font-weight:400;color:var(--ink)">'+fmt(p.what)+'</td><td class="v">'+esc(p.value)+'</td></tr>';}).join('')+'</table></div>';
+ if(n.clinical)h+='<div class="clin"><span class="t">Why it matters in practice</span>'+fmt(n.clinical)+'</div>';
+ if(n.traps&&n.traps.length)h+='<div class="traps"><span class="t">Exam traps</span><ul>'+n.traps.map(function(t){return '<li>'+fmt(t)+'</li>';}).join('')+'</ul></div>';
+ h+='</article>';});
+ return h+'<div class="nextbar"><button class="navbtn pri" onclick="step=1;render();window.scrollTo(0,0)">Next: rapid revision &rarr;</button></div>';}
+/* revision */
+var hideAns=false;
+function reviseHTML(c){var h='<div class="revhead"><span class="small">Read each question, answer it in your head, then check. Switch on self-test to hide the answers.</span><button class="ghostbtn sm" id="hideBtn">'+(hideAns?'Show answers':'Self-test: hide answers')+'</button></div><div class="'+(hideAns?'hideans':'')+'">',k=0;
+ c.codes.forEach(function(cd){var n=NOTES[cd];if(!n)return;h+='<div class="rsub">'+cd+' &middot; '+esc(n.title)+'</div><div class="rgrid">';
+  n.revise.forEach(function(r){k++;h+='<div class="qa"><span class="num">'+k+'</span><div><div class="q">'+fmt(r.q)+'</div><div class="a">'+fmt(r.a)+'</div></div></div>';});h+='</div>';});
+ return h+'</div><div class="nextbar"><button class="navbtn" onclick="step=0;render();window.scrollTo(0,0)">&larr; Back to teaching</button><button class="navbtn pri" onclick="step=2;render();window.scrollTo(0,0)">Next: questions &rarr;</button></div>';}
+function bindRev(){$('hideBtn').onclick=function(){hideAns=!hideAns;render();};document.querySelectorAll('.qa').forEach(function(q){q.onclick=function(){q.classList.toggle('shown');};});}
+/* questions */
+function qHTML(){var ci=catItems(curCat);if(ci.indexOf(cur)<0)cur=ci[0];S.seen[cur]=1;var it=ITEMS[cur],gi=cur+1,rv=revealed(cur),sel=S.sel[cur];
+ var h='<div class="qwrap"><div><div class="item"><div class="qtop"><span class="k">Question '+gi+' of '+TOTAL+'</span><span class="d">'+it.code+'</span><span class="d '+it.diff+'">'+it.diff+'</span><button class="flag'+(S.flag[cur]?' on':'')+'" id="flagBtn">'+(S.flag[cur]?'Flagged':'Flag for review')+'</button></div>';
+ h+='<div class="stem">'+fmt(it.stem)+'</div><ol class="opts'+(rv?' lk':'')+'" id="opts">';
+ it.opts.forEach(function(o,i){var cl='';if(rv){if(i===it.ans)cl='hit';else if(i===sel)cl='miss';}else if(i===sel)cl='sel';
+  h+='<li class="'+cl+'" data-i="'+i+'"><span class="let">'+L(i)+'</span><span>'+fmt(o)+(rv?'<span class="onote">'+fmt(it.notes[i])+'</span>':'')+'</span></li>';});
+ h+='</ol>';
+ if(rv){var ok=sel===it.ans;h+='<div class="verdict '+(ok?'ok':'no')+'">'+(ok?'Correct':'Not quite: the answer is '+L(it.ans))+'</div>';
+  h+='<div class="box rule"><div class="t">The rule</div><p>'+fmt(it.rule)+'</p></div><div class="box why"><div class="t">Why</div><p>'+fmt(it.teach)+'</p></div><div class="box trap"><div class="t">Trap</div><p>'+fmt(it.trap)+'</p></div><div class="box ref"><div class="t">Reference</div><p>'+esc(it.ref)+'</p></div>';}
+ else if(S.mode==='exam'&&sel!==undefined)h+='<p class="small" style="margin-top:10px">Answer saved. Exam mode: feedback appears when you end the test.</p>';
+ h+='</div><div class="qnav"><button class="navbtn" id="prevBtn"'+(cur===0?' disabled':'')+'>&larr; Previous</button><button class="navbtn pri" id="nextBtn">'+(cur===TOTAL-1?'End test':'Next &rarr;')+'</button></div></div>';
+ h+=navHTML()+'</div>';return h;}
+function navHTML(){var done=Object.keys(S.sel).length;
+ var h='<aside id="navp"><div class="nh">Question navigator<span>'+done+'/'+TOTAL+' answered</span></div>';
+ h+='<div class="modes"><button data-m="practice" class="'+(S.mode==='practice'?'on':'')+'">Practice mode</button><button data-m="exam" class="'+(S.mode==='exam'?'on':'')+'">Exam mode</button></div><div id="ngrid">';
+ CATS.forEach(function(c,k){var ci=catItems(k);h+='<div class="ngh'+(k===curCat?' cur':'')+'">'+c.id+' &middot; '+esc(c.name)+'</div><div class="nboxes">';
+  ci.forEach(function(i){var cl='nb';if(S.seen[i])cl+=' seen';if(S.sel[i]!==undefined)cl+=revealed(i)?(isOk(i)?' ok':' no'):' ans';if(i===cur)cl+=' cur';if(S.flag[i])cl+=' fl';
+   h+='<button class="'+cl+'" data-q="'+i+'" title="Question '+(i+1)+'">'+(i+1)+'</button>';});h+='</div>';});
+ h+='</div><div class="legend"><span><i></i>Not seen</span><span><i style="background:#f1efe9"></i>Seen</span><span><i style="background:#dbe7f7;border-color:#2E6DB4"></i>Answered</span><span><i style="background:#e39a00;border-color:#e39a00"></i>Flagged</span><span><i style="background:#1a5c38;border-color:#1a5c38"></i>Correct</span><span><i style="background:#8c2f2f;border-color:#8c2f2f"></i>Incorrect</span></div>';
+ h+='<div class="nfoot"><button id="revFl">Review flagged</button><button id="nextUn">Next unanswered</button><button class="end" id="endBtn">End and score</button></div></aside>';return h;}
+function go(i){if(i<0||i>=TOTAL)return;cur=i;var f=ITEMS[i].fam;CATS.forEach(function(c,k){if(c.id===f)curCat=k;});step=2;render();}
+function bindQ(){document.querySelectorAll('#opts li').forEach(function(li){li.onclick=function(){pick(+li.dataset.i);};});
+ $('prevBtn').onclick=function(){go(cur-1);};$('nextBtn').onclick=function(){if(cur===TOTAL-1)finish();else go(cur+1);};
+ $('flagBtn').onclick=function(){if(S.flag[cur])delete S.flag[cur];else S.flag[cur]=1;save();render();};
+ document.querySelectorAll('.nb').forEach(function(b){b.onclick=function(){go(+b.dataset.q);};});
+ document.querySelectorAll('.modes button').forEach(function(b){b.onclick=function(){if(S.mode===b.dataset.m)return;if(b.dataset.m==='exam'&&Object.keys(S.sel).length&&!confirm('Switch to exam mode? Feedback will be hidden until you end the test.'))return;S.mode=b.dataset.m;S.submitted=false;save();render();};});
+ $('revFl').onclick=function(){var f=Object.keys(S.flag).map(Number).sort(function(a,b){return a-b;});if(!f.length){alert('No flagged questions.');return;}var n=f.filter(function(x){return x>cur;});go(n.length?n[0]:f[0]);};
+ $('nextUn').onclick=function(){for(var j=1;j<=TOTAL;j++){var x=(cur+j)%TOTAL;if(S.sel[x]===undefined){go(x);return;}}alert('All questions answered.');};
+ $('endBtn').onclick=finish;
+ var el=document.querySelector('.nb.cur');if(el&&el.scrollIntoView){var g=$('ngrid');g.scrollTop=el.offsetTop-g.offsetTop-60;}}
+function pick(i){if(revealed(cur))return;S.sel[cur]=i;save();render();}
+function finish(){S.submitted=true;save();var done=0,ok=0,rows='';CATS.forEach(function(c,k){var ci=catItems(k),a=0,r=0;ci.forEach(function(i){if(S.sel[i]!==undefined){a++;done++;if(isOk(i)){r++;ok++;}}});
+ rows+='<tr><td>'+c.id+' &middot; '+esc(c.name)+'</td><td>'+r+' / '+a+' answered</td><td>'+ci.length+' total</td></tr>';});
+ $('rScore').textContent=ok+' / '+done;var pc=done?Math.round(ok/done*100):0;
+ $('rBand').textContent=done?pc+'% of answered questions correct. '+(pc>=70?'Strong: keep going.':pc>=55?'Close to the pass zone: review your red boxes.':'Revisit the teaching for your weakest categories.'):'No questions answered yet.';
+ $('rTab').innerHTML=rows;show('scRes');}
+$('revBtn').onclick=function(){openCat(0,2);};
+$('againBtn').onclick=function(){if(!confirm('Clear all answers and flags?'))return;S={sel:{},seen:{},flag:{},submitted:false,mode:S.mode};save();openCat(0,2);};
+document.addEventListener('keydown',function(e){if(e.target.tagName==='INPUT')return;
+ if($('scDeck').classList.contains('on')&&step===2){if(e.key>='1'&&e.key<='5'){pick(+e.key-1);}else if(e.key==='ArrowRight'){go(cur+1);}else if(e.key==='ArrowLeft'){go(cur-1);}else if(e.key==='f'||e.key==='F'){$('flagBtn').click();}}
+ if($('scFire').classList.contains('on')){if(e.key===' '){e.preventDefault();flip();}else if(e.key==='j'||e.key==='J'||e.key==='ArrowRight'||e.key==='ArrowDown'){fmove(1);e.preventDefault();}else if(e.key==='k'||e.key==='K'||e.key==='ArrowLeft'||e.key==='ArrowUp'){fmove(-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){setAll(true);}else if(e.key==='h'||e.key==='H'){setAll(false);}}});
+/* rapid fire */
+var FIRE=[];CATS.forEach(function(c){c.codes.forEach(function(cd){if(NOTES[cd])NOTES[cd].revise.forEach(function(r){FIRE.push({code:cd,q:r.q,a:r.a});});});});
+var seenF={};FIRE=FIRE.filter(function(f){var k=f.code+f.q;if(seenF[k])return false;seenF[k]=1;return true;});
+var fOrder=FIRE.map(function(f,i){return i;}),fRev={};
+function paintFire(){$('fgrid').innerHTML=fOrder.map(function(fi,k){var f=FIRE[fi];return '<div class="fcard'+(fRev[fi]?' rev':'')+(k===fcur?' cur':'')+'" data-k="'+k+'"><div class="q"><b>'+(k+1)+'</b>'+fmt(f.q)+'</div><div class="a">'+fmt(f.a)+'</div></div>';}).join('');
+ document.querySelectorAll('.fcard').forEach(function(c){c.onclick=function(){fcur=+c.dataset.k;flip();};});}
+function flip(){var fi=fOrder[fcur];fRev[fi]=!fRev[fi];syncFire();}
+function syncFire(){document.querySelectorAll('.fcard').forEach(function(c){var k=+c.dataset.k;c.classList.toggle('cur',k===fcur);c.classList.toggle('rev',!!fRev[fOrder[k]]);});}
+function fmove(d){fcur=Math.max(0,Math.min(FIRE.length-1,fcur+d));syncFire();var el=document.querySelector('.fcard[data-k="'+fcur+'"]');if(el&&el.scrollIntoView)el.scrollIntoView({block:'nearest'});}
+function setAll(v){FIRE.forEach(function(f,i){fRev[i]=v;});syncFire();}
+$('fShuf').onclick=function(){for(var i=fOrder.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=fOrder[i];fOrder[i]=fOrder[j];fOrder[j]=t;}fcur=0;paintFire();};
+$('fAll').onclick=function(){setAll(true);};$('fNone').onclick=function(){setAll(false);};
+paintFire();
+/* keys and refs */
+$('kgrid').innerHTML=CATS.map(function(c,k){var col=KCOL[k%KCOL.length];return '<div class="kp" style="border-top-color:'+col+'"><h3 style="color:'+col+'">'+c.id+' &middot; '+esc(c.name)+'</h3><ol>'+c.codes.filter(function(cd){return NOTES[cd];}).map(function(cd){return '<li>'+fmt(NOTES[cd].bigidea)+'</li>';}).join('')+'</ol></div>';}).join('');
+$('refs').innerHTML=D.refs.map(function(r,i){return '<li id="ref'+(i+1)+'">'+esc(r)+'</li>';}).join('');
+renderSide();
+</script><script src="../content/coursenav.js?v=4"></script></body></html>

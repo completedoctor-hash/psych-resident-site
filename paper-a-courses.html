@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper A courses &middot; The Complete Doctor Academy</title>
+<meta name="description" content="The Complete Doctor Academy courses for MRCPsych Paper A, section by section, with the teaching, the rapid revision and the questions.">
+<style>
+:root{--bg:#fbfaf7;--ink:#14161a;--ink2:#3c424d;--mute:#6f7681;--line:#e0dccf;--card:#fff;--panel:#f4f2ec;
+--navy:#0B2545;--gold:#B8892B;--sage:#2f5a4a;--red:#8c2f2f;--blue:#2E6DB4;--amber:#8a5510;
+--mono:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+--serif:Iowan Old Style,Palatino,Georgia,serif;--sans:Lexend,"Helvetica Neue",system-ui,sans-serif;--disp:"Playfair Display",Georgia,serif;}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+header.bar{background:var(--navy);color:#fff;position:sticky;top:0;z-index:60;border-bottom:3px solid var(--gold)}
+.bar .in{max-width:1280px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar .brand{font-family:var(--sans);font-size:12.5px;font-weight:800;letter-spacing:.05em;line-height:1.25}
+.bar .brand span{display:block;font-weight:400;font-size:10px;color:#c9cede;letter-spacing:.09em;text-transform:uppercase}
+.bar .cnt{font-family:var(--sans);font-size:13px;color:#dfe3ec;margin-left:6px}.bar .cnt b{color:#fff}
+.bar .right{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.bbtn{font-family:var(--sans);font-size:12px;font-weight:700;padding:6px 11px;border-radius:3px;border:1.5px solid #46557a;background:transparent;color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.bbtn:hover{background:#22335c}
+nav.secnav{background:#fff;border-bottom:1px solid var(--line)}
+nav.secnav .in{max-width:1280px;margin:0 auto;padding:8px 22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.crumb{font-family:var(--sans);font-size:12px;color:var(--mute)}
+.crumb a{color:var(--navy);text-decoration:none;font-weight:700}.crumb a:hover{text-decoration:underline}
+h1{font-family:var(--disp);font-size:44px;line-height:1.08;font-weight:700;margin:0 0 12px;max-width:900px}
+h2{font-family:var(--disp);font-size:22px;margin:0 0 4px}
+.eyebrow{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.band{background:var(--navy);color:#f4e6c4;font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;border-radius:4px;border-left:6px solid var(--gold);margin-bottom:18px}
+.strap{font-family:var(--sans);font-size:16px;color:var(--ink2);border-left:3px solid var(--gold);padding-left:12px;max-width:820px}
+.small{font-family:var(--sans);font-size:13px;color:var(--mute)}
+main{padding:26px 0 70px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0 30px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:5px;padding:15px;border-top-width:6px}
+.stat b{display:block;font-family:var(--sans);font-size:26px;color:var(--navy);line-height:1}
+.stat span{font-family:var(--sans);font-size:11.5px;color:var(--mute);letter-spacing:.05em;text-transform:uppercase}
+.stat.c1{border-top-color:var(--navy)}.stat.c2{border-top-color:var(--gold)}.stat.c3{border-top-color:var(--sage)}.stat.c4{border-top-color:var(--red)}
+.stat.c2 b{color:var(--amber)}.stat.c3 b{color:var(--sage)}.stat.c4 b{color:var(--red)}
+.parthead{display:flex;align-items:baseline;gap:12px;margin:34px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--navy);flex-wrap:wrap}
+.parthead .pn{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.parthead .pc{margin-left:auto;font-family:var(--sans);font-size:12px;font-weight:800;color:#fff;background:var(--navy);padding:3px 11px;border-radius:12px;white-space:nowrap}
+.catlist{margin:0 0 10px;border:2px solid var(--line);border-radius:5px;overflow:hidden;background:#fff}
+.catlist a.row{display:flex;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:14px;text-decoration:none;color:var(--ink)}
+.catlist a.row:last-child{border-bottom:none}
+.catlist a.row:hover{background:var(--panel)}
+.catlist .code{font-family:var(--mono);font-size:11.5px;color:var(--mute);min-width:62px}
+.catlist .nm{font-weight:600;color:var(--navy)}
+.catlist .tag{margin-left:auto;font-family:var(--sans);font-size:12px;font-weight:800;color:#fff;background:var(--sage);padding:2px 9px;border-radius:11px;white-space:nowrap}
+.catlist a.row.emi .tag{background:var(--amber)}
+.catlist a.row.emi .code{color:var(--amber)}
+.backrow{margin:34px 0 0;padding-top:18px;border-top:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
+.btn{font-family:var(--sans);font-weight:800;font-size:15px;background:var(--gold);color:#241c05;border:none;border-radius:4px;padding:13px 26px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:11px 22px}
+footer.foot{border-top:1px solid var(--line);margin-top:30px;padding:16px 0 40px;font-family:var(--sans);font-size:13px;color:var(--mute)}
+@media(max-width:700px){header.bar{position:static}h1{font-size:32px}.bar .in{gap:8px}.bbtn{padding:4px 8px;font-size:11px}}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+<header class="bar"><div class="in">
+ <div class="brand">THE COMPLETE DOCTOR ACADEMY<span>MRCPsych Paper A &middot; The courses</span></div>
+ <div class="cnt"><b>6,012</b> questions &middot; <b>78</b> chapters &middot; all 4 domains built</div>
+ <div class="right"><a class="bbtn" href="paper-a.html">Paper A</a><a class="bbtn" href="index.html">Front page</a></div>
+</div></header>
+<nav class="secnav"><div class="in">
+ <div class="crumb"><a href="paper-a.html">Paper A</a> &rsaquo; The courses</div>
+</div></nav>
+
+<main class="wrap">
+  <div class="band">The Complete Doctor Academy &middot; MRCPsych Paper A</div>
+  <div class="eyebrow">The courses</div>
+  <h1>Paper A, section by section</h1>
+  <p class="strap">Each section is a course in its own right: the teaching first, then rapid revision, then the questions, with extended matching volumes alongside. All four domains of the 2027 syllabus are built. The chapters open for course members.</p>
+  <p class="strap" id="coursenote" style="margin-top:10px;padding:11px 14px;border-left:4px solid var(--gold);background:#FBF4E2;border-radius:0 8px 8px 0">The chapters below open for course members. <a href="paper-a.html" style="color:inherit">See what the course includes</a>, or <a href="account.html" style="color:inherit">sign in</a>.</p>
+
+  <div class="grid3">
+    <div class="stat c1"><b>6,012</b><span>Questions open</span></div>
+    <div class="stat c2"><b>78</b><span>Chapters</span></div>
+    <div class="stat c3"><b>14</b><span>EMI volumes</span></div>
+    <div class="stat c4"><b>5 of 5</b><span>Sections open</span></div>
+  </div>
+
+  <div class="parthead"><h2>Open now</h2><span class="pn">Ready to work</span><span class="pc">6,012 questions</span></div>
+  <div class="catlist">
+    <a class="row" href="paper-a-psychology-development.html"><span class="code">Domain 1</span><span class="nm">Psychology and Human Development</span><span class="tag">1,886</span></a>
+    <a class="row" href="paper-a-neurosciences.html"><span class="code">Domain 2</span><span class="nm">Neuroscience</span><span class="tag">1,857</span></a>
+    <a class="row" href="paper-a-pharmacology.html"><span class="code">Domain 3</span><span class="nm">Clinical Psychopharmacology</span><span class="tag">1,794</span></a>
+    <a class="row" href="paper-a-classification-assessment.html"><span class="code">Domain 4</span><span class="nm">Classification and Assessment in Psychiatry</span><span class="tag">475</span></a>
+  </div>
+
+
+  <div class="backrow">
+    <a class="btn" href="buy.html">Buy the course</a>
+    <a class="btn" href="paper-a-psychology-development.html">Psychology and Human Development</a>
+    <a class="btn" href="paper-a-neurosciences.html">Neuroscience</a>
+    <a class="btn" href="paper-a-pharmacology.html">Clinical Psychopharmacology</a>
+    <a class="btn" href="paper-a-classification-assessment.html">Classification and Assessment</a>
+    <a class="btn ghost" href="paper-a.html">Back to Paper A</a>
+   &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div>
+
+  <footer class="foot">Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</footer>
+</main>
+
+<script src="content/auth.js"></script>
+<script>
+(function(){
+  function paint(){
+    var n=document.getElementById("coursenote");
+    if(n && window.hasAccess && window.hasAccess("paper-a")){
+      n.innerHTML = "The whole course is open on your account. Pick a chapter.";
+      n.style.background="#EAF3EE"; n.style.borderLeftColor="#2C6B4C";
+    }
+  }
+  if(typeof window.onAuthReady==="function") window.onAuthReady(paint); else paint();
+})();
+</script>
+<script src="content/menu.js?v=20261108m"></script>
+</body></html>

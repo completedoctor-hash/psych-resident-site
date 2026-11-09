@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper A Question Bank · The Psychiatric Resident</title>
+<meta name="description" content="The MRCPsych Paper A question bank: single best answer and extended matching across all five College sections, with a revision note on every topic.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+/* The Complete Doctor Academy house colours. */
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --teal:#0E767E; --ochre:#C2A032;
+  --plum:#6E3668; --forest:#2C6B4C;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --ok:#2C6B4C; --bad:#AE1E35;
+  --body-font:"DM Sans","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head-font:"Playfair Display",Georgia,"Times New Roman",serif;
+  --lh:1.6; --fs:16px;
+}
+[data-dys="on"]{--body-font:"Atkinson Hyperlegible","OpenDyslexic","DM Sans",Verdana,sans-serif;--lh:1.9;--fs:17px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body-font);font-size:var(--fs);
+  line-height:var(--lh);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* masthead */
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1720px;margin:0 auto}
+.mast .brand{font-family:var(--head-font);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body-font);font-weight:700;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav{display:flex;align-items:center;flex-wrap:wrap}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover,.mast nav a.on{color:var(--ochre)}
+.mast button{font-family:var(--body-font);font-size:12px;font-weight:700;background:rgba(255,255,255,.1);color:#fff;
+  border:1px solid rgba(255,255,255,.3);padding:7px 13px;border-radius:20px;cursor:pointer;margin-left:14px}
+.mast button:hover{background:var(--ochre);color:var(--navy-deep);border-color:var(--ochre)}
+
+/* banner */
+.banner{background:var(--cream);border-bottom:1px solid var(--line)}
+.banner .in{max-width:1720px;margin:0 auto;padding:9px 22px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.modes{display:flex;gap:8px;flex-wrap:wrap}
+.modes button{font-family:var(--body-font);font-size:13px;font-weight:700;cursor:pointer;color:#fff;border:none;
+  border-radius:10px;padding:9px 17px;box-shadow:0 3px 0 rgba(0,0,0,.16);opacity:.5;transition:opacity .18s}
+.modes button[aria-selected="true"]{opacity:1}
+.modes #mPractice{background:var(--navy)} .modes #mTimed{background:var(--crimson)} .modes #mNote{background:var(--teal)}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.stat{border-radius:10px;padding:7px 14px;min-width:80px;text-align:center;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.16)}
+.stat b{display:block;font-family:var(--head-font);font-weight:800;font-size:19px;line-height:1}
+.stat span{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-top:3px;font-weight:700;opacity:.94}
+.stat.a{background:var(--navy)} .stat.b{background:var(--crimson)} .stat.c{background:var(--forest)} .stat.d{background:var(--ochre);color:var(--navy-deep)}
+.clock{font-family:var(--head-font);font-weight:800;font-size:22px;color:var(--crimson);letter-spacing:.02em}
+.chip{font-family:var(--body-font);font-size:12px;font-weight:700;padding:7px 13px;border-radius:20px;
+  border:1.5px solid var(--line-2);background:var(--paper);color:var(--navy);cursor:pointer}
+.chip:hover{border-color:var(--navy);background:var(--navy);color:#fff}
+
+/* shell */
+.shell{display:grid;grid-template-columns:1fr 330px;max-width:1720px;width:100%;margin:0 auto;flex:1 1 auto;min-height:0}
+
+/* the question pane */
+.stage{padding:18px 24px 26px;min-width:0;display:flex;flex-direction:column}
+.qcard{background:var(--paper);border:1.5px solid var(--line);border-top:9px solid var(--c,var(--navy));
+  border-radius:16px;box-shadow:0 10px 0 rgba(29,58,95,.06),0 16px 40px rgba(29,58,95,.08);
+  padding:24px 30px 26px;flex:1 1 auto;min-height:0;overflow-y:auto}
+.qhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}
+.qhead h1{font-family:var(--head-font);font-weight:800;font-size:26px;color:var(--navy-deep);line-height:1.1}
+.qhead .meta{text-align:right;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.qhead .meta b{display:block;color:var(--c,var(--navy));font-size:11px}
+.qhead .tagpill{display:inline-block;background:var(--c,var(--navy));color:#fff;border-radius:20px;
+  padding:4px 12px;font-size:10px;letter-spacing:.13em;margin-top:6px}
+
+.vig{font-size:17.5px;line-height:1.55;margin-bottom:14px;max-width:80ch}
+.lead{font-size:18.5px;font-weight:700;line-height:1.45;margin-bottom:18px;max-width:80ch}
+
+.opts{display:grid;gap:9px;max-width:88ch}
+.opt{text-align:left;font-family:var(--body-font);font-size:16px;background:var(--paper);
+  border:1.5px solid var(--line);border-radius:10px;padding:13px 17px;cursor:pointer;
+  display:flex;gap:14px;align-items:flex-start;color:var(--ink);line-height:1.45}
+.opt:hover{border-color:var(--c,var(--navy));background:var(--cream)}
+.opt .k{font-family:var(--head-font);font-weight:800;color:var(--c,var(--navy));min-width:20px;font-size:17px}
+.opt.picked{border-color:var(--navy);background:#EEF2F7}
+.opt.right{border-color:var(--ok);background:#E9F4EE}
+.opt.right .k{color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:#FBEDEF}
+.opt.wrong .k{color:var(--bad)}
+.opt[disabled]{cursor:default}
+
+/* EMI */
+.bank{border:1.5px solid var(--line-2);background:var(--cream-2);border-radius:12px;padding:16px 18px;margin-bottom:20px}
+.bank .lab{font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.bank ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.bank li{display:flex;gap:9px;font-size:15px;background:var(--paper);border:1.5px solid var(--line);
+  border-radius:8px;padding:8px 11px;align-items:flex-start;line-height:1.4}
+.bank li b{background:var(--c,var(--navy));color:#fff;width:22px;height:22px;border-radius:6px;font-size:12px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.bank li.hit{border-color:var(--ok);background:#E9F4EE}
+.bank li.hit b{background:var(--ok)}
+.sub{border:1.5px solid var(--line);border-radius:12px;padding:15px 18px;margin-bottom:11px;background:var(--paper)}
+.sub .n{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--c,var(--navy));font-weight:700;margin-bottom:7px}
+.sub p{font-size:16.5px;line-height:1.5;margin-bottom:12px}
+.sub .pick{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.sub select{font-family:var(--body-font);font-size:16px;padding:10px 14px;border:1.5px solid var(--line-2);
+  border-radius:8px;background:var(--cream);min-width:230px;color:var(--ink)}
+.sub select:focus{outline:none;border-color:var(--ochre);background:#fff}
+.sub.right{border-color:var(--ok)} .sub.wrong{border-color:var(--bad)}
+.sub .verdict{font-size:14px;font-weight:700}
+.sub .verdict.y{color:var(--ok)} .sub .verdict.n{color:var(--bad)}
+
+.why{margin-top:18px;border-left:6px solid var(--c,var(--navy));background:var(--cream-2);
+  border-radius:0 12px 12px 0;padding:16px 20px;font-size:16px;line-height:1.62;max-width:88ch}
+.why b{display:block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.why.y{border-left-color:var(--ok);background:#EEF6F1}
+.why.n{border-left-color:var(--bad);background:#FBEDEF}
+
+.qfoot{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding-top:16px}
+.btn{font-family:var(--body-font);font-size:14.5px;font-weight:700;padding:12px 22px;border-radius:9px;
+  border:1.5px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.btn:hover{background:var(--navy-deep)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.15)}
+.btn.ghost{background:var(--paper);color:var(--navy);border-color:var(--line-2);box-shadow:0 3px 0 rgba(0,0,0,.07)}
+.btn.ghost:hover{background:var(--cream-2)}
+.btn.gold{background:var(--ochre);border-color:var(--ochre);color:var(--navy-deep)}
+.btn.crim{background:var(--crimson);border-color:var(--crimson)}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none}
+.qfoot .sp{flex:1}
+.flagged{color:var(--ochre)}
+
+/* the navigator on the right */
+.side{border-left:1px solid var(--line);background:var(--cream-2);display:flex;flex-direction:column;min-width:0}
+.side .head{padding:14px 16px 11px;border-bottom:1px solid var(--line);background:var(--paper)}
+.side .head h2{font-family:var(--head-font);font-weight:800;font-size:15px;color:var(--navy);letter-spacing:.02em}
+.side .head p{font-size:11.5px;color:var(--muted);margin-top:3px}
+.side .body{overflow-y:auto;flex:1 1 auto;min-height:0;padding:12px}
+.secname{font-family:var(--head-font);font-weight:800;font-size:13px;color:var(--c);margin:14px 0 7px;
+  letter-spacing:.02em;border-bottom:1.5px solid var(--line);padding-bottom:4px}
+.secname:first-child{margin-top:0}
+.topics{list-style:none;display:grid;gap:5px;margin-bottom:6px}
+.topics button{width:100%;text-align:left;font-family:var(--body-font);font-size:12.5px;line-height:1.3;
+  background:var(--paper);border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:8px;
+  padding:8px 10px;cursor:pointer;display:flex;gap:8px;align-items:flex-start;color:var(--ink)}
+.topics button:hover{border-color:var(--c)}
+.topics button[aria-current="true"]{background:var(--c);color:#fff;border-color:var(--c)}
+.topics button[aria-current="true"] i{color:rgba(255,255,255,.85)}
+.topics .code{font-weight:700;font-size:11px;min-width:26px;color:var(--c)}
+.topics button[aria-current="true"] .code{color:#fff}
+.topics i{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-top:2px}
+.topics .soon{opacity:.5}
+.topics .soon button{cursor:default}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;margin-bottom:10px}
+.grid button{font-family:var(--head-font);font-weight:800;font-size:14px;padding:8px 0;border-radius:8px;
+  border:1.5px solid var(--line);background:var(--paper);color:var(--navy);cursor:pointer}
+.grid button:hover{border-color:var(--c)}
+.grid button[aria-current="true"]{background:var(--c);color:#fff;border-color:var(--c)}
+.grid button.done{background:#E9F4EE;border-color:#B9DCC7}
+.grid button.wrongish{background:#FBEDEF;border-color:#E7C2C8}
+.grid button.flag{box-shadow:inset 0 0 0 2px var(--ochre)}
+.grid button[aria-current="true"].done,.grid button[aria-current="true"].wrongish{background:var(--c);color:#fff}
+.gridlab{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:12px 0 7px}
+
+/* the revision note */
+.note{background:var(--paper);border:1.5px solid var(--line);border-top:9px solid var(--teal);border-radius:16px;
+  padding:26px 32px 30px;flex:1 1 auto;min-height:0;overflow-y:auto;
+  box-shadow:0 10px 0 rgba(29,58,95,.06),0 16px 40px rgba(29,58,95,.08)}
+.note h1{font-family:var(--head-font);font-weight:800;font-size:28px;color:var(--navy-deep);margin-bottom:6px}
+.note .intro{font-size:17px;color:#4a453b;max-width:82ch;margin-bottom:22px}
+.note h3{font-family:var(--head-font);font-weight:800;font-size:20px;color:var(--teal);
+  margin:24px 0 10px;border-bottom:2px solid var(--line);padding-bottom:6px}
+.note ol{list-style:none;counter-reset:np;display:grid;gap:7px;max-width:88ch}
+.note ol li{counter-increment:np;display:flex;gap:12px;font-size:16px;line-height:1.5;
+  background:var(--cream);border:1px solid var(--line);border-radius:9px;padding:9px 13px}
+.note ol li::before{content:counter(np);font-family:var(--head-font);font-weight:800;color:var(--teal);
+  min-width:22px;font-size:15px}
+.note .majors{margin-top:26px;border-left:6px solid var(--ochre);background:#FAF2DC;border-radius:0 12px 12px 0;padding:18px 22px}
+.note .majors h4{font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:#8A6C1C;margin-bottom:10px}
+.note .majors ul{list-style:none;display:grid;gap:8px}
+.note .majors li{font-size:16px;line-height:1.5;color:#5E4A16;padding-left:18px;position:relative}
+.note .majors li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--ochre)}
+
+/* gate and score */
+.pane{background:var(--paper);border:1.5px solid var(--line);border-top:9px solid var(--ochre);border-radius:16px;
+  padding:44px 34px;text-align:center;flex:1 1 auto;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:15px;overflow-y:auto;
+  box-shadow:0 10px 0 rgba(29,58,95,.06)}
+.pane h2{font-family:var(--head-font);font-weight:800;font-size:28px;color:var(--navy-deep);line-height:1.15}
+.pane p{color:var(--muted);max-width:58ch}
+.pane .big{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin:4px 0}
+.pane .big div{border-radius:12px;padding:12px 20px;color:#fff;min-width:112px}
+.pane .big div b{display:block;font-family:var(--head-font);font-weight:800;font-size:26px;line-height:1}
+.pane .big div span{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:5px;font-weight:700}
+.pane .big .p1{background:var(--navy)} .pane .big .p2{background:var(--crimson)}
+.pane .big .p3{background:var(--forest)} .pane .big .p4{background:var(--ochre);color:var(--navy-deep)}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;padding:9px 22px;font-size:12px;flex:0 0 auto}
+footer .in{max-width:1720px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+
+@media(min-width:1081px){
+  html,body{height:100vh} body{overflow:hidden}
+  .shell,.side,.stage{overflow:hidden}
+}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .side{border-left:none;border-top:1px solid var(--line);order:2}
+  .side .body{max-height:320px}
+  .qcard,.note,.pane{overflow:visible}
+  .bank ol{grid-template-columns:1fr}
+  .stage{padding:14px 16px 20px}
+}
+</style>
+<script src="content/protect.js"></script></head>
+<body data-dys="off">
+<a class="sr" href="#stage">Skip to the questions</a>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Paper A question bank</span></a>
+  <nav>
+    <a href="paper-a.html">Syllabus</a>
+    <a href="paper-a-bank.html" class="on">Question bank</a>
+    <a href="flashcards.html">Flashcards</a>
+  <a href="neuro-flashcards.html">Neuroscience</a>
+    <a href="register.html">Register</a>
+    <a href="index.html">Home</a>
+    <button data-account>Sign in</button>
+    <button id="dysBtn" aria-pressed="false">Dyslexia mode</button>
+  </nav>
+</div></header>
+
+<div class="banner"><div class="in">
+  <div class="modes" role="tablist">
+    <button id="mPractice" role="tab" aria-selected="true">Practice</button>
+    <button id="mTimed" role="tab" aria-selected="false">Timed review</button>
+    <button id="mNote" role="tab" aria-selected="false">Revision note</button>
+  </div>
+  <span class="clock" id="clock" hidden>0:00:00</span>
+  <button class="chip" id="flagBtn" type="button" hidden>Flag for review</button>
+  <button class="btn crim" id="endBtn" type="button" hidden style="padding:8px 16px;font-size:13px">End &amp; score</button>
+  <div class="stats">
+    <div class="stat a"><b id="sAns">0</b><span>Answered</span></div>
+    <div class="stat c"><b id="sRight">0</b><span>Correct</span></div>
+    <div class="stat b"><b id="sWrong">0</b><span>Wrong</span></div>
+    <div class="stat d"><b id="sPct">&mdash;</b><span>Score</span></div>
+  </div>
+</div></div>
+
+<div class="shell">
+  <main class="stage" id="stage"><div id="pane"></div></main>
+
+  <aside class="side">
+    <div class="head">
+      <h2>Item navigator</h2>
+      <p id="navSub">Pick a topic, then an item.</p>
+    </div>
+    <div class="body" id="nav"></div>
+  </aside>
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>Every question written for this site. Progress saved on this device. <span data-build style="opacity:.65;margin-left:8px"></span></div>
+</div></footer>
+
+<script src="content/auth-config.js"></script>
+<script src="content/auth.js"></script>
+<script src="content/bank-index.js"></script>
+<script>
+/* ==================================================================
+   Paper A question bank.
+   Left: the question. Right: the item navigator, topic by topic.
+   Two shapes of question, single best answer and extended matching,
+   and a revision note behind every topic.
+   ================================================================== */
+
+var PALETTE = ["#1D3A5F","#AE1E35","#0E767E","#C2A032","#6E3668","#2C6B4C"];
+function secColour(n){ return PALETTE[(n-1) % PALETTE.length]; }
+
+var PACK_KEY = "tpr-bank-2026-cde";
+/* The questions are packed rather than plain, and the file is fetched
+   only once somebody approved for paper-a is looking. A passer-by's
+   browser never asks for it. It is not encryption: the page has to be
+   able to unpack it. It stops the bank being lifted or indexed. */
+function unpack(p){
+  var raw = atob(p), out = "";
+  for(var i=0;i<raw.length;i++) out += String.fromCharCode(raw.charCodeAt(i) ^ PACK_KEY.charCodeAt(i % PACK_KEY.length));
+  return JSON.parse(out);
+}
+
+var TOPIC = null;      /* the loaded topic object */
+var CODE = null;       /* which topic code is loaded */
+var LOADING = false;
+var MODE = "practice"; /* practice | timed | note */
+var I = 0;             /* item index within the topic */
+var ITEMS = [];        /* flattened: every SBA then every EMI set */
+
+/* answers and flags live on the device, per topic */
+function stateKey(){ return "tpr-bank:" + CODE; }
+var ST = { ans:{}, flags:{} };
+function loadState(){
+  try { ST = JSON.parse(localStorage.getItem(stateKey()) || '{"ans":{},"flags":{}}'); }
+  catch(e){ ST = { ans:{}, flags:{} }; }
+  if(!ST.ans) ST.ans = {}; if(!ST.flags) ST.flags = {};
+}
+function saveState(){ try { localStorage.setItem(stateKey(), JSON.stringify(ST)); } catch(e){} }
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function L(i){ return "ABCDEFGH".charAt(i); }
+
+/* ---------- the index down the right ---------- */
+function paintNav(){
+  var box = document.getElementById("nav");
+  /* This page expects an index grouped into sections. The index file is a
+     flat list. Rather than throw, say so plainly. */
+  if (!(BANK_INDEX && BANK_INDEX.length && BANK_INDEX[0].topics)) {
+    box.innerHTML = '<div class="pane"><h2>This page is being rebuilt</h2>'
+      + '<p>The Paper A course is here instead: '
+      + '<a href="paper-a-courses.html">6,012 questions across 78 chapters</a>.</p></div>';
+    return;
+  }
+  if(!TOPIC){
+    var h = "";
+    BANK_INDEX.forEach(function(s){
+      h += '<div class="secname" style="--c:' + secColour(s.n) + '">' + esc(s.n + ". " + s.name) + '</div>';
+      h += '<ul class="topics">';
+      s.topics.forEach(function(t){
+        h += '<li class="' + (t.built ? "" : "soon") + '"><button type="button" ' +
+             (t.built ? 'data-topic="' + t.code + '"' : 'disabled') +
+             ' style="--c:' + secColour(s.n) + '">' +
+             '<span class="code">' + esc(t.code) + '</span>' +
+             '<span><span>' + esc(t.t) + '</span>' +
+             '<i>' + t.sba + ' SBA · ' + t.emi + ' EMI' + (t.built ? "" : " · in preparation") + '</i></span>' +
+             '</button></li>';
+      });
+      h += '</ul>';
+    });
+    box.innerHTML = h;
+    box.querySelectorAll("[data-topic]").forEach(function(b){
+      b.onclick = function(){ openTopic(b.getAttribute("data-topic")); };
+    });
+    document.getElementById("navSub").textContent = "53 topics. Pick one to begin.";
+    return;
+  }
+
+  /* inside a topic: back link, then a grid of item numbers */
+  var col = secColour(TOPIC.section);
+  var h = '<button class="chip" id="backTop" type="button" style="margin-bottom:12px">&larr; All topics</button>';
+  var nS = TOPIC.sba.length;
+  h += '<div class="gridlab" style="color:' + col + '">Single best answer · ' + nS + '</div><div class="grid" style="--c:' + col + '">';
+  ITEMS.forEach(function(it, idx){
+    if(it.kind !== "sba") return;
+    h += '<button type="button" data-i="' + idx + '" class="' + cls(idx) + '"' +
+         (idx === I ? ' aria-current="true"' : '') + '>' + (it.no) + '</button>';
+  });
+  h += '</div>';
+  h += '<div class="gridlab" style="color:' + col + '">Extended matching · ' + TOPIC.emi.length + ' sets</div><div class="grid" style="--c:' + col + '">';
+  ITEMS.forEach(function(it, idx){
+    if(it.kind !== "emi") return;
+    h += '<button type="button" data-i="' + idx + '" class="' + cls(idx) + '"' +
+         (idx === I ? ' aria-current="true"' : '') + '>' + (it.no) + '</button>';
+  });
+  h += '</div>';
+  box.innerHTML = h;
+  document.getElementById("backTop").onclick = function(){ TOPIC = null; CODE = null; I = 0; paintNav(); paintPane(); };
+  box.querySelectorAll("[data-i]").forEach(function(b){
+    b.onclick = function(){ I = parseInt(b.getAttribute("data-i"),10); paintNav(); paintPane(); };
+  });
+  document.getElementById("navSub").textContent = TOPIC.code + " " + TOPIC.title;
+}
+
+function cls(idx){
+  var a = ST.ans[idx];
+  var c = [];
+  if(a !== undefined && a !== null){
+    if(MODE === "timed") c.push("done");
+    else c.push(scored(idx) ? "done" : "wrongish");
+  }
+  if(ST.flags[idx]) c.push("flag");
+  return c.join(" ");
+}
+
+/* ---------- flatten a topic into a list of items ---------- */
+function buildItems(){
+  ITEMS = [];
+  TOPIC.sba.forEach(function(q, i){ ITEMS.push({ kind:"sba", ref:i, no:i+1 }); });
+  TOPIC.emi.forEach(function(s, i){ ITEMS.push({ kind:"emi", ref:i, no:i+1 }); });
+}
+
+function scored(idx){
+  var it = ITEMS[idx], a = ST.ans[idx];
+  if(a === undefined || a === null) return false;
+  if(it.kind === "sba") return a === TOPIC.sba[it.ref][3];
+  var set = TOPIC.emi[it.ref];
+  return set.items.every(function(sub, j){ return a[j] === sub[1]; });
+}
+function answered(idx){
+  var a = ST.ans[idx];
+  if(a === undefined || a === null) return false;
+  if(ITEMS[idx].kind === "sba") return true;
+  return a.every(function(x){ return x !== null && x !== undefined; });
+}
+
+/* ---------- the running totals ----------
+   An extended matching set holds two or three questions, and each is
+   counted separately, exactly as the blueprint counts them. A set is
+   not one question. */
+function tally(){
+  var ans = 0, right = 0;
+  ITEMS.forEach(function(it, idx){
+    var a = ST.ans[idx];
+    if(it.kind === "sba"){
+      if(a === undefined || a === null) return;
+      ans++; if(a === TOPIC.sba[it.ref][3]) right++;
+      return;
+    }
+    var set = TOPIC.emi[it.ref];
+    set.items.forEach(function(sub, j){
+      var g = a && a[j];
+      if(g === undefined || g === null) return;
+      ans++; if(g === sub[1]) right++;
+    });
+  });
+  return { ans: ans, right: right };
+}
+
+function paintStats(){
+  var t = tally(), ans = t.ans, right = t.right;
+  document.getElementById("sAns").textContent = ans;
+  document.getElementById("sRight").textContent = MODE === "timed" ? "—" : right;
+  document.getElementById("sWrong").textContent = MODE === "timed" ? "—" : (ans - right);
+  document.getElementById("sPct").textContent =
+    (MODE === "timed" || !ans) ? "—" : Math.round(right*100/ans) + "%";
+}
+
+/* ---------- drawing a question ---------- */
+function paintPane(){
+  var pane = document.getElementById("pane");
+
+  if(!hasAccess("paper-a")){
+    var total = 0, built = 0;
+    (BANK_INDEX[0] && BANK_INDEX[0].topics ? BANK_INDEX : []).forEach(function(s){ s.topics.forEach(function(t){ total += t.total; if(t.built) built += t.total; }); });
+    pane.innerHTML = '<div class="pane">' +
+      '<h2>The question bank is opened by name</h2>' +
+      '<div class="big">' +
+        '<div class="p1"><b>' + total.toLocaleString() + '</b><span>Questions planned</span></div>' +
+        '<div class="p2"><b>53</b><span>Topics</span></div>' +
+        '<div class="p3"><b>5</b><span>Sections</span></div>' +
+        '<div class="p4"><b>67 / 33</b><span>SBA / EMI</span></div>' +
+      '</div>' +
+      '<p>Register with your email address, and once Dr Ezeanyika has approved that address for Paper A the bank opens with the account you already have. There is nothing to type here.</p>' +
+      '<p><a class="btn gold" href="register.html" style="text-decoration:none">Register</a> ' +
+      '<button class="btn ghost" data-account type="button">I already have an account</button></p>' +
+      '</div>';
+    document.getElementById("nav").innerHTML =
+      '<p style="padding:14px 12px;font-size:12.5px;color:#6B6355">The 53 topics appear here once you are approved for Paper A.</p>';
+    document.getElementById("navSub").textContent = "By approval";
+    paintAccountButtons();
+    return;
+  }
+
+  if(!TOPIC){
+    pane.innerHTML = '<div class="pane" style="border-top-color:#1D3A5F">' +
+      '<h2>Choose a topic to begin</h2>' +
+      '<p>The five College sections are listed on the right, weighted exactly as the paper is weighted. ' +
+      'Each topic gives you its single best answer questions, then its extended matching sets, then a ' +
+      'revision note that closes the gaps the questions have just exposed.</p>' +
+      '<p style="font-size:14px">Practice marks each answer as you go. Timed review holds everything back until you press End and score.</p>' +
+      '</div>';
+    paintStats();
+    return;
+  }
+
+  if(MODE === "note"){ paintNote(); return; }
+
+  var it = ITEMS[I];
+  var col = secColour(TOPIC.section);
+  var body, foot;
+
+  if(it.kind === "sba"){
+    var q = TOPIC.sba[it.ref];
+    var picked = ST.ans[I];
+    var show = (MODE === "practice") && (picked !== undefined && picked !== null);
+    body =
+      (q[0] ? '<div class="vig">' + esc(q[0]) + '</div>' : '') +
+      '<div class="lead">' + esc(q[1] || q[0]) + '</div>' +
+      '<div class="opts">' +
+      q[2].map(function(o, i){
+        var c = "opt";
+        if(show){
+          if(i === q[3]) c += " right";
+          else if(i === picked) c += " wrong";
+        } else if(i === picked) c += " picked";
+        return '<button type="button" class="' + c + '" data-pick="' + i + '"' + (show ? " disabled" : "") + '>' +
+               '<span class="k">' + L(i) + '</span><span>' + esc(o) + '</span></button>';
+      }).join("") +
+      '</div>' +
+      (show ? '<div class="why ' + (picked === q[3] ? "y" : "n") + '"><b>' +
+        (picked === q[3] ? "Correct" : "Not this one. The answer is " + L(q[3]) + ", " + esc(q[2][q[3]])) +
+        '</b>' + esc(q[4]) + '</div>' : "");
+  } else {
+    var set = TOPIC.emi[it.ref];
+    var given = ST.ans[I] || set.items.map(function(){ return null; });
+    var allIn = given.every(function(x){ return x !== null && x !== undefined; });
+    var showE = (MODE === "practice") && allIn;
+    body =
+      '<div class="lead">' + esc(set.theme) + '</div>' +
+      '<div class="bank"><div class="lab">Options · choose from this list. An option may be used once, ' +
+        'more than once, or not at all.</div><ol>' +
+      set.opts.map(function(o, i){
+        var hit = showE && set.items.some(function(s){ return s[1] === i; });
+        return '<li class="' + (hit ? "hit" : "") + '"><b>' + L(i) + '</b><span>' + esc(o) + '</span></li>';
+      }).join("") + '</ol></div>' +
+      set.items.map(function(sub, j){
+        var g = given[j];
+        var right = showE && g === sub[1];
+        var wrong = showE && g !== null && g !== sub[1];
+        return '<div class="sub' + (right ? " right" : "") + (wrong ? " wrong" : "") + '">' +
+          '<div class="n">Question ' + (j+1) + ' of ' + set.items.length + '</div>' +
+          '<p>' + esc(sub[0]) + '</p>' +
+          '<div class="pick"><select data-sub="' + j + '"' + (showE ? " disabled" : "") + '>' +
+            '<option value="">Choose an option</option>' +
+            set.opts.map(function(o, i){
+              return '<option value="' + i + '"' + (g === i ? " selected" : "") + '>' + L(i) + '  ' + esc(o) + '</option>';
+            }).join("") +
+          '</select>' +
+          (showE ? '<span class="verdict ' + (right ? "y" : "n") + '">' +
+            (right ? "Correct" : "Answer: " + L(sub[1]) + ", " + esc(set.opts[sub[1]])) + '</span>' : "") +
+          '</div></div>';
+      }).join("") +
+      (showE ? '<div class="why"><b>Why</b>' + esc(set.why) + '</div>' : "");
+  }
+
+  var tag = it.kind === "sba" ? (TOPIC.sba[it.ref][5] || "") : "Extended matching";
+  pane.innerHTML =
+    '<div class="qcard" style="--c:' + col + '">' +
+      '<div class="qhead">' +
+        '<h1>' + (it.kind === "sba" ? "Question " : "Matching set ") + it.no + '</h1>' +
+        '<div class="meta">' + esc(TOPIC.sectionName) +
+          '<b>' + esc(TOPIC.code + " " + TOPIC.title) + '</b>' +
+          (tag ? '<span class="tagpill">' + esc(tag) + '</span>' : "") +
+        '</div>' +
+      '</div>' + body +
+      '<div class="qfoot">' +
+        '<button class="btn ghost" id="prevQ" type="button"' + (I === 0 ? " disabled" : "") + '>&lsaquo; Previous</button>' +
+        '<button class="btn" id="nextQ" type="button"' + (I >= ITEMS.length-1 ? " disabled" : "") + '>Next &rsaquo;</button>' +
+        '<span class="sp"></span>' +
+        '<span style="font-size:13px;color:#6B6355">Item ' + (I+1) + ' of ' + ITEMS.length + '</span>' +
+      '</div>' +
+    '</div>';
+
+  pane.querySelectorAll("[data-pick]").forEach(function(b){
+    b.onclick = function(){
+      ST.ans[I] = parseInt(b.getAttribute("data-pick"), 10);
+      saveState(); paintNav(); paintStats(); paintPane();
+    };
+  });
+  pane.querySelectorAll("[data-sub]").forEach(function(sel){
+    sel.onchange = function(){
+      var setItems = TOPIC.emi[ITEMS[I].ref].items;
+      var cur = ST.ans[I] || setItems.map(function(){ return null; });
+      cur[parseInt(sel.getAttribute("data-sub"),10)] = sel.value === "" ? null : parseInt(sel.value,10);
+      ST.ans[I] = cur;
+      saveState(); paintNav(); paintStats(); paintPane();
+    };
+  });
+  document.getElementById("prevQ").onclick = function(){ if(I>0){ I--; paintNav(); paintPane(); } };
+  document.getElementById("nextQ").onclick = function(){ if(I<ITEMS.length-1){ I++; paintNav(); paintPane(); } };
+  paintStats();
+  paintFlag();
+}
+
+/* ---------- the revision note ---------- */
+function paintNote(){
+  var n = TOPIC.note;
+  document.getElementById("pane").innerHTML =
+    '<div class="note">' +
+      '<h1>' + esc(TOPIC.code + " " + TOPIC.title) + '</h1>' +
+      '<div class="intro">' + esc(n.intro) + '</div>' +
+      n.blocks.map(function(b){
+        return '<h3>' + esc(b.h) + '</h3><ol>' +
+          b.p.map(function(x){ return '<li><span>' + esc(x) + '</span></li>'; }).join("") + '</ol>';
+      }).join("") +
+      '<div class="majors"><h4>The major learning points</h4><ul>' +
+        n.majors.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") +
+      '</ul></div>' +
+    '</div>';
+}
+
+/* ---------- loading a topic ---------- */
+function openTopic(code){
+  if(LOADING) return;
+  if(CODE === code && TOPIC){ paintNav(); paintPane(); return; }
+  LOADING = true;
+  document.getElementById("pane").innerHTML =
+    '<div class="pane" style="border-top-color:#1D3A5F"><h2>Opening ' + esc(code) + '</h2>' +
+    '<p>Fetching the questions. This happens once.</p></div>';
+
+  if (!(window.hasAccess && window.hasAccess("paper-a"))) {
+    LOADING = false;
+    document.getElementById("pane").innerHTML =
+      '<div class="pane" style="border-top-color:#AE1E35"><h2>This topic is part of the Paper A course</h2>'
+      + '<p>The questions open once the course is on your account. '
+      + '<a href="account.html">My account</a> &middot; <a href="paper-a.html">See the course</a></p></div>';
+    return;
+  }
+  var s = document.createElement("script");
+  s.src = "paid/bank/bank-" + code.replace(".", "-") + ".dat.js";
+  s.onload = function(){
+    LOADING = false;
+    try {
+      TOPIC = unpack(BANK_PACK);
+      CODE = code;
+      buildItems();
+      loadState();
+      I = 0;
+      paintNav(); paintPane(); paintStats();
+    } catch(e){ failLoad(code); }
+  };
+  s.onerror = function(){ LOADING = false; failLoad(code); };
+  document.head.appendChild(s);
+}
+function failLoad(code){
+  document.getElementById("pane").innerHTML =
+    '<div class="pane"><h2>Topic ' + esc(code) + ' did not load</h2>' +
+    '<p>Reload the page and try again. If it keeps happening, tell Dr Ezeanyika which topic it was.</p></div>';
+}
+
+/* ---------- modes ---------- */
+function setMode(m){
+  MODE = m;
+  ["mPractice","mTimed","mNote"].forEach(function(id, i){
+    document.getElementById(id).setAttribute("aria-selected",
+      (["practice","timed","note"][i] === m) ? "true" : "false");
+  });
+  var timed = (m === "timed");
+  document.getElementById("clock").hidden = !timed;
+  document.getElementById("flagBtn").hidden = !timed || !TOPIC;
+  document.getElementById("endBtn").hidden = !timed || !TOPIC;
+  if(timed) startClock(); else stopClock();
+  paintNav(); paintPane(); paintStats();
+}
+document.getElementById("mPractice").onclick = function(){ setMode("practice"); };
+document.getElementById("mTimed").onclick = function(){
+  if(!TOPIC){ alert("Choose a topic first, then start the timed review."); return; }
+  if(!confirm("Timed review holds back every answer until you press End and score. Start it?")) return;
+  ST.ans = {}; saveState();
+  I = 0; setMode("timed");
+};
+document.getElementById("mNote").onclick = function(){
+  if(!TOPIC){ alert("Choose a topic first. Each topic has its own revision note."); return; }
+  setMode("note");
+};
+
+/* the clock */
+var T0 = null, TICK = null;
+function startClock(){
+  if(TICK) return;
+  T0 = Date.now();
+  TICK = setInterval(function(){
+    var s = Math.floor((Date.now()-T0)/1000);
+    var h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
+    document.getElementById("clock").textContent =
+      h + ":" + String(m).padStart(2,"0") + ":" + String(ss).padStart(2,"0");
+  }, 1000);
+}
+function stopClock(){ if(TICK){ clearInterval(TICK); TICK = null; } }
+
+function paintFlag(){
+  var b = document.getElementById("flagBtn");
+  if(b.hidden) return;
+  b.textContent = ST.flags[I] ? "Flagged" : "Flag for review";
+  b.onclick = function(){
+    ST.flags[I] = !ST.flags[I];
+    saveState(); paintNav(); paintFlag();
+  };
+}
+
+document.getElementById("endBtn").onclick = function(){
+  var t = tally(), ans = t.ans, right = t.right, flagged = 0;
+  ITEMS.forEach(function(it, idx){ if(ST.flags[idx]) flagged++; });
+  var totalQs = 0;
+  ITEMS.forEach(function(it){ totalQs += (it.kind === "sba") ? 1 : TOPIC.emi[it.ref].items.length; });
+  stopClock();
+  var pct = ans ? Math.round(right*100/ans) : 0;
+  document.getElementById("pane").innerHTML =
+    '<div class="pane" style="border-top-color:' + secColour(TOPIC.section) + '">' +
+    '<h2>' + esc(TOPIC.code + " " + TOPIC.title) + '</h2>' +
+    '<div class="big">' +
+      '<div class="p1"><b>' + totalQs + '</b><span>Questions</span></div>' +
+      '<div class="p2"><b>' + ans + '</b><span>Answered</span></div>' +
+      '<div class="p3"><b>' + right + '</b><span>Correct</span></div>' +
+      '<div class="p4"><b>' + pct + '%</b><span>Score</span></div>' +
+    '</div>' +
+    '<p>' + (flagged ? flagged + " item" + (flagged===1?"":"s") + " flagged for review. " : "") +
+    'Switch to Practice to walk back through them with the explanations, then read the revision note.</p>' +
+    '<p><button class="btn" id="toPractice" type="button">Review with explanations</button> ' +
+    '<button class="btn ghost" id="toNote" type="button">Read the revision note</button></p>' +
+    '</div>';
+  document.getElementById("toPractice").onclick = function(){ I = 0; setMode("practice"); };
+  document.getElementById("toNote").onclick = function(){ setMode("note"); };
+};
+
+/* dyslexia mode */
+(function(){
+  var b = document.getElementById("dysBtn"), on = false;
+  try { on = localStorage.getItem("tpr-dys") === "on"; } catch(e){}
+  function apply(){
+    document.body.setAttribute("data-dys", on ? "on" : "off");
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    try { localStorage.setItem("tpr-dys", on ? "on" : "off"); } catch(e){}
+  }
+  b.onclick = function(){ on = !on; apply(); };
+  apply();
+})();
+
+/* keyboard: A to H picks, arrows move */
+document.addEventListener("keydown", function(e){
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+  if(!TOPIC || MODE === "note") return;
+  if(e.key === "ArrowRight"){ if(I<ITEMS.length-1){ I++; paintNav(); paintPane(); } }
+  else if(e.key === "ArrowLeft"){ if(I>0){ I--; paintNav(); paintPane(); } }
+  else if(/^[a-hA-H]$/.test(e.key) && ITEMS[I] && ITEMS[I].kind === "sba"){
+    var i = "abcdefgh".indexOf(e.key.toLowerCase());
+    if(i < TOPIC.sba[ITEMS[I].ref][2].length){
+      ST.ans[I] = i; saveState(); paintNav(); paintStats(); paintPane();
+    }
+  }
+});
+
+/* go */
+paintNav();
+paintPane();
+onAuthReady(function(){ paintNav(); paintPane(); });
+</script>
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

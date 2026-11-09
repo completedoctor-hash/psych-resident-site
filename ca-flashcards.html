@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Appraisal Flashcards · The Psychiatric Resident</title>
+<meta name="description" content="Critical Appraisal flashcards for MRCPsych Paper B. Every formula, every calculation, worked line by line.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --teal:#0E767E; --ochre:#C2A032;
+  --plum:#6E3668; --forest:#2C6B4C;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --ok:#2C6B4C;
+  --body-font:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head-font:"Playfair Display",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --lh:1.6; --fs:16px;
+}
+[data-dys="on"]{--body-font:"Atkinson Hyperlegible","OpenDyslexic",Verdana,sans-serif;--lh:1.9;--fs:17px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body-font);font-size:var(--fs);
+  line-height:var(--lh);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1680px;margin:0 auto}
+.mast .brand{font-family:var(--head-font);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body-font);font-weight:700;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav{display:flex;align-items:center;flex-wrap:wrap}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover,.mast nav a.on{color:var(--ochre)}
+.mast button{font-family:var(--body-font);font-size:12px;font-weight:700;background:rgba(255,255,255,.1);color:#fff;
+  border:1px solid rgba(255,255,255,.3);padding:7px 13px;border-radius:20px;cursor:pointer;margin-left:14px}
+.mast button:hover{background:var(--ochre);color:var(--navy-deep);border-color:var(--ochre)}
+
+/* the five parts */
+.parts{background:var(--cream);border-bottom:1px solid var(--line)}
+.parts .in{max-width:1680px;margin:0 auto;padding:10px 22px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.parts button{font-family:var(--body-font);text-align:left;cursor:pointer;color:#fff;border:none;
+  border-radius:11px;padding:8px 15px;min-width:150px;box-shadow:0 3px 0 rgba(0,0,0,.16);
+  opacity:.42;transition:opacity .18s}
+.parts button b{display:block;font-family:var(--head-font);font-weight:800;font-size:16px;line-height:1.1}
+.parts button i{display:block;font-style:normal;font-size:10.5px;margin-top:2px;opacity:.94}
+.parts button[aria-selected="true"]{opacity:1}
+.parts button:disabled{cursor:default}
+.parts .pA{background:var(--navy)} .parts .pB{background:var(--crimson)} .parts .pC{background:var(--teal)}
+.parts .pD{background:var(--ochre);color:var(--navy-deep)} .parts .pE{background:var(--plum)}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.stat{border-radius:10px;padding:7px 13px;min-width:78px;text-align:center;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.16)}
+.stat b{display:block;font-family:var(--head-font);font-weight:800;font-size:18px;line-height:1}
+.stat span{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-top:3px;font-weight:700}
+.stat.a{background:var(--navy)} .stat.b{background:var(--forest)} .stat.c{background:var(--crimson)}
+
+.shell{display:grid;grid-template-columns:300px 1fr;max-width:1680px;width:100%;margin:0 auto;flex:1 1 auto;min-height:0}
+.side{border-right:1px solid var(--line);background:var(--cream-2);display:flex;flex-direction:column;min-width:0}
+.side .head{padding:14px 17px 11px;border-bottom:1px solid var(--line);background:var(--paper)}
+.side .head h2{font-family:var(--head-font);font-weight:800;font-size:16px;color:var(--navy)}
+.side .head p{font-size:11.5px;color:var(--muted);margin-top:3px}
+.boxes{list-style:none;padding:11px;overflow-y:auto;flex:1 1 auto;min-height:0}
+.boxes li{margin-bottom:6px}
+.boxes button{width:100%;text-align:left;font-family:var(--body-font);font-size:13.5px;line-height:1.3;
+  background:var(--paper);border:1.5px solid var(--line);border-left:6px solid var(--c);border-radius:9px;
+  padding:9px 11px;cursor:pointer;display:flex;gap:9px;align-items:flex-start;color:var(--ink)}
+.boxes button:hover{border-color:var(--c)}
+.boxes button[aria-current="true"]{background:var(--c);color:#fff;border-color:var(--c)}
+.boxes button[aria-current="true"] i{color:rgba(255,255,255,.85)}
+.boxes .num{flex-shrink:0;width:25px;height:25px;border-radius:6px;background:var(--c);color:#fff;
+  font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.boxes button[aria-current="true"] .num{background:rgba(255,255,255,.22)}
+.boxes i{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-top:2px}
+
+.stage{padding:16px 24px 20px;display:flex;flex-direction:column;min-width:0}
+.bar{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-bottom:10px}
+.bar h1{font-family:var(--head-font);font-weight:800;font-size:23px;color:var(--c);line-height:1.12}
+.bar .pos{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#fff;
+  background:var(--c);border-radius:20px;padding:6px 14px;white-space:nowrap}
+.bar .grow{flex:1}
+.track{height:8px;background:rgba(0,0,0,.08);border-radius:5px;overflow:hidden;margin-bottom:12px}
+.track i{display:block;height:100%;background:var(--c);width:0;transition:width .3s}
+
+.card{background:var(--paper);border:1.5px solid var(--line);border-top:9px solid var(--c);
+  border-radius:16px;box-shadow:0 10px 0 rgba(29,58,95,.06),0 16px 40px rgba(29,58,95,.08);
+  padding:24px 30px 26px;min-height:0}
+.kick{font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--c);font-weight:700;
+  display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);
+  padding-bottom:10px;margin-bottom:18px}
+.q{font-size:clamp(18px,1.9vw,24px);line-height:1.42;font-weight:500;max-width:74ch;margin-bottom:20px}
+.hint{font-size:13px;color:var(--muted);margin-bottom:18px}
+
+.formula{font-family:var(--mono);font-size:16px;background:var(--navy-deep);color:#EAF0F7;
+  border-radius:11px;padding:15px 19px;margin-bottom:18px;line-height:1.6;overflow-x:auto;
+  border-left:6px solid var(--ochre)}
+.formula b{display:block;font-family:var(--body-font);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ochre);margin-bottom:7px}
+
+.ans{border-left:6px solid var(--ok);background:#E9F4EE;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:16px}
+.ans b{display:block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:#1E5138;margin-bottom:6px}
+.ans .v{font-family:var(--head-font);font-weight:800;font-size:clamp(22px,2.4vw,30px);color:#1E5138;line-height:1.2}
+
+.work{border:1.5px solid var(--line);border-radius:12px;background:var(--cream);padding:6px 0;margin-bottom:16px}
+.work .lab{font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;padding:9px 18px 6px}
+.work ol{list-style:none;counter-reset:w}
+.work li{counter-increment:w;display:flex;gap:13px;font-family:var(--mono);font-size:15px;line-height:1.55;
+  padding:9px 18px;border-top:1px solid var(--line)}
+.work li::before{content:counter(w);font-family:var(--body-font);font-weight:800;color:var(--c);min-width:16px}
+
+table.grid{border-collapse:collapse;width:100%;margin-bottom:16px;font-size:13.5px;background:var(--paper)}
+table.grid th,table.grid td{border:1px solid var(--line);padding:9px 13px;text-align:left;vertical-align:top}
+table.grid tr:first-child td{background:var(--navy);color:#fff;font-weight:700;border-color:var(--navy)}
+table.grid tr:nth-child(even) td{background:var(--cream)}
+table.grid tr td:first-child{font-weight:700}
+
+.why{border:1.5px solid var(--line);border-left:6px solid var(--plum);background:#F7F2F6;
+  border-radius:0 12px 12px 0;padding:14px 18px 12px;margin-bottom:16px}
+.why b{display:block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--plum);font-weight:700;margin-bottom:8px}
+.why ul{list-style:none;margin:0;padding:0}
+.why li{position:relative;padding-left:20px;margin-bottom:7px;font-size:14.5px;line-height:1.55}
+.why li:last-child{margin-bottom:0}
+.why li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+  border-radius:2px;background:var(--plum);opacity:.55}
+
+.tabwrap{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px 4px;margin-bottom:16px}
+.tabwrap.given{border:1.5px solid var(--navy);background:#F4F7FA}
+.tabwrap.given b{color:var(--navy)}
+.tabwrap.stem{border:2px dashed var(--ochre);background:#FDFAF2}
+.tabwrap.stem b{color:#8A6C15}
+.tabwrap.stem table.grid tr:first-child td{background:var(--ochre);color:var(--navy-deep);border-color:var(--ochre)}
+.tabwrap.build table.grid tr:first-child td{background:var(--plum);border-color:var(--plum)}
+.tabwrap b{display:block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--navy);font-weight:700;margin-bottom:9px}
+.tabwrap table.grid{margin-bottom:12px}
+.dia{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;
+  padding:14px 16px 10px;margin-bottom:16px;overflow-x:auto}
+.dia b{display:block;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--teal);font-weight:700;margin-bottom:9px}
+.dia svg{display:block;width:100%;height:auto;max-width:780px;margin:0 auto}
+
+.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding-top:14px}
+.btn{font-family:var(--body-font);font-size:14.5px;font-weight:700;padding:12px 22px;border-radius:9px;
+  border:1.5px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.btn:hover{background:var(--navy-deep)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.15)}
+.btn.ghost{background:var(--paper);color:var(--navy);border-color:var(--line-2);box-shadow:0 3px 0 rgba(0,0,0,.07)}
+.btn.gold{background:var(--ochre);border-color:var(--ochre);color:var(--navy-deep)}
+.btn.good{background:var(--ok);border-color:var(--ok)}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none}
+.controls .sp{flex:1}
+.kbd{font-size:11.5px;color:var(--muted)}
+.kbd b{display:inline-block;border:1.5px solid var(--line-2);border-bottom-width:3px;border-radius:5px;
+  padding:1px 7px;color:var(--navy);background:var(--paper);margin:0 2px;font-weight:700}
+
+.pane{background:var(--paper);border:1.5px solid var(--line);border-top:9px solid var(--ochre);border-radius:16px;
+  padding:44px 34px;text-align:center;flex:1 1 auto;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;box-shadow:0 10px 0 rgba(29,58,95,.06)}
+.pane h2{font-family:var(--head-font);font-weight:800;font-size:27px;color:var(--navy-deep)}
+.pane p{color:var(--muted);max-width:58ch}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;padding:9px 22px;font-size:12px;flex:0 0 auto}
+footer .in{max-width:1680px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+
+
+.shell{align-items:start}
+@media(min-width:1081px){.side{position:sticky;top:0;max-height:100vh}.boxes{overflow-y:auto}}
+.controls{position:sticky;bottom:0;background:linear-gradient(to bottom,rgba(251,248,240,0),var(--cream) 22%);padding:16px 0 12px;z-index:5}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .side{border-right:none;border-bottom:1px solid var(--line)}
+  .boxes{max-height:230px}
+  .card,.pane{overflow:visible}
+  .stage{padding:14px 16px}
+}
+</style>
+<link rel="stylesheet" href="content/ca-theme.css">
+<script src="content/ca-keys.js"></script>
+<script src="content/protect.js"></script></head>
+<body data-dys="off">
+<a class="sr" href="#stage">Skip to the cards</a>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Critical Appraisal · Flashcards</span></a>
+  <nav>
+    <a href="critical-appraisal.html">The course</a>
+    <a href="ca-flashcards.html" class="on">Flashcards</a>
+    <a href="ca-practice.html">Practice</a>
+    <a href="ca-drill.html">Calculation drill</a>
+    <a href="formulas.html">Formulas</a>
+    <a href="paper-b.html">Paper B</a>
+    <a href="index.html">Home</a>
+    <button data-account>Sign in</button>
+    <button id="dysBtn" aria-pressed="false">Dyslexia mode</button>
+  </nav>
+</div></header>
+
+<div class="parts"><div class="in" id="partBar"></div></div>
+
+<div class="shell">
+  <aside class="side">
+    <div class="head"><h2 id="sideTitle">Categories</h2><p id="sideSub">Pick a box.</p></div>
+    <ul class="boxes" id="boxes"></ul>
+  </aside>
+  <main class="stage" id="stage">
+    <div class="bar">
+      <h1 id="catTitle">&nbsp;</h1><div class="grow"></div><div class="pos" id="pos">&nbsp;</div>
+    </div>
+    <div class="track"><i id="trackBar"></i></div>
+    <div id="pane"></div>
+    <div class="controls" id="controls"></div>
+  </main>
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>Progress saved on this device. <span data-build style="opacity:.65;margin-left:8px"></span></div>
+</div></footer>
+
+<script src="content/auth-config.js"></script>
+<script src="content/auth.js"></script>
+<script src="content/ca-extras.js"></script>
+<script>
+/* ==================================================================
+   Critical Appraisal flashcards.
+   Five parts. Part D, Calculations, is built. Each card asks, you
+   answer in your head, then it reveals the answer with the working
+   set out line by line so it can be rebuilt from scratch.
+   No option letters anywhere: the exam gives you five, revision
+   should not.
+   ================================================================== */
+
+var PARTS = [
+  {p:"A", name:"Statistics",       sub:"Tests, CIs, errors, pictures", cls:"pA", built:true},
+  {p:"B", name:"Research Methods", sub:"Design, bias, validity",  cls:"pB", built:true},
+  {p:"C", name:"EBM",              sub:"Diagnosis and treatment", cls:"pC", built:true},
+  {p:"D", name:"Calculations",     sub:"61 exam questions, 9 diagrams", cls:"pD", built:true},
+  {p:"E", name:"Advanced Topics",  sub:"Economics, qualitative, meta", cls:"pE", built:true}
+];
+
+var PALETTE=["#1D3A5F","#AE1E35","#0E767E","#C2A032","#6E3668","#2C6B4C"];
+function catColour(i){ return PALETTE[i % PALETTE.length]; }
+
+var PACK_KEY="tpr-ca-2026-cde";
+function unpack(p){
+  var raw=atob(p), bytes=[];
+  for(var i=0;i<raw.length;i++) bytes.push(raw.charCodeAt(i) ^ PACK_KEY.charCodeAt(i%PACK_KEY.length));
+  return JSON.parse(new TextDecoder().decode(new Uint8Array(bytes)));
+}
+
+var LAND=[
+  {p:"A",name:"Statistics",desc:"Choosing the test, skew, standard error, CIs, power and errors.",cards:21,cats:9},
+  {p:"B",name:"Research Methods",desc:"Study design, bias, confounding, ITT, validity and reliability.",cards:16,cats:8},
+  {p:"C",name:"Evidence-Based Medicine",desc:"Screening, sensitivity and specificity, LRs, NNT and Bayes.",cards:16,cats:9},
+  {p:"D",name:"Calculations",desc:"61 full exam questions worked line by line, 2×2 tables, drills.",cards:222,cats:31},
+  {p:"E",name:"Advanced Topics",desc:"Health economics, qualitative methods, meta-analysis, checklists.",cards:19,cats:7}];
+function seenIn(p){ try{ var o=JSON.parse(localStorage.getItem("tpr-ca-cards:"+p)||"{}"),n=0; for(var k in o) if(o[k]===1) n++; return n; }catch(e){ return 0; } }
+var DATA=null, PART=null, C=0, I=0, SHOWN=false, LOADING=false;
+function cats(){ return DATA ? DATA.cats : []; }
+function cur(){ var c=cats()[C]; return c || {title:"",cards:[]}; }
+function card(){ return cur().cards[I] || null; }
+
+var ST={};
+function key(){ return "tpr-ca-cards:"+(PART||"D"); }
+function load(){ try{ ST=JSON.parse(localStorage.getItem(key())||"{}"); }catch(e){ ST={}; } }
+function save(){ try{ localStorage.setItem(key(), JSON.stringify(ST)); }catch(e){} }
+function seen(c,i){ return ST[c+":"+i]===1; }
+
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function paintParts(){
+  document.getElementById("partBar").innerHTML =
+    PARTS.map(function(x){
+      return '<button class="'+x.cls+'" data-part="'+x.p+'"'+
+        (x.p===PART?' aria-selected="true"':'')+(x.built?'':' disabled')+'>'+
+        '<b>Part '+x.p+' · '+esc(x.name)+'</b><i>'+(x.built?esc(x.sub):'in preparation')+'</i></button>';
+    }).join("") +
+    '<div class="stats">'+
+      '<div class="stat a"><b id="sCards">—</b><span>Cards</span></div>'+
+      '<div class="stat b"><b id="sDone">0</b><span>Seen</span></div>'+
+      '<div class="stat c"><b id="sCats">—</b><span>Categories</span></div>'+
+    '</div>';
+  document.querySelectorAll("[data-part]").forEach(function(b){
+    if(b.disabled) return;
+    b.onclick=function(){ openPart(b.getAttribute("data-part")); };
+  });
+}
+
+function paintStats(){
+  if(!DATA){ var a0=document.getElementById("sCards"), b0=document.getElementById("sDone"), c0=document.getElementById("sCats");
+    var T=0,K=0,S=0; LAND.forEach(function(x){ T+=x.cards; K+=x.cats; S+=seenIn(x.p); });
+    if(a0) a0.textContent=T; if(b0) b0.textContent=S; if(c0) c0.textContent=K; return; }
+  var tot=0,done=0;
+  cats().forEach(function(c,ci){ tot+=c.cards.length; c.cards.forEach(function(_,i){ if(seen(ci,i)) done++; }); });
+  var a=document.getElementById("sCards"), b=document.getElementById("sDone"), c2=document.getElementById("sCats");
+  if(a) a.textContent=tot; if(b) b.textContent=done; if(c2) c2.textContent=cats().length;
+}
+
+function paintBoxes(){
+  var ul=document.getElementById("boxes");
+  if(!DATA){
+    document.getElementById("sideTitle").textContent="Choose a part";
+    document.getElementById("sideSub").textContent="Five parts · pick one to see its categories";
+    ul.innerHTML=LAND.map(function(x){ return '<li><button data-open="'+x.p+'"><span class="num">'+x.p+'</span><span><span>'+esc(x.name)+'</span>'+
+      '<i>'+x.cards+' cards · '+x.cats+' categories'+(seenIn(x.p)?' · '+seenIn(x.p)+' seen':'')+'</i></span></button></li>'; }).join("");
+    [].forEach.call(ul.querySelectorAll("[data-open]"),function(b){ b.onclick=function(){ openPart(b.getAttribute("data-open")); }; });
+    paintStats(); return; }
+  ul.innerHTML = cats().map(function(c,i){
+    var done=0; c.cards.forEach(function(_,j){ if(seen(i,j)) done++; });
+    return '<li><button data-cat="'+i+'" style="--c:'+catColour(i)+'"'+(i===C?' aria-current="true"':'')+'>'+
+      '<span class="num">'+c.n+'</span><span><span>'+esc(c.title)+'</span>'+
+      '<i>'+c.cards.length+' cards'+(done?' · '+done+' seen':'')+'</i></span></button></li>';
+  }).join("");
+  ul.querySelectorAll("[data-cat]").forEach(function(b){
+    b.onclick=function(){ C=parseInt(b.getAttribute("data-cat"),10); I=0; SHOWN=false; paintBoxes(); paintCard(); };
+  });
+  document.getElementById("sideTitle").textContent="Part "+DATA.part+" · "+DATA.title;
+  document.getElementById("sideSub").textContent=cats().length+" categories";
+  paintStats();
+}
+
+function tableHTML(rows){
+  return '<table class="grid"><tbody>' + rows.map(function(r){
+    return '<tr>' + r.map(function(c){ return '<td>'+esc(c)+'</td>'; }).join("") + '</tr>';
+  }).join("") + '</tbody></table>';
+}
+
+function paintCard(){
+  var pane=document.getElementById("pane"), ctrl=document.getElementById("controls");
+
+  if(!hasAccess("critical-appraisal")){
+    pane.innerHTML='<div class="pane"><h2>These flashcards come with the course</h2>'+
+      '<p>Register with your email address. Once Dr Ezeanyika has approved that address for the '+
+      'Critical Appraisal course, the flashcards open with the account you already have.</p>'+
+      '<p><a class="btn gold" href="register.html" style="text-decoration:none">Register</a> '+
+      '<button class="btn ghost" data-account type="button">I already have an account</button></p></div>';
+    ctrl.innerHTML=""; document.getElementById("boxes").innerHTML="";
+    document.getElementById("catTitle").textContent="Critical Appraisal";
+    document.getElementById("pos").textContent="By approval";
+    paintAccountButtons(); return;
+  }
+
+  if(!DATA){
+    pane.innerHTML='<div class="land"><div class="lk">Critical appraisal · MRCPsych Paper B</div>'+
+      '<h2>Where do you want to start?</h2><p class="ls">Pick a part. Read the card, answer in your head, press Space to reveal, then mark it.</p>'+
+      '<div class="lgrid">'+LAND.map(function(x){ var sn=seenIn(x.p), pc=Math.round(sn*100/x.cards);
+        return '<button class="ltile" data-open="'+x.p+'"><span class="ll">'+x.p+'</span><span class="ln">'+esc(x.name)+'</span>'+
+        '<span class="ld">'+esc(x.desc)+'</span><span class="lm">'+x.cards+' cards · '+x.cats+' categories</span>'+
+        '<span class="lbar"><i style="width:'+pc+'%"></i></span><span class="lgo">'+(sn?'Continue · '+pc+'% seen':'Open')+' →</span></button>'; }).join("")+
+      '<a class="ltile alt" href="ca-practice.html"><span class="ll">✓</span><span class="ln">Practice questions</span><span class="ld">84 exam-style questions with five options, scored.</span><span class="lgo">Start →</span></a>'+
+      '<a class="ltile alt" href="ca-drill.html"><span class="ll">÷</span><span class="ln">Calculation drill</span><span class="ld">22 calculations, new numbers every time.</span><span class="lgo">Start →</span></a>'+
+      '<a class="ltile alt" href="formulas.html"><span class="ll">Σ</span><span class="ln">Every formula</span><span class="ld">All 68 formulas on one page, with diagrams.</span><span class="lgo">Open →</span></a>'+
+      '</div></div>';
+    [].forEach.call(pane.querySelectorAll("[data-open]"),function(b){ b.onclick=function(){ openPart(b.getAttribute("data-open")); }; });
+    ctrl.innerHTML=""; document.getElementById("catTitle").textContent="Critical Appraisal flashcards";
+    document.getElementById("pos").textContent="Five parts"; return;
+  }
+
+  var c=cur(), k=card(), col=catColour(C);
+  document.getElementById("stage").style.setProperty("--c",col);
+  document.getElementById("catTitle").textContent=c.title;
+  var done=0; c.cards.forEach(function(_,j){ if(seen(C,j)) done++; });
+  document.getElementById("pos").textContent="Card "+(I+1)+" of "+c.cards.length+" · "+done+" seen";
+  document.getElementById("trackBar").style.width=(c.cards.length?Math.round(done*100/c.cards.length):0)+"%";
+  if(!k){ pane.innerHTML=""; ctrl.innerHTML=""; return; }
+
+  var label = k.k==="q" ? "Question" : k.k==="worked" ? "Worked example"
+            : k.k==="formula" ? "Formula" : k.k==="table" ? "Table"
+            : k.k==="dia" ? "Diagram" : "High-yield";
+
+  var body='<div class="kick"><span>Part '+DATA.part+' · '+esc(c.title)+'</span><span>'+label+' · '+esc(k.topic||"")+'</span></div>'+
+    '<div class="q">'+esc(k.q)+'</div>'+
+    (k.fsvg && DATA.svg && DATA.svg[k.fsvg] ? '<div class="dia">'+DATA.svg[k.fsvg]+'</div>' : '');
+
+  /* a diagram card shows its picture and its caption at once, nothing to reveal */
+  if(k.k==="dia"){
+    if(k.svg && DATA.svg && DATA.svg[k.svg]) body += '<div class="dia">'+DATA.svg[k.svg]+'</div>';
+    if(k.w && k.w.length)
+      body += '<div class="work"><div class="lab">What it shows</div><ol>'+
+              k.w.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ol></div>';
+  } else if(!SHOWN){
+    if(k.given) body += '<div class="tabwrap given"><b>Data supplied with the question</b>'+tableHTML(k.given)+'</div>';
+    if(k.stemtab) body += '<div class="tabwrap stem"><b>Fill this in from the stem before you reveal</b>'+tableHTML(k.stemtab)+'</div>';
+    body += '<div class="hint">Work it out on paper first. Then reveal.</div>';
+  } else {
+    if(k.f) body += '<div class="formula"><b>The formula</b>'+esc(k.f)+'</div>';
+    else if(window.caFormulaFor) body += window.caFormulaFor([k.q,k.a,(k.x||[]).join(' ')].join(' '));
+    if(k.x && k.x.length)
+      body += '<div class="why"><b>What the formula means, and why it works</b><ul>'+
+              k.x.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+    if(k.build) body += '<div class="tabwrap build"><b>How each cell is built from the stem</b>'+tableHTML(k.build)+'</div>';
+    if(k.table) body += '<div class="tabwrap"><b>The completed table, to check against</b>'+tableHTML(k.table)+'</div>';
+    if(k.svg && DATA.svg && DATA.svg[k.svg])
+      body += '<div class="dia"><b>The picture</b>'+DATA.svg[k.svg]+'</div>';
+    if(k.a && k.a!=="See the steps.")
+      body += '<div class="ans"><b>Answer</b><div class="v">'+esc(k.a)+'</div></div>';
+    if(k.w && k.w.length)
+      body += '<div class="work"><div class="lab">The working, line by line</div><ol>'+
+              k.w.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ol></div>';
+  }
+
+  pane.innerHTML='<div class="card">'+body+'</div>';
+
+  ctrl.innerHTML =
+    '<button class="btn ghost" id="prev"'+(I===0?' disabled':'')+'>Back</button>'+
+    (k.k==="dia"?'':'<button class="btn '+(SHOWN?'ghost':'gold')+'" id="rev">'+(SHOWN?'Hide':'Reveal the working')+'</button>')+
+    '<button class="btn good" id="got">Got it</button>'+
+    '<button class="btn" id="next"'+(I>=c.cards.length-1?' disabled':'')+'>Next</button>'+
+    '<span class="sp"></span><span class="kbd"><b>&larr;</b><b>&rarr;</b> move &nbsp; <b>space</b> reveal</span>';
+
+  var rv=document.getElementById("rev");
+  if(rv) rv.onclick=function(){ SHOWN=!SHOWN; paintCard(); };
+  document.getElementById("prev").onclick=function(){ if(I>0){I--;SHOWN=false;paintCard();} };
+  document.getElementById("next").onclick=function(){ if(I<c.cards.length-1){I++;SHOWN=false;paintCard();} };
+  document.getElementById("got").onclick=function(){
+    ST[C+":"+I]=1; save(); paintBoxes();
+    if(I<c.cards.length-1){ I++; SHOWN=false; }
+    paintCard();
+  };
+}
+
+function openPart(p){
+  if(LOADING) return;
+  LOADING=true; PART=p; paintParts();
+  document.getElementById("pane").innerHTML='<div class="pane"><h2>Opening Part '+p+'</h2><p>One moment.</p></div>';
+  var s=document.createElement("script");
+  var practice = p!=="D";
+  s.src = practice ? "paid/appraisal/ca-practice.dat.js" : "paid/appraisal/ca-cards-"+p+".dat.js";
+  s.onload=function(){
+    LOADING=false;
+    try{ DATA = practice ? fromPractice(p) : unpack(CA_CARD_PACK); C=0; I=0; SHOWN=false; load(); paintBoxes(); paintCard(); }
+    catch(e){ fail(p); }
+  };
+  s.onerror=function(){ LOADING=false; fail(p); };
+  document.head.appendChild(s);
+}
+/* Parts A, B, C and E: cards built from the practice bank. Picture
+   questions go to the part their diagram belongs to. */
+var PIC_PART={forest:"E",funnel:"E",ceplane:"E",km:"A",ci:"A",skew:"A",box:"A",scatter:"A",errors:"A",roc:"C",cutoff:"C",confound:"B",consort:"B"};
+function fromPractice(p){
+  var Q=window.CA_PRACTICE||[], by={}, order=[];
+  Q.forEach(function(q){
+    var part=q[0]==="P" ? PIC_PART[q[6]] : q[0];
+    if(part!==p) return;
+    var t=q[0]==="P" ? "Read the picture" : q[1];
+    if(!by[t]){ by[t]=[]; order.push(t); }
+    by[t].push({k:"q", topic:q[1], q:q[2], a:q[3][q[4]], x:[q[5]],
+      fsvg:q[0]==="P"?q[6]:null, svg:q[0]!=="P"?q[6]:null});
+  });
+  if(!order.length) throw new Error("empty");
+  var nm={A:"Statistics",B:"Research Methods",C:"EBM",E:"Advanced Topics"}[p];
+  return {part:p, title:nm, svg:window.CA_DIAGRAMS||{}, cats:order.map(function(t,i){ return {n:i+1, title:t, cards:by[t]}; })};
+}
+function fail(p){
+  document.getElementById("pane").innerHTML='<div class="pane"><h2>Part '+esc(p)+' did not load</h2>'+
+    '<p>Reload the page and try again.</p></div>';
+}
+
+document.addEventListener("keydown",function(e){
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+  if(!DATA) return;
+  if(e.key===" "){ e.preventDefault(); SHOWN=!SHOWN; paintCard(); }
+  else if(e.key==="ArrowRight"){ var n=cur().cards.length; if(I<n-1){I++;SHOWN=false;paintCard();} }
+  else if(e.key==="ArrowLeft"){ if(I>0){I--;SHOWN=false;paintCard();} }
+});
+
+(function(){
+  var b=document.getElementById("dysBtn"), on=false;
+  try{ on=localStorage.getItem("tpr-dys")==="on"; }catch(e){}
+  function apply(){ document.body.setAttribute("data-dys",on?"on":"off");
+    b.setAttribute("aria-pressed",on?"true":"false");
+    try{ localStorage.setItem("tpr-dys",on?"on":"off"); }catch(e){} }
+  b.onclick=function(){ on=!on; apply(); }; apply();
+})();
+
+paintParts(); paintBoxes(); paintCard();
+onAuthReady(function(){ paintParts(); paintBoxes(); paintCard(); });
+</script>
+<script>(function(){var W="critical-appraisal";function g(){if(!(window.hasAccess&&window.hasAccess(W))){var h=location.pathname.split("/").pop();location.replace("locked.html?w="+W+"&r="+encodeURIComponent(h));}}if(typeof window.onAuthReady==="function")window.onAuthReady(g);else window.addEventListener("load",function(){setTimeout(g,300)});})();</script>
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

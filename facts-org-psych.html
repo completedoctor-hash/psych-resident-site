@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organisation of Services · Commonly Tested Facts · The Psychiatric Resident</title>
+<meta name="description" content="Organisation of Services. The 33 most commonly tested facts for MRCPsych Paper B, each set out in single best answer form, with a read-along voice.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF8F0; --cream-2:#F5F0E4; --paper:#FFFFFF;
+  --navy:#1D3A5F; --navy-deep:#14293F;
+  --crimson:#AE1E35; --ochre:#C2A032; --forest:#2C6B4C; --teal:#0E767E; --plum:#6E3668;
+  --ink:#1B2128; --muted:#6B6355; --line:#E5DCC8; --line-2:#D8CDB4;
+  --body:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --head:"Playfair Display",Georgia,serif;
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:92px}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-radius:3px}
+
+.mast{background:var(--navy-deep);color:#fff;border-bottom:4px solid var(--ochre)}
+.mast .in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;max-width:1120px;margin:0 auto}
+.mast .brand{font-family:var(--head);font-weight:900;font-size:21px;text-decoration:none;color:#fff;line-height:1.05}
+.mast .brand span{display:block;font-family:var(--body);font-weight:700;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ochre);margin-top:4px}
+.mast nav a{color:#C3CEDC;text-decoration:none;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;margin-left:15px}
+.mast nav a:hover{color:var(--ochre)}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+
+.band{background:var(--crimson);color:#fff;font-size:11px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;padding:9px 22px;text-align:center}
+
+.lede{padding:30px 0 18px;border-bottom:1px solid var(--line)}
+.lede h1{font-family:var(--head);font-weight:800;font-size:clamp(27px,4.3vw,40px);
+  line-height:1.08;margin-bottom:9px;text-wrap:balance}
+.lede .count{font-size:16.5px;color:var(--muted)}
+.lede .how{margin-top:14px;background:var(--cream-2);border:1.5px solid var(--line);
+  border-left:5px solid var(--ochre);border-radius:11px;padding:14px 18px;font-size:14.5px}
+.lede .how > b:first-child{display:block;font-family:var(--head);font-size:16px;margin-bottom:5px}
+
+.toc{margin:22px 0;background:var(--paper);border:1.5px solid var(--line);border-radius:13px;padding:18px 20px}
+.toc h2{font-family:var(--head);font-weight:800;font-size:18px;margin-bottom:11px}
+.toc ol{list-style:none;counter-reset:t}
+.toc li{counter-increment:t;display:flex;gap:11px;align-items:baseline;padding:5px 0;
+  border-bottom:1px dotted var(--line);font-size:15px}
+.toc li:last-child{border-bottom:0}
+.toc li:before{content:counter(t);flex:0 0 22px;height:22px;border-radius:6px;background:var(--navy);
+  color:#fff;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.toc li a{text-decoration:none;font-weight:600;flex:1 1 auto}
+.toc li a:hover{text-decoration:underline}
+.toc li em{font-style:normal;color:var(--muted);font-size:13px;white-space:nowrap}
+
+.sec{margin:34px 0 10px;padding-top:6px}
+.sec .kicker{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson)}
+.sec h2{font-family:var(--head);font-weight:800;font-size:25px;line-height:1.12;margin-top:3px}
+.sub{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:22px 0 10px;padding-bottom:5px;border-bottom:1.5px solid var(--line)}
+
+.q{background:var(--paper);border:1.5px solid var(--line);border-radius:13px;
+  padding:17px 19px;margin-bottom:13px}
+.q.on{border-color:var(--ochre);box-shadow:0 0 0 3px rgba(194,160,50,.18)}
+.qhead{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+.qno{font-family:var(--head);font-weight:800;font-size:17px;color:var(--navy)}
+.stars{color:var(--ochre);font-size:13px;letter-spacing:1px}
+.stem{font-size:16px;margin-bottom:7px}
+.ask{font-weight:700;margin-bottom:11px}
+.opts{list-style:none}
+.opts li{display:flex;gap:10px;padding:5px 0;font-size:15.5px;align-items:baseline}
+.opts li b{flex:0 0 19px;font-weight:700;color:var(--muted)}
+.reveal{margin-top:12px}
+.reveal button{font-family:var(--body);font-size:11.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--navy);background:var(--cream-2);border:1.5px solid var(--line-2);
+  border-radius:8px;padding:8px 15px;cursor:pointer}
+.reveal button:hover{background:var(--cream)}
+.ans{display:none;margin-top:12px;background:#F1F6F2;border:1.5px solid #CADDCF;
+  border-left:5px solid var(--forest);border-radius:10px;padding:13px 16px}
+.ans.show{display:block}
+.ans .a{font-weight:700;color:var(--forest);margin-bottom:5px}
+.ans .w{font-size:14.8px}
+
+.gate{background:var(--paper);border:1.5px solid var(--line);border-top:7px solid var(--ochre);
+  border-radius:16px;padding:30px 30px;margin:30px 0;text-align:center}
+.gate h2{font-family:var(--head);font-weight:800;font-size:25px;margin-bottom:10px}
+.gate p{font-size:15.5px;color:#473f33;max-width:58ch;margin:0 auto 12px}
+.gate .big{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin:16px 0}
+.gate .big div{border-radius:12px;padding:12px 20px;color:#fff;min-width:108px}
+.gate .big div b{display:block;font-family:var(--head);font-weight:800;font-size:25px;line-height:1}
+.gate .big div span{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  margin-top:5px;font-weight:700}
+.gate .big .p1{background:var(--navy)} .gate .big .p2{background:var(--crimson)} .gate .big .p3{background:var(--teal)}
+.btn{display:inline-block;font-family:var(--body);font-size:13px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;border-radius:9px;padding:13px 26px;cursor:pointer;border:1.5px solid transparent;
+  text-decoration:none}
+.btn.gold{background:var(--ochre);color:#2A220B}
+.btn.ghost{background:transparent;color:var(--navy);border-color:var(--line-2)}
+
+.ipn{margin:30px 0 20px;font-size:12.5px;color:var(--muted);background:var(--cream-2);
+  border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+
+.player{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--navy-deep);
+  border-top:3px solid var(--ochre);color:#fff;padding:10px 16px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.player .ctl{background:#24405F;color:#fff;border:0;border-radius:9px;min-width:42px;height:40px;
+  padding:0 11px;cursor:pointer;font-family:var(--body);font-size:13px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center}
+.player .ctl:hover{background:#2F5076}
+.player .ctl.primary{background:var(--ochre);color:#2A220B;min-width:52px}
+.player svg{width:19px;height:19px;fill:currentColor}
+.player select{max-width:168px}
+.player .now{flex:1 1 220px;font-size:13px;color:#C3CEDC;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.player .now b{color:#fff}
+.player .warn{flex:1 1 100%;font-size:12.5px;color:#F0D79A}
+
+footer{border-top:3px solid var(--ochre);background:var(--navy-deep);color:#C3CEDC;
+  padding:14px 22px;font-size:12.5px}
+footer .in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff}
+@media(max-width:560px){ .player .now{display:none} .q{padding:15px 15px} }
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+
+<header class="mast"><div class="in">
+  <a class="brand" href="index.html">The Psychiatric Resident<span>Commonly Tested Facts</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="paper-b.html">Paper B</a>
+    <a href="index.html">Front page</a>
+  </nav>
+</div></header>
+
+<div class="band">2026 October Revision · Dr Nonso’s Commonly Tested Facts in Paper B</div>
+
+<div class="wrap">
+
+  <div class="lede">
+    <h1>Organisation of Services</h1>
+    <p class="count">The 33 most commonly tested facts · 6 sections</p>
+    <div class="how">
+      <b>How to use this</b>
+      These are commonly tested facts, not exam questions. Each is written afresh and set out in
+      single best answer form so you can test yourself on it. Choose one option, then press
+      <b>Show answer</b>. &#9733;&#9733;&#9733; marks a point tested very often, &#9733;&#9733; often,
+      &#9733; more than once. Press play at the bottom to have it read to you; tap any question
+      first to start from there.
+    </div>
+  </div>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol><li><a href="#s1">Health Economics</a><em>Q1 to 12</em></li><li><a href="#s2">Quality Improvement, Audit and Governance</a><em>Q13 to 19</em></li><li><a href="#s3">Mental Health Law and Confidentiality</a><em>Q20 to 23</em></li><li><a href="#s4">Services and Teams</a><em>Q24 to 26</em></li><li><a href="#s5">Prevention</a><em>Q27 to 32</em></li><li><a href="#s6">Stigma, Culture and Inequality</a><em>Q33 to 33</em></li></ol>
+  </div>
+
+  <div id="freeArea">
+<div class="sec" id="s1"><div class="kicker">Section 1</div><h2>Health Economics</h2></div>
+<div class="sub">Costs and types of evaluation</div>
+<div class="q" data-n="1"><div class="qhead"><span class="qno">1</span><span class="stars">★★</span></div><p class="stem say">A team costing a new depression service counts the wages patients lose and the work days missed while they are too unwell to work, including three months off during a course of ECT.</p><p class="ask say">Which category of cost are these productivity losses?</p><ul class="opts say"><li><b>A</b><span>Direct healthcare cost</span></li><li><b>B</b><span>Intangible cost</span></li><li><b>C</b><span>Indirect cost</span></li><li><b>D</b><span>Capital cost</span></li><li><b>E</b><span>Direct non healthcare cost</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer C &nbsp;Indirect cost</p><p class="w say">Indirect costs are lost productivity: wages, absence and carer time. Direct costs are resources spent on care.</p></div></div>
+<div class="q" data-n="2"><div class="qhead"><span class="qno">2</span><span class="stars">★★</span></div><p class="stem say">An economist compares a long acting injectable with an oral antipsychotic in schizophrenia. Outcomes are expressed as cost per quality adjusted life year, using EQ-5D weights.</p><p class="ask say">Which type of economic evaluation is this?</p><ul class="opts say"><li><b>A</b><span>Cost utility analysis</span></li><li><b>B</b><span>Cost effectiveness analysis</span></li><li><b>C</b><span>Cost benefit analysis</span></li><li><b>D</b><span>Cost minimisation analysis</span></li><li><b>E</b><span>Cost of illness study</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer A &nbsp;Cost utility analysis</p><p class="w say">Cost utility analysis uses QALYs; cost effectiveness uses natural units such as relapses avoided.</p></div></div>
+<div class="q" data-n="3"><div class="qhead"><span class="qno">3</span></div><p class="stem say">A community team evaluation converts every cost and every benefit, including savings from fewer admissions and earnings from return to work, into pounds.</p><p class="ask say">Which type of economic evaluation is this?</p><ul class="opts say"><li><b>A</b><span>Cost utility analysis</span></li><li><b>B</b><span>Cost benefit analysis</span></li><li><b>C</b><span>Cost effectiveness analysis</span></li><li><b>D</b><span>Cost minimisation analysis</span></li><li><b>E</b><span>Cost consequence analysis</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer B &nbsp;Cost benefit analysis</p><p class="w say">Cost benefit analysis puts all outcomes into money, allowing comparison across sectors.</p></div></div>
+<div class="q" data-n="4"><div class="qhead"><span class="qno">4</span></div><p class="stem say">A cost benefit analysis of emergency psychiatric care counts staff time, bed days and investigations used in delivering the emergency treatment itself.</p><p class="ask say">How are these costs classified?</p><ul class="opts say"><li><b>A</b><span>Indirect cost</span></li><li><b>B</b><span>Intangible cost</span></li><li><b>C</b><span>Incremental cost</span></li><li><b>D</b><span>Direct cost</span></li><li><b>E</b><span>Opportunity cost</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer D &nbsp;Direct cost</p><p class="w say">Direct costs are resources consumed in providing care: staff, drugs, beds, tests.</p></div></div>
+<div class="q" data-n="5"><div class="qhead"><span class="qno">5</span></div><p class="stem say">A study uses disability adjusted life years to estimate the total burden schizophrenia places on health services, patients and lost productivity, without comparing any treatments.</p><p class="ask say">What type of economic study is this?</p><ul class="opts say"><li><b>A</b><span>Cost utility analysis</span></li><li><b>B</b><span>Cost benefit analysis</span></li><li><b>C</b><span>Cost minimisation analysis</span></li><li><b>D</b><span>Cost effectiveness analysis</span></li><li><b>E</b><span>Cost of illness study</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer E &nbsp;Cost of illness study</p><p class="w say">Cost of illness, or burden of disease, studies describe a condition's total cost; they compare no interventions.</p></div></div>
+<div class="q" data-n="6"><div class="qhead"><span class="qno">6</span><span class="stars">★</span></div><p class="stem say">A new antipsychotic costs 2400 pounds more per patient than the old one and yields 0.30 extra QALYs, giving 8000 pounds per QALY gained.</p><p class="ask say">What is this figure called?</p><ul class="opts say"><li><b>A</b><span>Net monetary benefit</span></li><li><b>B</b><span>Cost benefit ratio</span></li><li><b>C</b><span>Disability adjusted life year</span></li><li><b>D</b><span>Incremental cost effectiveness ratio</span></li><li><b>E</b><span>Attributable risk</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer D &nbsp;Incremental cost effectiveness ratio</p><p class="w say">ICER is extra cost divided by extra health gained; NICE usually accepts below 20,000 to 30,000 pounds per QALY.</p></div></div>
+<div class="q" data-n="7"><div class="qhead"><span class="qno">7</span><span class="stars">★</span></div><p class="stem say">An evaluation of an early intervention service runs over ten years. Costs and health gains arising in later years are given a lower present value at 3.5 per cent a year.</p><p class="ask say">What is this adjustment called?</p><ul class="opts say"><li><b>A</b><span>Sensitivity analysis</span></li><li><b>B</b><span>Opportunity cost</span></li><li><b>C</b><span>Marginal analysis</span></li><li><b>D</b><span>Markov modelling</span></li><li><b>E</b><span>Discounting</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer E &nbsp;Discounting</p><p class="w say">Discounting values future costs and benefits less than present ones; NICE uses 3.5 per cent a year.</p></div></div>
+<div class="q" data-n="8"><div class="qhead"><span class="qno">8</span></div><p class="stem say">A crisis home treatment option costs 200 pounds a week more than standard care, and patients receive it for a full year.</p><p class="ask say">What is the annual incremental cost per patient?</p><ul class="opts say"><li><b>A</b><span>8,400 pounds</span></li><li><b>B</b><span>9,200 pounds</span></li><li><b>C</b><span>10,400 pounds</span></li><li><b>D</b><span>11,200 pounds</span></li><li><b>E</b><span>12,400 pounds</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer C &nbsp;10,400 pounds</p><p class="w say">Incremental cost is the extra cost: 200 pounds multiplied by 52 weeks equals 10,400 pounds.</p></div></div>
+<div class="q" data-n="9"><div class="qhead"><span class="qno">9</span></div><p class="stem say">A summary measure multiplies years lived by a quality weight from 0, death, to 1, full health. NICE judges value against 20,000 to 30,000 pounds per unit.</p><p class="ask say">What is this measure?</p><ul class="opts say"><li><b>A</b><span>Disability adjusted life year</span></li><li><b>B</b><span>Years lived with disability</span></li><li><b>C</b><span>Health adjusted life expectancy</span></li><li><b>D</b><span>Incremental cost effectiveness ratio</span></li><li><b>E</b><span>Quality adjusted life year</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer E &nbsp;Quality adjusted life year</p><p class="w say">One QALY is one year in full health; NICE threshold is 20,000 to 30,000 pounds per QALY.</p></div></div>
+<div class="q" data-n="10"><div class="qhead"><span class="qno">10</span></div><p class="stem say">A man with paraplegia says ten years living in his current state would be worth only one year in full health to him.</p><p class="ask say">What utility weight does his current health state have?</p><ul class="opts say"><li><b>A</b><span>0.1</span></li><li><b>B</b><span>0.2</span></li><li><b>C</b><span>0.5</span></li><li><b>D</b><span>Less than 0.1</span></li><li><b>E</b><span>Zero</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer A &nbsp;0.1</p><p class="w say">Time trade off: 1 year full health divided by 10 years equals a utility of 0.1.</p></div></div>
+<div class="q" data-n="11"><div class="qhead"><span class="qno">11</span></div><p class="stem say">A new esketamine strategy costs 11,500 pounds and yields 0.81 QALYs. The comparator costs 4,200 pounds and yields 0.86 QALYs.</p><p class="ask say">What is the correct conclusion?</p><ul class="opts say"><li><b>A</b><span>Cost effective below the NICE threshold</span></li><li><b>B</b><span>Dominated by the comparator; reject it</span></li><li><b>C</b><span>Calculate the ICER before deciding</span></li><li><b>D</b><span>Cost effective only with a severity modifier</span></li><li><b>E</b><span>Equivalent; choose on patient preference</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer B &nbsp;Dominated by the comparator; reject it</p><p class="w say">Costlier and less effective means dominated; no ratio is calculated and the option is rejected.</p></div></div>
+<div class="q" data-n="12"><div class="qhead"><span class="qno">12</span></div><p class="stem say">A public health team measures the burden of schizophrenia by adding years of life lost to premature death and years lived with disability.</p><p class="ask say">Which measure is this?</p><ul class="opts say"><li><b>A</b><span>Quality adjusted life year</span></li><li><b>B</b><span>Incremental cost effectiveness ratio</span></li><li><b>C</b><span>Disability adjusted life year</span></li><li><b>D</b><span>Disability weight</span></li><li><b>E</b><span>Years of life lost</span></li></ul><div class="reveal"><button type="button">Show answer</button></div><div class="ans"><p class="a say">Answer C &nbsp;Disability adjusted life year</p><p class="w say">DALY equals YLL plus YLD; one DALY is one lost year of healthy life.</p></div></div>
+  </div>
+
+  <div id="restArea"></div>
+
+  <div class="ipn">
+    <b>Intellectual property.</b> This material is the intellectual property of
+    Dr Chinonso S. Ezeanyika and The Complete Doctor Academy. It is for your own personal exam
+    preparation only. No part of it may be copied, shared, photographed, reproduced, recorded or
+    sold without written permission. &copy; 2026 The Complete Doctor Academy. All rights reserved.
+  </div>
+
+</div>
+
+<div class="player" role="region" aria-label="Read-along player">
+  <button class="ctl" id="prevBtn" type="button" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zM9.5 12 18 18V6z"/></svg></button>
+  <button class="ctl primary" id="playBtn" type="button" aria-label="Play"><svg viewBox="0 0 24 24"><path id="playIcon" d="M8 5v14l11-7z"/></svg></button>
+  <button class="ctl" id="nextBtn" type="button" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+  <select class="ctl" id="rateSel" aria-label="Speed">
+    <option value="0.85">0.85&times;</option><option value="1" selected>1&times;</option>
+    <option value="1.15">1.15&times;</option><option value="1.3">1.3&times;</option><option value="1.5">1.5&times;</option>
+  </select>
+  <select class="ctl" id="voiceSel" aria-label="Voice"></select>
+  <div class="now" id="nowText"><b>Read-along.</b> Press play, or tap a question to start there.</div>
+  <div class="warn" id="ttsWarn" style="display:none"></div>
+</div>
+
+<footer><div class="in">
+  <div><b>The Psychiatric Resident</b> · Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>&copy; <span id="yr"></span>. A structured reference for doctors training in psychiatry. &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div>
+</div></footer>
+
+<script src="content/auth.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var PACK_KEY = "tpr-facts-2026-cde";
+function unpack(p){
+  var raw = atob(p), out = "";
+  for(var i = 0; i < raw.length; i++)
+    out += String.fromCharCode(raw.charCodeAt(i) ^ PACK_KEY.charCodeAt(i % PACK_KEY.length));
+  return decodeURIComponent(escape(out));
+}
+
+var REST = document.getElementById('restArea');
+
+function gate(){
+  var stage = (typeof accountsOn === 'function' && accountsOn())
+    ? ((typeof userEmail === 'function' && userEmail())
+        ? ((typeof awaitingApproval === 'function' && awaitingApproval()) ? 'waiting' : 'wrongparts')
+        : 'register')
+    : 'manual';
+
+  var head, body, buttons;
+  if(stage === 'register'){
+    head = 'Register, and the rest opens';
+    body = 'Registering is free and takes a minute. It does not cost anything and it is not buying. ' +
+           'Dr Ezeanyika approves the address you register with, and the remaining 21 facts open ' +
+           'the next time you load this page.';
+    buttons = '<a class="btn gold" href="register.html">Register free</a> ' +
+              '<a class="btn ghost" href="paper-a-courses.html">How it works</a>';
+  } else if(stage === 'waiting'){
+    head = 'Registered. Waiting to be approved';
+    body = 'You are signed in as <b>' + (userEmail() || '') + '</b>. That address has not been ' +
+           'approved yet. It is usually done within a day.';
+    buttons = '<button class="btn gold" type="button" id="askBtn">Ask to be approved</button>';
+  } else if(stage === 'wrongparts'){
+    head = 'Approved, but not for this series';
+    body = 'You are signed in as <b>' + (userEmail() || '') + '</b>. The Commonly Tested Facts are ' +
+           'approved separately. They are free; you only need to be added.';
+    buttons = '<button class="btn gold" type="button" id="askBtn">Ask for the facts</button>';
+  } else {
+    head = 'The rest opens by name';
+    body = 'Section 1 is open to everyone. The remaining 21 facts open for anyone who has ' +
+           'registered and been approved. Registering is free.';
+    buttons = '<a class="btn gold" href="register.html">Register free</a> ' +
+              '<button class="btn ghost" type="button" id="askBtn">I am already approved</button>';
+  }
+
+  REST.innerHTML = '<div class="gate"><h2>' + head + '</h2>' +
+    '<div class="big">' +
+      '<div class="p1"><b>21</b><span>More facts</span></div>' +
+      '<div class="p2"><b>5</b><span>More sections</span></div>' +
+      '<div class="p3"><b>Free</b><span>Once approved</span></div>' +
+    '</div><p>' + body + '</p><p>' + buttons + '</p></div>';
+
+  var a = document.getElementById('askBtn');
+  if(a) a.onclick = function(){
+    if(typeof tprAskToBeApproved === 'function' && (stage === 'waiting' || stage === 'wrongparts'))
+      { tprAskToBeApproved(); return; }
+    if(typeof openApproval === 'function'){ openApproval(); return; }
+    if(typeof openAuth === 'function'){ openAuth('approved'); }
+  };
+}
+
+function open_rest(){
+  var s = document.createElement('script');
+  s.src = 'content/facts-org-psych.dat.js';
+  s.onload = function(){
+    try{ REST.innerHTML = unpack(FACTS_PACK); }
+    catch(e){ REST.innerHTML = '<div class="gate"><h2>That did not load</h2>' +
+      '<p>Reload the page. If it keeps happening, write to ' +
+      '<a href="mailto:completedoctor@gmail.com">completedoctor@gmail.com</a>.</p></div>'; }
+  };
+  s.onerror = function(){
+    REST.innerHTML = '<div class="gate"><h2>That did not load</h2>' +
+      '<p>Reload the page. If it keeps happening, write to ' +
+      '<a href="mailto:completedoctor@gmail.com">completedoctor@gmail.com</a>.</p></div>';
+  };
+  document.body.appendChild(s);
+}
+
+function refresh(){
+  if(typeof hasAccess === 'function' && hasAccess('facts')) open_rest();
+  else gate();
+}
+refresh();
+document.addEventListener('tpr:access', refresh);
+
+
+/* ---------- show answer ---------- */
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.reveal button') : null;
+  if(!b) return;
+  var card = b.closest('.q'), ans = card.querySelector('.ans');
+  var open = ans.classList.toggle('show');
+  b.textContent = open ? 'Hide answer' : 'Show answer';
+});
+
+
+/* ---------- read-along, using the browser's own voice ---------- */
+(function(){
+  var synth = window.speechSynthesis;
+  var warn = document.getElementById('ttsWarn');
+  if(!synth || typeof SpeechSynthesisUtterance === 'undefined'){
+    warn.textContent = 'This browser has no built-in voice, so the read-along is off. Everything else works.';
+    warn.style.display = 'block';
+    ['playBtn','prevBtn','nextBtn','rateSel','voiceSel'].forEach(function(id){
+      var e = document.getElementById(id); if(e) e.disabled = true;
+    });
+    return;
+  }
+  var idx = 0, playing = false, voices = [], token = 0;
+  var playBtn = document.getElementById('playBtn'), playIcon = document.getElementById('playIcon');
+  var rateSel = document.getElementById('rateSel'), voiceSel = document.getElementById('voiceSel');
+  var now = document.getElementById('nowText');
+
+  function parts(){ return Array.prototype.slice.call(document.querySelectorAll('.say')); }
+  function store(k,v){ try{ v===undefined ? 0 : localStorage.setItem(k,v); return localStorage.getItem(k); }catch(e){ return null; } }
+
+  function fillVoices(){
+    voices = synth.getVoices() || [];
+    if(!voices.length) return;
+    var pref = store('tpr_voice');
+    voiceSel.innerHTML = '';
+    var SC = function(v){var n=v.name+" "+(v.voiceURI||""),s=0;if(!/^en/i.test(v.lang))return -1;if(/Natural|Neural|Premium|Enhanced|Online|network/i.test(n))s+=100;if(/Sonia/i.test(n))s+=60;else if(/Libby|Maisie|Abbi|Bella|Hollie|Olivia|Serena/i.test(n))s+=45;else if(/Ryan|Thomas|Alfie|Elliot|Ethan|Noah|Oliver|Daniel/i.test(n))s+=35;if(/en-GB/i.test(v.lang))s+=30;else if(/en-US/i.test(v.lang))s+=6;if(/Google UK English Female/i.test(n))s+=25;if(/eSpeak|compact|Fred|Albert|Zarvox|Whisper|Bells|Boing|Bubbles|Jester|Organ|Trinoids|Wobble/i.test(n))s-=200;return s};
+    var NAT = function(v){ return /Natural|Neural|Premium|Enhanced|Online|network/i.test(v.name+" "+(v.voiceURI||"")); };
+    voices = voices.filter(function(v){ return SC(v) >= 0; }).sort(function(a,b){ return SC(b) - SC(a); });
+    voices.forEach(function(v,i){
+      var o = document.createElement('option');
+      o.value = i; o.textContent = (NAT(v) ? '\u2605 ' : '') + v.name.replace(/^Microsoft /,'') + (v.lang ? ' · ' + v.lang : '');
+      voiceSel.appendChild(o);
+    });
+    var pick = voices.findIndex(function(v){ return v.name === pref; });
+    if(pick < 0) pick = 0;
+    voiceSel.value = pick < 0 ? 0 : pick;
+  }
+  fillVoices();
+  if(typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = fillVoices;
+
+  function mark(el){
+    document.querySelectorAll('.q.on').forEach(function(q){ q.classList.remove('on'); });
+    if(!el) return;
+    var card = el.closest('.q');
+    if(card){
+      card.classList.add('on');
+      if(el.classList.contains('a')) card.querySelector('.ans').classList.add('show');
+      var r = card.getBoundingClientRect();
+      if(r.top < 70 || r.bottom > window.innerHeight - 110)
+        card.scrollIntoView({behavior:'smooth', block:'center'});
+      now.innerHTML = '<b>Question ' + card.getAttribute('data-n') + '</b> · reading';
+    }
+  }
+
+  function speak(){
+    var P = parts();
+    if(idx >= P.length){ stop(); idx = 0; now.innerHTML = '<b>Finished.</b> Press play to start again.'; return; }
+    var el = P[idx];
+    mark(el);
+    var u = new SpeechSynthesisUtterance(el.textContent.replace(/\s+/g,' ').trim());
+    var v = voices[parseInt(voiceSel.value,10)];
+    if(v){ u.voice = v; u.lang = v.lang; }
+    u.rate = parseFloat(rateSel.value) || 1;
+    var mine = token;
+    u.onend = function(){ if(playing && mine === token){ idx++; speak(); } };
+    u.onerror = function(){ if(playing && mine === token){ idx++; speak(); } };
+    synth.speak(u);
+  }
+
+  function start(){
+    playing = true; token++;
+    playIcon.setAttribute('d','M6 5h4v14H6zm8 0h4v14h-4z');
+    playBtn.setAttribute('aria-label','Pause');
+    speak();
+  }
+  function stop(){
+    playing = false; token++;
+    try{ synth.cancel(); }catch(e){}
+    playIcon.setAttribute('d','M8 5v14l11-7z');
+    playBtn.setAttribute('aria-label','Play');
+  }
+  function jump(d){
+    var was = playing;
+    stop();
+    idx = Math.max(0, idx + d);
+    if(was) start(); else { mark(parts()[idx]); }
+  }
+
+  playBtn.onclick = function(){ playing ? stop() : start(); };
+  document.getElementById('prevBtn').onclick = function(){ jump(-1); };
+  document.getElementById('nextBtn').onclick = function(){ jump(1); };
+  rateSel.onchange = function(){ store('tpr_rate', rateSel.value); if(playing){ stop(); start(); } };
+  voiceSel.onchange = function(){
+    var v = voices[parseInt(voiceSel.value,10)];
+    if(v) store('tpr_voice', v.name);
+    if(playing){ stop(); start(); }
+  };
+  var r = store('tpr_rate'); if(r) rateSel.value = r;
+
+  /* start reading from whichever question you press play on */
+  document.addEventListener('click', function(e){
+    var card = e.target.closest ? e.target.closest('.q') : null;
+    if(!card || e.target.closest('.reveal')) return;
+    var P = parts(), first = card.querySelector('.say');
+    var i = P.indexOf(first);
+    if(i >= 0) idx = i;
+  });
+
+  window.addEventListener('beforeunload', function(){ try{ synth.cancel(); }catch(e){} });
+})();
+
+</script>
+
+<script src="content/coursenav.js?v=4"></script></body>
+</html>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# The card and teaching data files are for the site to read, not for
+# search engines to index.
+Disallow: /content/
+Disallow: /approve-tool.html

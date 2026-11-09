@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Critical Appraisal Drill &middot; The Psychiatric Resident</title>
+<meta name="description" content="The critical appraisal question bank for MRCPsych Paper B. Single best answer and extended matching questions with full explanations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#faf7f0; --paper:#fffdf8; --ink:#14161c; --ink-soft:#4a4f5c; --rule:#ddd6c6;
+  --navy:#1d2b50; --crimson:#8c2230; --teal:#1f5f5b; --ochre:#9a6b16; --plum:#5d2a55; --forest:#2b5230;
+  --good:#1f5f5b; --bad:#8c2230;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:Spectral,Georgia,"Times New Roman",serif;font-size:18px;line-height:1.62;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.14;margin:0}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+/* ---------- site chrome ---------- */
+.topbar{border-bottom:1px solid var(--rule);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px}
+.topbar a{text-decoration:none;margin-left:22px}
+.topbar a:hover{text-decoration:underline}
+.masthead{text-align:center;padding:26px 0 16px}
+.masthead .est{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ochre)}
+.masthead h1{font-size:clamp(38px,7vw,78px);font-weight:900;letter-spacing:-.01em;margin:6px 0 4px}
+.masthead .sub{font-style:italic;color:var(--ink-soft);font-size:17px}
+nav.main{border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+nav.main ul{list-style:none;margin:0;padding:14px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px}
+nav.main a{text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+nav.main a:hover,nav.main a.here{color:var(--crimson)}
+nav.main a.here{border-bottom:2px solid var(--crimson);padding-bottom:2px}
+
+/* ---------- page head ---------- */
+.pagehead{padding:34px 0 22px;border-bottom:1px solid var(--rule)}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson)}
+.pagehead h2{font-size:clamp(30px,4.6vw,50px);margin:8px 0 10px}
+.standfirst{font-size:19px;color:var(--ink-soft);max-width:62ch}
+.statrow{display:flex;flex-wrap:wrap;gap:30px;margin-top:20px}
+.stat{min-width:92px}
+.stat .n{font-family:var(--mono);font-size:26px;font-weight:600;letter-spacing:-.02em}
+.stat .l{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- layout ---------- */
+.cols{display:grid;grid-template-columns:272px 1fr;gap:38px;padding:30px 0 70px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr;gap:22px}}
+
+/* ---------- left rail ---------- */
+.rail{position:sticky;top:14px}
+@media(max-width:900px){.rail{position:static}}
+.rail h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;font-family:Spectral,serif;font-weight:600}
+.cat{display:block;width:100%;text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:3px;padding:13px 14px;margin-bottom:10px;cursor:pointer;font:inherit;transition:border-color .15s,transform .15s}
+.cat:hover{border-color:var(--ink)}
+.cat.on{border-color:var(--ink);border-left:5px solid var(--bar,var(--navy))}
+.cat .code{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+.cat .t{display:block;font-weight:600;margin:2px 0 6px;line-height:1.3}
+.cat .m{font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:8px;align-items:center}
+.badge{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;color:#fff;background:var(--bar,var(--navy))}
+.badge.free{background:var(--forest)}
+.badge.locked{background:var(--ink-soft)}
+.badge.missing{background:var(--crimson)}
+.bar{height:3px;background:var(--rule);border-radius:2px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--bar,var(--navy));width:0;transition:width .3s}
+
+/* ---------- views ---------- */
+.views{display:flex;gap:4px;border-bottom:1px solid var(--rule);margin-bottom:22px;flex-wrap:wrap}
+.vtab{border:0;background:none;font:inherit;cursor:pointer;padding:10px 16px;font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid transparent;margin-bottom:-1px}
+.vtab.on{color:var(--ink);border-bottom-color:var(--crimson);font-weight:600}
+.panel{display:none}
+.panel.on{display:block}
+
+/* ---------- question card ---------- */
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:28px 30px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+@media(max-width:620px){.card{padding:20px 18px}}
+.qmeta{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+.qmeta .pos{font-family:var(--mono);letter-spacing:0}
+.stem{font-size:19px;margin-bottom:16px}
+.leadin{font-weight:600;margin-bottom:18px}
+.opts{list-style:none;margin:0;padding:0}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--rule);background:var(--cream);border-radius:3px;padding:11px 14px;margin-bottom:9px;cursor:pointer;transition:border-color .12s,background .12s}
+.opt:hover{border-color:var(--ink)}
+.opt .ltr{font-family:var(--mono);font-weight:600;min-width:18px}
+.opt.picked{border-color:var(--navy);background:#eef1f8}
+.opt.right{border-color:var(--good);background:#e9f2f0}
+.opt.wrong{border-color:var(--bad);background:#f8eced}
+.opt[aria-disabled="true"]{cursor:default}
+
+.reveal{margin-top:20px;border-top:1px solid var(--rule);padding-top:18px;position:relative}
+.reveal .blur{filter:blur(7px);user-select:none;pointer-events:none;transition:filter .18s}
+.reveal.shown .blur{filter:none;user-select:auto;pointer-events:auto}
+.revealbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(250,247,240,.45);border:0;font:inherit;cursor:pointer;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.reveal.shown .revealbtn{display:none}
+.ansline{font-weight:600;margin-bottom:8px}
+.ansline b{color:var(--good)}
+.expl{color:var(--ink-soft)}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--cream);font:inherit;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:11px 20px;border-radius:3px;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+.hint{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:14px}
+.hint kbd{font-family:var(--mono);border:1px solid var(--rule);border-bottom-width:2px;border-radius:3px;padding:1px 5px;background:var(--paper);font-size:11px}
+
+/* ---------- EMI ---------- */
+.theme{font-family:"Playfair Display",serif;font-size:23px;margin-bottom:14px}
+.emiopts{columns:2;column-gap:26px;margin:0 0 20px;padding:0;list-style:none}
+@media(max-width:620px){.emiopts{columns:1}}
+.emiopts li{break-inside:avoid;display:flex;gap:10px;padding:5px 0;font-size:17px}
+.emiopts .ltr{font-family:var(--mono);font-weight:600}
+.vig{border-left:3px solid var(--bar,var(--navy));padding:2px 0 2px 16px;margin-bottom:14px}
+select.pick{font:inherit;font-size:16px;padding:8px 10px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);margin-top:8px}
+
+/* ---------- note ---------- */
+.note h3{font-size:25px;margin:26px 0 10px}
+.note .intro{font-size:19px;color:var(--ink-soft);margin-bottom:8px}
+.note ol{padding-left:22px;margin:0 0 6px}
+.note li{margin-bottom:7px}
+.note .num{font-family:var(--mono)}
+.keypoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px;margin-top:22px}
+.kp{border:1px solid var(--rule);background:var(--paper);border-left:4px solid var(--bar,var(--navy));border-radius:3px;padding:13px 15px;font-size:16px}
+.sectionlabel{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 6px}
+
+/* ---------- notices ---------- */
+.notice{border:1px solid var(--rule);border-left:4px solid var(--crimson);background:var(--paper);border-radius:3px;padding:18px 20px;margin-bottom:20px}
+.notice h4{font-family:"Playfair Display",serif;font-size:20px;margin-bottom:6px}
+.notice p{margin:0 0 8px;color:var(--ink-soft)}
+.notice code{font-family:var(--mono);font-size:14px;background:var(--cream);padding:1px 5px;border-radius:2px}
+.locked{text-align:center;padding:50px 20px}
+.locked h3{font-size:28px;margin-bottom:10px}
+.locked p{color:var(--ink-soft);max-width:48ch;margin:0 auto 18px}
+
+footer{border-top:1px solid var(--ink);margin-top:40px;padding:26px 0 50px;font-size:14px;color:var(--ink-soft);text-align:center}
+footer .n{font-family:"Playfair Display",serif;font-size:19px;color:var(--ink);margin-bottom:4px}
+@media print{.rail,nav.main,.topbar,.nav,.hint{display:none}.reveal .blur{filter:none}}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span>Global edition &nbsp;&middot;&nbsp; For doctors training in psychiatry</span>
+  <span><a href="/join">Join</a><a href="/join#register">Sign in</a></span>
+</div></div>
+
+<header class="masthead">
+  <div class="est">Est. for the training psychiatrist</div>
+  <h1><a href="/" style="text-decoration:none">The Psychiatric Resident</a></h1>
+  <div class="sub">Psychiatry for trainees, explained clearly.</div>
+</header>
+
+<nav class="main"><div class="wrap"><ul>
+  <li><a href="/">Front Page</a></li>
+  <li><a href="/stories">The Story</a></li>
+  <li><a href="/timeline">The Timeline</a></li>
+  <li><a href="/residents">Psychiatry for Residents</a></li>
+  <li><a href="/curriculum">The Curriculum</a></li>
+  <li><a href="/critical-appraisal">Critical Appraisal</a></li>
+  <li><a href="/critical-appraisal-drill.html" class="here">Appraisal Drill</a></li>
+  <li><a href="/paper-a">Paper A</a></li>
+  <li><a href="/paper-a-bank">Question Bank</a></li>
+  <li><a href="/paper-b">Paper B</a></li>
+  <li><a href="/flashcards">Flashcards</a></li>
+  <li><a href="/neuro-flashcards">Neuroscience</a></li>
+  <li><a href="/join#register">Register</a></li>
+  <li><a href="/join">Join</a></li>
+</ul></div></nav>
+
+<div class="wrap">
+  <div class="pagehead">
+    <div class="kicker">Paper B &middot; Section 14 &middot; Critical Review and Evidence-Based Practice</div>
+    <h2>The Critical Appraisal Drill</h2>
+    <p class="standfirst">Critical review carries 33.5 per cent of Paper B, more than any other section, and it is
+    the part most candidates leave until last. Work the questions, then read the revision note underneath
+    them. Part A is free and needs no sign in.</p>
+    <div class="statrow" id="statrow"></div>
+  </div>
+
+  <div class="cols">
+    <aside class="rail">
+      <h3>Parts</h3>
+      <div id="cats"></div>
+      <div id="railnote"></div>
+    </aside>
+    <main id="main"></main>
+  </div>
+</div>
+
+<footer>
+  <div class="n">The Psychiatric Resident</div>
+  <div>Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+  <div>&copy; 2026. A structured reference for doctors training in psychiatry. &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div>
+</footer>
+
+<script src="content/auth-config.js"></script>
+<script src="content/auth.js"></script>
+<script src="content/ca-questions-index.js"></script>
+<script>
+onAuthReady(function(){
+"use strict";
+
+/* ============================================================
+   ACCESS GUARD.  THIS IS THE ONE LINE TO CHECK BY HAND.
+   The site's guard lives in content/auth.js and this page does not
+   know its exact name, so it tries the usual ones.  If none is
+   found the page renders everything rather than failing, which is
+   the safe behaviour for a page that cannot be tested against the
+   live auth.js.  Once you know the real call, replace the body of
+   hasAccess() with it, for example:
+        return TPR_AUTH.can("critical-appraisal");
+   ============================================================ */
+function hasAccess(){
+  try{
+    var names = ["TPR_AUTH","AUTH","Auth","TPRAuth","tprAuth"];
+    for(var i=0;i<names.length;i++){
+      var a = window[names[i]];
+      if(!a) continue;
+      if(typeof a.can === "function")        return !!a.can("critical-appraisal");
+      if(typeof a.hasRole === "function")    return !!a.hasRole("critical-appraisal");
+      if(typeof a.allows === "function")     return !!a.allows("critical-appraisal");
+      if(typeof a.permission === "function") return !!a.permission("critical-appraisal");
+      if(a.permissions && a.permissions.indexOf) return a.permissions.indexOf("critical-appraisal")>-1;
+    }
+    if(typeof window.canAccess === "function") return !!window.canAccess("critical-appraisal");
+  }catch(e){}
+  return false;  /* no guard found: stay locked */
+}
+
+var KEY = "tpr-bank-2026-cde";
+var COLOURS = ["var(--navy)","var(--crimson)","var(--teal)","var(--ochre)","var(--plum)","var(--forest)"];
+var LETTERS = "ABCDEFGH";
+
+function unpack(b64){
+  var bin = atob(b64), out = new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) out[i] = bin.charCodeAt(i) ^ KEY.charCodeAt(i % KEY.length);
+  return JSON.parse(new TextDecoder("utf-8").decode(out));
+}
+function fileFor(code){ return "paid/appraisal/ca-" + code.replace(/\./g,"-") + ".dat.js"; }
+
+/* load one packed file, read BANK_PACK, clear it, carry on */
+function loadPart(code, done){
+  if (!(window.hasAccess && window.hasAccess("critical-appraisal"))) { done(false); return; }
+  var s = document.createElement("script");
+  s.src = fileFor(code);
+  s.onload = function(){
+    var t = null;
+    try{ t = window.BANK_PACK ? unpack(window.BANK_PACK) : null; }catch(e){ t = null; }
+    try{ window.BANK_PACK = undefined; }catch(e){}
+    s.parentNode && s.parentNode.removeChild(s);
+    done(t);
+  };
+  s.onerror = function(){ s.parentNode && s.parentNode.removeChild(s); done(null); };
+  document.head.appendChild(s);
+}
+
+var INDEX = (typeof CA_Q_INDEX !== "undefined") ? CA_Q_INDEX : [];
+var PARTS = [], current = null, view = "sba", pos = 0, picked = {}, shown = {};
+var MEMBER = hasAccess();
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function el(id){ return document.getElementById(id); }
+
+/* ---------- load every part the index names ---------- */
+(function run(i){
+  if(i >= INDEX.length){ ready(); return; }
+  var row = INDEX[i];
+  loadPart(row.code, function(topic){
+    PARTS.push({ row: row, topic: topic, colour: COLOURS[i % COLOURS.length] });
+    run(i+1);
+  });
+})(0);
+
+function ready(){
+  var found = PARTS.filter(function(p){ return p.topic; });
+  var missing = PARTS.filter(function(p){ return !p.topic; });
+
+  /* statistics come from what actually loaded, never from the index alone */
+  var sba = 0, emi = 0, sets = 0;
+  found.forEach(function(p){
+    sba += p.topic.sba.length;
+    p.topic.emi.forEach(function(s){ sets++; emi += s.items.length; });
+  });
+  el("statrow").innerHTML =
+    stat(sba+emi, "Questions here") +
+    stat(found.length + " of " + PARTS.length, "Parts loaded") +
+    stat(sba, "Single best answer") +
+    stat(emi, "Extended matching") +
+    stat(sets, "EMI sets");
+
+  drawRail(missing);
+  if(found.length){ select(found[0]); }
+  else {
+    el("main").innerHTML =
+      '<div class="notice"><h4>No question files were found.</h4>' +
+      '<p>This page is installed but the packed question files are not beside it. It expects files such as ' +
+      '<code>content/ca-14-A.dat.js</code> in the same site folder.</p>' +
+      '<p>Copy the <code>content</code> folder from the question bank zips into your site folder and deploy again.</p></div>';
+  }
+}
+function stat(n,l){ return '<div class="stat"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>'; }
+
+function drawRail(missing){
+  var h = "";
+  PARTS.forEach(function(p, i){
+    var r = p.row, locked = (!r.free && !MEMBER), gone = !p.topic;
+    var badge = gone ? '<span class="badge missing">Not installed</span>'
+              : locked ? '<span class="badge locked">Members</span>'
+              : r.free ? '<span class="badge free">Free</span>'
+              : '<span class="badge">Members</span>';
+    var n = 0;
+    if(p.topic){ n = p.topic.sba.length; p.topic.emi.forEach(function(s){ n += s.items.length; }); }
+    h += '<button class="cat" data-i="'+i+'" style="--bar:'+p.colour+'"'+(gone?' disabled':'')+'>' +
+         '<span class="code">'+esc(r.code)+'</span>' +
+         '<span class="t">'+esc(r.t)+'</span>' +
+         '<span class="m"><span>'+(gone ? "file missing" : n+" questions")+'</span>'+badge+'</span>' +
+         '<span class="bar"><i data-bar="'+i+'"></i></span>' +
+         '</button>';
+  });
+  el("cats").innerHTML = h;
+  Array.prototype.forEach.call(document.querySelectorAll(".cat"), function(b){
+    b.addEventListener("click", function(){ select(PARTS[+b.dataset.i]); });
+  });
+  if(missing.length){
+    el("railnote").innerHTML =
+      '<div class="notice" style="margin-top:14px;font-size:14px"><h4 style="font-size:16px">' +
+      missing.length + ' part' + (missing.length>1?'s are':' is') + ' missing</h4>' +
+      '<p style="margin:0">The index lists ' + PARTS.length + ' parts and ' + (PARTS.length-missing.length) +
+      ' loaded. The others are not in <code>content/</code> yet.</p></div>';
+  }
+}
+
+function select(p){
+  current = p; pos = 0; view = "sba"; picked = {}; shown = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".cat"), function(b){
+    b.classList.toggle("on", PARTS[+b.dataset.i] === p);
+  });
+  draw();
+  if(window.matchMedia("(max-width:900px)").matches){
+    el("main").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+}
+
+function draw(){
+  var p = current, t = p.topic, m = el("main");
+  document.documentElement.style.setProperty("--bar", p.colour);
+  if(!p.row.free && !MEMBER){
+    m.innerHTML =
+      '<div class="locked"><h3>'+esc(p.row.t)+'</h3>' +
+      '<p>This part is open to members. Part A, Statistics, is free and needs no sign in, so you can see ' +
+      'exactly how these questions are written before you decide.</p>' +
+      '<a class="btn" href="/join">See what joining includes</a></div>';
+    return;
+  }
+  var tabs =
+    '<div class="views">' +
+      vtab("sba","Single best answer", t.sba.length) +
+      vtab("emi","Extended matching", t.emi.reduce(function(a,s){return a+s.items.length;},0)) +
+      vtab("note","Revision note", null) +
+    '</div>';
+  var body = view === "sba" ? drawSBA() : view === "emi" ? drawEMI() : drawNote();
+  m.innerHTML = tabs + '<div class="panel on">' + body + '</div>';
+  wire();
+  updateBar();
+}
+function vtab(k,label,n){
+  return '<button class="vtab'+(view===k?" on":"")+'" data-v="'+k+'">'+label+(n!==null?' <span class="num">'+n+'</span>':'')+'</button>';
+}
+
+function total(){ 
+  var t = current.topic;
+  if(view==="sba") return t.sba.length;
+  var n = 0; t.emi.forEach(function(s){ n += s.items.length; }); return n;
+}
+function emiAt(i){
+  var t = current.topic, n = 0;
+  for(var a=0;a<t.emi.length;a++){
+    for(var b=0;b<t.emi[a].items.length;b++){
+      if(n === i) return {set:t.emi[a], item:t.emi[a].items[b], si:a, vi:b};
+      n++;
+    }
+  }
+  return null;
+}
+
+function drawSBA(){
+  var r = current.topic.sba[pos], key = "s"+pos, pick = picked[key], open = !!shown[key];
+  var h = '<div class="card">';
+  h += '<div class="qmeta"><span>'+esc(current.row.code)+' &middot; Single best answer</span><span class="pos">'+(pos+1)+' / '+current.topic.sba.length+'</span></div>';
+  h += '<p class="stem">'+esc(r[0])+'</p>';
+  h += '<p class="leadin">'+esc(r[1])+'</p>';
+  h += '<ul class="opts">';
+  r[2].forEach(function(o,i){
+    var cls = "opt";
+    if(open){ if(i===r[3]) cls+=" right"; else if(pick===i) cls+=" wrong"; }
+    else if(pick===i) cls+=" picked";
+    h += '<li class="'+cls+'" data-opt="'+i+'"'+(open?' aria-disabled="true"':'')+'><span class="ltr">'+LETTERS[i]+'</span><span>'+esc(o)+'</span></li>';
+  });
+  h += '</ul>';
+  h += '<div class="reveal'+(open?" shown":"")+'">' +
+         '<div class="blur">' +
+           '<p class="ansline">Answer: <b>'+LETTERS[r[3]]+'. '+esc(r[5])+'</b></p>' +
+           '<p class="expl">'+esc(r[4])+'</p>' +
+         '</div>' +
+         '<button class="revealbtn" data-reveal="1">Reveal the answer</button>' +
+       '</div>';
+  h += navRow();
+  h += '</div>' + hintRow();
+  return h;
+}
+
+function drawEMI(){
+  var at = emiAt(pos), s = at.set, key = "e"+pos, pick = picked[key], open = !!shown[key];
+  var h = '<div class="card">';
+  h += '<div class="qmeta"><span>'+esc(current.row.code)+' &middot; Extended matching &middot; set '+(at.si+1)+'</span><span class="pos">'+(pos+1)+' / '+total()+'</span></div>';
+  h += '<p class="theme">'+esc(s.theme)+'</p>';
+  h += '<ul class="emiopts">';
+  s.opts.forEach(function(o,i){
+    h += '<li><span class="ltr">'+LETTERS[i]+'</span><span>'+esc(o)+'</span></li>';
+  });
+  h += '</ul>';
+  h += '<div class="vig"><p class="stem" style="margin:0">'+esc(at.item[0])+'</p>';
+  h += '<select class="pick" data-sel="1"'+(open?" disabled":"")+'><option value="">Choose an option</option>';
+  s.opts.forEach(function(o,i){
+    h += '<option value="'+i+'"'+(pick===i?" selected":"")+'>'+LETTERS[i]+'. '+esc(o)+'</option>';
+  });
+  h += '</select></div>';
+  h += '<div class="reveal'+(open?" shown":"")+'">' +
+         '<div class="blur">' +
+           '<p class="ansline">Answer: <b>'+LETTERS[at.item[1]]+'. '+esc(s.opts[at.item[1]])+'</b>' +
+             (pick!==undefined && pick!==at.item[1] ? ' <span style="color:var(--bad);font-weight:400">You chose '+LETTERS[pick]+'.</span>' : '') +
+           '</p>' +
+           '<p class="expl">'+esc(s.why)+'</p>' +
+         '</div>' +
+         '<button class="revealbtn" data-reveal="1">Reveal the answer</button>' +
+       '</div>';
+  h += navRow();
+  h += '</div>' + hintRow();
+  return h;
+}
+
+function navRow(){
+  return '<div class="nav">' +
+    '<button class="btn ghost" data-go="-1"'+(pos===0?" disabled":"")+'>Previous</button>' +
+    '<button class="btn" data-go="1"'+(pos>=total()-1?" disabled":"")+'>Next</button>' +
+  '</div>';
+}
+function hintRow(){
+  return '<p class="hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &nbsp;&middot;&nbsp; <kbd>space</kbd> reveals &nbsp;&middot;&nbsp; <kbd>1</kbd>&ndash;<kbd>8</kbd> answer &nbsp;&middot;&nbsp; swipe on a phone</p>';
+}
+
+function drawNote(){
+  var n = current.topic.note;
+  var h = '<div class="card note">';
+  h += '<div class="qmeta"><span>'+esc(current.row.code)+' &middot; Revision note</span><span class="pos">'+n.blocks.length+' sections</span></div>';
+  h += '<p class="intro">'+esc(n.intro)+'</p>';
+  n.blocks.forEach(function(b){
+    h += '<h3>'+esc(b.h)+'</h3><ol>';
+    b.p.forEach(function(p){
+      h += '<li>'+esc(String(p).replace(/^\s*\d+\.\s*/,""))+'</li>';
+    });
+    h += '</ol>';
+  });
+  h += '<div class="sectionlabel">The points that carry the marks</div><div class="keypoints">';
+  n.majors.forEach(function(m){ h += '<div class="kp">'+esc(m)+'</div>'; });
+  h += '</div></div>';
+  return h;
+}
+
+function updateBar(){
+  var i = PARTS.indexOf(current);
+  var b = document.querySelector('[data-bar="'+i+'"]');
+  if(!b) return;
+  var done = Object.keys(shown).length, t = total() || 1;
+  b.style.width = Math.min(100, Math.round(100*done/t)) + "%";
+}
+
+function reveal(){
+  var key = (view==="sba"?"s":"e") + pos;
+  if(view === "note") return;
+  shown[key] = true; draw();
+}
+function go(d){
+  var t = total();
+  var n = pos + d;
+  if(n < 0 || n >= t) return;
+  pos = n; draw();
+}
+function choose(i){
+  var key = (view==="sba"?"s":"e") + pos;
+  if(shown[key]) return;
+  picked[key] = i; draw();
+}
+
+function wire(){
+  Array.prototype.forEach.call(document.querySelectorAll(".vtab"), function(b){
+    b.addEventListener("click", function(){ view = b.dataset.v; pos = 0; draw(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-go]"), function(b){
+    b.addEventListener("click", function(){ go(+b.dataset.go); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function(b){
+    b.addEventListener("click", reveal);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-opt]"), function(b){
+    b.addEventListener("click", function(){ choose(+b.dataset.opt); });
+  });
+  var sel = document.querySelector("[data-sel]");
+  if(sel) sel.addEventListener("change", function(){ if(sel.value!=="") choose(+sel.value); });
+}
+
+document.addEventListener("keydown", function(e){
+  if(!current) return;
+  var tag = (e.target.tagName||"").toLowerCase();
+  if(tag === "select" || tag === "input" || tag === "textarea") return;
+  if(e.key === "ArrowRight"){ e.preventDefault(); go(1); }
+  else if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
+  else if(e.key === " " || e.key === "Enter"){ e.preventDefault(); reveal(); }
+  else if(/^[1-8]$/.test(e.key)){
+    var i = +e.key - 1, lim = view === "sba" ? 5 : 8;
+    if(i < lim){ e.preventDefault(); choose(i); }
+  }
+});
+
+var sx = null, sy = null;
+document.addEventListener("touchstart", function(e){
+  if(e.touches.length !== 1) return;
+  sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+}, {passive:true});
+document.addEventListener("touchend", function(e){
+  if(sx === null) return;
+  var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+  sx = null;
+  if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.8){ go(dx < 0 ? 1 : -1); }
+}, {passive:true});
+
+});
+</script>
+<script src="content/coursenav.js?v=4"></script></body>
+</html>

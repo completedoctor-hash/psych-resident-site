@@ -1,0 +1,47 @@
+/* Critical Appraisal: white, navy and gold. Square edges, no shadows. */
+:root{--cream:#fff;--cream-2:#fff;--paper:#fff;--navy:#14243A;--navy-deep:#0E1A2B;--crimson:#14243A;--teal:#14243A;
+  --ochre:#B8932C;--plum:#14243A;--forest:#14243A;--ink:#14243A;--muted:#5B6474;--line:#D6DAE1;--line-2:#14243A;--ok:#14243A;
+  --head-font:"Playfair Display",Georgia,serif}
+*,*::before,*::after{border-radius:0!important;box-shadow:none!important}
+body{background:#fff!important;color:#14243A}
+.mast{background:#0E1A2B!important;border-bottom:3px solid #B8932C!important}
+.mast nav a.on{color:#B8932C!important}
+.mast button{background:transparent!important;border:1px solid #B8932C!important;color:#fff!important}
+.parts{background:#fff!important;border-bottom:1px solid #D6DAE1!important}
+.parts .in{gap:0!important}
+.parts button{background:#fff!important;color:#14243A!important;border:0!important;border-bottom:3px solid transparent!important;opacity:1!important;padding:14px 18px!important}
+.parts button b{font-family:"Playfair Display",Georgia,serif!important;color:#14243A!important;font-size:17px!important}
+.parts button i{color:#5B6474!important}
+.parts button:hover,.parts button[aria-pressed="true"],.parts button.on{border-bottom-color:#B8932C!important}
+.parts button:disabled{opacity:.45!important}
+.stats .stat{background:#fff!important;border:1px solid #14243A!important;color:#14243A!important}
+.stats .stat b{color:#14243A!important}.stats .stat span{color:#B8932C!important}
+.side{background:#fff!important;border-right:1px solid #D6DAE1!important}
+.side .head{border-bottom:1px solid #D6DAE1!important;background:#fff!important}
+.boxes button{background:#fff!important;border:0!important;border-bottom:1px solid #EEF0F3!important;border-left:3px solid transparent!important;color:#14243A!important}
+.boxes button:hover,.boxes button.on,.boxes button[aria-current]{border-left-color:#B8932C!important;background:#F7F8FA!important}
+.card{border:1px solid #14243A!important;border-top:4px solid #B8932C!important;background:#fff!important}
+.track{background:#EEF0F3!important;height:3px!important}.track i{background:#B8932C!important}
+.formula,.why,.ans,.work,.tabwrap,.dia,.hint{background:#fff!important;border:1px solid #D6DAE1!important;border-left:4px solid #14243A!important}
+.formula{border-left-color:#B8932C!important}
+.formula b,.why b,.ans b,.work .lab,.tabwrap b,.dia b{color:#B8932C!important}
+.btn{background:#fff!important;color:#14243A!important;border:1px solid #14243A!important}
+.btn:hover{background:#14243A!important;color:#fff!important}
+.btn.gold{background:#14243A!important;color:#fff!important;border-color:#14243A!important}
+.btn.good{background:#B8932C!important;color:#0E1A2B!important;border-color:#B8932C!important}
+.cax{border-color:#D6DAE1!important;background:#fff!important}.cax .fx{border-left-color:#B8932C!important}.cax .fx b{color:#B8932C!important}
+.kbd{color:#5B6474}
+.boxes .num{background:#14243A!important;color:#fff!important}.boxes button.on .num,.boxes button[aria-current] .num{background:#B8932C!important;color:#0E1A2B!important}
+.land{padding:8px 4px}.land .lk{font:700 11px Helvetica Neue,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8932C}
+.land h2{font:800 32px "Playfair Display",Georgia,serif;color:#14243A;margin:6px 0 4px}.land .ls{color:#5B6474;margin:0 0 20px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0;border-top:1px solid #14243A;border-left:1px solid #14243A}
+.ltile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:#fff;border:0;border-right:1px solid #14243A;border-bottom:1px solid #14243A;padding:20px;cursor:pointer;color:#14243A;text-decoration:none;font:inherit;min-height:200px;transition:background .15s}
+.ltile:hover{background:#14243A;color:#fff}.ltile:hover .ld,.ltile:hover .lm{color:#C9CFD8}
+.ltile .ll{font:800 34px "Playfair Display",Georgia,serif;color:#B8932C;line-height:1}
+.ltile .ln{font:700 19px "Playfair Display",Georgia,serif}.ltile .ld{font-size:14px;line-height:1.45;color:#5B6474}
+.ltile .lm{font:700 11px Helvetica Neue,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5B6474;margin-top:auto}
+.ltile .lbar{display:block;width:100%;height:3px;background:#EEF0F3}.ltile .lbar i{display:block;height:3px;background:#B8932C}
+.ltile .lgo{font:700 12px Helvetica Neue,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#B8932C}
+.ltile.alt{background:#F7F8FA}.ltile.alt .lgo{margin-top:auto}
+.boxes button i,.boxes button small{color:#5B6474!important}
+.boxes button span{color:#14243A}

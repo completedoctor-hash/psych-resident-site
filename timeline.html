@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Timeline · The Psychiatric Resident</title>
+<meta name="description" content="The history of psychiatry as a scrolling timeline. Every date checked, every correction marked, from 1500 BCE to the present day.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14181f; --paper:#ffffff; --paper-2:#f5f6f7; --rule:#dfe1e4;
+  --brass:#8a5a2b; --sage:#2f5a4a; --muted:#6a6f77; --red:#8a2b2b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- site furniture, matching the rest ---------- */
+.topbar{border-bottom:1px solid var(--rule);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:12px;flex-wrap:wrap}
+.topbar a{color:var(--muted);text-decoration:none;margin-left:18px}
+.topbar a:hover{color:var(--brass)}
+.masthead{text-align:center;padding:26px 0 14px;border-bottom:3px double var(--ink)}
+.masthead .kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+.masthead h1{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(34px,7vw,70px);line-height:.96}
+.masthead h1 a{text-decoration:none}
+.masthead .sub{margin-top:10px;font-style:italic;color:var(--muted);font-size:15px}
+nav.primary{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:60}
+nav.primary .wrap{display:flex;flex-wrap:wrap;gap:2px;justify-content:center}
+nav.primary a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;text-decoration:none;padding:14px 15px;border-bottom:2px solid transparent}
+nav.primary a:hover,nav.primary a.active{color:var(--brass);border-bottom-color:var(--brass)}
+
+/* ---------- lede ---------- */
+.lede{padding:38px 0 24px;border-bottom:1px solid var(--rule)}
+.lede h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4vw,42px);line-height:1.1;font-weight:800;margin-bottom:12px}
+.lede p{font-size:17px;color:#3d3a34;max-width:74ch;margin-bottom:10px}
+.byline{margin-top:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:47px;background:var(--paper);z-index:55;
+  border-bottom:1px solid var(--rule);padding:14px 0 12px}
+.controls .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1;min-width:200px;font:inherit;font-size:15px;padding:10px 14px;
+  border:1px solid var(--rule);border-radius:3px;background:var(--paper-2)}
+.search:focus{border-color:var(--brass);background:#fff;outline:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;padding:8px 13px;border:1px solid var(--rule);background:#fff;
+  color:var(--muted);cursor:pointer;border-radius:2px}
+.chips button:hover{border-color:var(--brass);color:var(--brass)}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.count{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+/* ---------- the spine ---------- */
+.rail{position:relative;padding:34px 0 70px}
+.rail:before{content:"";position:absolute;left:31px;top:0;bottom:0;width:2px;background:var(--rule)}
+.rail:after{content:"";position:absolute;left:31px;top:0;width:2px;height:var(--fill,0%);
+  background:var(--brass);transition:height .18s linear}
+@media(min-width:860px){
+  .rail:before,.rail:after{left:50%;margin-left:-1px}
+}
+
+/* ---------- era heading ---------- */
+.era{position:relative;padding:34px 0 10px 76px}
+.era h3{font-family:"Playfair Display",Georgia,serif;font-size:27px;color:var(--brass)}
+.era p{font-size:15px;color:var(--muted);max-width:60ch}
+.era .dot{position:absolute;left:20px;top:44px;width:24px;height:24px;border-radius:50%;
+  background:var(--brass);border:4px solid var(--paper);box-shadow:0 0 0 2px var(--brass)}
+@media(min-width:860px){
+  .era{padding:44px 0 12px;text-align:center}
+  .era .dot{left:50%;margin-left:-12px;top:auto;margin-top:-52px;position:relative;display:block}
+  .era h3,.era p{margin-left:auto;margin-right:auto}
+}
+
+/* ---------- entries ---------- */
+.ev{position:relative;padding:0 0 26px 76px;opacity:0;transform:translateY(26px);
+  transition:opacity .55s ease,transform .55s ease}
+.ev.in{opacity:1;transform:none}
+.ev .node{position:absolute;left:24px;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--brass);z-index:2;transition:transform .3s}
+.ev.in .node{transform:scale(1)}
+.ev:not(.in) .node{transform:scale(.4)}
+
+.cardw{border:1px solid var(--rule);background:var(--paper);padding:18px 20px;position:relative}
+.cardw:hover{border-color:var(--brass)}
+.yr{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;color:var(--brass);
+  display:block;margin-bottom:2px;letter-spacing:.01em}
+.ev h4{font-family:"Playfair Display",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:8px}
+.ev p{font-size:16px;color:#3d3a34}
+.who{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+
+/* portrait medallion, real photo if one is supplied */
+.face{position:relative;width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:1px solid var(--rule);background:hsl(var(--h,30) 24% 90%);
+  display:flex;align-items:center;justify-content:center}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.face .ini{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;
+  color:hsl(var(--h,30) 38% 32%)}
+.who .nm{font-size:14px;line-height:1.3}
+.who .nm b{font-family:"Playfair Display",Georgia,serif;font-size:16px;display:block}
+.who .nm span{color:var(--muted);font-size:12px}
+
+.flag{display:inline-block;font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-left:8px;vertical-align:3px}
+.flag.fix{background:rgba(138,43,43,.1);color:var(--red);border:1px solid rgba(138,43,43,.25)}
+.flag.uk{background:rgba(47,90,74,.1);color:var(--sage)}
+
+details.note{margin-top:12px;border-top:1px dotted var(--rule);padding-top:10px}
+details.note summary{cursor:pointer;list-style:none;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+details.note summary::-webkit-details-marker{display:none}
+details.note summary:after{content:" +"}
+details.note[open] summary:after{content:" −"}
+details.note .body{font-size:15px;color:#4a453b;padding-top:8px}
+details.note .body b{color:var(--ink)}
+.corr{margin-top:10px;background:rgba(138,43,43,.05);border-left:3px solid var(--red);
+  padding:10px 14px;font-size:14px;color:#5a4a4a}
+.corr b{color:var(--red);display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+
+@media(min-width:860px){
+  .ev{padding:0 0 30px 0;width:50%;}
+  .ev.l{padding-right:52px;text-align:right;margin-left:0}
+  .ev.r{padding-left:52px;margin-left:50%}
+  .ev .node{left:auto;right:-8px;top:14px}
+  .ev.r .node{left:-8px;right:auto}
+  .ev.l .who{justify-content:flex-end}
+  .ev.l{transform:translateX(-26px)}
+  .ev.r{transform:translateX(26px)}
+  .ev.in{transform:none}
+  .ev.l details.note summary,.ev.l .corr{text-align:right}
+  .ev.l .corr{border-left:none;border-right:3px solid var(--red)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ev{opacity:1!important;transform:none!important;transition:none}
+  .rail:after{transition:none}
+  html{scroll-behavior:auto}
+}
+
+.empty{padding:50px 0 50px 76px;color:var(--muted);font-style:italic}
+footer{border-top:3px double var(--ink);padding:30px 0 60px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer .brand{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--ink)}
+.totop{position:fixed;right:20px;bottom:20px;background:var(--ink);color:#fff;border:none;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:17px;opacity:0;
+  transition:opacity .3s;pointer-events:none;z-index:70}
+.totop.on{opacity:.9;pointer-events:auto}
+</style>
+<script src="content/protect.js"></script></head>
+<body>
+<a class="sr" href="#rail">Skip to the timeline</a>
+
+<div class="topbar"><div class="wrap">
+  <span>Global edition &nbsp;·&nbsp; For doctors training in psychiatry</span>
+  <span><a href="register.html">Register</a></span>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <div class="kicker">Est. for the training psychiatrist</div>
+  <h1><a href="index.html">The Psychiatric Resident</a></h1>
+  <div class="sub">Psychiatry for trainees, explained clearly.</div>
+</div></header>
+
+<nav class="primary"><div class="wrap">
+  <a href="index.html">Front Page</a>
+  <a href="stories.html">The Story</a>
+  <a href="timeline.html" class="active">The Timeline</a>
+  <a href="residents.html">Psychiatry for Residents</a>
+  <a href="curriculum.html">The Curriculum</a>
+  <a href="critical-appraisal.html">Critical Appraisal</a>
+  <a href="paper-a.html">Paper A</a>
+  <a href="paper-b.html">Paper B</a>
+  <a href="flashcards.html">Flashcards</a>
+  <a href="register.html">Register</a>
+</div></nav>
+
+<section class="lede"><div class="wrap">
+  <h2>Three thousand years, one scroll.</h2>
+  <p>Every date here has been checked against primary and secondary sources rather than copied forward. Where the version in common circulation is wrong, the entry is marked <span class="flag fix">Corrected</span> and says plainly what the error was and why it matters.</p>
+  <p>Open any entry's exam note for the version a candidate needs in the examination hall.</p>
+  <div class="byline">Edited by Dr Chinonso Stanley Ezeanyika, Medical Education Specialist</div>
+</div></section>
+
+<div class="controls"><div class="wrap">
+  <input class="search" id="q" type="search" placeholder="Search a name, a drug, a year: Cade, clozapine, 1952, Bleuler…" aria-label="Search the timeline">
+  <div class="chips" id="chips" role="group" aria-label="Filter by era"></div>
+  <span class="count" id="count"></span>
+</div></div>
+
+<main class="wrap"><div class="rail" id="rail"></div></main>
+
+<footer><div class="wrap">
+  <div><div class="brand">The Psychiatric Resident</div>
+    <div style="margin-top:6px">Dr Chinonso Stanley Ezeanyika · Medical Education Specialist</div></div>
+  <div style="text-align:right">Portraits are public domain where supplied.<br>Entries marked Corrected differ from the commonly circulated version.</div>
+ &middot; <span data-build style="opacity:.55;font-size:11px;letter-spacing:.04em">&mdash;</span></div></footer>
+
+<button class="totop" id="totop" aria-label="Back to the top">↑</button>
+
+<script>
+/* ==========================================================================
+   THE DATA
+   era   : which band it sits under
+   y     : the year shown
+   t     : title
+   p     : one or two sentences
+   who   : [name, dates, initials, portrait-file-slug]  (portrait optional)
+   note  : the exam-grade version, hidden until opened
+   fix   : what the commonly circulated version gets wrong
+   ========================================================================== */
+const ERAS = [
+ ["Ancient","Before 500 CE","Illness as the work of gods, then the first suggestion that it might be the body."],
+ ["Medieval","500 to 1700","Possession, and the first buildings set aside for the insane."],
+ ["Reform","1700 to 1850","Chains struck off, asylums built, madness claimed as a disease of the brain."],
+ ["Classification","1850 to 1918","The great describers. Almost every term still in use was coined in these years."],
+ ["Somatic","1918 to 1950","Fever, insulin, electricity and the knife. Desperate remedies, some catastrophic."],
+ ["Pharmacological","1950 to 1980","Four drugs in ten years empty the asylums and remake the specialty."],
+ ["Evidence","1980 to 2010","Trials, criteria, community care, and the return of a drug that had been withdrawn."],
+ ["Present","2010 onward","Precision, and the limits of it."]
+];
+
+const EVENTS = [
+/* ---------------- Ancient ---------------- */
+{era:"Ancient",y:"c. 1500 BCE",t:"The first written record",
+ p:"Egyptian papyri describe disturbances of thought and mood. The Old Testament records what we would now call melancholia and psychosis. In every case the cause given is divine."},
+{era:"Ancient",y:"c. 400 BCE",t:"Plato puts the mind in the head",
+ who:["Plato","c. 428 to 348 BCE","P"],
+ p:"Plato argued that the brain, not the heart, is the seat of reason and therefore of its disorders. The idea took another two thousand years to win."},
+{era:"Ancient",y:"c. 400 BCE",t:"Hippocrates names mania and melancholia",
+ who:["Hippocrates","c. 460 to 370 BCE","H"],
+ p:"He insisted mental disturbance was a bodily condition requiring medical treatment, and gave us the two oldest words still on a psychiatric ward.",
+ note:"<b>Mania</b> and <b>melancholia</b> are Hippocratic terms. The humoral theory attributed melancholia to black bile, which is where the word comes from: <em>melas</em> black, <em>khole</em> bile."},
+{era:"Ancient",y:"c. 30 CE",t:"Celsus and the black bile",
+ who:["Aulus Cornelius Celsus","c. 25 BCE to 50 CE","AC"],
+ p:"The Roman encyclopaedist described melancholia as depression caused by black bile, fixing a metaphor into medicine for the next seventeen centuries."},
+
+/* ---------------- Medieval ---------------- */
+{era:"Medieval",y:"500 to 1500",t:"Madness becomes a spiritual matter",
+ p:"Across the Middle Ages mental disorder is understood as sin, possession or divine punishment rather than illness. Care, where it exists at all, is monastic."},
+{era:"Medieval",y:"1247",t:"Bethlem is founded",
+ p:"The Priory of St Mary of Bethlehem is founded in London. It became the first institution in Britain to care for the insane, and later gave English the word bedlam.",
+ note:"Founded <b>1247</b> as a priory. Regular care of the mentally ill is documented from the fourteenth century onwards, not from the founding date itself.",
+ fix:"Frequently written as though Bethlem opened in 1247 as a mental hospital. It was founded that year as a religious house; its psychiatric role developed later."},
+{era:"Medieval",y:"1320",t:"The first lunacy legislation",
+ p:"England passes its first statute dealing with insanity, largely concerned with property and guardianship rather than treatment."},
+
+/* ---------------- Reform ---------------- */
+{era:"Reform",y:"1751",t:"St Luke's opens",
+ who:["William Battie","1703 to 1776","WB"],
+ p:"Battie founds St Luke's Hospital as a deliberate rival to Bethlem, and admits students to teach them.",
+ note:"<b>Battie's <em>Treatise on Madness</em>, 1758.</b> Madness is a disease, often curable, and management matters more than medicine. John Monro of Bethlem published <em>Remarks</em> in reply the same year."},
+{era:"Reform",y:"1788",t:"The madness of King George",
+ who:["Francis Willis","1718 to 1807","FW"],
+ p:"George III's recurrent illness, often attributed to porphyria though this is now disputed, forced Parliament to think about insanity. Willis treated the King with restraint and intimidation, and was credited when the King recovered.",
+ note:"The porphyria hypothesis has been substantially challenged; bipolar disorder remains a plausible alternative. Do not state porphyria as fact."},
+{era:"Reform",y:"1793",t:"The chains come off at the Bicêtre",
+ who:["Philippe Pinel","1745 to 1826","PP"],
+ p:"Pinel is remembered for unchaining the patients at the Bicêtre in Paris. Modern scholarship gives much of the credit to Jean-Baptiste Pussin, the lay governor and a former patient himself.",
+ note:"<b>Pinel, Paris.</b> His <em>Traité médico-philosophique sur l'aliénation mentale</em> appeared in 1801. The companion English development is moral treatment at The Retreat in York.",
+ fix:"Commonly written as though Pinel did this in Great Britain. He was in Paris. Britain's equivalent was Tuke at York, three years later."},
+{era:"Reform",y:"1796",t:"The Retreat opens at York",
+ who:["William Tuke","1732 to 1822","WT"],
+ p:"After the Quaker widow Hannah Mills died in the York Asylum in 1790 and her friends were refused admission to see her, the Quakers built their own place: no chains, gardens, work and tea with the staff.",
+ note:"<b>Moral treatment</b> means psychological rather than ethical. It predates any effective drug by roughly 150 years."},
+{era:"Reform",y:"1812",t:"The first American textbook",
+ who:["Benjamin Rush","1746 to 1813","BR"],
+ p:"Rush publishes <em>Medical Inquiries and Observations upon the Diseases of the Mind</em>, and is later called the father of American psychiatry. He also championed bleeding and the restraining chair."},
+{era:"Reform",y:"1817",t:"Griesinger is born",
+ who:["Wilhelm Griesinger","1817 to 1868","WG"],
+ p:"His slogan, that mental diseases are diseases of the brain, became the founding claim of biological psychiatry. His textbook appeared in 1845 and he took the Berlin chair in 1865.",
+ fix:"Often dated to 1811, which is six years before Griesinger was born. The textbook is 1845; the general hospital model dates from his Berlin appointment in 1865."},
+{era:"Reform",y:"1838",t:"Esquirol's treatise",
+ who:["Jean-Étienne Esquirol","1772 to 1840","JE"],
+ p:"Pinel's pupil publishes <em>Des maladies mentales</em>, the first modern clinical textbook of psychiatry, and teaches at the Salpêtrière in Paris.",
+ fix:"Sometimes placed in Edinburgh in 1823. Esquirol taught in Paris. The Edinburgh chair in the psychology of the mind came later and belongs to a different line."},
+{era:"Reform",y:"1839",t:"Restraint abolished at Hanwell",
+ who:["John Conolly","1794 to 1866","JC"],
+ p:"Conolly abolishes mechanical restraint entirely in an asylum of more than eight hundred patients, proving it could be done at scale."},
+{era:"Reform",y:"1841",t:"The College begins",
+ p:"The Association of Medical Officers of Asylums and Hospitals for the Insane is founded. It becomes the Medico-Psychological Association, and eventually the Royal College of Psychiatrists.",
+ uk:true},
+{era:"Reform",y:"1847",t:"General paralysis of the insane",
+ who:["Wilhelm Griesinger","1817 to 1868","WG"],
+ p:"Griesinger uses neurosyphilis, which produced psychosis, grandiosity and dementia and then killed, as the proof that a mental disorder can be a brain disease.",
+ note:"<b>GPI</b> was the demonstration case for biological psychiatry, and it is why the discovery of a treatment for it in 1917 mattered so much."},
+{era:"Reform",y:"1848",t:"The tamping iron and Phineas Gage",
+ who:["Phineas Gage","1823 to 1860","PG"],
+ p:"On 13 September 1848, near Cavendish in Vermont, a three foot seven inch tamping iron was blown through the left cheek and out of the top of the skull of a twenty-five year old railway foreman. He was speaking within minutes.",
+ note:"<b>Left frontal lobe damage.</b> Doctor: John Martyn Harlow. Gage lived twelve more years and died of status epilepticus in May 1860. Modern work by Malcolm Macmillan shows the personality change was substantially exaggerated in later retellings, and that Gage held skilled work as a coach driver in Chile.",
+ fix:"Frequently dated 1835. The accident was 13 September 1848. The textbook claim of a total and permanent personality change is also overstated."},
+
+/* ---------------- Classification ---------------- */
+{era:"Classification",y:"1854",t:"Folie circulaire",
+ who:["Jules Falret","1794 to 1870","JF"],
+ p:"Falret describes an illness that cycles between elation and depression, the direct ancestor of bipolar disorder."},
+{era:"Classification",y:"1861",t:"Broca's area",
+ who:["Paul Broca","1824 to 1880","PB"],
+ p:"Broca localises expressive speech to the posterior inferior frontal gyrus, the first firm link between a mental function and a piece of cortex.",
+ note:"<b>Broca's aphasia:</b> non-fluent, effortful speech with relatively preserved comprehension and impaired repetition.",
+ fix:"Broca's dates are commonly given as 1824 to 1888. He died in 1880."},
+{era:"Classification",y:"1866",t:"Down describes the syndrome",
+ who:["John Langdon Down","1828 to 1896","JD"],
+ p:"Working at Earlswood Asylum, Down publishes his description. The condition was later shown by Lejeune in 1959 to be trisomy 21.",
+ note:"Trisomy 21 carries an extra copy of <em>APP</em>, which is why almost all adults with Down syndrome develop Alzheimer pathology."},
+{era:"Classification",y:"1868",t:"Anorexia nervosa named",
+ who:["Sir William Gull","1816 to 1890","WG"],
+ p:"Gull describes young women with extreme emaciation and amenorrhoea, insists the cause is not gastric, and gives the condition its name.",
+ fix:"Gull's birth year is sometimes printed as 1819. He was born in 1816."},
+{era:"Classification",y:"1871 to 1874",t:"Hebephrenia and catatonia",
+ who:["Karl Kahlbaum","1828 to 1899","KK"],
+ p:"Kahlbaum describes catatonia and, with Ewald Hecker, hebephrenia. Both are folded by Kraepelin into dementia praecox a quarter of a century later.",
+ note:"Kahlbaum also coined <b>cyclothymia</b> in 1882."},
+{era:"Classification",y:"1874",t:"Wernicke's area",
+ who:["Carl Wernicke","1848 to 1905","CW"],
+ p:"Aged twenty-six, Wernicke localises comprehension to the posterior superior temporal gyrus and predicts a third aphasia from disconnection.",
+ note:"<b>Wernicke's aphasia:</b> fluent but empty speech, impaired comprehension, impaired repetition. <b>Conduction aphasia:</b> fluent, comprehension intact, repetition impaired, arcuate fasciculus."},
+{era:"Classification",y:"1885",t:"Tourette's syndrome",
+ who:["Georges Gilles de la Tourette","1857 to 1904","GT"],
+ p:"Working under Charcot at the Salpêtrière, he describes nine patients with multiple motor tics, echolalia and coprolalia."},
+{era:"Classification",y:"1895",t:"Studies on Hysteria",
+ who:["Sigmund Freud","1856 to 1939","SF"],
+ p:"Freud and Josef Breuer publish the case of Anna O and the talking cure. <em>The Interpretation of Dreams</em> follows in 1899, dated 1900 by its publisher.",
+ note:"Anna O was Bertha Pappenheim, who went on to found German social work. The phrase talking cure was hers, not Freud's."},
+{era:"Classification",y:"1899",t:"Dementia praecox and manic depressive insanity",
+ who:["Emil Kraepelin","1856 to 1926","EK"],
+ p:"In the sixth edition of his textbook Kraepelin splits the psychoses in two, by course rather than by symptom. It is the single most consequential division in psychiatry.",
+ note:"<b>Kraepelin's distinction rests on outcome:</b> deteriorating course in dementia praecox, episodic with recovery in manic depressive insanity. He also coined <b>late paraphrenia</b> in 1913."},
+{era:"Classification",y:"1901",t:"Auguste Deter is admitted",
+ who:["Alois Alzheimer","1864 to 1915","AA"],
+ p:"On 25 November 1901 a fifty-one year old woman is admitted in Frankfurt. Asked to write her name she stops and says, I have lost myself.",
+ note:"She died 8 April 1906. Alzheimer presented the case in Tübingen on <b>3 November 1906</b>. The room asked no questions. Kraepelin named the disease in the eighth edition of his textbook in <b>1910</b>.",
+ fix:"Frequently dated 1897. The clinical case begins in 1901 and the pathology was presented in 1906."},
+{era:"Classification",y:"1903",t:"Barbiturates arrive",
+ p:"Barbital reaches the market, following chloral hydrate in 1869. For half a century these are the only sedatives psychiatry has, and dependence follows quickly."},
+{era:"Classification",y:"1904",t:"Pavlov and the conditioned reflex",
+ who:["Ivan Pavlov","1849 to 1936","IP"],
+ p:"Pavlov wins the Nobel Prize for work on digestion, and in the course of it discovers that a dog will salivate to a signal that predicts food.",
+ note:"<b>Food is the unconditioned stimulus.</b> Salivation to food is the unconditioned response. The bell, tone or metronome is the neutral stimulus which becomes the <b>conditioned stimulus</b>, and salivation to it is the conditioned response.",
+ fix:"Very commonly printed the wrong way round, with food as the conditioned stimulus and the bell as unconditioned. That reversal appears in question banks and it is wrong."},
+{era:"Classification",y:"1908",t:"Schizophrenia is named",
+ who:["Eugen Bleuler","1857 to 1939","EB"],
+ p:"Bleuler renames dementia praecox to make the point that it neither always dements nor always begins early. The split he meant was within the mind, not of it.",
+ note:"<b>Bleuler's four As:</b> loosening of Associations, Affective blunting, Ambivalence, Autism. Hallucinations and delusions he regarded as accessory rather than fundamental."},
+{era:"Classification",y:"1914 to 1918",t:"Shell shock",
+ who:["W. H. R. Rivers","1864 to 1922","WR"],
+ p:"Rivers treats officers at Craiglockhart, among them Siegfried Sassoon and Wilfred Owen. The incidence peaks after the Somme in 1916.",
+ note:"Shell shock forced acceptance that overwhelming stress can cause illness in men of proven courage. The direct descendant is <b>PTSD</b>, admitted to DSM-III in 1980.",
+ fix:"The First World War is sometimes given as 1914 to 1917. It ended in 1918."},
+{era:"Classification",y:"1916",t:"The Stanford-Binet",
+ who:["Lewis Terman","1877 to 1956","LT"],
+ p:"Terman revises the Binet-Simon scale of 1905 for American use and popularises the intelligence quotient.",
+ fix:"Often credited jointly to Binet and Terman as a 1916 collaboration. Binet died in 1911. The 1916 revision is Terman's."},
+
+/* ---------------- Somatic ---------------- */
+{era:"Somatic",y:"1917",t:"Malaria for neurosyphilis",
+ who:["Julius Wagner-Jauregg","1857 to 1940","WJ"],
+ p:"Infecting patients with malaria to produce fevers that killed the spirochaete became the first physical treatment in psychiatry to work. It won the Nobel Prize in 1927.",
+ note:"The first effective somatic treatment in psychiatry, and it was superseded within thirty years by penicillin. Worth setting beside the Tuskegee study, in which treatment for syphilis was deliberately withheld from Black American men from 1932 to 1972."},
+{era:"Somatic",y:"1923",t:"The Maudsley opens",
+ p:"The Maudsley Hospital opens to civilian patients in south London, funded by Henry Maudsley and built to treat early and treatable illness rather than to detain.",
+ uk:true,
+ fix:"Commonly given as opened in 1919 by Aubrey Lewis. Lewis was nineteen years old in 1919 and did not arrive until 1928. The hospital took war casualties from 1915 and opened to civilians in 1923."},
+{era:"Somatic",y:"1927",t:"Insulin coma therapy",
+ who:["Manfred Sakel","1900 to 1957","MS"],
+ p:"Patients were driven into hypoglycaemic coma daily for weeks and revived with glucose. It was used on tens of thousands of people with schizophrenia before controlled comparison in the 1950s showed it did not work."},
+{era:"Somatic",y:"1935",t:"Leucotomy",
+ who:["Egas Moniz","1874 to 1955","EM"],
+ p:"Moniz introduces frontal leucotomy after seeing chimpanzees become placid when their frontal lobes were ablated. He received the Nobel Prize in 1949, which has never been rescinded.",
+ note:"Freeman's transorbital variant made it fast enough to be done in an office. Tens of thousands of operations were performed. It is the strongest argument in medicine for controlled trials before adoption."},
+{era:"Somatic",y:"1935",t:"Alcoholics Anonymous",
+ p:"Bill Wilson and Robert Smith found AA in Akron, Ohio, creating the mutual aid model that still underlies much of addictions care."},
+{era:"Somatic",y:"1938",t:"Electroconvulsive therapy",
+ who:["Ugo Cerletti","1877 to 1963","UC"],
+ p:"Cerletti and Lucio Bini induce a seizure electrically rather than chemically, in Rome, having watched pigs stunned at an abattoir. The first patient recovered and asked them not to do it again.",
+ note:"<b>Cerletti and Bini, 1938.</b> Introduced for schizophrenia; its enduring indication is severe depression, particularly with psychosis, food refusal or high suicide risk. Modern practice uses anaesthesia and muscle relaxant. Retrograde amnesia is the main persistent adverse effect."},
+{era:"Somatic",y:"1939 to 1945",t:"Aktion T4",
+ p:"The Nazi state murdered around seventy thousand people with mental illness and learning disability under the T4 programme, using methods later industrialised in the camps. Psychiatrists selected the patients.",
+ fix:"The Second World War is sometimes given as 1933 to 1945. The war ran 1939 to 1945; 1933 is when the Nazis took power."},
+{era:"Somatic",y:"1943",t:"Infantile autism",
+ who:["Leo Kanner","1894 to 1981","LK"],
+ p:"Kanner describes eleven children with autistic disturbances of affective contact. Hans Asperger described a similar group in Vienna in 1944.",
+ note:"Asperger's wartime conduct has been re-examined and evidence of his cooperation with Nazi child euthanasia programmes is now documented. The eponym has largely been retired, and ICD-11 and DSM-5 fold it into autism spectrum disorder."},
+{era:"Somatic",y:"1948",t:"The NHS, and the Institute of Psychiatry",
+ p:"The National Health Service is founded, and the Institute of Psychiatry established at the Maudsley. Together they make British psychiatric epidemiology possible.",
+ uk:true},
+{era:"Somatic",y:"1948",t:"Attachment",
+ who:["John Bowlby","1907 to 1990","JB"],
+ p:"Bowlby's work for the World Health Organization on maternal deprivation begins the research programme that becomes attachment theory.",
+ note:"<b>Protest, despair, detachment.</b> Mary Ainsworth's Strange Situation followed in 1969 and produced the secure, avoidant and ambivalent categories; Main and Solomon added disorganised in 1986."},
+{era:"Somatic",y:"1949",t:"Lithium",
+ who:["John Cade","1912 to 1980","JCa"],
+ p:"Cade injects guinea pigs with urine from manic patients, is wrong about why, and finds that lithium makes them placid. His first patient had been continuously manic for five years and went home.",
+ note:"<b>Cade, Medical Journal of Australia, 1949.</b> First patient treated 29 March 1948, ten patients in the paper. Buried for two decades by unpatentability and by deaths from unmonitored lithium chloride sold as a salt substitute. Rescued by Mogens Schou's controlled trials. US approval 1970."},
+
+/* ---------------- Pharmacological ---------------- */
+{era:"Pharmacological",y:"1952",t:"Chlorpromazine",
+ who:["Jean Delay","1907 to 1987","JD"],
+ p:"Synthesised by Paul Charpentier in 1950 and given to surgical patients by Henri Laborit, who noticed a strange indifference. Delay and Deniker gave it to psychiatric patients at Sainte-Anne in Paris and the wards changed within months.",
+ note:"The first effective antipsychotic. Its D2 blockade led directly to the <b>dopamine hypothesis</b> of schizophrenia, which was reasoning backwards from a drug and is a good example of how often that has worked."},
+{era:"Pharmacological",y:"1952",t:"DSM-I",
+ p:"The American Psychiatric Association publishes the first Diagnostic and Statistical Manual, heavily psychoanalytic and containing 106 categories."},
+{era:"Pharmacological",y:"1957",t:"Imipramine and iproniazid",
+ who:["Roland Kuhn","1912 to 2005","RK"],
+ p:"Kuhn finds that imipramine, developed as an antipsychotic, lifts depression instead. In the same period iproniazid, a tuberculosis drug, is noticed to make patients euphoric. The monoamine hypothesis follows.",
+ note:"Both classes were found by accident and the theory was built afterwards. Imipramine is the first tricyclic; iproniazid the first MAOI."},
+{era:"Pharmacological",y:"1959",t:"First rank symptoms",
+ who:["Kurt Schneider","1887 to 1967","KS"],
+ p:"Schneider offers a list of symptoms which, absent organic disease, point strongly to schizophrenia. He intended them as practical, not as a theory of the illness.",
+ note:"<b>Audible thoughts, voices arguing, running commentary, thought withdrawal, insertion and broadcast, made feelings, made impulses, made acts, somatic passivity, delusional perception.</b> They are not specific and ICD-11 no longer privileges them."},
+{era:"Pharmacological",y:"1959",t:"The Mental Health Act 1959",
+ p:"Informal admission becomes the norm in England and Wales, and Mental Health Review Tribunals are created.",
+ uk:true},
+{era:"Pharmacological",y:"1960",t:"Chlordiazepoxide, then diazepam",
+ p:"Librium reaches the market in 1960 and Valium in 1963. Within a decade benzodiazepines are the most prescribed drugs in the world, and the dependence problem follows."},
+{era:"Pharmacological",y:"1961",t:"Asylums, and the water tower speech",
+ who:["Erving Goffman","1922 to 1982","EG"],
+ p:"Goffman publishes <em>Asylums</em> after a year inside a Washington hospital. In the same year Enoch Powell announces the demolition of the asylums.",
+ note:"<b>Total institution.</b> Batch living, binary management, mortification of self, the moral career of the patient. Russell Barton had named <b>institutional neurosis</b> two years earlier. Distinguish it from negative symptoms: institutional neurosis improves when the environment changes.",
+ uk:true},
+{era:"Pharmacological",y:"1962",t:"Anti-psychiatry",
+ p:"Szasz's <em>The Myth of Mental Illness</em>, Laing's <em>The Divided Self</em> and Foucault's history arrive together. The movement was often wrong about the science and frequently right about the power."},
+{era:"Pharmacological",y:"1966",t:"Rett syndrome",
+ who:["Andreas Rett","1924 to 1997","AR"],
+ p:"Rett describes twenty-two girls who developed normally and then regressed, losing purposeful hand use. The <em>MECP2</em> gene was identified in 1999.",
+ fix:"Often placed in the 1960s without a year, or given as normal development for six months. Regression typically begins between six and eighteen months."},
+{era:"Pharmacological",y:"1967",t:"Cognitive therapy",
+ who:["Aaron Beck","1921 to 2021","AB"],
+ p:"Beck set out to prove the psychoanalytic account of depression and found instead that his patients had a stream of automatic negative thoughts. He followed the data.",
+ note:"<b>The cognitive triad:</b> negative view of the self, the world and the future."},
+{era:"Pharmacological",y:"1971",t:"The Royal College of Psychiatrists",
+ p:"The Medico-Psychological Association receives its Royal Charter as the Royal College of Psychiatrists. The MRCPsych examination followed in 1972.",
+ uk:true,
+ fix:"The examination is often dated to 1971 alongside the Charter. The first MRCPsych examinations were held in 1972."},
+{era:"Pharmacological",y:"1972",t:"Isle of Wight",
+ who:["Michael Rutter","1933 to 2021","MR"],
+ p:"Rutter's population studies of every child on the island establish child psychiatric epidemiology and demolish the idea that adolescent turmoil is universal."},
+{era:"Pharmacological",y:"1975",t:"Clozapine withdrawn",
+ p:"Reports of agranulocytosis in Finland lead to clozapine being pulled from most markets. It is the most effective antipsychotic ever made, and for thirteen years almost nobody can have it."},
+{era:"Pharmacological",y:"1979",t:"Bulimia nervosa",
+ who:["Gerald Russell","1928 to 2018","GR"],
+ p:"Russell describes bulimia nervosa as an ominous variant of anorexia nervosa, and gives us Russell's sign, the callus on the knuckles from self-induced vomiting."},
+
+/* ---------------- Evidence ---------------- */
+{era:"Evidence",y:"1980",t:"DSM-III",
+ who:["Robert Spitzer","1932 to 2015","RS"],
+ p:"Operational criteria replace clinical impression. Reliability rises sharply, psychoanalysis loses its grip on American psychiatry, and PTSD enters the manual.",
+ note:"DSM-III is the hinge of modern classification: explicit criteria, multiaxial assessment, and the removal of homosexuality as a diagnosis, which had happened in DSM-II's seventh printing in 1974."},
+{era:"Evidence",y:"1983",t:"The Mental Health Act 1983",
+ p:"Consent to treatment provisions, approved social workers and the Mental Health Act Commission are introduced in England and Wales.",
+ uk:true},
+{era:"Evidence",y:"1985",t:"Expressed emotion",
+ p:"Leff and Vaughn show that relapse in schizophrenia is predicted by critical comment, hostility and emotional overinvolvement in the household, and that family intervention reduces it.",
+ note:"<b>High expressed emotion</b> raises relapse risk. The intervention is family work, not blame, and this is the evidence base for family therapy in psychosis."},
+{era:"Evidence",y:"1988",t:"Clozapine returns",
+ who:["John Kane","1945 to","JK"],
+ p:"Kane's double blind comparison with chlorpromazine shows clozapine works in patients who had failed everything else. It comes back with mandatory blood monitoring.",
+ note:"<b>Kane et al, Archives of General Psychiatry, 1988.</b> Clozapine remains the only agent licensed for treatment resistant schizophrenia, defined as failure of two adequate trials of antipsychotics, one of which is a second generation drug."},
+{era:"Evidence",y:"1987 to 1990",t:"The SSRIs",
+ p:"Fluoxetine reaches the American market in 1988, followed through the 1990s by sertraline, paroxetine, citalopram and the rest. They are no more effective than the tricyclics and far safer in overdose, which is why they took over.",
+ note:"The 1990s claim that fluoxetine increased suicide in adults did not survive better designed studies. The separate paediatric signal did, and led to the black box warning in 2004."},
+{era:"Evidence",y:"1991",t:"Dialectical behaviour therapy",
+ who:["Marsha Linehan","1943 to","ML"],
+ p:"Linehan publishes the first trial of DBT for chronically suicidal women. In 2011 she disclosed that she had been a patient herself, on a locked ward, at eighteen.",
+ note:"<b>Four modules:</b> mindfulness, distress tolerance, emotion regulation, interpersonal effectiveness. The dialectic is acceptance and change held together."},
+{era:"Evidence",y:"1992",t:"ICD-10",
+ p:"The World Health Organization publishes ICD-10, which becomes the classification used across the United Kingdom and most of the world."},
+{era:"Evidence",y:"2004",t:"The black box warning",
+ p:"American regulators require a warning about suicidality in under-eighteens on antidepressants. Prescribing fell, and so, on some analyses, did treatment of depressed adolescents.",
+ note:"Fluoxetine remains the first line antidepressant in children and adolescents in the UK, and is the exception in most guidance."},
+{era:"Evidence",y:"2007",t:"The Mental Health Act 2007",
+ p:"Amends the 1983 Act for England and Wales. Introduces supervised community treatment, replaces the responsible medical officer with the approved clinician and the approved social worker with the approved mental health professional, and adds the appropriate medical treatment test.",
+ uk:true},
+{era:"Evidence",y:"2008",t:"MRCPsych reform",
+ p:"The examination is restructured into Papers A and B and the CASC, replacing the previous Part I and Part II format.",
+ uk:true},
+
+/* ---------------- Present ---------------- */
+{era:"Present",y:"2013",t:"DSM-5",
+ p:"Multiaxial assessment is dropped, autism is unified into a spectrum, bereavement no longer excludes a diagnosis of depression, and the manual arrives to heavy criticism.",
+ note:"The NIMH declined to organise its research funding around DSM-5 categories, launching <b>RDoC</b> instead, which is the clearest institutional admission that the categories do not map onto biology."},
+{era:"Present",y:"2019",t:"Esketamine",
+ p:"Intranasal esketamine is licensed for treatment resistant depression, the first genuinely new antidepressant mechanism in decades and the first that works in hours rather than weeks.",
+ note:"NMDA receptor antagonism. Given under supervision because of dissociation and blood pressure rise. NICE has not recommended it for routine NHS use."},
+{era:"Present",y:"2022",t:"ICD-11 comes into force",
+ p:"In effect from 1 January 2022. Personality disorder becomes a single dimensional diagnosis with severity and trait qualifiers, complex PTSD and prolonged grief disorder are added, and gender incongruence moves out of the mental disorders chapter.",
+ note:"<b>ICD-11 changes worth knowing:</b> lifespan approach, so diagnoses are no longer tied to age of onset; minimum symptom counts removed for most disorders; dimensional elements in psychosis, mood and personality; the five personality trait domains are negative affectivity, detachment, dissociality, disinhibition and anankastia, with a borderline pattern qualifier."},
+{era:"Present",y:"2022",t:"DSM-5-TR",
+ p:"A text revision rather than a new edition. Prolonged grief disorder is added, and the descriptive text is updated throughout."},
+{era:"Present",y:"2023 to 2024",t:"The anti-amyloid antibodies",
+ p:"Lecanemab and donanemab become the first drugs shown to slow cognitive decline in early Alzheimer's disease by clearing amyloid. Both were licensed by the MHRA, donanemab in October 2024.",
+ note:"<b>The UK position matters for the examination.</b> Licensed by the MHRA but <b>not recommended by NICE</b>, whose final draft guidance in June 2025 concluded the benefit was too small for the cost. Neither is available on the NHS. Adverse effects: <b>ARIA</b>, amyloid related imaging abnormalities, with oedema and haemorrhage, commoner in <em>APOE</em> e4 homozygotes.",
+ uk:true},
+{era:"Present",y:"Ongoing",t:"Reforming the Mental Health Act",
+ p:"Following the 2018 independent review, legislation to reform the Mental Health Act 1983 has been carried through Parliament, aimed at reducing detention, addressing racial disparity in the use of the Act, and limiting its use for people with learning disability and autism.",
+ uk:true,
+ note:"Know the direction of travel: greater weight to the patient's wishes through advance choice documents, a nominated person replacing the nearest relative, and narrowing of the detention criteria."}
+];
+
+/* ==========================================================================
+   RENDER
+   ========================================================================== */
+const rail = document.getElementById("rail");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const hue = s => { let h=0; for(const c of s) h=(h*31+c.charCodeAt(0))%360; return h; };
+
+function portrait(w){
+  const [name,dates,ini] = w;
+  const file = "content/portraits/" + slug(name) + ".jpg";
+  return '<span class="face" style="--h:'+hue(name)+'">' +
+           '<img src="'+file+'" alt="'+esc(name)+'" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">' +
+           '<span class="ini" aria-hidden="true">'+esc(ini)+'</span></span>' +
+         '<span class="nm"><b>'+esc(name)+'</b><span>'+esc(dates)+'</span></span>';
+}
+
+function draw(filterEra, query){
+  let n = 0, side = 0, html = "";
+  const q = (query||"").trim().toLowerCase();
+
+  ERAS.forEach(function(E){
+    const [key,span,blurb] = E;
+    if (filterEra && filterEra !== "All" && filterEra !== key) return;
+    const items = EVENTS.filter(function(e){
+      if (e.era !== key) return false;
+      if (!q) return true;
+      const hay = (e.y+" "+e.t+" "+e.p+" "+(e.note||"")+" "+(e.fix||"")+" "+(e.who?e.who.join(" "):"")).toLowerCase();
+      return hay.indexOf(q) > -1;
+    });
+    if (!items.length) return;
+
+    html += '<div class="era"><span class="dot"></span><h3>'+esc(key)+'</h3>' +
+            '<p><strong>'+esc(span)+'</strong>. '+esc(blurb)+'</p></div>';
+
+    items.forEach(function(e){
+      n++; side ^= 1;
+      html += '<div class="ev '+(side?"l":"r")+'"><span class="node"></span><div class="cardw">' +
+        '<span class="yr">'+esc(e.y)+'</span>' +
+        '<h4>'+esc(e.t)+
+          (e.fix ? '<span class="flag fix">Corrected</span>' : '') +
+          (e.uk  ? '<span class="flag uk">UK</span>' : '') +
+        '</h4>' +
+        (e.who ? '<div class="who">'+portrait(e.who)+'</div>' : '') +
+        '<p>'+e.p+'</p>' +
+        (e.note ? '<details class="note"><summary>Exam note</summary><div class="body">'+e.note+'</div></details>' : '') +
+        (e.fix ? '<div class="corr"><b>What the usual version gets wrong</b>'+esc(e.fix)+'</div>' : '') +
+        '</div></div>';
+    });
+  });
+
+  rail.innerHTML = html || '<div class="empty">Nothing matches that. Try a surname, a drug or a year.</div>';
+  document.getElementById("count").textContent = n + (n===1 ? " entry" : " entries");
+  observe();
+}
+
+/* reveal on scroll */
+let io;
+function observe(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const items = rail.querySelectorAll(".ev");
+  if (reduce || !("IntersectionObserver" in window)) { items.forEach(el=>el.classList.add("in")); return; }
+  if (io) io.disconnect();
+  io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {rootMargin:"0px 0px -12% 0px", threshold:0.08});
+  items.forEach(el=>io.observe(el));
+}
+
+/* the spine fills as you go */
+function fill(){
+  const r = rail.getBoundingClientRect();
+  const seen = Math.min(Math.max(window.innerHeight*0.5 - r.top, 0), r.height);
+  rail.style.setProperty("--fill", (r.height ? seen/r.height*100 : 0)+"%");
+  document.getElementById("totop").classList.toggle("on", window.scrollY > 900);
+}
+window.addEventListener("scroll", fill, {passive:true});
+window.addEventListener("resize", fill);
+document.getElementById("totop").onclick = () => window.scrollTo({top:0,behavior:"smooth"});
+
+/* controls */
+let era = "All", query = "";
+const chips = document.getElementById("chips");
+chips.innerHTML = ["All"].concat(ERAS.map(e=>e[0]))
+  .map(k=>'<button data-era="'+k+'" aria-pressed="'+(k==="All")+'">'+k+'</button>').join("");
+chips.querySelectorAll("button").forEach(b=>b.onclick=function(){
+  era = b.dataset.era;
+  chips.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  draw(era, query); fill(); window.scrollTo({top:rail.offsetTop-140, behavior:"smooth"});
+});
+document.getElementById("q").addEventListener("input", function(e){
+  query = e.target.value; draw(era, query); fill();
+});
+
+draw("All",""); fill();
+</script>
+<script src="content/auth.js"></script>
+<script src="content/menu.js?v=20261108m"></script>
+</body>
+</html>

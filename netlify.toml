@@ -1,0 +1,70 @@
+# The Psychiatric Resident
+# Nothing here changes where files are published. Safe to leave alone.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Small pieces of code that run on this site automatically.
+# This is what lets a new account be set up without anybody approving it.
+[functions]
+  directory = "netlify/functions"
+
+# The course chapters are never kept in a browser's cache, so a reader
+# cannot be shown an older copy of one that had no lock on it.
+[[headers]]
+  for = "/course-b/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/course/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/paper-b-bank.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/paid/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+# The buy and thank-you pages must never be served from a cache: one shows
+# prices, the other opens somebody's access.
+[[headers]]
+  for = "/thanks.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/buy.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/course-ca/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/paid/books/*"
+  [headers.values]
+    Cache-Control = "private, max-age=86400"
+    X-Robots-Tag = "noindex"
+
+# Menus, viewers and challenge data change with every deploy: always check for a newer copy.
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+
+[[headers]]
+  for = "/rcourse/p/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
